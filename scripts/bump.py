@@ -10,9 +10,10 @@ Writes into --out:
     title.txt   "bump: robarm-ee -> abc1234, xdmod -> def5678" (empty if nothing to bump)
     body.md     the PR text (without the provenance trailer; the workflow adds it)
 
-`status` comes from the GitHub compare API (pin...main): ahead (normal), diverged or behind (the pin
-is not on main, e.g. it was a PR branch commit before a rebase merge; the PR text flags these). The
-compare needs `gh` with a token; without it status is "unknown".
+`status` comes from the GitHub compare API (pin...main): ahead (normal) or diverged (the pin is not
+on main, e.g. a PR branch commit before a rebase merge; the PR text flags it). A pin that is AHEAD
+of main (status behind) is never moved backwards: it is held and only listed in the PR text. The
+compare needs `gh` with a token; without it status is "unknown" and the pin is moved.
 
 Stdlib only (runs on the bare runner before the workspace exists). Usage, from the workspace root:
     python3 robarm-manifest/scripts/bump.py --manifest robarm-manifest --out build/robarm-manifest/bump
@@ -98,7 +99,7 @@ def apply(bumps):
             raise SystemExit(f"{f}: could not rewrite the revision of {', '.join(missed)}")
 
 
-def body(bumps, manifest_rel):
+def body(bumps, manifest_rel, held=()):
     out = ["Moves the pins of xdmod and the robarm repos to their `main` (bump bot, D61, D89).", "",
            "| Repo | Pin | → main | Commits | Compare |", "|---|---|---|---|---|"]
     for b in bumps:
@@ -106,9 +107,13 @@ def body(bumps, manifest_rel):
         n = "?" if b["ahead_by"] is None else b["ahead_by"]
         out.append(f"| {b['name']} | `{b['old'][:12]}` | `{b['new'][:12]}` | {n}{flag} | "
                    f"[diff]({URL_BASE}/{b['name']}/compare/{b['old'][:12]}...{b['new'][:12]}) |")
-    if any(b["status"] in ("diverged", "behind") for b in bumps):
-        out += ["", "⚠ A pin that is *diverged* or *behind* was not on `main` (for example a PR branch "
+    if any(b["status"] == "diverged" for b in bumps):
+        out += ["", "⚠ A pin that is *diverged* was not on `main` (for example a PR branch "
                 "commit before a rebase merge). Check that the new pin is what you want."]
+    if held:
+        out += ["", "Not moved, because the pin is ahead of `main` (it would go backwards): "
+                + ", ".join(f"{h['name']} (pin `{h['old'][:12]}`, main `{h['new'][:12]}`)" for h in held)
+                + ". Fix the pin by a deliberate PR."]
     for b in bumps:
         if b["commits"]:
             out += ["", f"<details><summary>{b['name']}: commits</summary>", "", "```"]
@@ -131,20 +136,24 @@ def main(argv=None):
     a = ap.parse_args(argv)
 
     heads = dict(h.split("=", 1) for h in a.head)
-    bumps = []
+    bumps, held = [], []
     for f, name, pin in read_pins(a.manifest):
         new = heads.get(name) or main_head(name)
         print(f"{name:20} pin {pin[:12]}  main {new[:12]}  {'BUMP' if new != pin else 'ok'}")
         if new == pin:
             continue
         status, ahead_by, commits = compare(name, pin, new)
+        if status == "behind":
+            print(f"{name}: pin is ahead of main; not moving it backwards", file=sys.stderr)
+            held.append({"name": name, "old": pin, "new": new})
+            continue
         bumps.append({"name": name, "file": f.relative_to(a.manifest).as_posix(), "path": f,
                       "old": pin, "new": new, "status": status, "ahead_by": ahead_by, "commits": commits})
 
     a.out.mkdir(parents=True, exist_ok=True)
     title = ("bump: " + ", ".join(f"{b['name']} → {b['new'][:7]}" for b in bumps)) if bumps else ""
     (a.out / "title.txt").write_text(title + "\n" if title else "")
-    (a.out / "body.md").write_text(body(bumps, a.manifest.name) if bumps else "")
+    (a.out / "body.md").write_text(body(bumps, a.manifest.name, held) if bumps else "")
     (a.out / "bump.json").write_text(json.dumps([{k: v for k, v in b.items() if k != "path"} for b in bumps],
                                                 indent=2) + "\n")
     if bumps and a.apply:
