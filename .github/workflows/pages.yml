@@ -126,10 +126,11 @@ jobs:
       pages: write             # request a Pages build after the push
     steps:
       - name: Manifest (site.py and the remote for gh-pages)
+        # No sparse checkout here: the gh-pages worktree shares this repo's config, and a sparse
+        # definition (scripts/) makes `git add` refuse every path outside it (latest/, vX.Y.Z/).
         uses: actions/checkout@v4
         with:
           path: repo
-          sparse-checkout: scripts
 
       - name: HTML of the full set
         if: needs.what.outputs.version != 'root-only'
