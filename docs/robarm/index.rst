@@ -33,7 +33,7 @@ Documents
      - :external+sw-arch:doc:`index`
      - ``robarm-sw``
    * -
-     - :external+sw-api:doc:`index`
+     - `SW API and Implementation <../sw-api/index.html>`__ (Doxygen)
      - ``robarm-sw``
    * -
      - :external+sw-test-spec:doc:`index`

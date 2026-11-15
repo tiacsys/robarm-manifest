@@ -80,14 +80,13 @@ documents:
     builders: [html]
     needs: {source: json}
   sw-api:
-    # Code units from Doxygen (@xdid, \satisfies). If robarm-sw's registry adds Doxygen settings
-    # (e.g. a `kind: doxygen` document and `symbol_needs`), copy them here as well.
-    title: "SW API & Implementation"
+    # Doxygen document, same kind as in robarm-sw's own registry.
+    title: "SW API and Implementation"
     group: g-software
+    kind: doxygen
     prefix: sw-api
     doc_dir: ../../robarm-sw/docs/sw-api
     version_project: robarm-sw
-    builders: [html]
     needs: {source: json}
   sw-test-spec:
     title: "SW Test Specification"
