@@ -15,9 +15,10 @@
 # minutes. Dispatch with force-check to repeat it. The bot keeps ONE result comment per PR and edits it.
 #
 # Three jobs, least privilege: `prepare` (write scopes, runs only this repo's bot code) moves the pins,
-# pushes bump/auto, opens/updates the PR and sets `full-set` to pending; `check` (contents: read, no
-# persisted credentials) runs the third-party build; `report` (statuses/issues write, runs no build
-# code) sets the final status and the comment from check's result and its summary.json artifact.
+# pushes bump/auto, opens/updates the PR and sets `full-set` to pending; `check` (xdmod's reusable
+# curatrix-check.yml, contents: read, resolve-siblings: false) runs the third-party build; `report`
+# (statuses/issues write, runs no build code) sets the final status and the comment from check's
+# result and its summary.json artifact.
 #
 # Keep-alive: GitHub switches off scheduled workflows after 60 days without repository activity.
 # Each scheduled run re-enables this workflow through the API, which resets that timer.
@@ -182,47 +183,19 @@ jobs:
             -f target_url="$RUN_URL" >/dev/null
 
   check:
+    # xdmod's reusable workflow at the bump commit, exactly at its pins (no D127 resolution),
+    # read-only. It uploads the artifact curatrix-robarm-manifest-full (checks/summary.json, HTML).
     needs: prepare
     if: needs.prepare.outputs.check == 'true'
-    runs-on: ubuntu-latest
-    timeout-minutes: 100
     permissions:
       contents: read
-    steps:
-      - name: Bot (the workspace action of this workflow's commit)
-        uses: actions/checkout@v4
-        with:
-          path: bot
-          sparse-checkout: .github
-          persist-credentials: false
-
-      - name: Manifest at the bump commit
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ needs.prepare.outputs.sha }}
-          path: ws/robarm-manifest
-          fetch-depth: 0
-          persist-credentials: false
-
-      - name: Workspace at the bumped pins (integration role)
-        uses: ./bot/.github/actions/workspace
-        with:
-          role: integration
-
-      - name: curatrix check robarm-manifest --stage full --no-cad
-        working-directory: ws
-        run: .venv/bin/curatrix check robarm-manifest --stage full --no-cad
-
-      - name: Upload check results and docs
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: bump-full-set
-          path: |
-            ws/build/full/checks/
-            ws/build/full/docs/deploy/html/
-            ws/build/full/docs-build.log
-          if-no-files-found: ignore
+    uses: tiacsys/xdmod/.github/workflows/curatrix-check.yml@main
+    with:
+      repo: robarm-manifest
+      role: integration
+      stage: full
+      manifest-ref: ${{ needs.prepare.outputs.sha }}
+      resolve-siblings: false
 
   report:
     needs: [prepare, check]
@@ -239,7 +212,7 @@ jobs:
         uses: actions/download-artifact@v4
         continue-on-error: true
         with:
-          name: bump-full-set
+          name: curatrix-robarm-manifest-full
           path: result
 
       - name: Report full-set (status and the one bot comment)
@@ -247,8 +220,9 @@ jobs:
           SHA: ${{ needs.prepare.outputs.sha }}
           N: ${{ needs.prepare.outputs.number }}
           RESULT: ${{ needs.check.result }}
-          SUMMARY: result/checks/summary.json
         run: |
+          # the artifact root is the common folder of the uploaded paths (build/ or build/full/)
+          SUMMARY="$(find result -path '*checks/summary.json' 2>/dev/null | head -1)"; SUMMARY="${SUMMARY:-none}"
           case "$RESULT" in
             success) state=success; desc="full set: all checks passed" ;;
             failure) if [ -f "$SUMMARY" ]; then state=failure; desc="full set: checks failed"
