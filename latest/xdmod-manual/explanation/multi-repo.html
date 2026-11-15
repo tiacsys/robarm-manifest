@@ -1,0 +1,290 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<link rel="alternate" type="text/markdown" href="multi-repo.html.md">
+<link rel="describedby" href="llms.txt">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Many repos, one workspace &mdash; XDMOD Manual</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../_static/zdocs-need-types.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/common_css/need_links.css?v=2150a916" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/common_css/needstable.css?v=7b67799e" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/modern.css?v=c1bc121d" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-test-results/common.css?v=b776391d" />
+      <link rel="stylesheet" type="text/css" href="../_static/zdocs-sphinx.css?v=1afe8e97" />
+      <link rel="stylesheet" type="text/css" href="../_static/zdocs-needs.css?v=f0382e39" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f348a06a"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/zdocs-need-preview.js?v=98728251"></script>
+      <script src="../_static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
+      <script src="../_static/sphinx-data-viewer/jsonview_loader.js?v=f7ff7e7d"></script>
+      <script src="../_static/sphinx-needs/libs/html/sphinx_needs_collapse.js?v=dca66431"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Humans and agents" href="humans-and-agents.html" />
+    <link rel="prev" title="Variants" href="variants.html" /> 
+<script id="xdmod-version-switcher" src="../../../version-switcher.js" data-site-root="../../.." defer></script>
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            XDMOD Manual
+          </a>
+<div class="version zdocs-version">v0.0-dev+g4afe2f3</div>
+
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+  
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../howto/index.html">How-to guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Explanation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="principles.html">Principles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v-model-and-traces.html">The V-model and trace links</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sysmod-and-sysml.html">SYSMOD and SysML v2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="variants.html">Variants</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Many repos, one workspace</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#why-several-repos">Why several repos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-manifest-pins-everything">The manifest pins everything</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#one-workspace-root">One workspace root</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#a-change-across-repos">A change across repos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#baselines-and-bundles">Baselines and bundles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#documents-across-repos">Documents across repos</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="humans-and-agents.html">Humans and agents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decisions/index.html">Decisions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rules/index.html">Rules</a></li>
+</ul>
+</li>
+</ul>
+
+  
+  <div class="toctree-wrapper compound reference-groups-wrapper">
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Project</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../robarm/index.html">Robot Arm: Project Overview</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">System</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../se-req/index.html">Stakeholder & System Requirements Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../se-arch/index.html">System Architecture</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Software</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../sw-req/index.html">SW Requirements Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../sw-arch/index.html">SW Architecture & Design</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../sw-api/index.html">SW API and Implementation</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../sw-test-spec/index.html">SW Test Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../sw-test-report/index.html">SW Test Report</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Electrical</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../ee-design/index.html">EE Requirements & Design</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Mechanical</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../me-design/index.html">ME Requirements & Design</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Integration</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../int-test-spec/index.html">System & Integration Test Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../int-test-report/index.html">System & Integration Test Report</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Framework</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../xdmod-ref/index.html">curatrix Reference</a></li>
+      
+    </ul>
+    
+  </div>
+  
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">XDMOD Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Explanation</a></li>
+      <li class="breadcrumb-item active">Many repos, one workspace</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/explanation/multi-repo.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="many-repos-one-workspace">
+<span id="expl-multi-repo"></span><h1>Many repos, one workspace<a class="headerlink" href="#many-repos-one-workspace" title="Link to this heading"></a></h1>
+<p>An XDMOD project lives in several git repos: one per engineering domain, one for integration,
+one manifest, and the framework itself. They are managed together as one <strong>west workspace</strong>
+(<a class="reference internal" href="decisions/repos.html#XD-ADR-0006" title="XD-ADR-0006"><em class="xref need">A multi-repo workspace with... (XD-ADR-0006)</em></a>).</p>
+<section id="why-several-repos">
+<h2>Why several repos<a class="headerlink" href="#why-several-repos" title="Link to this heading"></a></h2>
+<p>Each domain has its own tools, reviewers and pace. Separate repos keep their histories, checks
+and permissions apart, while the trace links still connect them. Example (robot arm): the repos
+<code class="docutils literal notranslate"><span class="pre">robarm-syseng</span></code>, <code class="docutils literal notranslate"><span class="pre">robarm-ee</span></code>, <code class="docutils literal notranslate"><span class="pre">robarm-me</span></code>, <code class="docutils literal notranslate"><span class="pre">robarm-sw</span></code> and <code class="docutils literal notranslate"><span class="pre">robarm-integration</span></code>, with
+<code class="docutils literal notranslate"><span class="pre">robarm-manifest</span></code> as the manifest and <code class="docutils literal notranslate"><span class="pre">xdmod</span></code> as the framework (<a class="reference internal" href="decisions/repos.html#XD-ADR-0042" title="XD-ADR-0042"><em class="xref need">Names: XDMOD, -trix tools, ... (XD-ADR-0042)</em></a>).</p>
+<ul class="simple">
+<li><p>The <strong>systems engineering</strong> repo holds needs, requirements, the SysML model and views. It is
+upstream of every domain.</p></li>
+<li><p>Each <strong>domain</strong> repo (EE, ME, SW) holds its requirements, design and domain tests.</p></li>
+<li><p>The <strong>integration</strong> repo holds the system and integration tests, the HIL setups and the
+orphan evidence branch (<a class="reference internal" href="decisions/repos.html#XD-ADR-0066" title="XD-ADR-0066"><em class="xref need">An integration repo for sys... (XD-ADR-0066)</em></a>). A test that verifies a system requirement or an interface
+lives there, even if it touches one domain only (<a class="reference internal" href="decisions/traces.html#XD-ADR-0104" title="XD-ADR-0104"><em class="xref need">Tests live by what they verify (XD-ADR-0104)</em></a>).</p></li>
+<li><p>The <strong>manifest</strong> repo pins every other repo (<a class="reference internal" href="decisions/repos.html#XD-ADR-0011" title="XD-ADR-0011"><em class="xref need">A dedicated manifest repo (XD-ADR-0011)</em></a>), builds the full document set, and
+holds the baselines.</p></li>
+<li><p><strong>xdmod</strong> is in every workspace that uses the framework (<a class="reference internal" href="decisions/repos.html#XD-ADR-0059" title="XD-ADR-0059"><em class="xref need">xdmod is in every workspace (XD-ADR-0059)</em></a>).</p></li>
+</ul>
+</section>
+<section id="the-manifest-pins-everything">
+<h2>The manifest pins everything<a class="headerlink" href="#the-manifest-pins-everything" title="Link to this heading"></a></h2>
+<p>The manifest repo is the <strong>only</strong> place that pins revisions (<a class="reference internal" href="decisions/repos.html#XD-ADR-0033" title="XD-ADR-0033"><em class="xref need">The manifest is the only pl... (XD-ADR-0033)</em></a>). Framework and design
+repos and libraries are pinned by commit SHA; third-party trees such as Zephyr may be pinned by
+tag. No other repo has its own <code class="docutils literal notranslate"><span class="pre">west.yml</span></code>.</p>
+<p>The manifest is split into <strong>submanifests</strong>, one per area, and its projects carry <strong>groups</strong>
+(<a class="reference internal" href="decisions/repos.html#XD-ADR-0079" title="XD-ADR-0079"><em class="xref need">West submanifests and proje... (XD-ADR-0079)</em></a>). Each role checks out only what it needs, through west’s group filter. The default
+filter is minimal: framework, systems engineering and Zephyr (<a class="reference internal" href="decisions/repos.html#XD-ADR-0084" title="XD-ADR-0084"><em class="xref need">A minimal default group filter (XD-ADR-0084)</em></a>). A role always gets its
+upstream repos and the framework. The integration role gets everything except the big CAD
+libraries (<a class="reference internal" href="decisions/repos.html#XD-ADR-0082" title="XD-ADR-0082"><em class="xref need">The integration role (XD-ADR-0082)</em></a>). Component libraries are pinned west projects too, isolated from any
+user-global setup (<a class="reference internal" href="decisions/repos.html#XD-ADR-0080" title="XD-ADR-0080"><em class="xref need">Pinned, isolated component ... (XD-ADR-0080)</em></a>).</p>
+<p>West rule to remember: a project is active as soon as <strong>one</strong> of its groups is enabled. So a big
+library carries only its own group, never also the domain group.</p>
+</section>
+<section id="one-workspace-root">
+<h2>One workspace root<a class="headerlink" href="#one-workspace-root" title="Link to this heading"></a></h2>
+<p>The workspace root is the west topdir (<a class="reference internal" href="decisions/repos.html#XD-ADR-0061" title="XD-ADR-0061"><em class="xref need">One west topdir at the work... (XD-ADR-0061)</em></a>). It holds <code class="docutils literal notranslate"><span class="pre">.west/</span></code>, <code class="docutils literal notranslate"><span class="pre">.venv/</span></code>, <code class="docutils literal notranslate"><span class="pre">build/</span></code>
+and all repos. Design repos sit at the top level; dependencies go under <code class="docutils literal notranslate"><span class="pre">tools/</span></code> and <code class="docutils literal notranslate"><span class="pre">libs/</span></code>
+(<a class="reference internal" href="decisions/repos.html#XD-ADR-0083" title="XD-ADR-0083"><em class="xref need">Workspace paths (XD-ADR-0083)</em></a>). Every command runs from the root (<a class="reference internal" href="decisions/repos.html#XD-ADR-0060" title="XD-ADR-0060"><em class="xref need">All commands run from the w... (XD-ADR-0060)</em></a>). See <a class="reference internal" href="../reference/workspace.html"><span class="doc">Workspace</span></a>.</p>
+</section>
+<section id="a-change-across-repos">
+<h2>A change across repos<a class="headerlink" href="#a-change-across-repos" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p><strong>One branch name</strong> in every repo the change touches (<a class="reference internal" href="decisions/workflow.html#XD-ADR-0045" title="XD-ADR-0045"><em class="xref need">One branch name across repos (XD-ADR-0045)</em></a>).</p></li>
+<li><p><strong>One pull request per repo.</strong> Each lists its sibling PRs.</p></li>
+<li><p><strong>PR CI</strong> checks each repo against its siblings. For each sibling it takes, in this order: a
+branch with the same name; the repo’s <code class="docutils literal notranslate"><span class="pre">main</span></code> if the manifest pin is an ancestor of it; the
+manifest pin (<a class="reference internal" href="decisions/checks.html#XD-ADR-0116" title="XD-ADR-0116"><em class="xref need">PR CI sibling resolution (XD-ADR-0116)</em></a>). So downstream PRs see upstream changes that are merged but not yet
+bumped.</p></li>
+<li><p><strong>Merge upstream first</strong>: systems engineering, then the domains, then integration. Framework
+changes merge before the repos that use them. Every PR is rebase-merged (<a class="reference internal" href="decisions/workflow.html#XD-ADR-0043" title="XD-ADR-0043"><em class="xref need">Trunk-based merging with re... (XD-ADR-0043)</em></a>).</p></li>
+<li><p><strong>Bump bot.</strong> A scheduled job in the manifest repo compares each repo’s <code class="docutils literal notranslate"><span class="pre">main</span></code> with its pin
+and opens or updates one bump PR (<a class="reference internal" href="decisions/checks.html#XD-ADR-0054" title="XD-ADR-0054"><em class="xref need">A bump bot for manifest pins (XD-ADR-0054)</em></a>, <a class="reference internal" href="decisions/checks.html#XD-ADR-0081" title="XD-ADR-0081"><em class="xref need">The bump bot is a scheduled... (XD-ADR-0081)</em></a>). Because a PR opened with the job’s
+own token does not trigger CI, the job builds the full set itself and reports on the PR.</p></li>
+</ol>
+</section>
+<section id="baselines-and-bundles">
+<h2>Baselines and bundles<a class="headerlink" href="#baselines-and-bundles" title="Link to this heading"></a></h2>
+<p>A <strong>baseline</strong> is a tag <code class="docutils literal notranslate"><span class="pre">baseline/vX.Y.Z</span></code> of the manifest repo: a fixed set of repo versions
+(<a class="reference internal" href="decisions/repos.html#XD-ADR-0034" title="XD-ADR-0034"><em class="xref need">Terms: baseline and bundle (XD-ADR-0034)</em></a>, <a class="reference internal" href="decisions/repos.html#XD-ADR-0047" title="XD-ADR-0047"><em class="xref need">SemVer tags and baseline tags (XD-ADR-0047)</em></a>). A <strong>bundle</strong> is the package of outputs built from one baseline: docs,
+CAM data, firmware, HIL results. Bundles come in iteration 2 (<a class="reference internal" href="decisions/scope.html#XD-ADR-0037" title="XD-ADR-0037"><em class="xref need">Scope moved to iteration 2 (XD-ADR-0037)</em></a>).</p>
+<p>Before a baseline is tagged, the gates run: no links to retired needs (<a class="reference internal" href="rules/trace.html#XD-RULE-0011" title="XD-RULE-0011"><em class="xref need">Links to retired needs are ... (XD-RULE-0011)</em></a>), no open suspect
+links (<a class="reference internal" href="rules/trace.html#XD-RULE-0014" title="XD-RULE-0014"><em class="xref need">Suspect links are reviewed ... (XD-RULE-0014)</em></a>), and a full local build with CAD content. The documentation is published on
+GitHub Pages of the manifest repo, with <code class="docutils literal notranslate"><span class="pre">main</span></code> as “latest” and one folder per baseline
+(<a class="reference internal" href="decisions/documents.html#XD-ADR-0048" title="XD-ADR-0048"><em class="xref need">Docs hosting on GitHub Page... (XD-ADR-0048)</em></a>).</p>
+</section>
+<section id="documents-across-repos">
+<h2>Documents across repos<a class="headerlink" href="#documents-across-repos" title="Link to this heading"></a></h2>
+<p>Each repo has its own zdocs registry (<a class="reference internal" href="decisions/documents.html#XD-ADR-0021" title="XD-ADR-0021"><em class="xref need">One zdocs registry per repo... (XD-ADR-0021)</em></a>), which also builds its upstream documents
+locally from the west checkout, so links into upstream needs resolve (<a class="reference internal" href="decisions/documents.html#XD-ADR-0029" title="XD-ADR-0029"><em class="xref need">Upstream documents are buil... (XD-ADR-0029)</em></a>). The manifest
+repo’s registry builds the full linked set. The XDMOD manual is part of that set; project
+documents link to the manual, but the manual never links to a project (<a class="reference internal" href="decisions/documents.html#XD-ADR-0101" title="XD-ADR-0101"><em class="xref need">The XDMOD manual is part of... (XD-ADR-0101)</em></a>).</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="variants.html" class="btn btn-neutral float-left" title="Variants" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="humans-and-agents.html" class="btn btn-neutral float-right" title="Humans and agents" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, XDMOD Manual.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

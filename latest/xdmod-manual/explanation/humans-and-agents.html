@@ -1,0 +1,333 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<link rel="alternate" type="text/markdown" href="humans-and-agents.html.md">
+<link rel="describedby" href="llms.txt">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Humans and agents &mdash; XDMOD Manual</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../_static/zdocs-need-types.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/common_css/need_links.css?v=2150a916" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/common_css/needstable.css?v=7b67799e" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/modern.css?v=c1bc121d" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-test-results/common.css?v=b776391d" />
+      <link rel="stylesheet" type="text/css" href="../_static/zdocs-sphinx.css?v=1afe8e97" />
+      <link rel="stylesheet" type="text/css" href="../_static/zdocs-needs.css?v=f0382e39" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f348a06a"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/zdocs-need-preview.js?v=98728251"></script>
+      <script src="../_static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
+      <script src="../_static/sphinx-data-viewer/jsonview_loader.js?v=f7ff7e7d"></script>
+      <script src="../_static/sphinx-needs/libs/html/sphinx_needs_collapse.js?v=dca66431"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Decisions" href="decisions/index.html" />
+    <link rel="prev" title="Many repos, one workspace" href="multi-repo.html" /> 
+<script id="xdmod-version-switcher" src="../../../version-switcher.js" data-site-root="../../.." defer></script>
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            XDMOD Manual
+          </a>
+<div class="version zdocs-version">v0.0-dev+g4afe2f3</div>
+
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+  
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../howto/index.html">How-to guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Explanation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="principles.html">Principles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v-model-and-traces.html">The V-model and trace links</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sysmod-and-sysml.html">SYSMOD and SysML v2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="variants.html">Variants</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multi-repo.html">Many repos, one workspace</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Humans and agents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#roles">Roles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#propose-versus-affirm">Propose versus affirm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#what-agents-may-and-may-not-do">What agents may and may not do</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#provenance">Provenance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#review-by-another-agent">Review by another agent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#working-in-parallel">Working in parallel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#agent-material-in-the-repos">Agent material in the repos</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="decisions/index.html">Decisions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rules/index.html">Rules</a></li>
+</ul>
+</li>
+</ul>
+
+  
+  <div class="toctree-wrapper compound reference-groups-wrapper">
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Project</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../robarm/index.html">Robot Arm: Project Overview</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">System</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../se-req/index.html">Stakeholder & System Requirements Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../se-arch/index.html">System Architecture</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Software</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../sw-req/index.html">SW Requirements Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../sw-arch/index.html">SW Architecture & Design</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../sw-api/index.html">SW API and Implementation</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../sw-test-spec/index.html">SW Test Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../sw-test-report/index.html">SW Test Report</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Electrical</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../ee-design/index.html">EE Requirements & Design</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Mechanical</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../me-design/index.html">ME Requirements & Design</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Integration</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../int-test-spec/index.html">System & Integration Test Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../int-test-report/index.html">System & Integration Test Report</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Framework</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../xdmod-ref/index.html">curatrix Reference</a></li>
+      
+    </ul>
+    
+  </div>
+  
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">XDMOD Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Explanation</a></li>
+      <li class="breadcrumb-item active">Humans and agents</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/explanation/humans-and-agents.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="humans-and-agents">
+<span id="expl-humans-and-agents"></span><h1>Humans and agents<a class="headerlink" href="#humans-and-agents" title="Link to this heading"></a></h1>
+<p>In XDMOD, AI agents are first-class: they author and review design content the same way human
+engineers do, with the same tools (<a class="reference internal" href="decisions/workflow.html#XD-ADR-0003" title="XD-ADR-0003"><em class="xref need">Agents are first-class (XD-ADR-0003)</em></a>). The difference is who may <strong>decide</strong>.</p>
+<section id="roles">
+<h2>Roles<a class="headerlink" href="#roles" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 22.0%" />
+<col style="width: 25.0%" />
+<col style="width: 53.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Role</p></th>
+<th class="head"><p>Who</p></th>
+<th class="head"><p>Does</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Owner</p></td>
+<td><p>a person</p></td>
+<td><p>sets goals, makes decisions, reviews and merges every PR, affirms evidence, makes baselines</p></td>
+</tr>
+<tr class="row-odd"><td><p>Domain engineer</p></td>
+<td><p>a person (SE, EE, ME, SW, integration)</p></td>
+<td><p>authors and reviews content in their domain; affirms suspect links in their domain</p></td>
+</tr>
+<tr class="row-even"><td><p>Agent author</p></td>
+<td><p>an AI agent</p></td>
+<td><p>authors content on a branch (requirements, model, CAD through scripts, code, tests,
+docs) and opens PRs</p></td>
+</tr>
+<tr class="row-odd"><td><p>Agent reviewer</p></td>
+<td><p>an AI agent, not the author</p></td>
+<td><p>first-pass review of a PR against checklists; posts findings as PR comments</p></td>
+</tr>
+<tr class="row-even"><td><p>Coordinator agent</p></td>
+<td><p>the agent the owner talks to</p></td>
+<td><p>plans, splits work, starts other agents, gathers results, keeps the plan and the
+decision log</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="propose-versus-affirm">
+<h2>Propose versus affirm<a class="headerlink" href="#propose-versus-affirm" title="Link to this heading"></a></h2>
+<p>Agents analyse suspect links and prepare affirmations and verdicts. But <strong>only a person’s commit
+counts</strong> as an affirmation or a verdict (<a class="reference internal" href="decisions/workflow.html#XD-ADR-0051" title="XD-ADR-0051"><em class="xref need">Only a human's commit affirms (XD-ADR-0051)</em></a>). The same holds for merging: the owner’s
+review and merge is the approval (<a class="reference internal" href="decisions/workflow.html#XD-ADR-0044" title="XD-ADR-0044"><em class="xref need">Agents work under the user'... (XD-ADR-0044)</em></a>).</p>
+</section>
+<section id="what-agents-may-and-may-not-do">
+<h2>What agents may and may not do<a class="headerlink" href="#what-agents-may-and-may-not-do" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Agents may</p></th>
+<th class="head"><p>Agents may not</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>create branches, commit, push to their own branches</p></td>
+<td><p>merge PRs, push to <code class="docutils literal notranslate"><span class="pre">main</span></code>, force-push to other people’s branches</p></td>
+</tr>
+<tr class="row-odd"><td><p>open PRs and issues and comment on them, with the provenance trailer (<a class="reference internal" href="decisions/workflow.html#XD-ADR-0065" title="XD-ADR-0065"><em class="xref need">Provenance trailer on GitHu... (XD-ADR-0065)</em></a>)</p></td>
+<td><p>change repo or org settings, rulesets or secrets, or create or delete repos, without the
+owner’s approval of the concrete action list (<a class="reference internal" href="decisions/workflow.html#XD-ADR-0112" title="XD-ADR-0112"><em class="xref need">GitHub admin by agents only... (XD-ADR-0112)</em></a>)</p></td>
+</tr>
+<tr class="row-even"><td><p>add <code class="docutils literal notranslate"><span class="pre">Co-Authored-By</span></code>, and <code class="docutils literal notranslate"><span class="pre">Signed-off-by</span></code> in the owner’s name where a repo requires
+it (<a class="reference internal" href="decisions/workflow.html#XD-ADR-0108" title="XD-ADR-0108"><em class="xref need">Sign-off by agents (XD-ADR-0108)</em></a>)</p></td>
+<td><p>affirm suspect links or give manual verdicts; they only propose them (<a class="reference internal" href="decisions/workflow.html#XD-ADR-0051" title="XD-ADR-0051"><em class="xref need">Only a human's commit affirms (XD-ADR-0051)</em></a>)</p></td>
+</tr>
+<tr class="row-odd"><td><p>run any tool through curatrix, under limits (<a class="reference internal" href="decisions/checks.html#XD-ADR-0064" title="XD-ADR-0064"><em class="xref need">A memory limit and a timeou... (XD-ADR-0064)</em></a>)</p></td>
+<td><p>run tools without limits, install system packages, use sudo</p></td>
+</tr>
+<tr class="row-even"><td><p>record HIL evidence from <code class="docutils literal notranslate"><span class="pre">main</span></code> or baseline commits (<a class="reference internal" href="decisions/checks.html#XD-ADR-0053" title="XD-ADR-0053"><em class="xref need">Evidence only from main or ... (XD-ADR-0053)</em></a>)</p></td>
+<td><p>record evidence from PR branches as anything but previews</p></td>
+</tr>
+<tr class="row-odd"><td><p>post freely in the project’s own repos and in xdmod</p></td>
+<td><p>post on other repos (doc engine, tools, upstream projects) before the owner approved the
+draft (<a class="reference internal" href="decisions/workflow.html#XD-ADR-0113" title="XD-ADR-0113"><em class="xref need">Posting approval outside ou... (XD-ADR-0113)</em></a>)</p></td>
+</tr>
+</tbody>
+</table>
+<p>These limits are policy in iteration 1: agents work under the owner’s GitHub account
+(<a class="reference internal" href="decisions/workflow.html#XD-ADR-0123" title="XD-ADR-0123"><em class="xref need">Agent limits are policy onl... (XD-ADR-0123)</em></a>).</p>
+</section>
+<section id="provenance">
+<h2>Provenance<a class="headerlink" href="#provenance" title="Link to this heading"></a></h2>
+<p>Every agent commit carries a <code class="docutils literal notranslate"><span class="pre">Co-Authored-By</span></code> trailer (<a class="reference internal" href="decisions/workflow.html#XD-ADR-0044" title="XD-ADR-0044"><em class="xref need">Agents work under the user'... (XD-ADR-0044)</em></a>, <a class="reference internal" href="rules/checks.html#XD-RULE-0042" title="XD-RULE-0042"><em class="xref need">Agent commits carry a trailer (XD-RULE-0042)</em></a>). Everything an
+agent posts on GitHub (issues, comments, PR texts, reviews) ends with the line
+<code class="docutils literal notranslate"><span class="pre">🤖</span> <span class="pre">Generated</span> <span class="pre">with</span> <span class="pre">[Claude</span> <span class="pre">Code](https://claude.com/claude-code)</span></code> (<a class="reference internal" href="decisions/workflow.html#XD-ADR-0065" title="XD-ADR-0065"><em class="xref need">Provenance trailer on GitHu... (XD-ADR-0065)</em></a>). The check
+<a class="reference internal" href="../reference/checks.html#XD-CHECK-0028" title="XD-CHECK-0028"><em class="xref need">commit trailers on agent co... (XD-CHECK-0028)</em></a> warns about commits without the trailer.</p>
+</section>
+<section id="review-by-another-agent">
+<h2>Review by another agent<a class="headerlink" href="#review-by-another-agent" title="Link to this heading"></a></h2>
+<p>Every pull request in the project repos and in xdmod gets a review by an agent other than the
+author, before the owner’s review (<a class="reference internal" href="decisions/workflow.html#XD-ADR-0115" title="XD-ADR-0115"><em class="xref need">Every PR gets an agent review (XD-ADR-0115)</em></a>).</p>
+</section>
+<section id="working-in-parallel">
+<h2>Working in parallel<a class="headerlink" href="#working-in-parallel" title="Link to this heading"></a></h2>
+<p>Several agents can work at the same time. Two agents never edit the same repo checkout at once.
+An agent that changes repos works in its own <strong>git worktrees</strong> under
+<code class="docutils literal notranslate"><span class="pre">&lt;ws&gt;/.worktrees/&lt;branch&gt;/&lt;repo&gt;</span></code>, made with <code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">work</span> <span class="pre">start</span></code> (<a class="reference internal" href="decisions/workflow.html#XD-ADR-0114" title="XD-ADR-0114"><em class="xref need">Parallel agents work in git... (XD-ADR-0114)</em></a>). Shared,
+read-only parts (Zephyr, libraries, <code class="docutils literal notranslate"><span class="pre">.venv</span></code>) are not duplicated.</p>
+<p>Each agent gets a short brief: its goal, the decisions that bind it, the files to read, its
+output paths, and what it must not do. It returns a short report; the coordinator checks the
+claims that matter before passing them on.</p>
+</section>
+<section id="agent-material-in-the-repos">
+<h2>Agent material in the repos<a class="headerlink" href="#agent-material-in-the-repos" title="Link to this heading"></a></h2>
+<p>Each repo has a <code class="docutils literal notranslate"><span class="pre">claude/</span></code> folder with its own rules, skills and pitfalls (<a class="reference internal" href="decisions/repos.html#XD-ADR-0062" title="XD-ADR-0062"><em class="xref need">Agent material in each repo... (XD-ADR-0062)</em></a>). xdmod
+holds the launch <code class="docutils literal notranslate"><span class="pre">CLAUDE.md</span></code> for the workspace root, and shared skills, commands and checklists.
+The bootstrap copies the launch file to the root and links all skills and commands into
+<code class="docutils literal notranslate"><span class="pre">&lt;workspace&gt;/.claude/</span></code> (<a class="reference internal" href="decisions/repos.html#XD-ADR-0103" title="XD-ADR-0103"><em class="xref need">The bootstrap assembles .cl... (XD-ADR-0103)</em></a>). See <a class="reference internal" href="../reference/repo-layouts.html"><span class="doc">Repo layouts</span></a>.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="multi-repo.html" class="btn btn-neutral float-left" title="Many repos, one workspace" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="decisions/index.html" class="btn btn-neutral float-right" title="Decisions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, XDMOD Manual.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

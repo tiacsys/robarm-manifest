@@ -90,5 +90,21 @@ window.ZDOCS_NAV_LINKS = [
         "href": "html/int-test-report/index.html"
       }
     ]
+  },
+  {
+    "id": "g-framework",
+    "title": "Framework",
+    "mode": "exclude_if_selected",
+    "display": "disabled_collapsing",
+    "links": [
+      {
+        "label": "XDMOD Manual",
+        "href": "html/xdmod-manual/index.html"
+      },
+      {
+        "label": "curatrix Reference",
+        "href": "html/xdmod-ref/index.html"
+      }
+    ]
   }
 ];

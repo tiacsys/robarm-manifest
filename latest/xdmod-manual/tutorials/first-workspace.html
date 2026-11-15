@@ -1,0 +1,278 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<link rel="alternate" type="text/markdown" href="first-workspace.html.md">
+<link rel="describedby" href="llms.txt">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your first workspace &mdash; XDMOD Manual</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../_static/zdocs-need-types.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/common_css/need_links.css?v=2150a916" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/common_css/needstable.css?v=7b67799e" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/modern.css?v=c1bc121d" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-test-results/common.css?v=b776391d" />
+      <link rel="stylesheet" type="text/css" href="../_static/zdocs-sphinx.css?v=1afe8e97" />
+      <link rel="stylesheet" type="text/css" href="../_static/zdocs-needs.css?v=f0382e39" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f348a06a"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/zdocs-need-preview.js?v=98728251"></script>
+      <script src="../_static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
+      <script src="../_static/sphinx-data-viewer/jsonview_loader.js?v=f7ff7e7d"></script>
+      <script src="../_static/sphinx-needs/libs/html/sphinx_needs_collapse.js?v=dca66431"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Your first requirement, end to end" href="first-requirement.html" />
+    <link rel="prev" title="Tutorials" href="index.html" /> 
+<script id="xdmod-version-switcher" src="../../../version-switcher.js" data-site-root="../../.." defer></script>
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            XDMOD Manual
+          </a>
+<div class="version zdocs-version">v0.0-dev+g4afe2f3</div>
+
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+  
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Tutorials</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Your first workspace</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#goal">Goal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#what-you-need">What you need</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#steps">Steps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#what-you-learned">What you learned</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="first-requirement.html">Your first requirement, end to end</a></li>
+<li class="toctree-l2"><a class="reference internal" href="first-change.html">Your first change</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../howto/index.html">How-to guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../explanation/index.html">Explanation</a></li>
+</ul>
+
+  
+  <div class="toctree-wrapper compound reference-groups-wrapper">
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Project</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../robarm/index.html">Robot Arm: Project Overview</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">System</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../se-req/index.html">Stakeholder & System Requirements Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../se-arch/index.html">System Architecture</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Software</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../sw-req/index.html">SW Requirements Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../sw-arch/index.html">SW Architecture & Design</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../sw-api/index.html">SW API and Implementation</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../sw-test-spec/index.html">SW Test Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../sw-test-report/index.html">SW Test Report</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Electrical</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../ee-design/index.html">EE Requirements & Design</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Mechanical</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../me-design/index.html">ME Requirements & Design</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Integration</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../int-test-spec/index.html">System & Integration Test Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../int-test-report/index.html">System & Integration Test Report</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Framework</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../xdmod-ref/index.html">curatrix Reference</a></li>
+      
+    </ul>
+    
+  </div>
+  
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">XDMOD Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Tutorials</a></li>
+      <li class="breadcrumb-item active">Your first workspace</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/tutorials/first-workspace.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="your-first-workspace">
+<span id="tut-first-workspace"></span><h1>Your first workspace<a class="headerlink" href="#your-first-workspace" title="Link to this heading"></a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This tutorial is a skeleton. It is completed in Phase 5 on the real robot-arm repos.</p>
+</div>
+<section id="goal">
+<h2>Goal<a class="headerlink" href="#goal" title="Link to this heading"></a></h2>
+<p>You set up a workspace for one role, run the checks of one repo, and open its documents in a
+browser. At the end you know where everything lives and which command does what.</p>
+</section>
+<section id="what-you-need">
+<h2>What you need<a class="headerlink" href="#what-you-need" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>git and Python 3.12 or newer.</p></li>
+<li><p>An empty folder. It becomes the <strong>workspace root</strong>. Every command runs from there
+(<a class="reference internal" href="../explanation/decisions/repos.html#XD-ADR-0060" title="XD-ADR-0060"><em class="xref need">All commands run from the w... (XD-ADR-0060)</em></a>).</p></li>
+<li><p>The name of the project’s manifest repo. In the examples it is <code class="docutils literal notranslate"><span class="pre">robarm-manifest</span></code>, the
+manifest of the robot-arm example.</p></li>
+</ul>
+</section>
+<section id="steps">
+<h2>Steps<a class="headerlink" href="#steps" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p>Clone the manifest repo and run its bootstrap script with your role:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/tiacsys/robarm-manifest
+robarm-manifest/scripts/bootstrap.sh<span class="w"> </span>--role<span class="w"> </span>syseng
+</pre></div>
+</div>
+<p>The script makes <code class="docutils literal notranslate"><span class="pre">.venv</span></code> with west, runs <code class="docutils literal notranslate"><span class="pre">west</span> <span class="pre">init</span></code> and <code class="docutils literal notranslate"><span class="pre">west</span> <span class="pre">update</span></code>, installs
+curatrix from xdmod, and then runs <code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">bootstrap</span> <span class="pre">--role</span> <span class="pre">syseng</span></code>. The roles are listed
+in <a class="reference internal" href="../howto/cross-repo-change.html"><span class="doc">Make a change across repos</span></a> and in the workspace reference.</p>
+</li>
+<li><p>Load the workspace environment into your shell:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">eval</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>.venv/bin/curatrix<span class="w"> </span>env<span class="k">)</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Check the setup. <code class="docutils literal notranslate"><span class="pre">doctor</span></code> lists every tool with its installed and pinned version and
+fails on a mismatch:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>curatrix<span class="w"> </span>doctor
+</pre></div>
+</div>
+</li>
+<li><p>Run the checks of one repo. They run locally with one command (<a class="reference internal" href="../explanation/rules/checks.html#XD-RULE-0032" title="XD-RULE-0032"><em class="xref need">Every check runs locally (XD-RULE-0032)</em></a>), every tool
+under a memory limit and a timeout (<a class="reference internal" href="../explanation/rules/checks.html#XD-RULE-0044" title="XD-RULE-0044"><em class="xref need">Every tool runs under limits (XD-RULE-0044)</em></a>):</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>curatrix<span class="w"> </span>check<span class="w"> </span>robarm-syseng<span class="w"> </span>--stage<span class="w"> </span><span class="nb">local</span>
+</pre></div>
+</div>
+<p>The summary is in <code class="docutils literal notranslate"><span class="pre">build/robarm-syseng/checks/summary.json</span></code>. For each failure curatrix
+prints the command that reproduces it.</p>
+</li>
+<li><p>Build the documents of the repo and open them:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>curatrix<span class="w"> </span>docs<span class="w"> </span>robarm-syseng<span class="w"> </span>--open
+</pre></div>
+</div>
+<p>The HTML is in <code class="docutils literal notranslate"><span class="pre">build/robarm-syseng/docs/deploy/html/&lt;doc-id&gt;/</span></code>. All build output goes
+below <code class="docutils literal notranslate"><span class="pre">build/</span></code> (<a class="reference internal" href="../explanation/rules/checks.html#XD-RULE-0040" title="XD-RULE-0040"><em class="xref need">Build output only under build/ (XD-RULE-0040)</em></a>).</p>
+</li>
+</ol>
+</section>
+<section id="what-you-learned">
+<h2>What you learned<a class="headerlink" href="#what-you-learned" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>The workspace root holds <code class="docutils literal notranslate"><span class="pre">.west/</span></code>, <code class="docutils literal notranslate"><span class="pre">.venv/</span></code>, <code class="docutils literal notranslate"><span class="pre">build/</span></code> and all repos (<a class="reference internal" href="../explanation/decisions/repos.html#XD-ADR-0061" title="XD-ADR-0061"><em class="xref need">One west topdir at the work... (XD-ADR-0061)</em></a>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">curatrix</span></code> is the one command layer for people, agents and CI (<a class="reference internal" href="../explanation/decisions/checks.html#XD-ADR-0089" title="XD-ADR-0089"><em class="xref need">One framework tool: curatrix (XD-ADR-0089)</em></a>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">west</span> <span class="pre">update</span></code> moves repos back to their pins. While you work on branches, use
+<code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">update</span></code> instead.</p></li>
+</ul>
+<p>Next: <a class="reference internal" href="first-requirement.html"><span class="doc">Your first requirement, end to end</span></a>.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Tutorials" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="first-requirement.html" class="btn btn-neutral float-right" title="Your first requirement, end to end" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, XDMOD Manual.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

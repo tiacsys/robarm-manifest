@@ -1,0 +1,17 @@
+# XDMOD Manual
+
+> XDMOD: a method and tools for cross-domain, multi-repo systems engineering.
+
+
+2026, XDMOD Manual
+
+## Pages in this subsection
+
+- [Tutorials](index.html.md): The tutorials walk you through XDMOD step by step. Each one starts from a clean state and ends
+- [Your first workspace](first-workspace.html.md): This tutorial is a skeleton. It is completed in Phase 5 on the real robot-arm repos.
+- [Your first requirement, end to end](first-requirement.html.md): This tutorial is a skeleton. It is completed in Phase 5 on the real robot-arm repos.
+- [Your first change](first-change.html.md): This tutorial is a skeleton. It is completed in Phase 5 on the real robot-arm repos.
+
+## Optional
+
+- [Top-level llms.txt](../llms.txt): Complete documentation index.

@@ -1,0 +1,277 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<link rel="alternate" type="text/markdown" href="sysmod-and-sysml.html.md">
+<link rel="describedby" href="llms.txt">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SYSMOD and SysML v2 &mdash; XDMOD Manual</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../_static/zdocs-need-types.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/common_css/need_links.css?v=2150a916" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/common_css/needstable.css?v=7b67799e" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/modern.css?v=c1bc121d" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-test-results/common.css?v=b776391d" />
+      <link rel="stylesheet" type="text/css" href="../_static/zdocs-sphinx.css?v=1afe8e97" />
+      <link rel="stylesheet" type="text/css" href="../_static/zdocs-needs.css?v=f0382e39" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f348a06a"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/zdocs-need-preview.js?v=98728251"></script>
+      <script src="../_static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
+      <script src="../_static/sphinx-data-viewer/jsonview_loader.js?v=f7ff7e7d"></script>
+      <script src="../_static/sphinx-needs/libs/html/sphinx_needs_collapse.js?v=dca66431"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Variants" href="variants.html" />
+    <link rel="prev" title="The V-model and trace links" href="v-model-and-traces.html" /> 
+<script id="xdmod-version-switcher" src="../../../version-switcher.js" data-site-root="../../.." defer></script>
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            XDMOD Manual
+          </a>
+<div class="version zdocs-version">v0.0-dev+g4afe2f3</div>
+
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+  
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../howto/index.html">How-to guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Explanation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="principles.html">Principles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v-model-and-traces.html">The V-model and trace links</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">SYSMOD and SysML v2</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#why-sysmod">Why SYSMOD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#two-worlds-text-and-model">Two worlds: text and model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#requirement-values">Requirement values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#problem-statement-and-objectives">Problem statement and objectives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-chain-of-contexts">The chain of contexts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#toolchain">Toolchain</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="variants.html">Variants</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multi-repo.html">Many repos, one workspace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="humans-and-agents.html">Humans and agents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decisions/index.html">Decisions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rules/index.html">Rules</a></li>
+</ul>
+</li>
+</ul>
+
+  
+  <div class="toctree-wrapper compound reference-groups-wrapper">
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Project</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../robarm/index.html">Robot Arm: Project Overview</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">System</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../se-req/index.html">Stakeholder & System Requirements Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../se-arch/index.html">System Architecture</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Software</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../sw-req/index.html">SW Requirements Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../sw-arch/index.html">SW Architecture & Design</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../sw-api/index.html">SW API and Implementation</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../sw-test-spec/index.html">SW Test Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../sw-test-report/index.html">SW Test Report</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Electrical</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../ee-design/index.html">EE Requirements & Design</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Mechanical</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../me-design/index.html">ME Requirements & Design</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Integration</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../int-test-spec/index.html">System & Integration Test Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../int-test-report/index.html">System & Integration Test Report</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Framework</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../xdmod-ref/index.html">curatrix Reference</a></li>
+      
+    </ul>
+    
+  </div>
+  
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">XDMOD Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Explanation</a></li>
+      <li class="breadcrumb-item active">SYSMOD and SysML v2</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/explanation/sysmod-and-sysml.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="sysmod-and-sysml-v2">
+<span id="expl-sysmod-and-sysml"></span><h1>SYSMOD and SysML v2<a class="headerlink" href="#sysmod-and-sysml-v2" title="Link to this heading"></a></h1>
+<p>XDMOD uses the SYSMOD method by Tim Weilkiens for systems engineering (<a class="reference internal" href="decisions/method.html#XD-ADR-0007" title="XD-ADR-0007"><em class="xref need">SYSMOD is the main method r... (XD-ADR-0007)</em></a>), and writes the
+system model in SysML v2 textual notation (<a class="reference internal" href="decisions/method.html#XD-ADR-0001" title="XD-ADR-0001"><em class="xref need">SysML v2 textual notation f... (XD-ADR-0001)</em></a>).</p>
+<section id="why-sysmod">
+<h2>Why SYSMOD<a class="headerlink" href="#why-sysmod" title="Link to this heading"></a></h2>
+<p>SYSMOD gives a fixed order of steps and names for their work products: problem statement,
+stakeholders, needs, system context, use cases, requirements, and the functional, logical and
+product architecture. XDMOD keeps SYSMOD’s order and names, so the SYSMOD website
+(<a class="reference external" href="https://mbse4u.com/sysmod/">https://mbse4u.com/sysmod/</a>) and its examples apply directly. The SYSMOD v5 library
+(<code class="docutils literal notranslate"><span class="pre">mbse4u/sysmod-sysmlv2</span></code>) is a west project pinned at a commit, not a copy (<a class="reference internal" href="decisions/method.html#XD-ADR-0077" title="XD-ADR-0077"><em class="xref need">The SYSMOD library is a pin... (XD-ADR-0077)</em></a>).</p>
+</section>
+<section id="two-worlds-text-and-model">
+<h2>Two worlds: text and model<a class="headerlink" href="#two-worlds-text-and-model" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Text that people review lives in sphinx-needs</strong>: stakeholder needs, requirements, test
+specifications (<a class="reference internal" href="decisions/method.html#XD-ADR-0005" title="XD-ADR-0005"><em class="xref need">Requirements in sphinx-needs (XD-ADR-0005)</em></a>).</p></li>
+<li><p><strong>Structure and behaviour live in SysML</strong>: context, use cases, architecture, allocations,
+variants.</p></li>
+</ul>
+<p>The two worlds meet through <strong>generated stubs</strong> (<a class="reference internal" href="decisions/method.html#XD-ADR-0036" title="XD-ADR-0036"><em class="xref need">Read-only requirement stubs... (XD-ADR-0036)</em></a>). A tool reads the needs and writes a
+package of read-only stubs: a <code class="docutils literal notranslate"><span class="pre">concern</span></code> for each stakeholder need and a <code class="docutils literal notranslate"><span class="pre">requirement</span></code> for each
+system requirement (<a class="reference internal" href="decisions/traces.html#XD-ADR-0057" title="XD-ADR-0057"><em class="xref need">Small corrections from rese... (XD-ADR-0057)</em></a> (b)). Model elements refer to requirements through these stubs,
+for example with <code class="docutils literal notranslate"><span class="pre">satisfy</span></code>. Nobody edits the stubs by hand; a check compares them with the
+needs (<a class="reference internal" href="../reference/checks.html#XD-CHECK-0015" title="XD-CHECK-0015"><em class="xref need">SysML stubs match the needs (XD-CHECK-0015)</em></a>).</p>
+<p>The other way, model elements come back into the documents as generated needs. A model element
+becomes a need only when it takes part in a trace link (<a class="reference internal" href="decisions/method.html#XD-ADR-0118" title="XD-ADR-0118"><em class="xref need">Only linked model elements ... (XD-ADR-0118)</em></a>). The definition holds the
+ID; its usages are listed in an <code class="docutils literal notranslate"><span class="pre">instances</span></code> field (<a class="reference internal" href="decisions/method.html#XD-ADR-0117" title="XD-ADR-0117"><em class="xref need">The definition holds the tr... (XD-ADR-0117)</em></a>). The model extractor writes
+<code class="docutils literal notranslate"><span class="pre">generated/model-needs.json</span></code>, which is committed and checked (<a class="reference internal" href="../reference/checks.html#XD-CHECK-0017" title="XD-CHECK-0017"><em class="xref need">model.json and model-needs.... (XD-CHECK-0017)</em></a>).</p>
+</section>
+<section id="requirement-values">
+<h2>Requirement values<a class="headerlink" href="#requirement-values" title="Link to this heading"></a></h2>
+<p>SYSMOD’s requirement boilerplates give requirements machine-readable values. XDMOD keeps the EARS
+sentence for people (<a class="reference internal" href="decisions/method.html#XD-ADR-0009" title="XD-ADR-0009"><em class="xref need">Requirements use EARS (XD-ADR-0009)</em></a>, <a class="reference internal" href="decisions/method.html#XD-ADR-0039" title="XD-ADR-0039"><em class="xref need">EARS for system and domain ... (XD-ADR-0039)</em></a>) and adds value fields next to it: <code class="docutils literal notranslate"><span class="pre">quantity</span></code>,
+<code class="docutils literal notranslate"><span class="pre">unit</span></code>, <code class="docutils literal notranslate"><span class="pre">min</span></code>, <code class="docutils literal notranslate"><span class="pre">max</span></code>, <code class="docutils literal notranslate"><span class="pre">nominal</span></code> (<a class="reference internal" href="decisions/method.html#XD-ADR-0076" title="XD-ADR-0076"><em class="xref need">Requirement values are need... (XD-ADR-0076)</em></a>). The stub carries them as attributes, so a
+model constraint or a test can read them. Checks compare the fields with the sentence
+(<a class="reference internal" href="rules/checks.html#XD-RULE-0036" title="XD-RULE-0036"><em class="xref need">Requirement values agree wi... (XD-RULE-0036)</em></a>, <a class="reference internal" href="rules/checks.html#XD-RULE-0037" title="XD-RULE-0037"><em class="xref need">Requirements use EARS patterns (XD-RULE-0037)</em></a>).</p>
+</section>
+<section id="problem-statement-and-objectives">
+<h2>Problem statement and objectives<a class="headerlink" href="#problem-statement-and-objectives" title="Link to this heading"></a></h2>
+<p>The problem statement is a stakeholder need with <code class="docutils literal notranslate"><span class="pre">category:</span> <span class="pre">problem</span></code> (<a class="reference internal" href="decisions/method.html#XD-ADR-0074" title="XD-ADR-0074"><em class="xref need">The problem statement is a ... (XD-ADR-0074)</em></a>). System
+objectives are stakeholder needs with <code class="docutils literal notranslate"><span class="pre">category:</span> <span class="pre">objective</span></code> (<a class="reference internal" href="decisions/method.html#XD-ADR-0075" title="XD-ADR-0075"><em class="xref need">System objectives are stake... (XD-ADR-0075)</em></a>). Other needs and
+objectives link to the problem statement with <code class="docutils literal notranslate"><span class="pre">addresses</span></code>.</p>
+</section>
+<section id="the-chain-of-contexts">
+<h2>The chain of contexts<a class="headerlink" href="#the-chain-of-contexts" title="Link to this heading"></a></h2>
+<p>SYSMOD builds a chain of contexts, each one specialising the one before: idea, specification,
+functional, logical and product context. Later contexts inherit actors and ports. XDMOD includes
+a short functional architecture: functions realize use cases, and logical elements realize
+functions (<a class="reference internal" href="decisions/method.html#XD-ADR-0078" title="XD-ADR-0078"><em class="xref need">A short functional architec... (XD-ADR-0078)</em></a>). Each system element (<code class="docutils literal notranslate"><span class="pre">SYS-EL</span></code>) carries a <code class="docutils literal notranslate"><span class="pre">layer</span></code>: <code class="docutils literal notranslate"><span class="pre">context</span></code>,
+<code class="docutils literal notranslate"><span class="pre">functional</span></code>, <code class="docutils literal notranslate"><span class="pre">logical</span></code> or <code class="docutils literal notranslate"><span class="pre">product</span></code>.</p>
+</section>
+<section id="toolchain">
+<h2>Toolchain<a class="headerlink" href="#toolchain" title="Link to this heading"></a></h2>
+<p>The model is checked with the OMG SysML v2 Pilot Implementation, run through <code class="docutils literal notranslate"><span class="pre">jshell</span></code>, which
+also exports the model as JSON (<a class="reference internal" href="decisions/method.html#XD-ADR-0058" title="XD-ADR-0058"><em class="xref need">SysML toolchain: the OMG Pi... (XD-ADR-0058)</em></a>). XDMOD’s own Python tools read that JSON. curatrix
+stores a compact form of it in <code class="docutils literal notranslate"><span class="pre">generated/model.json</span></code>, so later steps (views, variants, needs)
+need no Java. The model must parse with 0 errors (<a class="reference internal" href="rules/checks.html#XD-RULE-0035" title="XD-RULE-0035"><em class="xref need">The SysML model parses with... (XD-RULE-0035)</em></a>, <a class="reference internal" href="../reference/checks.html#XD-CHECK-0016" title="XD-CHECK-0016"><em class="xref need">the Pilot parses the model ... (XD-CHECK-0016)</em></a>).</p>
+<p>Views of the model are SysML <code class="docutils literal notranslate"><span class="pre">view</span></code> definitions with an <code class="docutils literal notranslate"><span class="pre">&#64;XdView</span></code> annotation (<a class="reference internal" href="decisions/method.html#XD-ADR-0085" title="XD-ADR-0085"><em class="xref need">View definitions live in th... (XD-ADR-0085)</em></a>).
+curatrix renders them as editable <code class="docutils literal notranslate"><span class="pre">.drawio.svg</span></code> files (<a class="reference internal" href="decisions/method.html#XD-ADR-0087" title="XD-ADR-0087"><em class="xref need">Views are committed as edit... (XD-ADR-0087)</em></a>).</p>
+<p>The step-by-step mapping from SYSMOD steps to files and documents is in
+<a class="reference internal" href="../reference/sysmod-mapping.html"><span class="doc">SYSMOD mapping</span></a>.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="v-model-and-traces.html" class="btn btn-neutral float-left" title="The V-model and trace links" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="variants.html" class="btn btn-neutral float-right" title="Variants" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, XDMOD Manual.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

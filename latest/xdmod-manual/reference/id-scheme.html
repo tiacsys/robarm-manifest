@@ -1,0 +1,507 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<link rel="alternate" type="text/markdown" href="id-scheme.html.md">
+<link rel="describedby" href="llms.txt">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ID scheme &mdash; XDMOD Manual</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../_static/zdocs-need-types.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/common_css/need_links.css?v=2150a916" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/common_css/needstable.css?v=7b67799e" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/modern.css?v=c1bc121d" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-test-results/common.css?v=b776391d" />
+      <link rel="stylesheet" type="text/css" href="../_static/zdocs-sphinx.css?v=1afe8e97" />
+      <link rel="stylesheet" type="text/css" href="../_static/zdocs-needs.css?v=f0382e39" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f348a06a"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/zdocs-need-preview.js?v=98728251"></script>
+      <script src="../_static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
+      <script src="../_static/sphinx-data-viewer/jsonview_loader.js?v=f7ff7e7d"></script>
+      <script src="../_static/sphinx-needs/libs/html/sphinx_needs_collapse.js?v=dca66431"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Variant rules" href="variant-rules.html" />
+    <link rel="prev" title="Trace model" href="trace-model.html" /> 
+<script id="xdmod-version-switcher" src="../../../version-switcher.js" data-site-root="../../.." defer></script>
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            XDMOD Manual
+          </a>
+<div class="version zdocs-version">v0.0-dev+g4afe2f3</div>
+
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+  
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../howto/index.html">How-to guides</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="trace-model.html">Trace model</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">ID scheme</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#format">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#kinds">Kinds</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#where-the-id-lives-in-each-tool">Where the ID lives in each tool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-ledger">The ledger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#issuing-ids">Issuing IDs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rules">Rules</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="variant-rules.html">Variant rules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="checks.html">Checks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sysmod-mapping.html">SYSMOD mapping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="repo-layouts.html">Repo layouts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="workspace.html">Workspace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html">Glossary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../explanation/index.html">Explanation</a></li>
+</ul>
+
+  
+  <div class="toctree-wrapper compound reference-groups-wrapper">
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Project</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../robarm/index.html">Robot Arm: Project Overview</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">System</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../se-req/index.html">Stakeholder & System Requirements Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../se-arch/index.html">System Architecture</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Software</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../sw-req/index.html">SW Requirements Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../sw-arch/index.html">SW Architecture & Design</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../sw-api/index.html">SW API and Implementation</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../sw-test-spec/index.html">SW Test Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../sw-test-report/index.html">SW Test Report</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Electrical</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../ee-design/index.html">EE Requirements & Design</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Mechanical</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../me-design/index.html">ME Requirements & Design</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Integration</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../int-test-spec/index.html">System & Integration Test Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../int-test-report/index.html">System & Integration Test Report</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Framework</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../xdmod-ref/index.html">curatrix Reference</a></li>
+      
+    </ul>
+    
+  </div>
+  
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">XDMOD Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Reference</a></li>
+      <li class="breadcrumb-item active">ID scheme</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/reference/id-scheme.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ref-id-scheme">
+<span id="id-scheme"></span><h1>ID scheme<a class="headerlink" href="#ref-id-scheme" title="Link to this heading"></a></h1>
+<p>Every need has an ID. IDs are stable, never reused, readable, and unique across the whole
+workspace. They work in every tool: sphinx-needs, SysML short names, KiCad fields, FreeCAD
+properties, Doxygen tags and test reports. The scheme is new; it does not reuse older ID schemes
+(<a class="reference internal" href="../explanation/decisions/traces.html#XD-ADR-0013" title="XD-ADR-0013"><em class="xref need">A new ID prefix scheme (XD-ADR-0013)</em></a>).</p>
+<section id="format">
+<h2>Format<a class="headerlink" href="#format" title="Link to this heading"></a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&lt;DOMAIN&gt;-&lt;KIND&gt;-&lt;NNNN&gt;   e.g.  SYS-REQ-0012, SW-TC-0103, EE-CMP-0007, INT-ITC-0003
+TR-&lt;TESTCASE-ID&gt;-&lt;RUN&gt;   e.g.  TR-SW-TC-0103-3f9a1c2e   (test results only)
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">DOMAIN</span></code>: <code class="docutils literal notranslate"><span class="pre">SYS</span></code>, <code class="docutils literal notranslate"><span class="pre">SW</span></code>, <code class="docutils literal notranslate"><span class="pre">EE</span></code>, <code class="docutils literal notranslate"><span class="pre">ME</span></code>, <code class="docutils literal notranslate"><span class="pre">INT</span></code> (integration and system verification),
+<code class="docutils literal notranslate"><span class="pre">XD</span></code> for the framework’s own items and <code class="docutils literal notranslate"><span class="pre">PRJ</span></code> for project-level items (<a class="reference internal" href="../explanation/decisions/traces.html#XD-ADR-0071" title="XD-ADR-0071"><em class="xref need">ID format DOMAIN-KIND-NNNN (XD-ADR-0071)</em></a>,
+<a class="reference internal" href="../explanation/decisions/traces.html#XD-ADR-0109" title="XD-ADR-0109"><em class="xref need">Decisions become sphinx-needs (XD-ADR-0109)</em></a>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">KIND</span></code>: 2 to 5 capital letters. Domain and kind together name the need type.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NNNN</span></code>: a number with 4 digits, zero-padded, issued per kind. Above 9999 it simply grows.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RUN</span></code>: the first 8 hex digits of the run record’s hash (HIL runs) or of the JUnit file. So a
+test result is unique per run.</p></li>
+<li><p>A usage of a definition may get <code class="docutils literal notranslate"><span class="pre">&lt;ID&gt;.&lt;n&gt;</span></code> (<a class="reference internal" href="../explanation/decisions/method.html#XD-ADR-0117" title="XD-ADR-0117"><em class="xref need">The definition holds the tr... (XD-ADR-0117)</em></a>).</p></li>
+<li><p>Regex:
+<code class="docutils literal notranslate"><span class="pre">^((SYS|SW|EE|ME|INT|XD|PRJ)-[A-Z]{2,5}-[0-9]{4,}|TR-(SYS|SW|EE|ME|INT)-[A-Z]{2,5}-[0-9]{4,}-[0-9a-f]{8})$</span></code></p></li>
+</ul>
+<p><strong>No project code in the sources</strong> (<a class="reference internal" href="../explanation/decisions/traces.html#XD-ADR-0072" title="XD-ADR-0072"><em class="xref need">No project code in the sources (XD-ADR-0072)</em></a>). All repos of a project share one ID space.
+Where IDs leave the workspace (bundles, published <code class="docutils literal notranslate"><span class="pre">needs.json</span></code>, shared affirmatrix cases), the
+exporting tool puts a project code in front, with <code class="docutils literal notranslate"><span class="pre">:</span></code> as the separator. Example (robot arm):
+<code class="docutils literal notranslate"><span class="pre">RA:SYS-REQ-0012</span></code>.</p>
+</section>
+<section id="kinds">
+<h2>Kinds<a class="headerlink" href="#kinds" title="Link to this heading"></a></h2>
+<p>Generated from curatrix and the needs configuration:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 50.0%" />
+<col style="width: 30.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Kind</p></th>
+<th class="head"><p>Need type</p></th>
+<th class="head"><p>Directive</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">EE-CMP</span></code></p></td>
+<td><p>Circuit Block / Component</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ee-cmp</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">EE-PCBA</span></code></p></td>
+<td><p>PCBA</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ee-pcba</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">EE-REQ</span></code></p></td>
+<td><p>EE Requirement</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ee-req</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">EE-TC</span></code></p></td>
+<td><p>EE Test Case</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ee-tc</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">INT-ITC</span></code></p></td>
+<td><p>Integration Test Case</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int-itc</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">INT-STC</span></code></p></td>
+<td><p>System Test Case</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int-stc</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ME-ASM</span></code></p></td>
+<td><p>Assembly</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">me-asm</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ME-PART</span></code></p></td>
+<td><p>Part</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">me-part</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ME-REQ</span></code></p></td>
+<td><p>ME Requirement</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">me-req</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ME-TC</span></code></p></td>
+<td><p>ME Test Case</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">me-tc</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">PRJ-DEC</span></code></p></td>
+<td><p>Project Decision</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">prj-dec</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">SW-ARCH</span></code></p></td>
+<td><p>SW Architecture Element</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sw-arch</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">SW-DD</span></code></p></td>
+<td><p>SW Detailed Design Element</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sw-dd</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">SW-IMPL</span></code></p></td>
+<td><p>Code Unit</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sw-impl</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">SW-REQ</span></code></p></td>
+<td><p>SW Requirement</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sw-req</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">SW-TC</span></code></p></td>
+<td><p>SW Test Case</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sw-tc</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">SYS-CFG</span></code></p></td>
+<td><p>Configuration</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sys-cfg</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">SYS-EL</span></code></p></td>
+<td><p>System Model Element</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sys-el</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">SYS-FEAT</span></code></p></td>
+<td><p>Feature</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sys-feat</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">SYS-IF</span></code></p></td>
+<td><p>Interface</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sys-if</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">SYS-NEED</span></code></p></td>
+<td><p>Stakeholder Need</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sys-need</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">SYS-REQ</span></code></p></td>
+<td><p>System Requirement</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sys-req</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">SYS-STH</span></code></p></td>
+<td><p>Stakeholder</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sys-sth</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">SYS-UC</span></code></p></td>
+<td><p>Use Case</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sys-uc</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">SYS-VIEW</span></code></p></td>
+<td><p>(reserved, not a need)</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">XD-ADR</span></code></p></td>
+<td><p>Framework Decision</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">xd-adr</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">XD-CHECK</span></code></p></td>
+<td><p>curatrix Check</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">xd-check</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">XD-RULE</span></code></p></td>
+<td><p>Method Rule</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">xd-rule</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p><code class="docutils literal notranslate"><span class="pre">SYS-VIEW</span></code> is a reserved kind that is not a need. It is only used as the SysML short name of a
+view (<a class="reference internal" href="../explanation/decisions/method.html#XD-ADR-0085" title="XD-ADR-0085"><em class="xref need">View definitions live in th... (XD-ADR-0085)</em></a>). Its numbers still come from the ledger. Configurations and features have the
+kinds <code class="docutils literal notranslate"><span class="pre">SYS-CFG</span></code> and <code class="docutils literal notranslate"><span class="pre">SYS-FEAT</span></code> (<a class="reference internal" href="../explanation/decisions/method.html#XD-ADR-0097" title="XD-ADR-0097"><em class="xref need">IDs for configurations and ... (XD-ADR-0097)</em></a>). SW test case IDs come from the ledger and a tool
+writes them into the ZTEST comment (<a class="reference internal" href="../explanation/decisions/traces.html#XD-ADR-0073" title="XD-ADR-0073"><em class="xref need">SW test case IDs come from ... (XD-ADR-0073)</em></a>).</p>
+</section>
+<section id="where-the-id-lives-in-each-tool">
+<h2>Where the ID lives in each tool<a class="headerlink" href="#where-the-id-lives-in-each-tool" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 50.0%" />
+<col style="width: 30.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Tool</p></th>
+<th class="head"><p>Where the ID is written</p></th>
+<th class="head"><p>Read by</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>sphinx-needs (rst)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">:id:</span></code> of the directive</p></td>
+<td><p>Sphinx</p></td>
+</tr>
+<tr class="row-odd"><td><p>SysML v2</p></td>
+<td><p>short name: <code class="docutils literal notranslate"><span class="pre">part</span> <span class="pre">def</span> <span class="pre">&lt;'SYS-EL-0012'&gt;</span> <span class="pre">ArmController</span> <span class="pre">{</span> <span class="pre">…</span> <span class="pre">}</span></code>; stubs use the
+requirement’s ID</p></td>
+<td><p>Pilot JSON, then curatrix</p></td>
+</tr>
+<tr class="row-even"><td><p>KiCad</p></td>
+<td><p>hidden symbol or sheet field <code class="docutils literal notranslate"><span class="pre">TraceID</span></code>; links in further hidden fields (<code class="docutils literal notranslate"><span class="pre">Realizes</span></code>,
+<code class="docutils literal notranslate"><span class="pre">Satisfies</span></code>, <code class="docutils literal notranslate"><span class="pre">Conforms</span></code>, <code class="docutils literal notranslate"><span class="pre">PartOf</span></code>)</p></td>
+<td><p>curatrix (plain Python)</p></td>
+</tr>
+<tr class="row-odd"><td><p>FreeCAD</p></td>
+<td><p>object properties <code class="docutils literal notranslate"><span class="pre">TraceID</span></code>, <code class="docutils literal notranslate"><span class="pre">Realizes</span></code>, <code class="docutils literal notranslate"><span class="pre">Satisfies</span></code>, <code class="docutils literal notranslate"><span class="pre">Conforms</span></code>, <code class="docutils literal notranslate"><span class="pre">PartOf</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Document.xml</span></code>, read by curatrix</p></td>
+</tr>
+<tr class="row-even"><td><p>Doxygen / C</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&#64;xdid{SW-IMPL-0004}</span></code>, <code class="docutils literal notranslate"><span class="pre">\satisfies</span></code>, <code class="docutils literal notranslate"><span class="pre">\verifies</span></code>; test IDs in the ZTEST comment</p></td>
+<td><p>Doxygen XML, then zdocs</p></td>
+</tr>
+<tr class="row-odd"><td><p>Twister / JUnit</p></td>
+<td><p>the test case’s <code class="docutils literal notranslate"><span class="pre">SW-TC</span></code> ID in the test name or a property</p></td>
+<td><p>test reports, then <code class="docutils literal notranslate"><span class="pre">TR</span></code> needs</p></td>
+</tr>
+<tr class="row-even"><td><p>Devicetree</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">trace-id</span></code> property of the project’s own binding, never on upstream nodes
+(<a class="reference internal" href="../explanation/decisions/traces.html#XD-ADR-0057" title="XD-ADR-0057"><em class="xref need">Small corrections from rese... (XD-ADR-0057)</em></a> (f))</p></td>
+<td><p>the devicetree check</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="the-ledger">
+<h2>The ledger<a class="headerlink" href="#the-ledger" title="Link to this heading"></a></h2>
+<p>Each repo keeps one ledger file, <code class="docutils literal notranslate"><span class="pre">ids.yaml</span></code>. It lists <strong>every number ever issued</strong> per kind
+that the repo owns, one per line. It is append-only. Listing every number (not just the last)
+means that two PRs that issue the same number touch the same line, so git reports a conflict
+(<a class="reference internal" href="../explanation/decisions/traces.html#XD-ADR-0122" title="XD-ADR-0122"><em class="xref need">ID collisions show up as gi... (XD-ADR-0122)</em></a>).</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Every number issued per kind, one per line. Append-only.</span>
+<span class="nt">SYS-REQ</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">41</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">42</span>
+<span class="nt">SYS-NEED</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">17</span>
+<span class="nt">SYS-FEAT</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span><span class="w">       </span><span class="c1"># owned, nothing issued yet</span>
+</pre></div>
+</div>
+<p>A kind with nothing issued yet is written <code class="docutils literal notranslate"><span class="pre">KIND:</span> <span class="pre">[]</span></code>. That line makes the repo the owner of
+the kind.</p>
+</section>
+<section id="issuing-ids">
+<h2>Issuing IDs<a class="headerlink" href="#issuing-ids" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Placeholders.</strong> Write a need with a placeholder ID of the form <code class="docutils literal notranslate"><span class="pre">&lt;KIND&gt;-NEW-&lt;tag&gt;</span></code>, for
+example the kind <code class="docutils literal notranslate"><span class="pre">SYS-REQ</span></code> followed by <code class="docutils literal notranslate"><span class="pre">-NEW-a</span></code>. Then run
+<code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">ids</span> <span class="pre">fix</span> <span class="pre">&lt;repo&gt;</span></code>. It replaces every placeholder with the next free number
+(<code class="docutils literal notranslate"><span class="pre">max(ledger,</span> <span class="pre">IDs</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">sources)</span> <span class="pre">+</span> <span class="pre">1</span></code>) and adds it to the ledger. The same placeholder gets
+the same ID in every file.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">ids</span> <span class="pre">new</span> <span class="pre">&lt;KIND&gt;</span> <span class="pre">[FILE]</span></code> issues one ID, and with <code class="docutils literal notranslate"><span class="pre">FILE</span></code> replaces that file’s first
+placeholder of the kind.</p></li>
+<li><p>Never invent a number. Never reuse one.</p></li>
+<li><p><strong>Parallel PRs.</strong> Two PRs may issue the same number. The second to rebase gets a ledger
+conflict. Rerun <code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">ids</span> <span class="pre">fix</span></code>, which renumbers that PR’s new IDs. Rulesets require PRs
+to be up to date with <code class="docutils literal notranslate"><span class="pre">main</span></code> before merge, so the duplicate check runs on the combined state.</p></li>
+<li><p><strong>Retiring.</strong> A retired need keeps its ID with <code class="docutils literal notranslate"><span class="pre">status:</span> <span class="pre">retired</span></code> (<a class="reference internal" href="../explanation/decisions/traces.html#XD-ADR-0057" title="XD-ADR-0057"><em class="xref need">Small corrections from rese... (XD-ADR-0057)</em></a> (e),
+<a class="reference internal" href="../explanation/decisions/traces.html#XD-ADR-0119" title="XD-ADR-0119"><em class="xref need">Retiring generated needs (XD-ADR-0119)</em></a>). When it is finally deleted, the ledger still holds its number.</p></li>
+</ul>
+</section>
+<section id="rules">
+<h2>Rules<a class="headerlink" href="#rules" title="Link to this heading"></a></h2>
+<div class="needstable_wrapper docutils container" id="needtable-reference/id-scheme-0">
+<table class="NEEDS_TABLE docutils align-default" id="needtable-reference/id-scheme-0-table_node">
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 75.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head needs_col_id" data-col="id" scope="col"><p>ID</p></th>
+<th class="head needs_col_title" data-col="title" scope="col"><p>Title</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="need row-even" data-need-id="XD-RULE-0015"><td class="needs_id"><p><a class="reference internal" href="../explanation/rules/ids.html#XD-RULE-0015">XD-RULE-0015</a></p></td>
+<td class="needs_title"><p>An ID matches the scheme and its need type</p></td>
+</tr>
+<tr class="need row-odd" data-need-id="XD-RULE-0016"><td class="needs_id"><p><a class="reference internal" href="../explanation/rules/ids.html#XD-RULE-0016">XD-RULE-0016</a></p></td>
+<td class="needs_title"><p>IDs are unique</p></td>
+</tr>
+<tr class="need row-even" data-need-id="XD-RULE-0017"><td class="needs_id"><p><a class="reference internal" href="../explanation/rules/ids.html#XD-RULE-0017">XD-RULE-0017</a></p></td>
+<td class="needs_title"><p>No placeholders on main</p></td>
+</tr>
+<tr class="need row-odd" data-need-id="XD-RULE-0018"><td class="needs_id"><p><a class="reference internal" href="../explanation/rules/ids.html#XD-RULE-0018">XD-RULE-0018</a></p></td>
+<td class="needs_title"><p>The ledger is never behind the sources</p></td>
+</tr>
+<tr class="need row-even" data-need-id="XD-RULE-0019"><td class="needs_id"><p><a class="reference internal" href="../explanation/rules/ids.html#XD-RULE-0019">XD-RULE-0019</a></p></td>
+<td class="needs_title"><p>Test report IDs are mapped to TR IDs</p></td>
+</tr>
+<tr class="need row-odd" data-need-id="XD-RULE-0020"><td class="needs_id"><p><a class="reference internal" href="../explanation/rules/ids.html#XD-RULE-0020">XD-RULE-0020</a></p></td>
+<td class="needs_title"><p>IDs are never reused; retire before you delete</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul class="simple">
+<li><p><a class="reference internal" href="../explanation/rules/ids.html#XD-RULE-0015" title="XD-RULE-0015"><em class="xref need">An ID matches the scheme an... (XD-RULE-0015)</em></a> is checked by <a class="reference internal" href="checks.html#XD-CHECK-0003" title="XD-CHECK-0003"><em class="xref need">IDs match the scheme and th... (XD-CHECK-0003)</em></a>.</p></li>
+<li><p><a class="reference internal" href="../explanation/rules/ids.html#XD-RULE-0016" title="XD-RULE-0016"><em class="xref need">IDs are unique (XD-RULE-0016)</em></a> is checked by <a class="reference internal" href="checks.html#XD-CHECK-0010" title="XD-CHECK-0010"><em class="xref need">no duplicate IDs across doc... (XD-CHECK-0010)</em></a> across documents and in the full set.</p></li>
+<li><p><a class="reference internal" href="../explanation/rules/ids.html#XD-RULE-0017" title="XD-RULE-0017"><em class="xref need">No placeholders on main (XD-RULE-0017)</em></a> is checked by <a class="reference internal" href="checks.html#XD-CHECK-0013" title="XD-CHECK-0013"><em class="xref need">no placeholder IDs (XD-CHECK-0013)</em></a>.</p></li>
+<li><p><a class="reference internal" href="../explanation/rules/ids.html#XD-RULE-0018" title="XD-RULE-0018"><em class="xref need">The ledger is never behind ... (XD-RULE-0018)</em></a> is checked by <a class="reference internal" href="checks.html#XD-CHECK-0014" title="XD-CHECK-0014"><em class="xref need">IDs in the sources are in t... (XD-CHECK-0014)</em></a>.</p></li>
+<li><p><a class="reference internal" href="../explanation/rules/ids.html#XD-RULE-0020" title="XD-RULE-0020"><em class="xref need">IDs are never reused; retir... (XD-RULE-0020)</em></a> is helped by <a class="reference internal" href="checks.html#XD-CHECK-0012" title="XD-CHECK-0012"><em class="xref need">tombstones of deleted gener... (XD-CHECK-0012)</em></a> (tombstones of deleted generated needs).</p></li>
+<li><p><a class="reference internal" href="../explanation/rules/ids.html#XD-RULE-0019" title="XD-RULE-0019"><em class="xref need">Test report IDs are mapped ... (XD-RULE-0019)</em></a> is applied by the test-report extractor.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="trace-model.html" class="btn btn-neutral float-left" title="Trace model" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="variant-rules.html" class="btn btn-neutral float-right" title="Variant rules" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, XDMOD Manual.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

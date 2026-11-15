@@ -1,0 +1,58 @@
+# XDMOD Manual
+
+> XDMOD: a method and tools for cross-domain, multi-repo systems engineering.
+
+
+2026, XDMOD Manual
+
+## Pages
+
+- [XDMOD Manual](index.html.md): &#42;&#42;XDMOD&#42;&#42; (Cross-Domain MODeling) is a method plus tools for developing a product across systems
+- [Tutorials](tutorials/index.html.md): The tutorials walk you through XDMOD step by step. Each one starts from a clean state and ends
+- [Your first workspace](tutorials/first-workspace.html.md): This tutorial is a skeleton. It is completed in Phase 5 on the real robot-arm repos.
+- [Your first requirement, end to end](tutorials/first-requirement.html.md): This tutorial is a skeleton. It is completed in Phase 5 on the real robot-arm repos.
+- [Your first change](tutorials/first-change.html.md): This tutorial is a skeleton. It is completed in Phase 5 on the real robot-arm repos.
+- [How-to guides](howto/index.html.md): Each guide answers one question: “How do I …?”. It assumes you have a workspace
+- [Add a requirement](howto/add-a-requirement.html.md): Use this guide when you add a system requirement (&#96;sys-req&#96;) or a domain requirement
+- [Add a model element](howto/add-a-model-element.html.md): Use this guide when you add a SysML element that takes part in a trace link: a function, a
+- [Add a view](howto/add-a-view.html.md): Use this guide when you want a diagram of the model in the docs. Views come from the model:
+- [Add a PCBA or circuit block](howto/add-a-pcba.html.md): Use this guide when you add a KiCad project (a PCBA), a circuit block or a component that takes
+- [Add a FreeCAD part or assembly](howto/add-a-part.html.md): Use this guide when you add a FreeCAD part (&#96;ME-PART&#96;) or assembly (&#96;ME-ASM&#96;) that takes part
+- [Add a feature or configuration](howto/add-a-configuration.html.md): Use this guide when the product line gets a new feature, a new variant at a variation point, or
+- [Add a test](howto/add-a-test.html.md): Use this guide when you add a test case and want its results to count as evidence.
+- [Make a change across repos](howto/cross-repo-change.html.md): Use this guide when one change touches more than one repo, for example a new system requirement
+- [Work as an agent](howto/work-as-an-agent.html.md): Use this guide if you are an AI agent, or if you brief one. Agents do the same work with the same
+- [Make a baseline](howto/make-a-baseline.html.md): Use this guide when you want a fixed, released set of repo versions. A &#42;&#42;baseline&#42;&#42; is a tag
+- [Reference](reference/index.html.md): Facts to look up: need types and links, IDs, rules, checks, layouts and paths. Tables that come
+- [Trace model](reference/trace-model.html.md): The trace model names every need type, every link type and every shared field. One shared file,
+- [ID scheme](reference/id-scheme.html.md): Every need has an ID. IDs are stable, never reused, readable, and unique across the whole
+- [Variant rules](reference/variant-rules.html.md): These rules check a variant model: the feature model, the product models of the configurations,
+- [Checks](reference/checks.html.md): curatrix runs every check with one command per repo, from the workspace root (&#42;Every check runs loca...
+- [SYSMOD mapping](reference/sysmod-mapping.html.md): How each SYSMOD step maps to a work product, where it is authored, its need type, and the
+- [Repo layouts](reference/repo-layouts.html.md): Every repo that uses XDMOD follows one common pattern. Domain repos add their own folders.
+- [Workspace](reference/workspace.html.md): Paths, roles, environment and limits of an XDMOD workspace. Background:
+- [Glossary](reference/glossary.html.md): 150 % model
+- [Explanation](explanation/index.html.md): These pages explain why XDMOD works the way it does. They give the background for the rules in
+- [Principles](explanation/principles.html.md): XDMOD rests on a few ideas. Most rules in this manual follow from them.
+- [The V-model and trace links](explanation/v-model-and-traces.html.md): XDMOD arranges the work products of a project along a V. The left side goes from stakeholder
+- [SYSMOD and SysML v2](explanation/sysmod-and-sysml.html.md): XDMOD uses the SYSMOD method by Tim Weilkiens for systems engineering (&#42;SYSMOD is the main method r....
+- [Variants](explanation/variants.html.md): A project often builds more than one product from one design: a prototype and a product, a
+- [Many repos, one workspace](explanation/multi-repo.html.md): An XDMOD project lives in several git repos: one per engineering domain, one for integration,
+- [Humans and agents](explanation/humans-and-agents.html.md): In XDMOD, AI agents are first-class: they author and review design content the same way human
+- [Decisions](explanation/decisions/index.html.md): This part records every decision about the XDMOD framework. Each decision is a need of type
+- [Method and model](explanation/decisions/method.html.md): How the system is modelled: SysML v2, SYSMOD, requirements, views and variants.
+- [Traces and IDs](explanation/decisions/traces.html.md): The trace rule, link types, need kinds and the ID scheme.
+- [Documents](explanation/decisions/documents.html.md): The linked document set, zdocs, and how documents get their content.
+- [Repos and workspace](explanation/decisions/repos.html.md): Repos, the west workspace, names, tags and paths.
+- [Checks, CI and evidence](explanation/decisions/checks.html.md): Where checks run, CI, tool limits, generated files and test evidence.
+- [Workflow and agents](explanation/decisions/workflow.html.md): Branches, merging, reviews, and what agents may do.
+- [Scope and iterations](explanation/decisions/scope.html.md): What is in iteration 1 and what moved to iteration 2.
+- [Rules](explanation/rules/index.html.md): The XDMOD method has rules: how links are written, how IDs are issued, how variants are bound,
+- [Trace rules](explanation/rules/trace.html.md): The principles of the trace model and the rules on the trace graph.
+- [ID rules](explanation/rules/ids.html.md): Rules for IDs and the ledger.
+- [Variant rules](explanation/rules/variants.html.md): Rules for the feature model (F), the product models (V) and the traces of variants (T). Iteration 1 ...
+- [Check principles](explanation/rules/checks.html.md): General rules that the hygiene and generated-file checks enforce.
+
+## Optional
+
+- [llms-full.txt](llms-full.txt): Complete documentation in a single file.

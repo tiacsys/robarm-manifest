@@ -1,0 +1,22 @@
+# XDMOD Manual
+
+> XDMOD: a method and tools for cross-domain, multi-repo systems engineering.
+
+
+2026, XDMOD Manual
+
+## Pages in this subsection
+
+- [Reference](index.html.md): Facts to look up: need types and links, IDs, rules, checks, layouts and paths. Tables that come
+- [Trace model](trace-model.html.md): The trace model names every need type, every link type and every shared field. One shared file,
+- [ID scheme](id-scheme.html.md): Every need has an ID. IDs are stable, never reused, readable, and unique across the whole
+- [Variant rules](variant-rules.html.md): These rules check a variant model: the feature model, the product models of the configurations,
+- [Checks](checks.html.md): curatrix runs every check with one command per repo, from the workspace root (&#42;Every check runs loca...
+- [SYSMOD mapping](sysmod-mapping.html.md): How each SYSMOD step maps to a work product, where it is authored, its need type, and the
+- [Repo layouts](repo-layouts.html.md): Every repo that uses XDMOD follows one common pattern. Domain repos add their own folders.
+- [Workspace](workspace.html.md): Paths, roles, environment and limits of an XDMOD workspace. Background:
+- [Glossary](glossary.html.md): 150 % model
+
+## Optional
+
+- [Top-level llms.txt](../llms.txt): Complete documentation index.

@@ -1,0 +1,293 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<link rel="alternate" type="text/markdown" href="first-requirement.html.md">
+<link rel="describedby" href="llms.txt">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your first requirement, end to end &mdash; XDMOD Manual</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../_static/zdocs-need-types.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/common_css/need_links.css?v=2150a916" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/common_css/needstable.css?v=7b67799e" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/modern.css?v=c1bc121d" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-test-results/common.css?v=b776391d" />
+      <link rel="stylesheet" type="text/css" href="../_static/zdocs-sphinx.css?v=1afe8e97" />
+      <link rel="stylesheet" type="text/css" href="../_static/zdocs-needs.css?v=f0382e39" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f348a06a"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/zdocs-need-preview.js?v=98728251"></script>
+      <script src="../_static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
+      <script src="../_static/sphinx-data-viewer/jsonview_loader.js?v=f7ff7e7d"></script>
+      <script src="../_static/sphinx-needs/libs/html/sphinx_needs_collapse.js?v=dca66431"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Your first change" href="first-change.html" />
+    <link rel="prev" title="Your first workspace" href="first-workspace.html" /> 
+<script id="xdmod-version-switcher" src="../../../version-switcher.js" data-site-root="../../.." defer></script>
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            XDMOD Manual
+          </a>
+<div class="version zdocs-version">v0.0-dev+g4afe2f3</div>
+
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+  
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="first-workspace.html">Your first workspace</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Your first requirement, end to end</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#goal">Goal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#steps">Steps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#what-can-go-wrong">What can go wrong</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="first-change.html">Your first change</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../howto/index.html">How-to guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../explanation/index.html">Explanation</a></li>
+</ul>
+
+  
+  <div class="toctree-wrapper compound reference-groups-wrapper">
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Project</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../robarm/index.html">Robot Arm: Project Overview</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">System</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../se-req/index.html">Stakeholder & System Requirements Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../se-arch/index.html">System Architecture</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Software</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../sw-req/index.html">SW Requirements Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../sw-arch/index.html">SW Architecture & Design</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../sw-api/index.html">SW API and Implementation</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../sw-test-spec/index.html">SW Test Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../sw-test-report/index.html">SW Test Report</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Electrical</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../ee-design/index.html">EE Requirements & Design</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Mechanical</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../me-design/index.html">ME Requirements & Design</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Integration</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../int-test-spec/index.html">System & Integration Test Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../int-test-report/index.html">System & Integration Test Report</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Framework</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../xdmod-ref/index.html">curatrix Reference</a></li>
+      
+    </ul>
+    
+  </div>
+  
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">XDMOD Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Tutorials</a></li>
+      <li class="breadcrumb-item active">Your first requirement, end to end</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/tutorials/first-requirement.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="your-first-requirement-end-to-end">
+<span id="tut-first-requirement"></span><h1>Your first requirement, end to end<a class="headerlink" href="#your-first-requirement-end-to-end" title="Link to this heading"></a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This tutorial is a skeleton. It is completed in Phase 5 on the real robot-arm repos.</p>
+</div>
+<section id="goal">
+<h2>Goal<a class="headerlink" href="#goal" title="Link to this heading"></a></h2>
+<p>You follow one stakeholder need all the way down the V-model and back up to a test result:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>stakeholder need  &lt;-refines-   system requirement (EARS)
+                  &lt;-satisfies- SysML part (through a generated stub)
+                  &lt;-realizes-  KiCad component (hidden TraceID field)
+                  &lt;-verifies-  test case  &lt;-result_of-  test result
+</pre></div>
+</div>
+<p>This is the chain the spike proved on a tiny example. Each arrow is a link that the more concrete
+artifact holds (<a class="reference internal" href="../explanation/rules/trace.html#XD-RULE-0001" title="XD-RULE-0001"><em class="xref need">The concrete side holds the... (XD-RULE-0001)</em></a>). Backlinks are computed by the docs build.</p>
+</section>
+<section id="steps">
+<h2>Steps<a class="headerlink" href="#steps" title="Link to this heading"></a></h2>
+<p>The examples use the robot-arm repos. Replace the repo names with your own.</p>
+<ol class="arabic">
+<li><p><strong>Write the need and the requirement</strong> in the requirements document of the syseng repo
+(<code class="docutils literal notranslate"><span class="pre">robarm-syseng/docs/se-req/</span></code>). Use placeholder IDs; see <a class="reference internal" href="../howto/add-a-requirement.html"><span class="doc">Add a requirement</span></a>.</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">sys-need</span><span class="p">::</span> Follow the leader arm
+   <span class="nc">:id:</span> SYS-NEED-NEW-follow
+   <span class="nc">:category:</span> need
+   <span class="nc">:raised_by:</span> SYS-STH-0001
+
+<span class="p">..</span> <span class="ow">sys-req</span><span class="p">::</span> Follow latency
+   <span class="nc">:id:</span> SYS-REQ-NEW-latency
+   <span class="nc">:refines:</span> SYS-NEED-NEW-follow
+   <span class="nc">:ears:</span> ubiquitous
+   <span class="nc">:quantity:</span> latency
+   <span class="nc">:unit:</span> ms
+   <span class="nc">:max:</span> 50
+
+   The system shall move each follower joint within 50 ms of the leader joint.
+</pre></div>
+</div>
+</li>
+<li><p><strong>Issue the IDs</strong> and build the docs, so the stubs can be made from the needs:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>curatrix<span class="w"> </span>ids<span class="w"> </span>fix<span class="w"> </span>robarm-syseng
+curatrix<span class="w"> </span>docs<span class="w"> </span>robarm-syseng
+curatrix<span class="w"> </span>gen<span class="w"> </span>stubs<span class="w"> </span>robarm-syseng
+</pre></div>
+</div>
+</li>
+<li><p><strong>Satisfy the requirement in the model.</strong> Give a part definition a short-name ID and add a
+<code class="docutils literal notranslate"><span class="pre">satisfy</span></code> through the generated stub; see <a class="reference internal" href="../howto/add-a-model-element.html"><span class="doc">Add a model element</span></a>. Then regenerate
+the model needs:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>curatrix<span class="w"> </span>ids<span class="w"> </span>fix<span class="w"> </span>robarm-syseng
+curatrix<span class="w"> </span>gen<span class="w"> </span>model<span class="w"> </span>robarm-syseng
+</pre></div>
+</div>
+</li>
+<li><p><strong>Realize the model element in a domain.</strong> In the EE repo, give a KiCad symbol or sheet the
+hidden fields <code class="docutils literal notranslate"><span class="pre">TraceID</span></code> and <code class="docutils literal notranslate"><span class="pre">Realizes</span></code>; see <a class="reference internal" href="../howto/add-a-pcba.html"><span class="doc">Add a PCBA or circuit block</span></a>. Then:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>curatrix<span class="w"> </span>gen<span class="w"> </span>cad-needs<span class="w"> </span>robarm-ee
+</pre></div>
+</div>
+</li>
+<li><p><strong>Verify it.</strong> Write a test case that <code class="docutils literal notranslate"><span class="pre">verifies</span></code> the requirement; see
+<a class="reference internal" href="../howto/add-a-test.html"><span class="doc">Add a test</span></a>. Its result becomes a test result need.</p></li>
+<li><p><strong>Check and look.</strong> Run the checks of each repo you touched, then build the full set:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>curatrix<span class="w"> </span>check<span class="w"> </span>robarm-syseng<span class="w"> </span>--stage<span class="w"> </span><span class="nb">local</span>
+curatrix<span class="w"> </span>check<span class="w"> </span>robarm-ee<span class="w"> </span>--stage<span class="w"> </span><span class="nb">local</span>
+curatrix<span class="w"> </span>docs<span class="w"> </span>full
+</pre></div>
+</div>
+<p>A <code class="docutils literal notranslate"><span class="pre">tracechain</span></code> table in the project overview shows the chain, and gaps are marked as
+“(missing)”.</p>
+</li>
+</ol>
+</section>
+<section id="what-can-go-wrong">
+<h2>What can go wrong<a class="headerlink" href="#what-can-go-wrong" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>A link written on the wrong side, or to an unknown ID, fails the strict build (<a class="reference internal" href="../explanation/rules/trace.html#XD-RULE-0002" title="XD-RULE-0002"><em class="xref need">Link types are declared on ... (XD-RULE-0002)</em></a>,
+<a class="reference internal" href="../reference/checks.html#XD-CHECK-0001" title="XD-CHECK-0001"><em class="xref need">docs build strict (zdocs, s... (XD-CHECK-0001)</em></a>).</p></li>
+<li><p>A model element that realizes nothing and satisfies nothing is an orphan (<a class="reference internal" href="../explanation/rules/trace.html#XD-RULE-0010" title="XD-RULE-0010"><em class="xref need">No orphan design elements (XD-RULE-0010)</em></a>,
+<a class="reference internal" href="../reference/checks.html#XD-CHECK-0004" title="XD-CHECK-0004"><em class="xref need">no orphans (R3) (XD-CHECK-0004)</em></a>).</p></li>
+<li><p>Generated files that don’t match their sources fail the checks (<a class="reference internal" href="../explanation/rules/checks.html#XD-RULE-0033" title="XD-RULE-0033"><em class="xref need">Generated files are committ... (XD-RULE-0033)</em></a>). Run the matching
+<code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">gen</span></code> command and commit the result.</p></li>
+</ul>
+<p>Next: <a class="reference internal" href="first-change.html"><span class="doc">Your first change</span></a>.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="first-workspace.html" class="btn btn-neutral float-left" title="Your first workspace" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="first-change.html" class="btn btn-neutral float-right" title="Your first change" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, XDMOD Manual.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

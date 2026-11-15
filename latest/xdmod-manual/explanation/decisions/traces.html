@@ -1,0 +1,605 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<link rel="alternate" type="text/markdown" href="traces.html.md">
+<link rel="describedby" href="llms.txt">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Traces and IDs &mdash; XDMOD Manual</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/zdocs-need-types.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-needs/common_css/need_links.css?v=2150a916" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-needs/common_css/needstable.css?v=7b67799e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-needs/modern.css?v=c1bc121d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-test-results/common.css?v=b776391d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/zdocs-sphinx.css?v=1afe8e97" />
+      <link rel="stylesheet" type="text/css" href="../../_static/zdocs-needs.css?v=f0382e39" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=f348a06a"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/zdocs-need-preview.js?v=98728251"></script>
+      <script src="../../_static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
+      <script src="../../_static/sphinx-data-viewer/jsonview_loader.js?v=f7ff7e7d"></script>
+      <script src="../../_static/sphinx-needs/libs/html/sphinx_needs_collapse.js?v=dca66431"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Documents" href="documents.html" />
+    <link rel="prev" title="Method and model" href="method.html" /> 
+<script id="xdmod-version-switcher" src="../../../../version-switcher.js" data-site-root="../../../.." defer></script>
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            XDMOD Manual
+          </a>
+<div class="version zdocs-version">v0.0-dev+g4afe2f3</div>
+
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+  
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../howto/index.html">How-to guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Explanation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../principles.html">Principles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v-model-and-traces.html">The V-model and trace links</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sysmod-and-sysml.html">SYSMOD and SysML v2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../variants.html">Variants</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../multi-repo.html">Many repos, one workspace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../humans-and-agents.html">Humans and agents</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Decisions</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="index.html#how-to-read-a-decision">How to read a decision</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html#how-to-add-a-decision">How to add a decision</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#all-decisions">All decisions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../rules/index.html">Rules</a></li>
+</ul>
+</li>
+</ul>
+
+  
+  <div class="toctree-wrapper compound reference-groups-wrapper">
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Project</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../../robarm/index.html">Robot Arm: Project Overview</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">System</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../../se-req/index.html">Stakeholder & System Requirements Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../../se-arch/index.html">System Architecture</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Software</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../../sw-req/index.html">SW Requirements Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../../sw-arch/index.html">SW Architecture & Design</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../../sw-api/index.html">SW API and Implementation</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../../sw-test-spec/index.html">SW Test Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../../sw-test-report/index.html">SW Test Report</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Electrical</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../../ee-design/index.html">EE Requirements & Design</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Mechanical</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../../me-design/index.html">ME Requirements & Design</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Integration</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../../int-test-spec/index.html">System & Integration Test Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../../int-test-report/index.html">System & Integration Test Report</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Framework</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../../xdmod-ref/index.html">curatrix Reference</a></li>
+      
+    </ul>
+    
+  </div>
+  
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">XDMOD Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Explanation</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Decisions</a></li>
+      <li class="breadcrumb-item active">Traces and IDs</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/explanation/decisions/traces.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="traces-and-ids">
+<span id="adr-traces"></span><h1>Traces and IDs<a class="headerlink" href="#traces-and-ids" title="Link to this heading"></a></h1>
+<p>The trace rule, link types, need kinds and the ID scheme.</p>
+<div class="need_container docutils container" id="SNCB-0ec21c74">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0004">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Framework Decision</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Trace rule: the concrete side holds the link</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#XD-ADR-0004" title="XD-ADR-0004">XD-ADR-0004</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_legacy_id"><span class="needs_label">legacy_id: </span><span class="needs_data">D5</span></span></div>
+<div class="line"><span class="needs_date"><span class="needs_label">date: </span><span class="needs_data">2026-11-14</span></span></div>
+<div class="line"><span class="needs_decision_status"><span class="needs_label">decision_status: </span><span class="needs_data">accepted</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">refined by: <span class="refines"><span><a class="zd-need-ref reference internal" href="#XD-ADR-0030" title="XD-ADR-0004">XD-ADR-0030</a></span></span></div>
+<div class="line">decides: <span class="decided_by"><span><a class="zd-need-ref reference internal" href="../rules/trace.html#XD-RULE-0001" title="XD-ADR-0004">XD-RULE-0001</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p><strong>Trace rule:</strong> trace annotations go right-to-left in the V-model and from concrete to abstract. The more concrete artifact holds the link; backlinks are only ever computed. Refined by <a class="zd-need-ref reference internal" href="#XD-ADR-0030" title="XD-ADR-0030"><em class="xref need">Link-type table and interfa... (XD-ADR-0030)</em></a>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-b1e5e6ca">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0013">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Framework Decision</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">A new ID prefix scheme</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#XD-ADR-0013" title="XD-ADR-0013">XD-ADR-0013</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_legacy_id"><span class="needs_label">legacy_id: </span><span class="needs_data">D17</span></span></div>
+<div class="line"><span class="needs_date"><span class="needs_label">date: </span><span class="needs_data">2026-11-14</span></span></div>
+<div class="line"><span class="needs_decision_status"><span class="needs_label">decision_status: </span><span class="needs_data">accepted</span></span></div>
+</span></span></div>
+<div class="line"><span></span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p>We design a <strong>new ID prefix scheme</strong>. The SEG IDs are not reused.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-1e4f57fe">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0023">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Framework Decision</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Trace IDs live inside the CAD files</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#XD-ADR-0023" title="XD-ADR-0023">XD-ADR-0023</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_legacy_id"><span class="needs_label">legacy_id: </span><span class="needs_data">D29</span></span></div>
+<div class="line"><span class="needs_date"><span class="needs_label">date: </span><span class="needs_data">2026-11-14</span></span></div>
+<div class="line"><span class="needs_decision_status"><span class="needs_label">decision_status: </span><span class="needs_data">accepted</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">decides: <span class="decided_by"><span><a class="zd-need-ref reference internal" href="../rules/trace.html#XD-RULE-0006" title="XD-ADR-0023">XD-RULE-0006</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p>Trace IDs for CAD elements live <strong>inside the CAD files</strong> (KiCad symbol/sheet fields, FreeCAD object properties). Doc extraction reads them.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-d90f891e">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0030">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Framework Decision</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Link-type table and interface elements</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#XD-ADR-0030" title="XD-ADR-0030">XD-ADR-0030</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_legacy_id"><span class="needs_label">legacy_id: </span><span class="needs_data">D36</span></span></div>
+<div class="line"><span class="needs_date"><span class="needs_label">date: </span><span class="needs_data">2026-11-14</span></span></div>
+<div class="line"><span class="needs_decision_status"><span class="needs_label">decision_status: </span><span class="needs_data">accepted</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">refines: <span class="refines"><span><a class="zd-need-ref reference internal" href="#XD-ADR-0004" title="XD-ADR-0030">XD-ADR-0004</a></span></span></div>
+<div class="line">refined by: <span class="refines"><span><a class="zd-need-ref reference internal" href="#XD-ADR-0057" title="XD-ADR-0030">XD-ADR-0057</a></span></span></div>
+<div class="line">decides: <span class="decided_by"><span><a class="zd-need-ref reference internal" href="../rules/trace.html#XD-RULE-0001" title="XD-ADR-0030">XD-RULE-0001</a>, <a class="zd-need-ref reference internal" href="../rules/trace.html#XD-RULE-0002" title="XD-ADR-0030">XD-RULE-0002</a>, <a class="zd-need-ref reference internal" href="../rules/trace.html#XD-RULE-0003" title="XD-ADR-0030">XD-RULE-0003</a>, <a class="zd-need-ref reference internal" href="../rules/trace.html#XD-RULE-0004" title="XD-ADR-0030">XD-RULE-0004</a>, <a class="zd-need-ref reference internal" href="../rules/trace.html#XD-RULE-0007" title="XD-ADR-0030">XD-RULE-0007</a>, <a class="zd-need-ref reference internal" href="../rules/trace.html#XD-RULE-0008" title="XD-ADR-0030">XD-RULE-0008</a>, <a class="zd-need-ref reference internal" href="../rules/trace.html#XD-RULE-0010" title="XD-ADR-0030">XD-RULE-0010</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p><strong>Link-type table:</strong> <a class="zd-need-ref reference internal" href="#XD-ADR-0004" title="XD-ADR-0004"><em class="xref need">Trace rule: the concrete si... (XD-ADR-0004)</em></a> stays the default. A table of link types names the owner side of each. Peer interfaces (e.g. EE↔SW pin map, EE↔ME connector positions) are <strong>interface elements in syseng</strong>, and both domains link to them. Allocation is stored on the concrete side.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-d55ddcb0">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0057">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Framework Decision</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Small corrections from research</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#XD-ADR-0057" title="XD-ADR-0057">XD-ADR-0057</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_legacy_id"><span class="needs_label">legacy_id: </span><span class="needs_data">D64</span></span></div>
+<div class="line"><span class="needs_date"><span class="needs_label">date: </span><span class="needs_data">2026-11-14</span></span></div>
+<div class="line"><span class="needs_decision_status"><span class="needs_label">decision_status: </span><span class="needs_data">accepted</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">refines: <span class="refines"><span><a class="zd-need-ref reference internal" href="#XD-ADR-0030" title="XD-ADR-0057">XD-ADR-0030</a>, <a class="zd-need-ref reference internal" href="checks.html#XD-ADR-0032" title="XD-ADR-0057">XD-ADR-0032</a>, <a class="zd-need-ref reference internal" href="method.html#XD-ADR-0036" title="XD-ADR-0057">XD-ADR-0036</a>, <a class="zd-need-ref reference internal" href="checks.html#XD-ADR-0040" title="XD-ADR-0057">XD-ADR-0040</a>, <a class="zd-need-ref reference internal" href="repos.html#XD-ADR-0047" title="XD-ADR-0057">XD-ADR-0047</a></span></span></div>
+<div class="line">refined by: <span class="refines"><span><a class="zd-need-ref reference internal" href="#XD-ADR-0068" title="XD-ADR-0057">XD-ADR-0068</a>, <a class="zd-need-ref reference internal" href="#XD-ADR-0119" title="XD-ADR-0057">XD-ADR-0119</a></span></span></div>
+<div class="line">decides: <span class="decided_by"><span><a class="zd-need-ref reference internal" href="../rules/trace.html#XD-RULE-0002" title="XD-ADR-0057">XD-RULE-0002</a>, <a class="zd-need-ref reference internal" href="../rules/trace.html#XD-RULE-0007" title="XD-ADR-0057">XD-RULE-0007</a>, <a class="zd-need-ref reference internal" href="../rules/trace.html#XD-RULE-0011" title="XD-ADR-0057">XD-RULE-0011</a>, <a class="zd-need-ref reference internal" href="../rules/ids.html#XD-RULE-0020" title="XD-ADR-0057">XD-RULE-0020</a>, <a class="zd-need-ref reference internal" href="../rules/checks.html#XD-RULE-0034" title="XD-ADR-0057">XD-RULE-0034</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p><strong>Small corrections from research:</strong> (a) a drawio file “matches the model” means its content (labels, parents, edge ends, kinds, links), not its geometry (<a class="zd-need-ref reference internal" href="checks.html#XD-ADR-0032" title="XD-ADR-0032"><em class="xref need">drawio files are committed ... (XD-ADR-0032)</em></a>); (b) stubs: <code class="docutils literal notranslate"><span class="pre">concern</span></code> for stakeholder needs, <code class="docutils literal notranslate"><span class="pre">requirement</span></code> for system requirements, so SYSMOD’s <code class="docutils literal notranslate"><span class="pre">frame</span></code> link is kept (<a class="zd-need-ref reference internal" href="method.html#XD-ADR-0036" title="XD-ADR-0036"><em class="xref need">Read-only requirement stubs... (XD-ADR-0036)</em></a>); (c) every doc build runs strict (<code class="docutils literal notranslate"><span class="pre">-W</span> <span class="pre">--keep-going</span></code>) with zdocs’ CI pins (<a class="zd-need-ref reference internal" href="checks.html#XD-ADR-0040" title="XD-ADR-0040"><em class="xref need">Every check also runs locally (XD-ADR-0040)</em></a>); (d) OCI tags map <code class="docutils literal notranslate"><span class="pre">baseline/vX.Y.Z</span></code> → <code class="docutils literal notranslate"><span class="pre">X.Y.Z</span></code> (<a class="zd-need-ref reference internal" href="repos.html#XD-ADR-0047" title="XD-ADR-0047"><em class="xref need">SemVer tags and baseline tags (XD-ADR-0047)</em></a>); (e) a removed requirement is first marked <code class="docutils literal notranslate"><span class="pre">retired</span></code>, and IDs are never reused; (f) devicetree trace IDs go in our own binding, never on upstream nodes; (g) CI checkouts use <code class="docutils literal notranslate"><span class="pre">fetch-depth:</span> <span class="pre">0</span></code> and annotated tags; (h) link types are declared <strong>per need type</strong>, never globally (<a class="zd-need-ref reference internal" href="#XD-ADR-0030" title="XD-ADR-0030"><em class="xref need">Link-type table and interfa... (XD-ADR-0030)</em></a>).</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-a1faaa1d">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0067">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Framework Decision</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Prototype wiring is EE content</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#XD-ADR-0067" title="XD-ADR-0067">XD-ADR-0067</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_legacy_id"><span class="needs_label">legacy_id: </span><span class="needs_data">D74</span></span></div>
+<div class="line"><span class="needs_date"><span class="needs_label">date: </span><span class="needs_data">2026-11-14</span></span></div>
+<div class="line"><span class="needs_decision_status"><span class="needs_label">decision_status: </span><span class="needs_data">revised</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">revised by: <span class="revises"><span><a class="zd-need-ref reference internal" href="method.html#XD-ADR-0093" title="XD-ADR-0067">XD-ADR-0093</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p><strong>Prototype wiring is EE content</strong> in robarm-ee: a KiCad schematic of each prototype setup, whose elements are <code class="docutils literal notranslate"><span class="pre">EE-CMP</span></code> with <code class="docutils literal notranslate"><span class="pre">variant:</span> <span class="pre">prototype</span></code>. They realize the <code class="docutils literal notranslate"><span class="pre">SYS-PROTO</span></code> / <code class="docutils literal notranslate"><span class="pre">SYS-EL</span></code> elements. Field changed by <a class="zd-need-ref reference internal" href="method.html#XD-ADR-0093" title="XD-ADR-0093"><em class="xref need">Variant fields configs, whe... (XD-ADR-0093)</em></a> (<code class="docutils literal notranslate"><span class="pre">configs</span></code>).</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-359ca465">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0068">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Framework Decision</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">A grace period for retired needs</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#XD-ADR-0068" title="XD-ADR-0068">XD-ADR-0068</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_legacy_id"><span class="needs_label">legacy_id: </span><span class="needs_data">D75</span></span></div>
+<div class="line"><span class="needs_date"><span class="needs_label">date: </span><span class="needs_data">2026-11-14</span></span></div>
+<div class="line"><span class="needs_decision_status"><span class="needs_label">decision_status: </span><span class="needs_data">accepted</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">refines: <span class="refines"><span><a class="zd-need-ref reference internal" href="#XD-ADR-0057" title="XD-ADR-0068">XD-ADR-0057</a></span></span></div>
+<div class="line">decides: <span class="decided_by"><span><a class="zd-need-ref reference internal" href="../rules/trace.html#XD-RULE-0011" title="XD-ADR-0068">XD-RULE-0011</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p><strong>Retired needs get a grace period until the next baseline.</strong> On <code class="docutils literal notranslate"><span class="pre">main</span></code> and in PRs, a link to a <code class="docutils literal notranslate"><span class="pre">retired</span></code> need is a reported warning that doesn’t fail the build. The baseline build fails while any such link remains. Refines <a class="zd-need-ref reference internal" href="#XD-ADR-0057" title="XD-ADR-0057"><em class="xref need">Small corrections from rese... (XD-ADR-0057)</em></a> (e).</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-f69cb3e6">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0070">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Framework Decision</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Code units implement design elements</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#XD-ADR-0070" title="XD-ADR-0070">XD-ADR-0070</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_legacy_id"><span class="needs_label">legacy_id: </span><span class="needs_data">D77</span></span></div>
+<div class="line"><span class="needs_date"><span class="needs_label">date: </span><span class="needs_data">2026-11-14</span></span></div>
+<div class="line"><span class="needs_decision_status"><span class="needs_label">decision_status: </span><span class="needs_data">accepted</span></span></div>
+</span></span></div>
+<div class="line"><span></span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p><strong>Code links:</strong> a code unit (<code class="docutils literal notranslate"><span class="pre">SW-IMPL</span></code>) must <code class="docutils literal notranslate"><span class="pre">implements</span></code> a SW design element. It <strong>may also ``satisfies`` a ``SW-REQ`` directly</strong>, as in the safety repo.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-9adc8fc0">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0071">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Framework Decision</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">ID format DOMAIN-KIND-NNNN</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#XD-ADR-0071" title="XD-ADR-0071">XD-ADR-0071</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_legacy_id"><span class="needs_label">legacy_id: </span><span class="needs_data">D78</span></span></div>
+<div class="line"><span class="needs_date"><span class="needs_label">date: </span><span class="needs_data">2026-11-14</span></span></div>
+<div class="line"><span class="needs_decision_status"><span class="needs_label">decision_status: </span><span class="needs_data">accepted</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">refined by: <span class="refines"><span><a class="zd-need-ref reference internal" href="#XD-ADR-0109" title="XD-ADR-0071">XD-ADR-0109</a></span></span></div>
+<div class="line">decides: <span class="decided_by"><span><a class="zd-need-ref reference internal" href="../rules/ids.html#XD-RULE-0015" title="XD-ADR-0071">XD-RULE-0015</a>, <a class="zd-need-ref reference internal" href="../rules/ids.html#XD-RULE-0016" title="XD-ADR-0071">XD-RULE-0016</a>, <a class="zd-need-ref reference internal" href="../rules/ids.html#XD-RULE-0017" title="XD-ADR-0071">XD-RULE-0017</a>, <a class="zd-need-ref reference internal" href="../rules/ids.html#XD-RULE-0019" title="XD-ADR-0071">XD-RULE-0019</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p><strong>ID format</strong> <code class="docutils literal notranslate"><span class="pre">&lt;DOMAIN&gt;-&lt;KIND&gt;-&lt;NNNN&gt;</span></code> with a 4-digit number. Domains are <code class="docutils literal notranslate"><span class="pre">SYS</span></code>, <code class="docutils literal notranslate"><span class="pre">SW</span></code>, <code class="docutils literal notranslate"><span class="pre">EE</span></code>, <code class="docutils literal notranslate"><span class="pre">ME</span></code>, <code class="docutils literal notranslate"><span class="pre">INT</span></code>. Examples: <code class="docutils literal notranslate"><span class="pre">SYS-REQ-0012</span></code>, <code class="docutils literal notranslate"><span class="pre">SW-TC-0103</span></code>, <code class="docutils literal notranslate"><span class="pre">EE-CMP-0007</span></code>. Test results: <code class="docutils literal notranslate"><span class="pre">TR-&lt;test</span> <span class="pre">case</span> <span class="pre">ID&gt;-&lt;run</span> <span class="pre">hash&gt;</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-864c7434">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0072">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Framework Decision</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">No project code in the sources</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#XD-ADR-0072" title="XD-ADR-0072">XD-ADR-0072</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_legacy_id"><span class="needs_label">legacy_id: </span><span class="needs_data">D79</span></span></div>
+<div class="line"><span class="needs_date"><span class="needs_label">date: </span><span class="needs_data">2026-11-14</span></span></div>
+<div class="line"><span class="needs_decision_status"><span class="needs_label">decision_status: </span><span class="needs_data">accepted</span></span></div>
+</span></span></div>
+<div class="line"><span></span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p><strong>No project code in the sources.</strong> A project code with the separator <code class="docutils literal notranslate"><span class="pre">:</span></code> (e.g. <code class="docutils literal notranslate"><span class="pre">RA:SYS-REQ-0012</span></code>) is added only where IDs leave the workspace: bundles, published <code class="docutils literal notranslate"><span class="pre">needs.json</span></code>, shared affirmatrix cases.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-44e967ae">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0073">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Framework Decision</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">SW test case IDs come from the ledger</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#XD-ADR-0073" title="XD-ADR-0073">XD-ADR-0073</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_legacy_id"><span class="needs_label">legacy_id: </span><span class="needs_data">D80</span></span></div>
+<div class="line"><span class="needs_date"><span class="needs_label">date: </span><span class="needs_data">2026-11-14</span></span></div>
+<div class="line"><span class="needs_decision_status"><span class="needs_label">decision_status: </span><span class="needs_data">accepted</span></span></div>
+</span></span></div>
+<div class="line"><span></span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p><strong>SW test case IDs</strong> come from the ledger and are written into the ZTEST comment by a tool, like safety’s <code class="docutils literal notranslate"><span class="pre">&#64;testid</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-8531efbe">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0104">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Framework Decision</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Tests live by what they verify</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#XD-ADR-0104" title="XD-ADR-0104">XD-ADR-0104</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_legacy_id"><span class="needs_label">legacy_id: </span><span class="needs_data">D115</span></span></div>
+<div class="line"><span class="needs_date"><span class="needs_label">date: </span><span class="needs_data">2026-11-14</span></span></div>
+<div class="line"><span class="needs_decision_status"><span class="needs_label">decision_status: </span><span class="needs_data">accepted</span></span></div>
+</span></span></div>
+<div class="line"><span></span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p><strong>Tests live by what they verify.</strong> A test that verifies a <code class="docutils literal notranslate"><span class="pre">SYS-REQ</span></code> or <code class="docutils literal notranslate"><span class="pre">SYS-IF</span></code> lives in robarm-integration, even if it touches one domain only. Tests of domain requirements stay in their domain repo.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-86406d85">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0109">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Framework Decision</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Decisions become sphinx-needs</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#XD-ADR-0109" title="XD-ADR-0109">XD-ADR-0109</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_legacy_id"><span class="needs_label">legacy_id: </span><span class="needs_data">D120</span></span></div>
+<div class="line"><span class="needs_date"><span class="needs_label">date: </span><span class="needs_data">2026-11-14</span></span></div>
+<div class="line"><span class="needs_decision_status"><span class="needs_label">decision_status: </span><span class="needs_data">accepted</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">refines: <span class="refines"><span><a class="zd-need-ref reference internal" href="#XD-ADR-0071" title="XD-ADR-0109">XD-ADR-0071</a></span></span></div>
+<div class="line">refined by: <span class="refines"><span><a class="zd-need-ref reference internal" href="#XD-ADR-0110" title="XD-ADR-0109">XD-ADR-0110</a></span></span></div>
+<div class="line">decides: <span class="decided_by"><span><a class="zd-need-ref reference internal" href="../rules/ids.html#XD-RULE-0015" title="XD-ADR-0109">XD-RULE-0015</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p><strong>Decisions become sphinx-needs.</strong> Framework decisions are <code class="docutils literal notranslate"><span class="pre">XD-ADR-nnnn</span></code> in the xdmod manual. Robot-arm decisions are <code class="docutils literal notranslate"><span class="pre">PRJ-DEC-nnnn</span></code> in the <code class="docutils literal notranslate"><span class="pre">robarm</span></code> overview doc (robarm-manifest). The old D-number is kept as <code class="docutils literal notranslate"><span class="pre">legacy_id</span></code>. New ID domains <code class="docutils literal notranslate"><span class="pre">XD</span></code> and <code class="docutils literal notranslate"><span class="pre">PRJ</span></code> (extends <a class="zd-need-ref reference internal" href="#XD-ADR-0071" title="XD-ADR-0071"><em class="xref need">ID format DOMAIN-KIND-NNNN (XD-ADR-0071)</em></a>). <strong>In rst, every mention of a decision (and of a rule or check) is a real ``:need:`` reference.</strong></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-c8ead9a5">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0110">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Framework Decision</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Method rules are needs</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#XD-ADR-0110" title="XD-ADR-0110">XD-ADR-0110</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_legacy_id"><span class="needs_label">legacy_id: </span><span class="needs_data">D121</span></span></div>
+<div class="line"><span class="needs_date"><span class="needs_label">date: </span><span class="needs_data">2026-11-14</span></span></div>
+<div class="line"><span class="needs_decision_status"><span class="needs_label">decision_status: </span><span class="needs_data">accepted</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">refines: <span class="refines"><span><a class="zd-need-ref reference internal" href="#XD-ADR-0109" title="XD-ADR-0110">XD-ADR-0109</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p><strong>Method rules are needs</strong> <code class="docutils literal notranslate"><span class="pre">XD-RULE-nnnn</span></code> (each <code class="docutils literal notranslate"><span class="pre">decided_by</span></code> an <code class="docutils literal notranslate"><span class="pre">XD-ADR</span></code>). Each curatrix check is a generated <code class="docutils literal notranslate"><span class="pre">XD-CHECK</span></code> need that <code class="docutils literal notranslate"><span class="pre">enforces</span></code> a rule.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-80fc30a4">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0119">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Framework Decision</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Retiring generated needs</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#XD-ADR-0119" title="XD-ADR-0119">XD-ADR-0119</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_legacy_id"><span class="needs_label">legacy_id: </span><span class="needs_data">D130</span></span></div>
+<div class="line"><span class="needs_date"><span class="needs_label">date: </span><span class="needs_data">2026-11-14</span></span></div>
+<div class="line"><span class="needs_decision_status"><span class="needs_label">decision_status: </span><span class="needs_data">accepted</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">refines: <span class="refines"><span><a class="zd-need-ref reference internal" href="#XD-ADR-0057" title="XD-ADR-0119">XD-ADR-0057</a></span></span></div>
+<div class="line">decides: <span class="decided_by"><span><a class="zd-need-ref reference internal" href="../rules/ids.html#XD-RULE-0020" title="XD-ADR-0119">XD-RULE-0020</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p><strong>Retiring generated needs:</strong> status comes from the source (SysML metadata, KiCad <code class="docutils literal notranslate"><span class="pre">Status</span></code> field, FreeCAD <code class="docutils literal notranslate"><span class="pre">Status</span></code> property, Doxygen tag). Deleting without retiring first leaves a tombstone in <code class="docutils literal notranslate"><span class="pre">generated/retired-needs.json</span></code> until the next baseline. <code class="docutils literal notranslate"><span class="pre">draft</span></code> needs take part in structure checks but don’t count as coverage.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-8a81f8b6">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0122">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Framework Decision</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">ID collisions show up as git conflicts</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#XD-ADR-0122" title="XD-ADR-0122">XD-ADR-0122</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_legacy_id"><span class="needs_label">legacy_id: </span><span class="needs_data">D133</span></span></div>
+<div class="line"><span class="needs_date"><span class="needs_label">date: </span><span class="needs_data">2026-11-14</span></span></div>
+<div class="line"><span class="needs_decision_status"><span class="needs_label">decision_status: </span><span class="needs_data">accepted</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">decides: <span class="decided_by"><span><a class="zd-need-ref reference internal" href="../rules/ids.html#XD-RULE-0016" title="XD-ADR-0122">XD-RULE-0016</a>, <a class="zd-need-ref reference internal" href="../rules/ids.html#XD-RULE-0018" title="XD-ADR-0122">XD-RULE-0018</a></span></span></div>
+<div class="line">followed by: <span class="follows"><span><a class="external_link zd-need-ref reference external" href="../../../robarm/decisions.html#PRJ-DEC-0017">PRJ-DEC-0017</a>, <a class="external_link zd-need-ref reference external" href="../../../robarm/decisions.html#PRJ-DEC-0018">PRJ-DEC-0018</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p><strong>ID collisions:</strong> rulesets require PRs to be up to date with <code class="docutils literal notranslate"><span class="pre">main</span></code> before merge, and the ledger lists every issued number per kind, so that concurrent issuing conflicts in git.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="method.html" class="btn btn-neutral float-left" title="Method and model" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="documents.html" class="btn btn-neutral float-right" title="Documents" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, XDMOD Manual.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,547 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<link rel="alternate" type="text/markdown" href="trace.html.md">
+<link rel="describedby" href="llms.txt">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trace rules &mdash; XDMOD Manual</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/zdocs-need-types.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-needs/common_css/need_links.css?v=2150a916" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-needs/common_css/needstable.css?v=7b67799e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-needs/modern.css?v=c1bc121d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-test-results/common.css?v=b776391d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/zdocs-sphinx.css?v=1afe8e97" />
+      <link rel="stylesheet" type="text/css" href="../../_static/zdocs-needs.css?v=f0382e39" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=f348a06a"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/zdocs-need-preview.js?v=98728251"></script>
+      <script src="../../_static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
+      <script src="../../_static/sphinx-data-viewer/jsonview_loader.js?v=f7ff7e7d"></script>
+      <script src="../../_static/sphinx-needs/libs/html/sphinx_needs_collapse.js?v=dca66431"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="ID rules" href="ids.html" />
+    <link rel="prev" title="Rules" href="index.html" /> 
+<script id="xdmod-version-switcher" src="../../../../version-switcher.js" data-site-root="../../../.." defer></script>
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            XDMOD Manual
+          </a>
+<div class="version zdocs-version">v0.0-dev+g4afe2f3</div>
+
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+  
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../howto/index.html">How-to guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Explanation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../principles.html">Principles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v-model-and-traces.html">The V-model and trace links</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sysmod-and-sysml.html">SYSMOD and SysML v2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../variants.html">Variants</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../multi-repo.html">Many repos, one workspace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../humans-and-agents.html">Humans and agents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../decisions/index.html">Decisions</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Rules</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Trace rules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ids.html">ID rules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="variants.html">Variant rules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks.html">Check principles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#all-rules">All rules</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  
+  <div class="toctree-wrapper compound reference-groups-wrapper">
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Project</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../../robarm/index.html">Robot Arm: Project Overview</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">System</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../../se-req/index.html">Stakeholder & System Requirements Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../../se-arch/index.html">System Architecture</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Software</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../../sw-req/index.html">SW Requirements Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../../sw-arch/index.html">SW Architecture & Design</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../../sw-api/index.html">SW API and Implementation</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../../sw-test-spec/index.html">SW Test Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../../sw-test-report/index.html">SW Test Report</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Electrical</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../../ee-design/index.html">EE Requirements & Design</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Mechanical</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../../me-design/index.html">ME Requirements & Design</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Integration</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../../int-test-spec/index.html">System & Integration Test Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../../int-test-report/index.html">System & Integration Test Report</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Framework</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../../xdmod-ref/index.html">curatrix Reference</a></li>
+      
+    </ul>
+    
+  </div>
+  
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">XDMOD Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Explanation</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Rules</a></li>
+      <li class="breadcrumb-item active">Trace rules</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/explanation/rules/trace.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="trace-rules">
+<span id="rules-trace"></span><h1>Trace rules<a class="headerlink" href="#trace-rules" title="Link to this heading"></a></h1>
+<p>The principles of the trace model and the rules on the trace graph.</p>
+<div class="need_container docutils container" id="SNCB-92a62443">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-rule zd-status-valid docutils align-default" id="XD-RULE-0001">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Method Rule</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">The concrete side holds the link</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#XD-RULE-0001" title="XD-RULE-0001">XD-RULE-0001</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_tags"><span class="needs_label">tags: </span><span class="needs_data_container"><span class="needs_data">trace</span></span></span></div>
+<div class="line"><span class="needs_legacy_id"><span class="needs_label">legacy_id: </span><span class="needs_data">trace-model 1.1</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">decided by: <span class="decided_by"><span><a class="zd-need-ref reference internal" href="../decisions/traces.html#XD-ADR-0004" title="XD-RULE-0001">XD-ADR-0004</a>, <a class="zd-need-ref reference internal" href="../decisions/traces.html#XD-ADR-0030" title="XD-RULE-0001">XD-ADR-0030</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p>A trace link is stored on the more concrete artifact. In the V-model, links point from right to left and from concrete to abstract. Backlinks such as “refined by” or “verified by” are never written; they are only computed.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-4ae99d4f">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-rule zd-status-valid docutils align-default" id="XD-RULE-0002">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Method Rule</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Link types are declared on the need type that owns them</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#XD-RULE-0002" title="XD-RULE-0002">XD-RULE-0002</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_tags"><span class="needs_label">tags: </span><span class="needs_data_container"><span class="needs_data">trace</span></span></span></div>
+<div class="line"><span class="needs_legacy_id"><span class="needs_label">legacy_id: </span><span class="needs_data">trace-model 1.2</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">decided by: <span class="decided_by"><span><a class="zd-need-ref reference internal" href="../decisions/traces.html#XD-ADR-0030" title="XD-RULE-0002">XD-ADR-0030</a>, <a class="zd-need-ref reference internal" href="../decisions/traces.html#XD-ADR-0057" title="XD-RULE-0002">XD-ADR-0057</a></span></span></div>
+<div class="line">enforced by: <span class="enforces"><span><a class="zd-need-ref reference internal" href="../../reference/checks.html#XD-CHECK-0001" title="XD-RULE-0002">XD-CHECK-0001</a>, <a class="zd-need-ref reference internal" href="../../reference/checks.html#XD-CHECK-0002" title="XD-RULE-0002">XD-CHECK-0002</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p>Every link type is declared only on the need type that holds it, in the shared needs configuration. There is no global link table. A link written on the wrong side, a link to an unknown ID, and a link to a wrong target type are build errors.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-3f14548e">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-rule zd-status-valid docutils align-default" id="XD-RULE-0003">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Method Rule</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Peer interfaces live in systems engineering</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#XD-RULE-0003" title="XD-RULE-0003">XD-RULE-0003</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_tags"><span class="needs_label">tags: </span><span class="needs_data_container"><span class="needs_data">trace</span></span></span></div>
+<div class="line"><span class="needs_legacy_id"><span class="needs_label">legacy_id: </span><span class="needs_data">trace-model 1.3</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">decided by: <span class="decided_by"><span><a class="zd-need-ref reference internal" href="../decisions/traces.html#XD-ADR-0030" title="XD-RULE-0003">XD-ADR-0030</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p>Interfaces between peer domains (for example EE and SW, or EE and ME) are interface needs (<code class="docutils literal notranslate"><span class="pre">SYS-IF</span></code>) in the systems engineering repo. Both domains link to the interface; neither domain links to the other.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-69d77a3f">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-rule zd-status-valid docutils align-default" id="XD-RULE-0004">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Method Rule</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Allocation is stored on the concrete side</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#XD-RULE-0004" title="XD-RULE-0004">XD-RULE-0004</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_tags"><span class="needs_label">tags: </span><span class="needs_data_container"><span class="needs_data">trace</span></span></span></div>
+<div class="line"><span class="needs_legacy_id"><span class="needs_label">legacy_id: </span><span class="needs_data">trace-model 1.4</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">decided by: <span class="decided_by"><span><a class="zd-need-ref reference internal" href="../decisions/traces.html#XD-ADR-0030" title="XD-RULE-0004">XD-ADR-0030</a>, <a class="zd-need-ref reference internal" href="../decisions/method.html#XD-ADR-0092" title="XD-RULE-0004">XD-ADR-0092</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p>When a logical element is allocated to a product element, the product element <code class="docutils literal notranslate"><span class="pre">realizes</span></code> the logical element. The same holds from functional to logical elements.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-b6e9f02f">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-rule zd-status-valid docutils align-default" id="XD-RULE-0005">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Method Rule</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Variants are expressed with configs and where</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#XD-RULE-0005" title="XD-RULE-0005">XD-RULE-0005</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_tags"><span class="needs_label">tags: </span><span class="needs_data_container"><span class="needs_data">trace</span></span></span></div>
+<div class="line"><span class="needs_legacy_id"><span class="needs_label">legacy_id: </span><span class="needs_data">trace-model 1.5</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">decided by: <span class="decided_by"><span><a class="zd-need-ref reference internal" href="../decisions/method.html#XD-ADR-0092" title="XD-RULE-0005">XD-ADR-0092</a>, <a class="zd-need-ref reference internal" href="../decisions/method.html#XD-ADR-0093" title="XD-RULE-0005">XD-ADR-0093</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p>Variants follow VAMOS through PLEML. The core is the functional and logical architecture; variants live in the 150 % product architecture. Design elements and test cases carry <code class="docutils literal notranslate"><span class="pre">configs</span></code>, requirements carry <code class="docutils literal notranslate"><span class="pre">where</span></code>, and test results carry <code class="docutils literal notranslate"><span class="pre">config</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-660bd2dc">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-rule zd-status-valid docutils align-default" id="XD-RULE-0006">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Method Rule</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Generated needs follow the same rules</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#XD-RULE-0006" title="XD-RULE-0006">XD-RULE-0006</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_tags"><span class="needs_label">tags: </span><span class="needs_data_container"><span class="needs_data">trace</span></span></span></div>
+<div class="line"><span class="needs_legacy_id"><span class="needs_label">legacy_id: </span><span class="needs_data">trace-model 1.6</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">decided by: <span class="decided_by"><span><a class="zd-need-ref reference internal" href="../decisions/documents.html#XD-ADR-0017" title="XD-RULE-0006">XD-ADR-0017</a>, <a class="zd-need-ref reference internal" href="../decisions/traces.html#XD-ADR-0023" title="XD-RULE-0006">XD-ADR-0023</a>, <a class="zd-need-ref reference internal" href="../decisions/checks.html#XD-ADR-0100" title="XD-RULE-0006">XD-ADR-0100</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p>Needs generated from SysML, KiCad, FreeCAD, code and test results follow the same rules as authored needs. Their links come from the source files: SysML <code class="docutils literal notranslate"><span class="pre">satisfy</span></code>, CAD trace fields, Doxygen <code class="docutils literal notranslate"><span class="pre">\satisfies</span></code> and ZTEST <code class="docutils literal notranslate"><span class="pre">\verifies</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-69d89f3b">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-rule zd-status-valid docutils align-default" id="XD-RULE-0007">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Method Rule</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">One shared needs configuration</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#XD-RULE-0007" title="XD-RULE-0007">XD-RULE-0007</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_tags"><span class="needs_label">tags: </span><span class="needs_data_container"><span class="needs_data">trace</span></span></span></div>
+<div class="line"><span class="needs_legacy_id"><span class="needs_label">legacy_id: </span><span class="needs_data">trace-model 1.7</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">decided by: <span class="decided_by"><span><a class="zd-need-ref reference internal" href="../decisions/traces.html#XD-ADR-0030" title="XD-RULE-0007">XD-ADR-0030</a>, <a class="zd-need-ref reference internal" href="../decisions/traces.html#XD-ADR-0057" title="XD-RULE-0007">XD-ADR-0057</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p>One module in xdmod (<code class="docutils literal notranslate"><span class="pre">needs/needs_config.toml</span></code>) defines all need types, fields and link types. Every document of every repo uses it, and the reference tables are generated from it.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-b21d5ead">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-rule zd-status-valid docutils align-default" id="XD-RULE-0008">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Method Rule</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Every system requirement is refined or satisfied</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#XD-RULE-0008" title="XD-RULE-0008">XD-RULE-0008</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_tags"><span class="needs_label">tags: </span><span class="needs_data_container"><span class="needs_data">trace</span></span></span></div>
+<div class="line"><span class="needs_legacy_id"><span class="needs_label">legacy_id: </span><span class="needs_data">R1</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">decided by: <span class="decided_by"><span><a class="zd-need-ref reference internal" href="../decisions/traces.html#XD-ADR-0030" title="XD-RULE-0008">XD-ADR-0030</a></span></span></div>
+<div class="line">enforced by: <span class="enforces"><span><a class="zd-need-ref reference internal" href="../../reference/checks.html#XD-CHECK-0006" title="XD-RULE-0008">XD-CHECK-0006</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p>Every <code class="docutils literal notranslate"><span class="pre">SYS-REQ</span></code> is refined by at least one domain requirement or satisfied by at least one <code class="docutils literal notranslate"><span class="pre">SYS-EL</span></code>. Needs with <code class="docutils literal notranslate"><span class="pre">status:</span> <span class="pre">draft</span></code> don’t count. Checked over the full set, because the links come from other repos.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-641ac1c7">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-rule zd-status-valid docutils align-default" id="XD-RULE-0009">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Method Rule</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Every requirement is verified</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#XD-RULE-0009" title="XD-RULE-0009">XD-RULE-0009</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_tags"><span class="needs_label">tags: </span><span class="needs_data_container"><span class="needs_data">trace</span></span></span></div>
+<div class="line"><span class="needs_legacy_id"><span class="needs_label">legacy_id: </span><span class="needs_data">R2</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">decided by: <span class="decided_by"><span><a class="zd-need-ref reference internal" href="../decisions/checks.html#XD-ADR-0090" title="XD-RULE-0009">XD-ADR-0090</a>, <a class="zd-need-ref reference internal" href="../decisions/method.html#XD-ADR-0094" title="XD-RULE-0009">XD-ADR-0094</a></span></span></div>
+<div class="line">enforced by: <span class="enforces"><span><a class="zd-need-ref reference internal" href="../../reference/checks.html#XD-CHECK-0007" title="XD-RULE-0009">XD-CHECK-0007</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p>Every requirement (<code class="docutils literal notranslate"><span class="pre">SYS-REQ</span></code> and the domain requirements) has at least one <code class="docutils literal notranslate"><span class="pre">verifies</span></code> link pointing at it, per applicable configuration. It is a warning in iteration 1 and an error at the baseline gate from iteration 2.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-ed29b717">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-rule zd-status-valid docutils align-default" id="XD-RULE-0010">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Method Rule</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">No orphan design elements</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#XD-RULE-0010" title="XD-RULE-0010">XD-RULE-0010</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_tags"><span class="needs_label">tags: </span><span class="needs_data_container"><span class="needs_data">trace</span></span></span></div>
+<div class="line"><span class="needs_legacy_id"><span class="needs_label">legacy_id: </span><span class="needs_data">R3</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">decided by: <span class="decided_by"><span><a class="zd-need-ref reference internal" href="../decisions/traces.html#XD-ADR-0030" title="XD-RULE-0010">XD-ADR-0030</a></span></span></div>
+<div class="line">enforced by: <span class="enforces"><span><a class="zd-need-ref reference internal" href="../../reference/checks.html#XD-CHECK-0004" title="XD-RULE-0010">XD-CHECK-0004</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p>Every product-layer <code class="docutils literal notranslate"><span class="pre">SYS-EL</span></code>, <code class="docutils literal notranslate"><span class="pre">SW-ARCH</span></code>, <code class="docutils literal notranslate"><span class="pre">EE-PCBA</span></code>, <code class="docutils literal notranslate"><span class="pre">EE-CMP</span></code>, <code class="docutils literal notranslate"><span class="pre">ME-ASM</span></code> and <code class="docutils literal notranslate"><span class="pre">ME-PART</span></code> has a <code class="docutils literal notranslate"><span class="pre">realizes</span></code> or a <code class="docutils literal notranslate"><span class="pre">satisfies</span></code> link.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-f7e2d831">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-rule zd-status-valid docutils align-default" id="XD-RULE-0011">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Method Rule</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Links to retired needs are reported, with a grace period</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#XD-RULE-0011" title="XD-RULE-0011">XD-RULE-0011</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_tags"><span class="needs_label">tags: </span><span class="needs_data_container"><span class="needs_data">trace</span></span></span></div>
+<div class="line"><span class="needs_legacy_id"><span class="needs_label">legacy_id: </span><span class="needs_data">R4</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">decided by: <span class="decided_by"><span><a class="zd-need-ref reference internal" href="../decisions/traces.html#XD-ADR-0057" title="XD-RULE-0011">XD-ADR-0057</a>, <a class="zd-need-ref reference internal" href="../decisions/traces.html#XD-ADR-0068" title="XD-RULE-0011">XD-ADR-0068</a></span></span></div>
+<div class="line">enforced by: <span class="enforces"><span><a class="zd-need-ref reference internal" href="../../reference/checks.html#XD-CHECK-0008" title="XD-RULE-0011">XD-CHECK-0008</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p>A link to a need with <code class="docutils literal notranslate"><span class="pre">status:</span> <span class="pre">retired</span></code> is reported. On <code class="docutils literal notranslate"><span class="pre">main</span></code> and in pull requests it is a warning that does not fail the build. The baseline build fails while any such link remains.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-85001289">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-rule zd-status-valid docutils align-default" id="XD-RULE-0012">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Method Rule</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">HIL results carry the firmware hash and the pinned SHAs</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#XD-RULE-0012" title="XD-RULE-0012">XD-RULE-0012</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_tags"><span class="needs_label">tags: </span><span class="needs_data_container"><span class="needs_data">trace</span></span></span></div>
+<div class="line"><span class="needs_legacy_id"><span class="needs_label">legacy_id: </span><span class="needs_data">R5</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">decided by: <span class="decided_by"><span><a class="zd-need-ref reference internal" href="../decisions/checks.html#XD-ADR-0050" title="XD-RULE-0012">XD-ADR-0050</a>, <a class="zd-need-ref reference internal" href="../decisions/checks.html#XD-ADR-0053" title="XD-RULE-0012">XD-ADR-0053</a></span></span></div>
+<div class="line">enforced by: <span class="enforces"><span><a class="zd-need-ref reference internal" href="../../reference/checks.html#XD-CHECK-0005" title="XD-RULE-0012">XD-CHECK-0005</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p>Every <code class="docutils literal notranslate"><span class="pre">TR</span></code> from a hardware-in-the-loop run carries <code class="docutils literal notranslate"><span class="pre">firmware_sha256</span></code> and the SHAs of all pinned repos it depends on.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-cd33b892">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-rule zd-status-valid docutils align-default" id="XD-RULE-0013">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Method Rule</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Only valid evidence counts</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#XD-RULE-0013" title="XD-RULE-0013">XD-RULE-0013</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_tags"><span class="needs_label">tags: </span><span class="needs_data_container"><span class="needs_data">trace</span></span></span></div>
+<div class="line"><span class="needs_legacy_id"><span class="needs_label">legacy_id: </span><span class="needs_data">R5a</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">decided by: <span class="decided_by"><span><a class="zd-need-ref reference internal" href="../decisions/checks.html#XD-ADR-0120" title="XD-RULE-0013">XD-ADR-0120</a></span></span></div>
+<div class="line">enforced by: <span class="enforces"><span><a class="zd-need-ref reference internal" href="../../reference/checks.html#XD-CHECK-0011" title="XD-RULE-0013">XD-CHECK-0011</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p>A <code class="docutils literal notranslate"><span class="pre">TR</span></code> counts only if its recorded SHAs (and firmware hash) match the current manifest pins on <code class="docutils literal notranslate"><span class="pre">main</span></code>, or the baseline being built. Otherwise it is shown as stale and does not count for coverage.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-90be52bd">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-rule zd-status-valid docutils align-default" id="XD-RULE-0014">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Method Rule</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Suspect links are reviewed before a baseline</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#XD-RULE-0014" title="XD-RULE-0014">XD-RULE-0014</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_tags"><span class="needs_label">tags: </span><span class="needs_data_container"><span class="needs_data">trace</span></span></span></div>
+<div class="line"><span class="needs_legacy_id"><span class="needs_label">legacy_id: </span><span class="needs_data">R7</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">decided by: <span class="decided_by"><span><a class="zd-need-ref reference internal" href="../decisions/checks.html#XD-ADR-0038" title="XD-RULE-0014">XD-ADR-0038</a>, <a class="zd-need-ref reference internal" href="../decisions/checks.html#XD-ADR-0052" title="XD-RULE-0014">XD-ADR-0052</a>, <a class="zd-need-ref reference internal" href="../decisions/checks.html#XD-ADR-0121" title="XD-RULE-0014">XD-ADR-0121</a></span></span></div>
+<div class="line">enforced by: <span class="enforces"><span><a class="zd-need-ref reference internal" href="../../reference/checks.html#XD-CHECK-0024" title="XD-RULE-0014">XD-CHECK-0024</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p>A link is suspect when its target changed after the link was last confirmed. Until affirmatrix is adapted, “last confirmed” means the <code class="docutils literal notranslate"><span class="pre">needs.json</span></code> of the last baseline (for pull requests: of <code class="docutils literal notranslate"><span class="pre">main</span></code>). A change is a change of title, content, status, value fields or links. Suspect links are reported in pull requests and block a baseline.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Rules" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ids.html" class="btn btn-neutral float-right" title="ID rules" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, XDMOD Manual.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

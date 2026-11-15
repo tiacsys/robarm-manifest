@@ -1,0 +1,18 @@
+# XDMOD Manual
+
+> XDMOD: a method and tools for cross-domain, multi-repo systems engineering.
+
+
+2026, XDMOD Manual
+
+## Pages in this subsection
+
+- [Rules](index.html.md): The XDMOD method has rules: how links are written, how IDs are issued, how variants are bound,
+- [Trace rules](trace.html.md): The principles of the trace model and the rules on the trace graph.
+- [ID rules](ids.html.md): Rules for IDs and the ledger.
+- [Variant rules](variants.html.md): Rules for the feature model (F), the product models (V) and the traces of variants (T). Iteration 1 ...
+- [Check principles](checks.html.md): General rules that the hygiene and generated-file checks enforce.
+
+## Optional
+
+- [Top-level llms.txt](../../llms.txt): Complete documentation index.

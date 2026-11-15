@@ -1,0 +1,223 @@
+<a id="ref-trace-model"></a>
+
+# Trace model
+
+The trace model names every need type, every link type and every shared field. One shared file,
+`xdmod/needs/needs_config.toml`, defines them for every document of every repo ([*One shared needs configuration (XD-RULE-0007)*](../explanation/rules/trace.md#XD-RULE-0007)).
+The tables on this page are generated from that file. The reasons behind the model are in
+[The V-model and trace links](../explanation/v-model-and-traces.md).
+
+## Need types
+
+Each need type has a directive name equal to its ID kind in lower case (`.. sys-req::` for
+`SYS-REQ-0012`). A link type is declared only on the need type that holds it ([*Link types are declared on ... (XD-RULE-0002)*](../explanation/rules/trace.md#XD-RULE-0002)).
+
+| Directive   | ID prefix   | Need type                  | Link types (→ targets)                                                                       |
+|-------------|-------------|----------------------------|----------------------------------------------------------------------------------------------|
+| `sys-sth`   | `SYS-STH-`  | Stakeholder                |                                                                                              |
+| `sys-need`  | `SYS-NEED-` | Stakeholder Need           | `raised_by` → `sys-sth`; `addresses` → `sys-need`                                            |
+| `sys-uc`    | `SYS-UC-`   | Use Case                   | `addresses` → `sys-need` (min 1)                                                             |
+| `sys-req`   | `SYS-REQ-`  | System Requirement         | `refines` → `sys-need` (min 1)                                                               |
+| `sys-if`    | `SYS-IF-`   | Interface                  |                                                                                              |
+| `sys-el`    | `SYS-EL-`   | System Model Element       | `satisfies` → `sys-req`; `realizes` → `sys-uc`, `sys-el`                                     |
+| `sys-cfg`   | `SYS-CFG-`  | Configuration              | `configures` → `sys-el` (min 1)                                                              |
+| `sys-feat`  | `SYS-FEAT-` | Feature                    |                                                                                              |
+| `int-stc`   | `INT-STC-`  | System Test Case           | `verifies` → `sys-req` (min 1)                                                               |
+| `int-itc`   | `INT-ITC-`  | Integration Test Case      | `verifies` → `sys-req`, `sys-if` (min 1)                                                     |
+| `sw-req`    | `SW-REQ-`   | SW Requirement             | `refines` → `sys-req`, `sys-if`                                                              |
+| `sw-arch`   | `SW-ARCH-`  | SW Architecture Element    | `realizes` → `sys-el`; `satisfies` → `sw-req`; `conforms` → `sys-if`                         |
+| `sw-dd`     | `SW-DD-`    | SW Detailed Design Element | `refines` → `sw-arch` (min 1); `satisfies` → `sw-req`; `conforms` → `sys-if`                 |
+| `sw-impl`   | `SW-IMPL-`  | Code Unit                  | `implements` → `sw-dd`, `sw-arch` (min 1); `satisfies` → `sw-req`                            |
+| `sw-tc`     | `SW-TC-`    | SW Test Case               | `verifies` → `sw-req`, `sw-dd` (min 1)                                                       |
+| `ee-req`    | `EE-REQ-`   | EE Requirement             | `refines` → `sys-req`, `sys-if`                                                              |
+| `ee-pcba`   | `EE-PCBA-`  | PCBA                       | `realizes` → `sys-el`; `satisfies` → `ee-req`; `conforms` → `sys-if`                         |
+| `ee-cmp`    | `EE-CMP-`   | Circuit Block / Component  | `realizes` → `sys-el`; `satisfies` → `ee-req`; `conforms` → `sys-if`; `part_of` → `ee-pcba`  |
+| `ee-tc`     | `EE-TC-`    | EE Test Case               | `verifies` → `ee-req` (min 1)                                                                |
+| `me-req`    | `ME-REQ-`   | ME Requirement             | `refines` → `sys-req`, `sys-if`                                                              |
+| `me-asm`    | `ME-ASM-`   | Assembly                   | `realizes` → `sys-el`; `satisfies` → `me-req`; `conforms` → `sys-if`                         |
+| `me-part`   | `ME-PART-`  | Part                       | `realizes` → `sys-el`; `satisfies` → `me-req`; `conforms` → `sys-if`; `part_of` → `me-asm`   |
+| `me-tc`     | `ME-TC-`    | ME Test Case               | `verifies` → `me-req` (min 1)                                                                |
+| `xd-adr`    | `XD-ADR-`   | Framework Decision         | `refines` → `xd-adr`; `revises` → `xd-adr`; `supersedes` → `xd-adr`                          |
+| `xd-rule`   | `XD-RULE-`  | Method Rule                | `decided_by` → `xd-adr` (min 1)                                                              |
+| `xd-check`  | `XD-CHECK-` | curatrix Check             | `enforces` → `xd-rule` (min 1)                                                               |
+| `prj-dec`   | `PRJ-DEC-`  | Project Decision           | `follows` → `xd-adr`; `refines` → `prj-dec`; `revises` → `prj-dec`; `supersedes` → `prj-dec` |
+| `tr`        | `TR-`       | Test Result                | `result_of` → `int-stc`, `int-itc`, `sw-tc`, `ee-tc`, `me-tc` (min 1)                        |
+| `testfile`  | `TF_`       | Test-File                  |                                                                                              |
+| `testsuite` | `TS_`       | Test-Suite                 |                                                                                              |
+| `testcase`  | `TC_`       | Test-Case                  | `result_of` → `int-stc`, `int-itc`, `sw-tc`, `ee-tc`, `me-tc`                                |
+
+## Where the need types live
+
+| Area                  | Kinds                                               | Authored or generated                                                                                                                                                                                                         |
+|-----------------------|-----------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Systems engineering   | `SYS-STH`, `SYS-NEED`, `SYS-REQ`                    | authored in rst; stakeholder needs and requirements get SysML stubs ([*Read-only requirement stubs... (XD-ADR-0036)*](../explanation/decisions/method.md#XD-ADR-0036))                                               |
+|                       | `SYS-UC`, `SYS-IF`, `SYS-EL`, `SYS-CFG`, `SYS-FEAT` | authored in SysML, generated as needs by the model extractor                                                                                                                                                                  |
+| Integration           | `INT-STC`, `INT-ITC`                                | authored in rst                                                                                                                                                                                                               |
+| Software              | `SW-REQ`, `SW-ARCH`, `SW-DD`                        | authored in rst (`SW-DD` also as a Doxygen group)                                                                                                                                                                             |
+|                       | `SW-IMPL`, `SW-TC`                                  | generated from Doxygen tags and ZTEST annotations                                                                                                                                                                             |
+| Electrical            | `EE-REQ`, `EE-TC`                                   | authored in rst (test cases also from scripted checks)                                                                                                                                                                        |
+|                       | `EE-PCBA`, `EE-CMP`                                 | generated from KiCad project and symbol or sheet fields ([*Trace IDs live inside the C... (XD-ADR-0023)*](../explanation/decisions/traces.md#XD-ADR-0023))                                                           |
+| Mechanical            | `ME-REQ`, `ME-TC`                                   | authored in rst                                                                                                                                                                                                               |
+|                       | `ME-ASM`, `ME-PART`                                 | generated from FreeCAD object properties                                                                                                                                                                                      |
+| Framework and project | `XD-ADR`, `XD-RULE`, `PRJ-DEC`                      | authored in rst ([*Decisions become sphinx-needs (XD-ADR-0109)*](../explanation/decisions/traces.md#XD-ADR-0109), [*Method rules are needs (XD-ADR-0110)*](../explanation/decisions/traces.md#XD-ADR-0110)) |
+|                       | `XD-CHECK`                                          | generated from curatrix’s check catalogue                                                                                                                                                                                     |
+| Results               | `TR`                                                | generated from test output; for HIL runs from the evidence branch                                                                                                                                                             |
+
+Prototype wiring is EE content: a KiCad schematic of the prototype, whose elements are
+`EE-CMP` with `configs` set to the prototype configuration ([*Prototype wiring is EE content (XD-ADR-0067)*](../explanation/decisions/traces.md#XD-ADR-0067)). Code units must
+`implements` a design element and may also `satisfies` a SW requirement directly
+([*Code units implement design... (XD-ADR-0070)*](../explanation/decisions/traces.md#XD-ADR-0070)).
+
+## Definitions and instances
+
+- **The definition holds the ID** ([*The definition holds the tr... (XD-ADR-0117)*](../explanation/decisions/method.md#XD-ADR-0117)): a SysML `part def`, a KiCad sheet file, a
+  FreeCAD part file. Its usages are listed in an `instances` field, not as separate needs.
+- A usage gets its own ID `<ID>.<n>` (for example `SYS-EL-0012.1`) only if it has its own
+  requirement.
+- **Only model elements with trace links become needs** ([*Only linked model elements ... (XD-ADR-0118)*](../explanation/decisions/method.md#XD-ADR-0118)): `satisfy`,
+  `allocate`, or a link from another repo.
+
+## Link types
+
+The owner is the need type that holds the link. “Min” is the number of targets the schema
+requires. Some minimums depend on a field and are schema rules instead:
+
+- A domain requirement without an upstream link must have `derived: true` and a
+  `rationale`.
+- `raised_by` is required for stakeholder needs with `category: need` or `objective`.
+- Every domain design element needs at least one `realizes` or `satisfies` ([*No orphan design elements (XD-RULE-0010)*](../explanation/rules/trace.md#XD-RULE-0010)).
+- Coverage minimums are graph rules ([*Every system requirement is... (XD-RULE-0008)*](../explanation/rules/trace.md#XD-RULE-0008), [*Every requirement is verified (XD-RULE-0009)*](../explanation/rules/trace.md#XD-RULE-0009)), not single-need rules.
+
+| Link         | Owner (source)   | Targets                                         |   Min | Meaning                                                                                       |
+|--------------|------------------|-------------------------------------------------|-------|-----------------------------------------------------------------------------------------------|
+| `raised_by`  | `sys-need`       | `sys-sth`                                       |     0 | The stakeholder who raised the need (min 1 for category need/objective).                      |
+| `addresses`  | `sys-need`       | `sys-need`                                      |     0 | A need or objective addresses the problem statement (D81).                                    |
+| `addresses`  | `sys-uc`         | `sys-need`                                      |     1 |                                                                                               |
+| `refines`    | `sys-req`        | `sys-need`                                      |     1 | The requirement answers this need (SYSMOD frame).                                             |
+| `satisfies`  | `sys-el`         | `sys-req`                                       |     0 | The model element satisfies the requirement (SysML satisfy).                                  |
+| `realizes`   | `sys-el`         | `sys-uc`, `sys-el`                              |     0 | functional -> use case; logical -> functional; product -> logical (D85, D102).                |
+| `configures` | `sys-cfg`        | `sys-el`                                        |     1 | The configuration is one product of the 150 % architecture.                                   |
+| `verifies`   | `int-stc`        | `sys-req`                                       |     1 |                                                                                               |
+| `verifies`   | `int-itc`        | `sys-req`, `sys-if`                             |     1 |                                                                                               |
+| `refines`    | `sw-req`         | `sys-req`, `sys-if`                             |     0 |                                                                                               |
+| `realizes`   | `sw-arch`        | `sys-el`                                        |     0 |                                                                                               |
+| `satisfies`  | `sw-arch`        | `sw-req`                                        |     0 |                                                                                               |
+| `conforms`   | `sw-arch`        | `sys-if`                                        |     0 | The element meets a peer interface (pin map, connector, mounting).                            |
+| `refines`    | `sw-dd`          | `sw-arch`                                       |     1 |                                                                                               |
+| `satisfies`  | `sw-dd`          | `sw-req`                                        |     0 |                                                                                               |
+| `conforms`   | `sw-dd`          | `sys-if`                                        |     0 |                                                                                               |
+| `implements` | `sw-impl`        | `sw-dd`, `sw-arch`                              |     1 |                                                                                               |
+| `satisfies`  | `sw-impl`        | `sw-req`                                        |     0 |                                                                                               |
+| `verifies`   | `sw-tc`          | `sw-req`, `sw-dd`                               |     1 |                                                                                               |
+| `refines`    | `ee-req`         | `sys-req`, `sys-if`                             |     0 |                                                                                               |
+| `realizes`   | `ee-pcba`        | `sys-el`                                        |     0 |                                                                                               |
+| `satisfies`  | `ee-pcba`        | `ee-req`                                        |     0 |                                                                                               |
+| `conforms`   | `ee-pcba`        | `sys-if`                                        |     0 |                                                                                               |
+| `realizes`   | `ee-cmp`         | `sys-el`                                        |     0 |                                                                                               |
+| `satisfies`  | `ee-cmp`         | `ee-req`                                        |     0 |                                                                                               |
+| `conforms`   | `ee-cmp`         | `sys-if`                                        |     0 |                                                                                               |
+| `part_of`    | `ee-cmp`         | `ee-pcba`                                       |     0 | Structure of the domain design.                                                               |
+| `verifies`   | `ee-tc`          | `ee-req`                                        |     1 |                                                                                               |
+| `refines`    | `me-req`         | `sys-req`, `sys-if`                             |     0 |                                                                                               |
+| `realizes`   | `me-asm`         | `sys-el`                                        |     0 |                                                                                               |
+| `satisfies`  | `me-asm`         | `me-req`                                        |     0 |                                                                                               |
+| `conforms`   | `me-asm`         | `sys-if`                                        |     0 |                                                                                               |
+| `realizes`   | `me-part`        | `sys-el`                                        |     0 |                                                                                               |
+| `satisfies`  | `me-part`        | `me-req`                                        |     0 |                                                                                               |
+| `conforms`   | `me-part`        | `sys-if`                                        |     0 |                                                                                               |
+| `part_of`    | `me-part`        | `me-asm`                                        |     0 |                                                                                               |
+| `verifies`   | `me-tc`          | `me-req`                                        |     1 |                                                                                               |
+| `refines`    | `xd-adr`         | `xd-adr`                                        |     0 | The newer decision adds detail to an older one, which stays in force.                         |
+| `revises`    | `xd-adr`         | `xd-adr`                                        |     0 | The newer decision changes part of an older one (the older one gets decision_status revised). |
+| `supersedes` | `xd-adr`         | `xd-adr`                                        |     0 | The newer decision replaces an older one completely (decision_status superseded).             |
+| `decided_by` | `xd-rule`        | `xd-adr`                                        |     1 |                                                                                               |
+| `enforces`   | `xd-check`       | `xd-rule`                                       |     1 |                                                                                               |
+| `follows`    | `prj-dec`        | `xd-adr`                                        |     0 | The project decision applies or tailors a framework decision.                                 |
+| `refines`    | `prj-dec`        | `prj-dec`                                       |     0 |                                                                                               |
+| `revises`    | `prj-dec`        | `prj-dec`                                       |     0 |                                                                                               |
+| `supersedes` | `prj-dec`        | `prj-dec`                                       |     0 |                                                                                               |
+| `result_of`  | `tr`             | `int-stc`, `int-itc`, `sw-tc`, `ee-tc`, `me-tc` |     1 |                                                                                               |
+| `result_of`  | `testcase`       | `int-stc`, `int-itc`, `sw-tc`, `ee-tc`, `me-tc` |     0 |                                                                                               |
+
+## Fields
+
+| Field                 | Values                                                                                 | Meaning                                                                                                                                                    |
+|-----------------------|----------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `status`              | `draft`, `valid`, `retired`                                                            | draft | valid | retired (D64e, D130). draft: structure checks only, no coverage.                                                                           |
+| `source_file`         | string                                                                                 | Generated needs: source path relative to the repo.                                                                                                         |
+| `legacy_id`           | string                                                                                 | The old name of a decision or rule before it became a need, e.g. D37 or R3 (D120).                                                                         |
+| `date`                | string matching `^[0-9]{4}-[0-9]{2}-[0-9]{2}$`                                         | XD-ADR / PRJ-DEC: the day the decision was made (YYYY-MM-DD).                                                                                              |
+| `decision_status`     | `accepted`, `revised`, `superseded`                                                    | XD-ADR / PRJ-DEC: accepted | revised (a newer decision changed part of it) | superseded (a newer decision replaced it). The newer decision holds the link. |
+| `check_id`            | string matching `^CK-[A-Z][0-9]+$`                                                     | XD-CHECK: the check’s ID in curatrix (CK-…), as used by \`curatrix check –only\`.                                                                          |
+| `instances`           | list of string                                                                         | Usages of a definition need (D128), e.g. leader.joint1.                                                                                                    |
+| `configs`             | list of string matching `^SYS-CFG-[0-9]{4,}$`                                          | SYS-CFG IDs the element belongs to; empty = all (D103).                                                                                                    |
+| `qualified_name`      | string                                                                                 | SysML qualified name of the element (generated needs).                                                                                                     |
+| `sysml_kind`          | string                                                                                 | SysML metaclass of the element (generated needs).                                                                                                          |
+| `category`            | `problem`, `objective`, `need`, `functional`, `performance`, `interface`, `constraint` | SYS-NEED: problem | objective | need. Requirements: functional | performance | interface | constraint.                                                     |
+| `ears`                | `ubiquitous`, `event`, `state`, `optional`, `unwanted`, `complex`                      | EARS pattern of the sentence (D12, D45).                                                                                                                   |
+| `quantity`            | string                                                                                 |                                                                                                                                                            |
+| `unit`                | string                                                                                 |                                                                                                                                                            |
+| `min`                 | number                                                                                 |                                                                                                                                                            |
+| `max`                 | number                                                                                 |                                                                                                                                                            |
+| `nominal`             | number                                                                                 |                                                                                                                                                            |
+| `verification_method` | `test`, `analysis`, `inspection`, `demonstration`                                      |                                                                                                                                                            |
+| `verification_scope`  | `logical`, `config`                                                                    | logical: evidence from any configuration counts; config: per configuration (D104).                                                                         |
+| `where`               | string                                                                                 | Feature condition, e.g. SYS-FEAT-0002 (D103).                                                                                                              |
+| `derived`             | boolean                                                                                | Domain requirement without an upstream link (needs a rationale).                                                                                           |
+| `rationale`           | string                                                                                 |                                                                                                                                                            |
+| `layer`               | `context`, `functional`, `logical`, `product`                                          | SYS-EL only: context | functional | logical | product.                                                                                                     |
+| `config`              | string matching `^SYS-CFG-[0-9]{4,}$`                                                  | The single SYS-CFG a test run was made on.                                                                                                                 |
+| `method`              | `test`, `hil`, `analysis`, `inspection`, `demonstration`                               | How the evidence was produced (D131).                                                                                                                      |
+| `firmware_sha256`     | string matching `^[0-9a-f]{64}$`                                                       |                                                                                                                                                            |
+| `shas`                | list of string matching `^[A-Za-z0-9_.-]+=[0-9a-f]{7,40}$`                             | Pinned repo SHAs of the run: repo=sha entries (R5).                                                                                                        |
+| `reviewer`            | string                                                                                 |                                                                                                                                                            |
+| `verdict`             | `passed`, `failed`, `skipped`, `error`                                                 |                                                                                                                                                            |
+
+Notes on the fields:
+
+- `status`: `draft` needs take part in all structure checks, but don’t count as coverage.
+  Generated needs take their status from the source ([*Retiring generated needs (XD-ADR-0119)*](../explanation/decisions/traces.md#XD-ADR-0119)): SysML metadata, the KiCad
+  field `Status`, the FreeCAD property `Status`, or a Doxygen tag.
+- `configs`, `where`, `verification_scope`, `config`: see
+  [Variants](../explanation/variants.md) ([*Variant fields configs, whe... (XD-ADR-0093)*](../explanation/decisions/method.md#XD-ADR-0093), [*Coverage per configuration (XD-ADR-0094)*](../explanation/decisions/method.md#XD-ADR-0094)).
+- `ears`, `quantity`, `unit`, `min`, `max`, `nominal`: requirement values
+  ([*Requirement values are need... (XD-ADR-0076)*](../explanation/decisions/method.md#XD-ADR-0076)).
+
+## Rules
+
+The trace principles and graph rules:
+
+<a id="needtable-reference/trace-model-0"></a>
+
+| ID                                                                       | Rule            | Title                                                    |
+|--------------------------------------------------------------------------|-----------------|----------------------------------------------------------|
+| [XD-RULE-0001](../explanation/rules/trace.md#XD-RULE-0001) | trace-model 1.1 | The concrete side holds the link                         |
+| [XD-RULE-0002](../explanation/rules/trace.md#XD-RULE-0002) | trace-model 1.2 | Link types are declared on the need type that owns them  |
+| [XD-RULE-0003](../explanation/rules/trace.md#XD-RULE-0003) | trace-model 1.3 | Peer interfaces live in systems engineering              |
+| [XD-RULE-0004](../explanation/rules/trace.md#XD-RULE-0004) | trace-model 1.4 | Allocation is stored on the concrete side                |
+| [XD-RULE-0005](../explanation/rules/trace.md#XD-RULE-0005) | trace-model 1.5 | Variants are expressed with configs and where            |
+| [XD-RULE-0006](../explanation/rules/trace.md#XD-RULE-0006) | trace-model 1.6 | Generated needs follow the same rules                    |
+| [XD-RULE-0007](../explanation/rules/trace.md#XD-RULE-0007) | trace-model 1.7 | One shared needs configuration                           |
+| [XD-RULE-0008](../explanation/rules/trace.md#XD-RULE-0008) | R1              | Every system requirement is refined or satisfied         |
+| [XD-RULE-0009](../explanation/rules/trace.md#XD-RULE-0009) | R2              | Every requirement is verified                            |
+| [XD-RULE-0010](../explanation/rules/trace.md#XD-RULE-0010) | R3              | No orphan design elements                                |
+| [XD-RULE-0011](../explanation/rules/trace.md#XD-RULE-0011) | R4              | Links to retired needs are reported, with a grace period |
+| [XD-RULE-0012](../explanation/rules/trace.md#XD-RULE-0012) | R5              | HIL results carry the firmware hash and the pinned SHAs  |
+| [XD-RULE-0013](../explanation/rules/trace.md#XD-RULE-0013) | R5a             | Only valid evidence counts                               |
+| [XD-RULE-0014](../explanation/rules/trace.md#XD-RULE-0014) | R7              | Suspect links are reviewed before a baseline             |
+
+Where each rule is checked:
+
+| Rule                                                                                                        | Checked by                                                                                                                                                                   | Level                                                                                                                                                           |
+|-------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [*Every system requirement is... (XD-RULE-0008)*](../explanation/rules/trace.md#XD-RULE-0008) | [*every SYS-REQ refined or sa... (XD-CHECK-0006)*](checks.md#XD-CHECK-0006), full set                                                      | error in the full set                                                                                                                                           |
+| [*Every requirement is verified (XD-RULE-0009)*](../explanation/rules/trace.md#XD-RULE-0009)  | [*every requirement verified ... (XD-CHECK-0007)*](checks.md#XD-CHECK-0007)                                                                | warning in iteration 1, error later ([*Verification coverage is a ... (XD-ADR-0090)*](../explanation/decisions/checks.md#XD-ADR-0090))                 |
+| [*No orphan design elements (XD-RULE-0010)*](../explanation/rules/trace.md#XD-RULE-0010)      | schema rule and [*no orphans (R3) (XD-CHECK-0004)*](checks.md#XD-CHECK-0004)                                                               | error                                                                                                                                                           |
+| [*Links to retired needs are ... (XD-RULE-0011)*](../explanation/rules/trace.md#XD-RULE-0011) | [*no links to retired needs (... (XD-CHECK-0008)*](checks.md#XD-CHECK-0008)                                                                | warning on `main` and in PRs; error at the baseline ([*A grace period for retired ... (XD-ADR-0068)*](../explanation/decisions/traces.md#XD-ADR-0068)) |
+| [*HIL results carry the firmw... (XD-RULE-0012)*](../explanation/rules/trace.md#XD-RULE-0012) | schema rule and [*HIL results carry firmware ... (XD-CHECK-0005)*](checks.md#XD-CHECK-0005)                                                | error                                                                                                                                                           |
+| [*Only valid evidence counts (XD-RULE-0013)*](../explanation/rules/trace.md#XD-RULE-0013)     | [*stale evidence (R5a) (XD-CHECK-0011)*](checks.md#XD-CHECK-0011)                                                                          | stale results are reported; at the baseline they don’t count                                                                                                    |
+| the variant rules                                                                                           | [*variant rules F1, F2, V1-V5 (XD-CHECK-0009)*](checks.md#XD-CHECK-0009), see [Variant rules](variant-rules.md) | error                                                                                                                                                           |
+| [*Suspect links are reviewed ... (XD-RULE-0014)*](../explanation/rules/trace.md#XD-RULE-0014) | [*suspect links against the l... (XD-CHECK-0024)*](checks.md#XD-CHECK-0024) (needs-diff now, affirmatrix later)                            | report in PRs; gate before a baseline                                                                                                                           |
+
+[*Links to retired needs are ... (XD-RULE-0011)*](../explanation/rules/trace.md#XD-RULE-0011) is deliberately not a schema rule: a strict build would turn it into an error at
+once, and the grace period would be lost.

@@ -25,7 +25,7 @@
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=188deab1"></script>
+      <script src="_static/documentation_options.js?v=f348a06a"></script>
       <script src="_static/doctools.js?v=fd6eb6e6"></script>
       <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="_static/zdocs-need-preview.js?v=98728251"></script>
@@ -50,7 +50,7 @@
           <a href="index.html" class="icon icon-home">
             Robot Arm: Project Overview
           </a>
-<div class="version zdocs-version">v0.0-dev+gf54d0f9</div>
+<div class="version zdocs-version">v0.0-dev+g4afe2f3</div>
 
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -118,6 +118,15 @@
       
     </ul>
     
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Framework</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="./../xdmod-manual/index.html">XDMOD Manual</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="./../xdmod-ref/index.html">curatrix Reference</a></li>
+      
+    </ul>
+    
   </div>
   
 
@@ -149,8 +158,592 @@
 <h1>Project Decisions<a class="headerlink" href="#project-decisions" title="Link to this heading"></a></h1>
 <p>Decisions about the robot arm project are recorded on this page as <code class="docutils literal notranslate"><span class="pre">prj-dec</span></code> needs, with IDs
 <code class="docutils literal notranslate"><span class="pre">PRJ-DEC-nnnn</span></code> from the ledger <code class="docutils literal notranslate"><span class="pre">robarm-manifest/ids.yaml</span></code>. Decisions about the XDMOD method
-itself are kept in the XDMOD manual.</p>
-<p>No project decisions are recorded here yet.</p>
+itself are framework decisions (<code class="docutils literal notranslate"><span class="pre">xd-adr</span></code>) in the <a class="reference external" href="../xdmod-manual/explanation/decisions/index.html" title="(in XDMOD Manual v0.0-dev+g4afe2f3)"><span class="xref std std-doc">XDMOD manual</span></a>. A project decision that applies or tailors a framework decision
+<code class="docutils literal notranslate"><span class="pre">follows</span></code> it.</p>
+<p>The split: a decision is a <strong>project decision</strong> when it is only true for the robot arm: its
+targets and scope, its hardware, its GitHub org, repos and settings, its licence, and its pinned
+SDK. Everything that would hold for any other project that uses XDMOD (method, trace model, IDs,
+checks, tools, repo pattern, workflow, agent rules) is a framework decision. <code class="docutils literal notranslate"><span class="pre">legacy_id</span></code> is the
+decision’s number in the planning log.</p>
+<div class="needstable_wrapper docutils container" id="needtable-decisions-0">
+<table class="NEEDS_TABLE docutils align-default" id="needtable-decisions-0-table_node">
+<colgroup>
+<col style="width: 12.5%" />
+<col style="width: 12.5%" />
+<col style="width: 37.5%" />
+<col style="width: 12.5%" />
+<col style="width: 12.5%" />
+<col style="width: 12.5%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head needs_col_id" data-col="id" scope="col"><p>ID</p></th>
+<th class="head needs_col_legacy_id" data-col="legacy_id" scope="col"><p>Old ID</p></th>
+<th class="head needs_col_title" data-col="title" scope="col"><p>Title</p></th>
+<th class="head needs_col_follows" data-col="follows" scope="col"><p>Follows</p></th>
+<th class="head needs_col_decision_status" data-col="decision_status" scope="col"><p>Status</p></th>
+<th class="head needs_col_date" data-col="date" scope="col"><p>Date</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="need row-even" data-need-id="PRJ-DEC-0001"><td class="needs_id"><p><a class="reference internal" href="#PRJ-DEC-0001">PRJ-DEC-0001</a></p></td>
+<td class="needs_legacy_id"><p>D4</p></td>
+<td class="needs_title"><p>Iteration 1 is T-shaped</p></td>
+<td class="needs_follows"><p></p></td>
+<td class="needs_decision_status"><p>accepted</p></td>
+<td class="needs_date"><p>2026-11-14</p></td>
+</tr>
+<tr class="need row-odd" data-need-id="PRJ-DEC-0002"><td class="needs_id"><p><a class="reference internal" href="#PRJ-DEC-0002">PRJ-DEC-0002</a></p></td>
+<td class="needs_legacy_id"><p>D8</p></td>
+<td class="needs_title"><p>One-joint end-to-end target on a real STM32G4 board</p></td>
+<td class="needs_follows"><p></p></td>
+<td class="needs_decision_status"><p>accepted</p></td>
+<td class="needs_date"><p>2026-11-14</p></td>
+</tr>
+<tr class="need row-even" data-need-id="PRJ-DEC-0003"><td class="needs_id"><p><a class="reference internal" href="#PRJ-DEC-0003">PRJ-DEC-0003</a></p></td>
+<td class="needs_legacy_id"><p>D10</p></td>
+<td class="needs_title"><p>Available hardware</p></td>
+<td class="needs_follows"><p></p></td>
+<td class="needs_decision_status"><p>accepted</p></td>
+<td class="needs_date"><p>2026-11-14</p></td>
+</tr>
+<tr class="need row-odd" data-need-id="PRJ-DEC-0004"><td class="needs_id"><p><a class="reference internal" href="#PRJ-DEC-0004">PRJ-DEC-0004</a></p></td>
+<td class="needs_legacy_id"><p>D16</p></td>
+<td class="needs_title"><p>The board is a NUCLEO-G474RE</p></td>
+<td class="needs_follows"><p></p></td>
+<td class="needs_decision_status"><p>accepted</p></td>
+<td class="needs_date"><p>2026-11-14</p></td>
+</tr>
+<tr class="need row-even" data-need-id="PRJ-DEC-0005"><td class="needs_id"><p><a class="reference internal" href="#PRJ-DEC-0005">PRJ-DEC-0005</a></p></td>
+<td class="needs_legacy_id"><p>D18</p></td>
+<td class="needs_title"><p>Leader and follower can be the same size</p></td>
+<td class="needs_follows"><p></p></td>
+<td class="needs_decision_status"><p>accepted</p></td>
+<td class="needs_date"><p>2026-11-14</p></td>
+</tr>
+<tr class="need row-odd" data-need-id="PRJ-DEC-0006"><td class="needs_id"><p><a class="reference internal" href="#PRJ-DEC-0006">PRJ-DEC-0006</a></p></td>
+<td class="needs_legacy_id"><p>D28</p></td>
+<td class="needs_title"><p>The number of PCBAs is left to the SE work</p></td>
+<td class="needs_follows external_link"><p><a class="external_link reference internal" href="../xdmod-manual/explanation/decisions/documents.html#XD-ADR-0016">XD-ADR-0016</a></p></td>
+<td class="needs_decision_status"><p>accepted</p></td>
+<td class="needs_date"><p>2026-11-14</p></td>
+</tr>
+<tr class="need row-even" data-need-id="PRJ-DEC-0007"><td class="needs_id"><p><a class="reference internal" href="#PRJ-DEC-0007">PRJ-DEC-0007</a></p></td>
+<td class="needs_legacy_id"><p>D48</p></td>
+<td class="needs_title"><p>Public repos in the tiacsys GitHub org</p></td>
+<td class="needs_follows external_link"><p><a class="external_link reference internal" href="../xdmod-manual/explanation/decisions/checks.html#XD-ADR-0012">XD-ADR-0012</a></p></td>
+<td class="needs_decision_status"><p>accepted</p></td>
+<td class="needs_date"><p>2026-11-14</p></td>
+</tr>
+<tr class="need row-odd" data-need-id="PRJ-DEC-0008"><td class="needs_id"><p><a class="reference internal" href="#PRJ-DEC-0008">PRJ-DEC-0008</a></p></td>
+<td class="needs_legacy_id"><p>D87</p></td>
+<td class="needs_title"><p>Every role checks out the full Zephyr tree</p></td>
+<td class="needs_follows external_link"><p><a class="external_link reference internal" href="../xdmod-manual/explanation/decisions/repos.html#XD-ADR-0079">XD-ADR-0079</a></p></td>
+<td class="needs_decision_status"><p>accepted</p></td>
+<td class="needs_date"><p>2026-11-14</p></td>
+</tr>
+<tr class="need row-even" data-need-id="PRJ-DEC-0009"><td class="needs_id"><p><a class="reference internal" href="#PRJ-DEC-0009">PRJ-DEC-0009</a></p></td>
+<td class="needs_legacy_id"><p>D92</p></td>
+<td class="needs_title"><p>robarm-manifest pins xdmod by SHA</p></td>
+<td class="needs_follows external_link"><p><a class="external_link reference internal" href="../xdmod-manual/explanation/decisions/repos.html#XD-ADR-0033">XD-ADR-0033</a><em>; </em><a class="external_link reference internal" href="../xdmod-manual/explanation/decisions/repos.html#XD-ADR-0047">XD-ADR-0047</a></p></td>
+<td class="needs_decision_status"><p>accepted</p></td>
+<td class="needs_date"><p>2026-11-14</p></td>
+</tr>
+<tr class="need row-odd" data-need-id="PRJ-DEC-0010"><td class="needs_id"><p><a class="reference internal" href="#PRJ-DEC-0010">PRJ-DEC-0010</a></p></td>
+<td class="needs_legacy_id"><p>D101</p></td>
+<td class="needs_title"><p>robarm-sw CI builds the firmware</p></td>
+<td class="needs_follows external_link"><p><a class="external_link reference internal" href="../xdmod-manual/explanation/decisions/checks.html#XD-ADR-0041">XD-ADR-0041</a><em>; </em><a class="external_link reference internal" href="../xdmod-manual/explanation/decisions/checks.html#XD-ADR-0049">XD-ADR-0049</a></p></td>
+<td class="needs_decision_status"><p>accepted</p></td>
+<td class="needs_date"><p>2026-11-14</p></td>
+</tr>
+<tr class="need row-even" data-need-id="PRJ-DEC-0011"><td class="needs_id"><p><a class="reference internal" href="#PRJ-DEC-0011">PRJ-DEC-0011</a></p></td>
+<td class="needs_legacy_id"><p>D114</p></td>
+<td class="needs_title"><p>robarm-sw is a Zephyr module</p></td>
+<td class="needs_follows external_link"><p><a class="external_link reference internal" href="../xdmod-manual/explanation/decisions/repos.html#XD-ADR-0006">XD-ADR-0006</a></p></td>
+<td class="needs_decision_status"><p>accepted</p></td>
+<td class="needs_date"><p>2026-11-14</p></td>
+</tr>
+<tr class="need row-odd" data-need-id="PRJ-DEC-0012"><td class="needs_id"><p><a class="reference internal" href="#PRJ-DEC-0012">PRJ-DEC-0012</a></p></td>
+<td class="needs_legacy_id"><p>D136</p></td>
+<td class="needs_title"><p>Phase 4 GitHub action list</p></td>
+<td class="needs_follows external_link"><p><a class="external_link reference internal" href="../xdmod-manual/explanation/decisions/repos.html#XD-ADR-0042">XD-ADR-0042</a><em>; </em><a class="external_link reference internal" href="../xdmod-manual/explanation/decisions/workflow.html#XD-ADR-0112">XD-ADR-0112</a></p></td>
+<td class="needs_decision_status"><p>accepted</p></td>
+<td class="needs_date"><p>2026-11-14</p></td>
+</tr>
+<tr class="need row-even" data-need-id="PRJ-DEC-0013"><td class="needs_id"><p><a class="reference internal" href="#PRJ-DEC-0013">PRJ-DEC-0013</a></p></td>
+<td class="needs_legacy_id"><p>D137</p></td>
+<td class="needs_title"><p>Licence: Apache-2.0 for all repos</p></td>
+<td class="needs_follows"><p></p></td>
+<td class="needs_decision_status"><p>accepted</p></td>
+<td class="needs_date"><p>2026-11-14</p></td>
+</tr>
+<tr class="need row-odd" data-need-id="PRJ-DEC-0014"><td class="needs_id"><p><a class="reference internal" href="#PRJ-DEC-0014">PRJ-DEC-0014</a></p></td>
+<td class="needs_legacy_id"><p>D138</p></td>
+<td class="needs_title"><p>Zephyr SDK 1.0.1, ARM toolchain only</p></td>
+<td class="needs_follows external_link"><p><a class="external_link reference internal" href="../xdmod-manual/explanation/decisions/checks.html#XD-ADR-0014">XD-ADR-0014</a></p></td>
+<td class="needs_decision_status"><p>accepted</p></td>
+<td class="needs_date"><p>2026-11-14</p></td>
+</tr>
+<tr class="need row-even" data-need-id="PRJ-DEC-0015"><td class="needs_id"><p><a class="reference internal" href="#PRJ-DEC-0015">PRJ-DEC-0015</a></p></td>
+<td class="needs_legacy_id"><p>D139</p></td>
+<td class="needs_title"><p>The workspace root before west init</p></td>
+<td class="needs_follows external_link"><p><a class="external_link reference internal" href="../xdmod-manual/explanation/decisions/repos.html#XD-ADR-0061">XD-ADR-0061</a><em>; </em><a class="external_link reference internal" href="../xdmod-manual/explanation/decisions/repos.html#XD-ADR-0083">XD-ADR-0083</a></p></td>
+<td class="needs_decision_status"><p>accepted</p></td>
+<td class="needs_date"><p>2026-11-14</p></td>
+</tr>
+<tr class="need row-odd" data-need-id="PRJ-DEC-0016"><td class="needs_id"><p><a class="reference internal" href="#PRJ-DEC-0016">PRJ-DEC-0016</a></p></td>
+<td class="needs_legacy_id"><p>D140</p></td>
+<td class="needs_title"><p>Phase 4 merge rights</p></td>
+<td class="needs_follows external_link"><p><a class="external_link reference internal" href="../xdmod-manual/explanation/decisions/workflow.html#XD-ADR-0044">XD-ADR-0044</a><em>; </em><a class="external_link reference internal" href="../xdmod-manual/explanation/decisions/workflow.html#XD-ADR-0051">XD-ADR-0051</a></p></td>
+<td class="needs_decision_status"><p>accepted</p></td>
+<td class="needs_date"><p>2026-11-15</p></td>
+</tr>
+<tr class="need row-even" data-need-id="PRJ-DEC-0017"><td class="needs_id"><p><a class="reference internal" href="#PRJ-DEC-0017">PRJ-DEC-0017</a></p></td>
+<td class="needs_legacy_id"><p>D141</p></td>
+<td class="needs_title"><p>Rulesets per repo</p></td>
+<td class="needs_follows external_link"><p><a class="external_link reference internal" href="../xdmod-manual/explanation/decisions/workflow.html#XD-ADR-0043">XD-ADR-0043</a><em>; </em><a class="external_link reference internal" href="../xdmod-manual/explanation/decisions/traces.html#XD-ADR-0122">XD-ADR-0122</a></p></td>
+<td class="needs_decision_status"><p>accepted</p></td>
+<td class="needs_date"><p>2026-11-15</p></td>
+</tr>
+<tr class="need row-odd" data-need-id="PRJ-DEC-0018"><td class="needs_id"><p><a class="reference internal" href="#PRJ-DEC-0018">PRJ-DEC-0018</a></p></td>
+<td class="needs_legacy_id"><p>D142</p></td>
+<td class="needs_title"><p>Required status checks</p></td>
+<td class="needs_follows external_link"><p><a class="external_link reference internal" href="../xdmod-manual/explanation/decisions/checks.html#XD-ADR-0040">XD-ADR-0040</a><em>; </em><a class="external_link reference internal" href="../xdmod-manual/explanation/decisions/traces.html#XD-ADR-0122">XD-ADR-0122</a></p></td>
+<td class="needs_decision_status"><p>accepted</p></td>
+<td class="needs_date"><p>2026-11-15</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-ce8fa49d">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_prj-dec zd-status-valid docutils align-default" id="PRJ-DEC-0001">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Project Decision</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Iteration 1 is T-shaped</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#PRJ-DEC-0001" title="PRJ-DEC-0001">PRJ-DEC-0001</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_legacy_id"><span class="needs_label">legacy_id: </span><span class="needs_data">D4</span></span></div>
+<div class="line"><span class="needs_date"><span class="needs_label">date: </span><span class="needs_data">2026-11-14</span></span></div>
+<div class="line"><span class="needs_decision_status"><span class="needs_label">decision_status: </span><span class="needs_data">accepted</span></span></div>
+</span></span></div>
+<div class="line"><span></span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p>Iteration 1 is <strong>T-shaped</strong>: broad at the requirements/system level, then end-to-end for <strong>one joint</strong>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-18cde9c7">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_prj-dec zd-status-valid docutils align-default" id="PRJ-DEC-0002">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Project Decision</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">One-joint end-to-end target on a real STM32G4 board</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#PRJ-DEC-0002" title="PRJ-DEC-0002">PRJ-DEC-0002</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_legacy_id"><span class="needs_label">legacy_id: </span><span class="needs_data">D8</span></span></div>
+<div class="line"><span class="needs_date"><span class="needs_label">date: </span><span class="needs_data">2026-11-14</span></span></div>
+<div class="line"><span class="needs_decision_status"><span class="needs_label">decision_status: </span><span class="needs_data">accepted</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">refined by: <span class="refines"><span><a class="zd-need-ref reference internal" href="#PRJ-DEC-0004" title="PRJ-DEC-0002">PRJ-DEC-0004</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p>One-joint E2E target: design artifacts plus <strong>Zephyr firmware that builds and runs on a real STM32G4 board</strong>, with the verification evidence traced back to requirements.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-498f75d6">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_prj-dec zd-status-valid docutils align-default" id="PRJ-DEC-0003">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Project Decision</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Available hardware</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#PRJ-DEC-0003" title="PRJ-DEC-0003">PRJ-DEC-0003</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_legacy_id"><span class="needs_label">legacy_id: </span><span class="needs_data">D10</span></span></div>
+<div class="line"><span class="needs_date"><span class="needs_label">date: </span><span class="needs_data">2026-11-14</span></span></div>
+<div class="line"><span class="needs_decision_status"><span class="needs_label">decision_status: </span><span class="needs_data">accepted</span></span></div>
+</span></span></div>
+<div class="line"><span></span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p>Available hardware: NUCLEO-G4 board, PCA9685 breakout, MCP3208 breakout, SG90 servos, potentiometers.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-dd6c6332">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_prj-dec zd-status-valid docutils align-default" id="PRJ-DEC-0004">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Project Decision</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">The board is a NUCLEO-G474RE</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#PRJ-DEC-0004" title="PRJ-DEC-0004">PRJ-DEC-0004</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_legacy_id"><span class="needs_label">legacy_id: </span><span class="needs_data">D16</span></span></div>
+<div class="line"><span class="needs_date"><span class="needs_label">date: </span><span class="needs_data">2026-11-14</span></span></div>
+<div class="line"><span class="needs_decision_status"><span class="needs_label">decision_status: </span><span class="needs_data">accepted</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">refines: <span class="refines"><span><a class="zd-need-ref reference internal" href="#PRJ-DEC-0002" title="PRJ-DEC-0004">PRJ-DEC-0002</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p>The board is a <strong>NUCLEO-G474RE</strong>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-36cd3f39">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_prj-dec zd-status-valid docutils align-default" id="PRJ-DEC-0005">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Project Decision</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Leader and follower can be the same size</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#PRJ-DEC-0005" title="PRJ-DEC-0005">PRJ-DEC-0005</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_legacy_id"><span class="needs_label">legacy_id: </span><span class="needs_data">D18</span></span></div>
+<div class="line"><span class="needs_date"><span class="needs_label">date: </span><span class="needs_data">2026-11-14</span></span></div>
+<div class="line"><span class="needs_decision_status"><span class="needs_label">decision_status: </span><span class="needs_data">accepted</span></span></div>
+</span></span></div>
+<div class="line"><span></span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p>The leader and follower <strong>can be the same size</strong>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-c99b21ac">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_prj-dec zd-status-valid docutils align-default" id="PRJ-DEC-0006">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Project Decision</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">The number of PCBAs is left to the SE work</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#PRJ-DEC-0006" title="PRJ-DEC-0006">PRJ-DEC-0006</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_legacy_id"><span class="needs_label">legacy_id: </span><span class="needs_data">D28</span></span></div>
+<div class="line"><span class="needs_date"><span class="needs_label">date: </span><span class="needs_data">2026-11-14</span></span></div>
+<div class="line"><span class="needs_decision_status"><span class="needs_label">decision_status: </span><span class="needs_data">accepted</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">follows: <span class="follows"><span><a class="external_link zd-need-ref reference external" href="../xdmod-manual/explanation/decisions/documents.html#XD-ADR-0016">XD-ADR-0016</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p>The number of PCBAs is <strong>left to the SE work</strong> (trade study in Phase 5).</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-0ded3293">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_prj-dec zd-status-valid docutils align-default" id="PRJ-DEC-0007">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Project Decision</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Public repos in the tiacsys GitHub org</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#PRJ-DEC-0007" title="PRJ-DEC-0007">PRJ-DEC-0007</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_legacy_id"><span class="needs_label">legacy_id: </span><span class="needs_data">D48</span></span></div>
+<div class="line"><span class="needs_date"><span class="needs_label">date: </span><span class="needs_data">2026-11-14</span></span></div>
+<div class="line"><span class="needs_decision_status"><span class="needs_label">decision_status: </span><span class="needs_data">accepted</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">follows: <span class="follows"><span><a class="external_link zd-need-ref reference external" href="../xdmod-manual/explanation/decisions/checks.html#XD-ADR-0012">XD-ADR-0012</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p>Repos live in the existing <strong>tiacsys</strong> GitHub org and are <strong>public from day one</strong>. CI can check out other repos without extra tokens.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-92295259">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_prj-dec zd-status-valid docutils align-default" id="PRJ-DEC-0008">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Project Decision</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Every role checks out the full Zephyr tree</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#PRJ-DEC-0008" title="PRJ-DEC-0008">PRJ-DEC-0008</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_legacy_id"><span class="needs_label">legacy_id: </span><span class="needs_data">D87</span></span></div>
+<div class="line"><span class="needs_date"><span class="needs_label">date: </span><span class="needs_data">2026-11-14</span></span></div>
+<div class="line"><span class="needs_decision_status"><span class="needs_label">decision_status: </span><span class="needs_data">accepted</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">follows: <span class="follows"><span><a class="external_link zd-need-ref reference external" href="../xdmod-manual/explanation/decisions/repos.html#XD-ADR-0079">XD-ADR-0079</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p><strong>Zephyr:</strong> for now, every role checks out the full Zephyr tree, including roles that only build docs. A smaller doc-only subset may come later.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-81134bbf">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_prj-dec zd-status-valid docutils align-default" id="PRJ-DEC-0009">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Project Decision</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">robarm-manifest pins xdmod by SHA</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#PRJ-DEC-0009" title="PRJ-DEC-0009">PRJ-DEC-0009</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_legacy_id"><span class="needs_label">legacy_id: </span><span class="needs_data">D92</span></span></div>
+<div class="line"><span class="needs_date"><span class="needs_label">date: </span><span class="needs_data">2026-11-14</span></span></div>
+<div class="line"><span class="needs_decision_status"><span class="needs_label">decision_status: </span><span class="needs_data">accepted</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">follows: <span class="follows"><span><a class="external_link zd-need-ref reference external" href="../xdmod-manual/explanation/decisions/repos.html#XD-ADR-0033">XD-ADR-0033</a>, <a class="external_link zd-need-ref reference external" href="../xdmod-manual/explanation/decisions/repos.html#XD-ADR-0047">XD-ADR-0047</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p>robarm-manifest pins <strong>xdmod by SHA</strong> for now. Once xdmod has a stable release for other workspaces, it gets SemVer tags.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-03e6d456">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_prj-dec zd-status-valid docutils align-default" id="PRJ-DEC-0010">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Project Decision</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">robarm-sw CI builds the firmware</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#PRJ-DEC-0010" title="PRJ-DEC-0010">PRJ-DEC-0010</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_legacy_id"><span class="needs_label">legacy_id: </span><span class="needs_data">D101</span></span></div>
+<div class="line"><span class="needs_date"><span class="needs_label">date: </span><span class="needs_data">2026-11-14</span></span></div>
+<div class="line"><span class="needs_decision_status"><span class="needs_label">decision_status: </span><span class="needs_data">accepted</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">follows: <span class="follows"><span><a class="external_link zd-need-ref reference external" href="../xdmod-manual/explanation/decisions/checks.html#XD-ADR-0041">XD-ADR-0041</a>, <a class="external_link zd-need-ref reference external" href="../xdmod-manual/explanation/decisions/checks.html#XD-ADR-0049">XD-ADR-0049</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p><strong>robarm-sw CI builds the firmware</strong> with the Zephyr SDK, runs the devicetree-vs-model check (<code class="docutils literal notranslate"><span class="pre">CK-F2</span></code>, a command in robarm-sw’s <code class="docutils literal notranslate"><span class="pre">checks.yaml</span></code>), and runs unit tests on <code class="docutils literal notranslate"><span class="pre">native_sim</span></code>. This is not CAD, so <a class="external_link zd-need-ref reference external" href="../xdmod-manual/explanation/decisions/checks.html#XD-ADR-0049">XD-ADR-0049</a> doesn’t exclude it.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-2dca3c9c">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_prj-dec zd-status-valid docutils align-default" id="PRJ-DEC-0011">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Project Decision</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">robarm-sw is a Zephyr module</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#PRJ-DEC-0011" title="PRJ-DEC-0011">PRJ-DEC-0011</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_legacy_id"><span class="needs_label">legacy_id: </span><span class="needs_data">D114</span></span></div>
+<div class="line"><span class="needs_date"><span class="needs_label">date: </span><span class="needs_data">2026-11-14</span></span></div>
+<div class="line"><span class="needs_decision_status"><span class="needs_label">decision_status: </span><span class="needs_data">accepted</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">follows: <span class="follows"><span><a class="external_link zd-need-ref reference external" href="../xdmod-manual/explanation/decisions/repos.html#XD-ADR-0006">XD-ADR-0006</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p><strong>robarm-sw is a Zephyr module</strong> (<code class="docutils literal notranslate"><span class="pre">zephyr/module.yml</span></code> with <code class="docutils literal notranslate"><span class="pre">dts_root</span></code>/<code class="docutils literal notranslate"><span class="pre">board_root</span></code>).</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-19b7120a">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_prj-dec zd-status-valid docutils align-default" id="PRJ-DEC-0012">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Project Decision</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Phase 4 GitHub action list</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#PRJ-DEC-0012" title="PRJ-DEC-0012">PRJ-DEC-0012</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_legacy_id"><span class="needs_label">legacy_id: </span><span class="needs_data">D136</span></span></div>
+<div class="line"><span class="needs_date"><span class="needs_label">date: </span><span class="needs_data">2026-11-14</span></span></div>
+<div class="line"><span class="needs_decision_status"><span class="needs_label">decision_status: </span><span class="needs_data">accepted</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">refined by: <span class="refines"><span><a class="zd-need-ref reference internal" href="#PRJ-DEC-0017" title="PRJ-DEC-0012">PRJ-DEC-0017</a></span></span></div>
+<div class="line">follows: <span class="follows"><span><a class="external_link zd-need-ref reference external" href="../xdmod-manual/explanation/decisions/repos.html#XD-ADR-0042">XD-ADR-0042</a>, <a class="external_link zd-need-ref reference external" href="../xdmod-manual/explanation/decisions/workflow.html#XD-ADR-0112">XD-ADR-0112</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p><strong>Phase 4 GitHub action list approved</strong> (<a class="external_link zd-need-ref reference external" href="../xdmod-manual/explanation/decisions/workflow.html#XD-ADR-0112">XD-ADR-0112</a>): create the 7 public repos (<code class="docutils literal notranslate"><span class="pre">xdmod</span></code>, <code class="docutils literal notranslate"><span class="pre">robarm-manifest</span></code>, <code class="docutils literal notranslate"><span class="pre">robarm-syseng</span></code>, <code class="docutils literal notranslate"><span class="pre">robarm-ee</span></code>, <code class="docutils literal notranslate"><span class="pre">robarm-me</span></code>, <code class="docutils literal notranslate"><span class="pre">robarm-sw</span></code>, <code class="docutils literal notranslate"><span class="pre">robarm-integration</span></code>); settings (rebase merge only, delete branch on merge, Issues and Projects on, Wiki off); org ruleset <code class="docutils literal notranslate"><span class="pre">xdmod-main</span></code> (PR required with no approval count, up-to-date branches, linear history, no force push or deletion, admin bypass; required checks added once CI exists); labels; issues in project “xd-mod” (#3); Pages on robarm-manifest. Phase 4 runs autonomously within this list.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-2393d390">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_prj-dec zd-status-valid docutils align-default" id="PRJ-DEC-0013">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Project Decision</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Licence: Apache-2.0 for all repos</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#PRJ-DEC-0013" title="PRJ-DEC-0013">PRJ-DEC-0013</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_legacy_id"><span class="needs_label">legacy_id: </span><span class="needs_data">D137</span></span></div>
+<div class="line"><span class="needs_date"><span class="needs_label">date: </span><span class="needs_data">2026-11-14</span></span></div>
+<div class="line"><span class="needs_decision_status"><span class="needs_label">decision_status: </span><span class="needs_data">accepted</span></span></div>
+</span></span></div>
+<div class="line"><span></span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p><strong>Licence: Apache-2.0 for all repos</strong> (code, models, CAD, docs).</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-0a9c4a7c">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_prj-dec zd-status-valid docutils align-default" id="PRJ-DEC-0014">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Project Decision</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Zephyr SDK 1.0.1, ARM toolchain only</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#PRJ-DEC-0014" title="PRJ-DEC-0014">PRJ-DEC-0014</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_legacy_id"><span class="needs_label">legacy_id: </span><span class="needs_data">D138</span></span></div>
+<div class="line"><span class="needs_date"><span class="needs_label">date: </span><span class="needs_data">2026-11-14</span></span></div>
+<div class="line"><span class="needs_decision_status"><span class="needs_label">decision_status: </span><span class="needs_data">accepted</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">follows: <span class="follows"><span><a class="external_link zd-need-ref reference external" href="../xdmod-manual/explanation/decisions/checks.html#XD-ADR-0014">XD-ADR-0014</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p><strong>Zephyr SDK 1.0.1, ARM toolchain only</strong>, installed into <code class="docutils literal notranslate"><span class="pre">.venv/opt/zephyr-sdk</span></code> and recorded in robarm-sw’s <code class="docutils literal notranslate"><span class="pre">tools.yaml</span></code> with sha256.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-58755fd1">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_prj-dec zd-status-valid docutils align-default" id="PRJ-DEC-0015">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Project Decision</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">The workspace root before west init</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#PRJ-DEC-0015" title="PRJ-DEC-0015">PRJ-DEC-0015</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_legacy_id"><span class="needs_label">legacy_id: </span><span class="needs_data">D139</span></span></div>
+<div class="line"><span class="needs_date"><span class="needs_label">date: </span><span class="needs_data">2026-11-14</span></span></div>
+<div class="line"><span class="needs_decision_status"><span class="needs_label">decision_status: </span><span class="needs_data">accepted</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">follows: <span class="follows"><span><a class="external_link zd-need-ref reference external" href="../xdmod-manual/explanation/decisions/repos.html#XD-ADR-0061">XD-ADR-0061</a>, <a class="external_link zd-need-ref reference external" href="../xdmod-manual/explanation/decisions/repos.html#XD-ADR-0083">XD-ADR-0083</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p><strong>Workspace root before ``west init``:</strong> <code class="docutils literal notranslate"><span class="pre">spike/</span></code>, <code class="docutils literal notranslate"><span class="pre">zdocs-tests/</span></code> and <code class="docutils literal notranslate"><span class="pre">.venv-zdocs/</span></code> move to <code class="docutils literal notranslate"><span class="pre">archive/</span></code>. The <code class="docutils literal notranslate"><span class="pre">zdocs/</span></code> clone becomes the west project <code class="docutils literal notranslate"><span class="pre">tools/zdocs</span></code>, pinned to the PR branches (task 4.3a). <code class="docutils literal notranslate"><span class="pre">extra/</span></code> and <code class="docutils literal notranslate"><span class="pre">build/</span></code> stay. Nothing is deleted.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-0d733b2c">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_prj-dec zd-status-valid docutils align-default" id="PRJ-DEC-0016">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Project Decision</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Phase 4 merge rights</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#PRJ-DEC-0016" title="PRJ-DEC-0016">PRJ-DEC-0016</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_legacy_id"><span class="needs_label">legacy_id: </span><span class="needs_data">D140</span></span></div>
+<div class="line"><span class="needs_date"><span class="needs_label">date: </span><span class="needs_data">2026-11-15</span></span></div>
+<div class="line"><span class="needs_decision_status"><span class="needs_label">decision_status: </span><span class="needs_data">accepted</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">follows: <span class="follows"><span><a class="external_link zd-need-ref reference external" href="../xdmod-manual/explanation/decisions/workflow.html#XD-ADR-0044">XD-ADR-0044</a>, <a class="external_link zd-need-ref reference external" href="../xdmod-manual/explanation/decisions/workflow.html#XD-ADR-0051">XD-ADR-0051</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p><strong>Phase 4 merge rights:</strong> initial skeletons go straight to <code class="docutils literal notranslate"><span class="pre">main</span></code> of the new repos before the ruleset is switched on. After that, all Phase 4 work goes through PRs, and the coordinator agent may merge them in xdmod and robarm-* once CI is green and the agent review has no blocking findings. The owner gets a summary of each merge. This is a Phase 4 exception to <a class="external_link zd-need-ref reference external" href="../xdmod-manual/explanation/decisions/workflow.html#XD-ADR-0044">XD-ADR-0044</a> and <a class="external_link zd-need-ref reference external" href="../xdmod-manual/explanation/decisions/workflow.html#XD-ADR-0051">XD-ADR-0051</a>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-4ec76576">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_prj-dec zd-status-valid docutils align-default" id="PRJ-DEC-0017">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Project Decision</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Rulesets per repo</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#PRJ-DEC-0017" title="PRJ-DEC-0017">PRJ-DEC-0017</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_legacy_id"><span class="needs_label">legacy_id: </span><span class="needs_data">D141</span></span></div>
+<div class="line"><span class="needs_date"><span class="needs_label">date: </span><span class="needs_data">2026-11-15</span></span></div>
+<div class="line"><span class="needs_decision_status"><span class="needs_label">decision_status: </span><span class="needs_data">accepted</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">refines: <span class="refines"><span><a class="zd-need-ref reference internal" href="#PRJ-DEC-0012" title="PRJ-DEC-0017">PRJ-DEC-0012</a></span></span></div>
+<div class="line">follows: <span class="follows"><span><a class="external_link zd-need-ref reference external" href="../xdmod-manual/explanation/decisions/workflow.html#XD-ADR-0043">XD-ADR-0043</a>, <a class="external_link zd-need-ref reference external" href="../xdmod-manual/explanation/decisions/traces.html#XD-ADR-0122">XD-ADR-0122</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p><strong>Rulesets are per repo, not per org.</strong> Org rulesets need the GitHub Team plan. Each of the 7 repos has the same <code class="docutils literal notranslate"><span class="pre">xdmod-main</span></code> ruleset on its default branch: PR required (0 approvals, rebase only), linear history, no force push, no deletion. The admin role may bypass <strong>only through a PR</strong> (no direct pushes to <code class="docutils literal notranslate"><span class="pre">main</span></code>). Required status checks and “branches up to date” (<a class="external_link zd-need-ref reference external" href="../xdmod-manual/explanation/decisions/traces.html#XD-ADR-0122">XD-ADR-0122</a>) are added in task 4.4, once each repo’s CI check names exist. Refines <a class="zd-need-ref reference internal" href="#PRJ-DEC-0012" title="PRJ-DEC-0012"><em class="xref need">Phase 4 GitHub action list (PRJ-DEC-0012)</em></a>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-46432e2d">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_prj-dec zd-status-valid docutils align-default" id="PRJ-DEC-0018">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Project Decision</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Required status checks</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#PRJ-DEC-0018" title="PRJ-DEC-0018">PRJ-DEC-0018</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_legacy_id"><span class="needs_label">legacy_id: </span><span class="needs_data">D142</span></span></div>
+<div class="line"><span class="needs_date"><span class="needs_label">date: </span><span class="needs_data">2026-11-15</span></span></div>
+<div class="line"><span class="needs_decision_status"><span class="needs_label">decision_status: </span><span class="needs_data">accepted</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">follows: <span class="follows"><span><a class="external_link zd-need-ref reference external" href="../xdmod-manual/explanation/decisions/checks.html#XD-ADR-0040">XD-ADR-0040</a>, <a class="external_link zd-need-ref reference external" href="../xdmod-manual/explanation/decisions/traces.html#XD-ADR-0122">XD-ADR-0122</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p><strong>Required checks (task 4.4):</strong> in each repo’s <code class="docutils literal notranslate"><span class="pre">xdmod-main</span></code> ruleset, required status checks with “branches up to date” (<a class="external_link zd-need-ref reference external" href="../xdmod-manual/explanation/decisions/traces.html#XD-ADR-0122">XD-ADR-0122</a>) from the GitHub Actions app: xdmod <code class="docutils literal notranslate"><span class="pre">tests</span></code> + <code class="docutils literal notranslate"><span class="pre">check</span> <span class="pre">/</span> <span class="pre">check</span></code>; robarm-syseng, -ee, -me, -sw, -integration <code class="docutils literal notranslate"><span class="pre">check</span> <span class="pre">/</span> <span class="pre">check</span></code>; robarm-manifest <code class="docutils literal notranslate"><span class="pre">full-set</span></code> (check run on normal PRs, commit status on bump PRs). CI installs the pinned Doxygen 1.18.0 from the release tarball, because Ubuntu’s 1.9.8 breaks <code class="docutils literal notranslate"><span class="pre">sw-api</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
 </section>
 
 

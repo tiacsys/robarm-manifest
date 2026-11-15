@@ -1,0 +1,262 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<link rel="alternate" type="text/markdown" href="make-a-baseline.html.md">
+<link rel="describedby" href="llms.txt">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Make a baseline &mdash; XDMOD Manual</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../_static/zdocs-need-types.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/common_css/need_links.css?v=2150a916" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/common_css/needstable.css?v=7b67799e" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/modern.css?v=c1bc121d" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-test-results/common.css?v=b776391d" />
+      <link rel="stylesheet" type="text/css" href="../_static/zdocs-sphinx.css?v=1afe8e97" />
+      <link rel="stylesheet" type="text/css" href="../_static/zdocs-needs.css?v=f0382e39" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f348a06a"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/zdocs-need-preview.js?v=98728251"></script>
+      <script src="../_static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
+      <script src="../_static/sphinx-data-viewer/jsonview_loader.js?v=f7ff7e7d"></script>
+      <script src="../_static/sphinx-needs/libs/html/sphinx_needs_collapse.js?v=dca66431"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Reference" href="../reference/index.html" />
+    <link rel="prev" title="Work as an agent" href="work-as-an-agent.html" /> 
+<script id="xdmod-version-switcher" src="../../../version-switcher.js" data-site-root="../../.." defer></script>
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            XDMOD Manual
+          </a>
+<div class="version zdocs-version">v0.0-dev+g4afe2f3</div>
+
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+  
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">How-to guides</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="add-a-requirement.html">Add a requirement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="add-a-model-element.html">Add a model element</a></li>
+<li class="toctree-l2"><a class="reference internal" href="add-a-view.html">Add a view</a></li>
+<li class="toctree-l2"><a class="reference internal" href="add-a-pcba.html">Add a PCBA or circuit block</a></li>
+<li class="toctree-l2"><a class="reference internal" href="add-a-part.html">Add a FreeCAD part or assembly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="add-a-configuration.html">Add a feature or configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="add-a-test.html">Add a test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cross-repo-change.html">Make a change across repos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="work-as-an-agent.html">Work as an agent</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Make a baseline</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#steps">Steps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pitfalls">Pitfalls</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../explanation/index.html">Explanation</a></li>
+</ul>
+
+  
+  <div class="toctree-wrapper compound reference-groups-wrapper">
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Project</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../robarm/index.html">Robot Arm: Project Overview</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">System</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../se-req/index.html">Stakeholder & System Requirements Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../se-arch/index.html">System Architecture</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Software</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../sw-req/index.html">SW Requirements Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../sw-arch/index.html">SW Architecture & Design</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../sw-api/index.html">SW API and Implementation</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../sw-test-spec/index.html">SW Test Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../sw-test-report/index.html">SW Test Report</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Electrical</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../ee-design/index.html">EE Requirements & Design</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Mechanical</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../me-design/index.html">ME Requirements & Design</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Integration</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../int-test-spec/index.html">System & Integration Test Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../int-test-report/index.html">System & Integration Test Report</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Framework</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../xdmod-ref/index.html">curatrix Reference</a></li>
+      
+    </ul>
+    
+  </div>
+  
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">XDMOD Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">How-to guides</a></li>
+      <li class="breadcrumb-item active">Make a baseline</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/howto/make-a-baseline.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="make-a-baseline">
+<span id="howto-make-a-baseline"></span><h1>Make a baseline<a class="headerlink" href="#make-a-baseline" title="Link to this heading"></a></h1>
+<p>Use this guide when you want a fixed, released set of repo versions. A <strong>baseline</strong> is a tag
+<code class="docutils literal notranslate"><span class="pre">baseline/vX.Y.Z</span></code> of the manifest repo; a <strong>bundle</strong> is the package of outputs built from it
+(<a class="reference internal" href="../explanation/decisions/repos.html#XD-ADR-0034" title="XD-ADR-0034"><em class="xref need">Terms: baseline and bundle (XD-ADR-0034)</em></a>, <a class="reference internal" href="../explanation/decisions/repos.html#XD-ADR-0047" title="XD-ADR-0047"><em class="xref need">SemVer tags and baseline tags (XD-ADR-0047)</em></a>).</p>
+<section id="steps">
+<h2>Steps<a class="headerlink" href="#steps" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p>Merge the open bump PR, so the manifest pins the latest <code class="docutils literal notranslate"><span class="pre">main</span></code> of every repo.</p></li>
+<li><p>Use a workspace with the <code class="docutils literal notranslate"><span class="pre">full</span></code> role, so all CAD content is there (<a class="reference internal" href="../explanation/decisions/checks.html#XD-ADR-0049" title="XD-ADR-0049"><em class="xref need">CI runs without CAD content (XD-ADR-0049)</em></a>).</p></li>
+<li><p>Run the baseline gates for every repo, then the full set:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>curatrix<span class="w"> </span>check<span class="w"> </span>robarm-syseng<span class="w"> </span>--stage<span class="w"> </span>baseline<span class="w"> </span>--base<span class="w"> </span>&lt;last-baseline-needs&gt;
+curatrix<span class="w"> </span>check<span class="w"> </span>robarm-manifest<span class="w"> </span>--stage<span class="w"> </span>baseline<span class="w"> </span>--base<span class="w"> </span>&lt;last-baseline-needs&gt;
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">--base</span></code> points at the <code class="docutils literal notranslate"><span class="pre">needs.json</span></code> files of the last baseline.</p>
+</li>
+<li><p>Fix what fails. The baseline stage is stricter than <code class="docutils literal notranslate"><span class="pre">local</span></code> and <code class="docutils literal notranslate"><span class="pre">pr</span></code>:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../reference/checks.html#XD-CHECK-0008" title="XD-CHECK-0008"><em class="xref need">no links to retired needs (... (XD-CHECK-0008)</em></a>: links to retired needs fail now; the grace period ends (<a class="reference internal" href="../explanation/rules/trace.html#XD-RULE-0011" title="XD-RULE-0011"><em class="xref need">Links to retired needs are ... (XD-RULE-0011)</em></a>,
+<a class="reference internal" href="../explanation/decisions/traces.html#XD-ADR-0068" title="XD-ADR-0068"><em class="xref need">A grace period for retired ... (XD-ADR-0068)</em></a>).</p></li>
+<li><p><a class="reference internal" href="../reference/checks.html#XD-CHECK-0024" title="XD-CHECK-0024"><em class="xref need">suspect links against the l... (XD-CHECK-0024)</em></a>: open suspect links fail (<a class="reference internal" href="../explanation/rules/trace.html#XD-RULE-0014" title="XD-RULE-0014"><em class="xref need">Suspect links are reviewed ... (XD-RULE-0014)</em></a>).</p></li>
+<li><p><a class="reference internal" href="../reference/checks.html#XD-CHECK-0020" title="XD-CHECK-0020"><em class="xref need">generated files record the ... (XD-CHECK-0020)</em></a>: generated files must record the pinned tool versions.</p></li>
+<li><p><a class="reference internal" href="../reference/checks.html#XD-CHECK-0011" title="XD-CHECK-0011"><em class="xref need">stale evidence (R5a) (XD-CHECK-0011)</em></a>: stale evidence doesn’t count (<a class="reference internal" href="../explanation/rules/trace.html#XD-RULE-0013" title="XD-RULE-0013"><em class="xref need">Only valid evidence counts (XD-RULE-0013)</em></a>).</p></li>
+<li><p><a class="reference internal" href="../reference/checks.html#XD-CHECK-0007" title="XD-CHECK-0007"><em class="xref need">every requirement verified ... (XD-CHECK-0007)</em></a>: missing verification is a warning in iteration 1 (<a class="reference internal" href="../explanation/decisions/checks.html#XD-ADR-0090" title="XD-ADR-0090"><em class="xref need">Verification coverage is a ... (XD-ADR-0090)</em></a>).</p></li>
+</ul>
+</li>
+<li><p>Tag the manifest repo with an annotated tag and push it:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>-C<span class="w"> </span>robarm-manifest<span class="w"> </span>tag<span class="w"> </span>-a<span class="w"> </span>baseline/v0.1.0<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;baseline v0.1.0&quot;</span>
+git<span class="w"> </span>-C<span class="w"> </span>robarm-manifest<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>baseline/v0.1.0
+</pre></div>
+</div>
+</li>
+<li><p>Create the GitHub release. Its assets are the outputs (docs, later CAM data and firmware).</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Bundles, CAM output and PDF documents come in iteration 2 (<a class="reference internal" href="../explanation/decisions/scope.html#XD-ADR-0037" title="XD-ADR-0037"><em class="xref need">Scope moved to iteration 2 (XD-ADR-0037)</em></a>). The docs of
+each baseline are hosted next to <code class="docutils literal notranslate"><span class="pre">main</span></code> on Pages (<a class="reference internal" href="../explanation/decisions/documents.html#XD-ADR-0048" title="XD-ADR-0048"><em class="xref need">Docs hosting on GitHub Page... (XD-ADR-0048)</em></a>); multi-version hosting is
+still being built.</p>
+</div>
+</section>
+<section id="pitfalls">
+<h2>Pitfalls<a class="headerlink" href="#pitfalls" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Tombstones in <code class="docutils literal notranslate"><span class="pre">generated/retired-needs.json</span></code> are dropped at the next baseline. Remove the
+links to them before you tag.</p></li>
+<li><p>Only a person makes baselines. Agents may prepare the gate results.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="work-as-an-agent.html" class="btn btn-neutral float-left" title="Work as an agent" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../reference/index.html" class="btn btn-neutral float-right" title="Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, XDMOD Manual.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

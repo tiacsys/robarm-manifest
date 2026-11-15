@@ -1,0 +1,303 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<link rel="alternate" type="text/markdown" href="variants.html.md">
+<link rel="describedby" href="llms.txt">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Variants &mdash; XDMOD Manual</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../_static/zdocs-need-types.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/common_css/need_links.css?v=2150a916" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/common_css/needstable.css?v=7b67799e" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/modern.css?v=c1bc121d" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-test-results/common.css?v=b776391d" />
+      <link rel="stylesheet" type="text/css" href="../_static/zdocs-sphinx.css?v=1afe8e97" />
+      <link rel="stylesheet" type="text/css" href="../_static/zdocs-needs.css?v=f0382e39" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f348a06a"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/zdocs-need-preview.js?v=98728251"></script>
+      <script src="../_static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
+      <script src="../_static/sphinx-data-viewer/jsonview_loader.js?v=f7ff7e7d"></script>
+      <script src="../_static/sphinx-needs/libs/html/sphinx_needs_collapse.js?v=dca66431"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Many repos, one workspace" href="multi-repo.html" />
+    <link rel="prev" title="SYSMOD and SysML v2" href="sysmod-and-sysml.html" /> 
+<script id="xdmod-version-switcher" src="../../../version-switcher.js" data-site-root="../../.." defer></script>
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            XDMOD Manual
+          </a>
+<div class="version zdocs-version">v0.0-dev+g4afe2f3</div>
+
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+  
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../howto/index.html">How-to guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Explanation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="principles.html">Principles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v-model-and-traces.html">The V-model and trace links</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sysmod-and-sysml.html">SYSMOD and SysML v2</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Variants</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#vamos-and-pleml">VAMOS and PLEML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#variant-fields-on-needs">Variant fields on needs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#why-own-checks">Why own checks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#coverage-per-configuration">Coverage per configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#one-document-set">One document set</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#what-iteration-1-covers">What iteration 1 covers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="multi-repo.html">Many repos, one workspace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="humans-and-agents.html">Humans and agents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decisions/index.html">Decisions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rules/index.html">Rules</a></li>
+</ul>
+</li>
+</ul>
+
+  
+  <div class="toctree-wrapper compound reference-groups-wrapper">
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Project</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../robarm/index.html">Robot Arm: Project Overview</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">System</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../se-req/index.html">Stakeholder & System Requirements Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../se-arch/index.html">System Architecture</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Software</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../sw-req/index.html">SW Requirements Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../sw-arch/index.html">SW Architecture & Design</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../sw-api/index.html">SW API and Implementation</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../sw-test-spec/index.html">SW Test Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../sw-test-report/index.html">SW Test Report</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Electrical</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../ee-design/index.html">EE Requirements & Design</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Mechanical</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../me-design/index.html">ME Requirements & Design</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Integration</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../int-test-spec/index.html">System & Integration Test Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../int-test-report/index.html">System & Integration Test Report</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Framework</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../xdmod-ref/index.html">curatrix Reference</a></li>
+      
+    </ul>
+    
+  </div>
+  
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">XDMOD Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Explanation</a></li>
+      <li class="breadcrumb-item active">Variants</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/explanation/variants.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="variants">
+<span id="expl-variants"></span><h1>Variants<a class="headerlink" href="#variants" title="Link to this heading"></a></h1>
+<p>A project often builds more than one product from one design: a prototype and a product, a
+small and a large version. XDMOD models these as <strong>variants of one product line</strong>, following
+VAMOS (<a class="reference internal" href="decisions/method.html#XD-ADR-0092" title="XD-ADR-0092"><em class="xref need">Variants follow VAMOS throu... (XD-ADR-0092)</em></a>).</p>
+<section id="vamos-and-pleml">
+<h2>VAMOS and PLEML<a class="headerlink" href="#vamos-and-pleml" title="Link to this heading"></a></h2>
+<p>VAMOS, by Tim Weilkiens, is a variant method for SysML v1. XDMOD uses <strong>PLEML</strong> (MBSE4U, MIT
+licence), its SysML v2 successor. PLEML is a west project pinned at a commit, next to the SYSMOD
+library. SYSMOD v5 itself has no variant concept.</p>
+<p>The parts of a variant model:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 70.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Part</p></th>
+<th class="head"><p>What it is</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Core</p></td>
+<td><p>The variant-free functional and logical architecture.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Feature model</p></td>
+<td><p>Features and feature groups, with constraints such as <code class="docutils literal notranslate"><span class="pre">requires</span></code> and <code class="docutils literal notranslate"><span class="pre">xor</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p>150 % product architecture</p></td>
+<td><p>The product architecture with <strong>variation points</strong>. Each variation has variants, and
+each variant is bound to features.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Configurations</p></td>
+<td><p>A choice of features. Each configuration has exactly one product model.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Example (robot arm): the feature group <code class="docutils literal notranslate"><span class="pre">buildKind</span></code> has the features <code class="docutils literal notranslate"><span class="pre">prototypeBuild</span></code> and
+<code class="docutils literal notranslate"><span class="pre">productBuild</span></code>. The variation <code class="docutils literal notranslate"><span class="pre">controller</span></code> has the variants <code class="docutils literal notranslate"><span class="pre">nucleoBreakouts</span></code> (bound to
+<code class="docutils literal notranslate"><span class="pre">prototypeBuild</span></code>) and <code class="docutils literal notranslate"><span class="pre">customPcba</span></code> (bound to <code class="docutils literal notranslate"><span class="pre">productBuild</span></code>). The configurations are
+<code class="docutils literal notranslate"><span class="pre">prototype</span></code> (<code class="docutils literal notranslate"><span class="pre">SYS-CFG-0001</span></code>) and <code class="docutils literal notranslate"><span class="pre">product</span></code> (<code class="docutils literal notranslate"><span class="pre">SYS-CFG-0002</span></code>).</p>
+</section>
+<section id="variant-fields-on-needs">
+<h2>Variant fields on needs<a class="headerlink" href="#variant-fields-on-needs" title="Link to this heading"></a></h2>
+<p>Needs carry their variant information in fields (<a class="reference internal" href="decisions/method.html#XD-ADR-0093" title="XD-ADR-0093"><em class="xref need">Variant fields configs, whe... (XD-ADR-0093)</em></a>, <a class="reference internal" href="rules/trace.html#XD-RULE-0005" title="XD-RULE-0005"><em class="xref need">Variants are expressed with... (XD-RULE-0005)</em></a>):</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">configs</span></code> on product-layer system elements, domain design elements and test cases: the
+configurations the element belongs to. Empty means all.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">where</span></code> on requirements: a feature condition, matching the EARS “Where &lt;feature&gt;, the system
+shall …” pattern. Empty means all configurations.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">verification_scope</span></code> on requirements: <code class="docutils literal notranslate"><span class="pre">logical</span></code> or <code class="docutils literal notranslate"><span class="pre">config</span></code> (see below).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config</span></code> on test results: the one configuration the run was made on.</p></li>
+</ul>
+<p>Configurations and features have their own ID kinds, <code class="docutils literal notranslate"><span class="pre">SYS-CFG</span></code> and <code class="docutils literal notranslate"><span class="pre">SYS-FEAT</span></code>
+(<a class="reference internal" href="decisions/method.html#XD-ADR-0097" title="XD-ADR-0097"><em class="xref need">IDs for configurations and ... (XD-ADR-0097)</em></a>). They are written as SysML short names.</p>
+</section>
+<section id="why-own-checks">
+<h2>Why own checks<a class="headerlink" href="#why-own-checks" title="Link to this heading"></a></h2>
+<p>The SysML Pilot checks none of the variant rules: in a test it accepted every planted error. So
+curatrix checks them itself (<a class="reference internal" href="decisions/method.html#XD-ADR-0095" title="XD-ADR-0095"><em class="xref need">Variant rules (XD-ADR-0095)</em></a>, <a class="reference internal" href="../reference/checks.html#XD-CHECK-0009" title="XD-CHECK-0009"><em class="xref need">variant rules F1, F2, V1-V5 (XD-CHECK-0009)</em></a>). The rules cover the feature model
+(<a class="reference internal" href="rules/variants.html#XD-RULE-0021" title="XD-RULE-0021"><em class="xref need">A configuration respects it... (XD-RULE-0021)</em></a>, <a class="reference internal" href="rules/variants.html#XD-RULE-0022" title="XD-RULE-0022"><em class="xref need">Feature constraints hold (XD-RULE-0022)</em></a>), the product models (<a class="reference internal" href="rules/variants.html#XD-RULE-0023" title="XD-RULE-0023"><em class="xref need">One product model per confi... (XD-RULE-0023)</em></a> to <a class="reference internal" href="rules/variants.html#XD-RULE-0028" title="XD-RULE-0028"><em class="xref need">Model constraints hold in e... (XD-RULE-0028)</em></a>) and the trace links
+(<a class="reference internal" href="rules/variants.html#XD-RULE-0029" title="XD-RULE-0029"><em class="xref need">configs matches the source (XD-RULE-0029)</em></a> to <a class="reference internal" href="rules/variants.html#XD-RULE-0031" title="XD-RULE-0031"><em class="xref need">Coverage counts per configu... (XD-RULE-0031)</em></a>). They are listed in <a class="reference internal" href="../reference/variant-rules.html"><span class="doc">Variant rules</span></a>. Several feature
+bindings on one element mean AND (<a class="reference internal" href="rules/variants.html#XD-RULE-0026" title="XD-RULE-0026"><em class="xref need">The chosen variant is enabled (XD-RULE-0026)</em></a>); PLEML does not say this, so it is an XDMOD
+convention.</p>
+</section>
+<section id="coverage-per-configuration">
+<h2>Coverage per configuration<a class="headerlink" href="#coverage-per-configuration" title="Link to this heading"></a></h2>
+<p>The coverage report is a requirement × configuration matrix (<a class="reference internal" href="decisions/method.html#XD-ADR-0094" title="XD-ADR-0094"><em class="xref need">Coverage per configuration (XD-ADR-0094)</em></a>). A cell is covered
+when:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">verification_scope:</span> <span class="pre">logical</span></code>: at least one test result from <strong>any</strong> configuration verifies
+the requirement. Example: SW logic tested on the prototype also counts for the product.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">verification_scope:</span> <span class="pre">config</span></code>: at least one result with <code class="docutils literal notranslate"><span class="pre">config</span></code> = C verifies it, for each
+configuration C that the requirement’s <code class="docutils literal notranslate"><span class="pre">where</span></code> selects.</p></li>
+</ul>
+<p>The verification rule <a class="reference internal" href="rules/trace.html#XD-RULE-0009" title="XD-RULE-0009"><em class="xref need">Every requirement is verified (XD-RULE-0009)</em></a> applies per cell.</p>
+</section>
+<section id="one-document-set">
+<h2>One document set<a class="headerlink" href="#one-document-set" title="Link to this heading"></a></h2>
+<p>There is <strong>one variant-aware document set</strong> (<a class="reference internal" href="decisions/method.html#XD-ADR-0096" title="XD-ADR-0096"><em class="xref need">One variant-aware document set (XD-ADR-0096)</em></a>), not one set per variant. Documents show
+the 150 % content with configuration badges. A generated page per configuration lists the
+elements and requirements that apply to it, and its column of the coverage matrix.</p>
+</section>
+<section id="what-iteration-1-covers">
+<h2>What iteration 1 covers<a class="headerlink" href="#what-iteration-1-covers" title="Link to this heading"></a></h2>
+<p>Iteration 1 starts with one feature group and the rules <a class="reference internal" href="rules/variants.html#XD-RULE-0021" title="XD-RULE-0021"><em class="xref need">A configuration respects it... (XD-RULE-0021)</em></a>, <a class="reference internal" href="rules/variants.html#XD-RULE-0022" title="XD-RULE-0022"><em class="xref need">Feature constraints hold (XD-RULE-0022)</em></a> and <a class="reference internal" href="rules/variants.html#XD-RULE-0023" title="XD-RULE-0023"><em class="xref need">One product model per confi... (XD-RULE-0023)</em></a> to
+<a class="reference internal" href="rules/variants.html#XD-RULE-0027" title="XD-RULE-0027"><em class="xref need">Exactly one variant per var... (XD-RULE-0027)</em></a> (<a class="reference internal" href="decisions/scope.html#XD-ADR-0124" title="XD-ADR-0124"><em class="xref need">Scope cuts for iteration 1 (XD-ADR-0124)</em></a>). The rule <a class="reference internal" href="rules/variants.html#XD-RULE-0028" title="XD-RULE-0028"><em class="xref need">Model constraints hold in e... (XD-RULE-0028)</em></a>, the derivation of <code class="docutils literal notranslate"><span class="pre">configs</span></code> for <a class="reference internal" href="rules/variants.html#XD-RULE-0029" title="XD-RULE-0029"><em class="xref need">configs matches the source (XD-RULE-0029)</em></a>, and
+the pages per configuration come later.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="sysmod-and-sysml.html" class="btn btn-neutral float-left" title="SYSMOD and SysML v2" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="multi-repo.html" class="btn btn-neutral float-right" title="Many repos, one workspace" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, XDMOD Manual.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

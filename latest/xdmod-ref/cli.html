@@ -1,0 +1,567 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>curatrix command line &mdash; curatrix Reference</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="_static/zdocs-need-types.css" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinx-needs/common_css/need_links.css?v=2150a916" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinx-needs/common_css/needstable.css?v=7b67799e" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinx-needs/modern.css?v=c1bc121d" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinx-test-results/common.css?v=b776391d" />
+      <link rel="stylesheet" type="text/css" href="_static/zdocs-sphinx.css?v=1afe8e97" />
+      <link rel="stylesheet" type="text/css" href="_static/zdocs-needs.css?v=f0382e39" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=f348a06a"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="_static/zdocs-need-preview.js?v=98728251"></script>
+      <script src="_static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
+      <script src="_static/sphinx-data-viewer/jsonview_loader.js?v=f7ff7e7d"></script>
+      <script src="_static/sphinx-needs/libs/html/sphinx_needs_collapse.js?v=dca66431"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="curatrix Python API" href="api.html" />
+    <link rel="prev" title="curatrix Reference" href="index.html" /> 
+<script id="xdmod-version-switcher" src="../../version-switcher.js" data-site-root="../.." defer></script>
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            curatrix Reference
+          </a>
+<div class="version zdocs-version">v0.0-dev+g4afe2f3</div>
+
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+  
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">curatrix command line</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#curatrix-env">curatrix env</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#curatrix-run">curatrix run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#curatrix-limits">curatrix limits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#curatrix-doctor">curatrix doctor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#curatrix-bootstrap">curatrix bootstrap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#curatrix-update">curatrix update</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#curatrix-launch">curatrix launch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#curatrix-docs">curatrix docs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#curatrix-check">curatrix check</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#curatrix-gen">curatrix gen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#curatrix-ids">curatrix ids</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#curatrix-views">curatrix views</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#curatrix-variants">curatrix variants</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#curatrix-needs-diff">curatrix needs-diff</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#curatrix-work">curatrix work</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#curatrix-ci">curatrix ci</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#curatrix-evidence">curatrix evidence</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">curatrix Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sphinx-extensions.html">Sphinx extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="needs-config.html">Needs configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sysml-library.html">SysML library</a></li>
+</ul>
+
+  
+  <div class="toctree-wrapper compound reference-groups-wrapper">
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Project</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="./../robarm/index.html">Robot Arm: Project Overview</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">System</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="./../se-req/index.html">Stakeholder & System Requirements Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="./../se-arch/index.html">System Architecture</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Software</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="./../sw-req/index.html">SW Requirements Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="./../sw-arch/index.html">SW Architecture & Design</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="./../sw-api/index.html">SW API and Implementation</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="./../sw-test-spec/index.html">SW Test Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="./../sw-test-report/index.html">SW Test Report</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Electrical</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="./../ee-design/index.html">EE Requirements & Design</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Mechanical</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="./../me-design/index.html">ME Requirements & Design</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Integration</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="./../int-test-spec/index.html">System & Integration Test Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="./../int-test-report/index.html">System & Integration Test Report</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Framework</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="./../xdmod-manual/index.html">XDMOD Manual</a></li>
+      
+    </ul>
+    
+  </div>
+  
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">curatrix Reference</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">curatrix command line</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/cli.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="curatrix-command-line">
+<span id="ref-cli"></span><h1>curatrix command line<a class="headerlink" href="#curatrix-command-line" title="Link to this heading"></a></h1>
+<p>Run every command from the workspace root. <code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">&lt;command&gt;</span> <span class="pre">--help</span></code> prints the same text as
+below. This page is generated from curatrix’s argument parser.</p>
+<p>XDMOD workspace command layer (run from the workspace root).</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 75.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Command</p></th>
+<th class="head"><p>Does</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="#cli-env"><span class="std std-ref">curatrix env</span></a></p></td>
+<td><p>print the workspace environment: eval “$(curatrix env)”</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cli-run"><span class="std std-ref">curatrix run</span></a></p></td>
+<td><p>run any command with the workspace env and limits (limits.yaml)</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#cli-limits"><span class="std std-ref">curatrix limits</span></a></p></td>
+<td><p>show the resolved limits table and backend</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cli-doctor"><span class="std std-ref">curatrix doctor</span></a></p></td>
+<td><p>check tools, versions (tools.yaml), paths, hooks, west state</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#cli-bootstrap"><span class="std std-ref">curatrix bootstrap</span></a></p></td>
+<td><p>set up the workspace for a role (group filter, venv, tools, hooks)</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cli-update"><span class="std std-ref">curatrix update</span></a></p></td>
+<td><p>west update -k, then refresh venv, tools, links, hooks</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#cli-launch"><span class="std std-ref">curatrix launch</span></a></p></td>
+<td><p>start a GUI tool / Claude Code with workspace-local config</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cli-docs"><span class="std std-ref">curatrix docs</span></a></p></td>
+<td><p>zdocs build of a repo (or `full`) into build/&lt;area&gt;/docs (strict)</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#cli-check"><span class="std std-ref">curatrix check</span></a></p></td>
+<td><p>run a repo’s checks (checks.yaml) for a stage</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cli-gen"><span class="std std-ref">curatrix gen</span></a></p></td>
+<td><p>generated files: stubs, model, cad-needs, freecad-json, tombstones, all; cad-exports (build/&lt;area&gt;/cad, not committed)</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#cli-ids"><span class="std std-ref">curatrix ids</span></a></p></td>
+<td><p>issue IDs from the ledger, replace placeholders</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cli-views"><span class="std std-ref">curatrix views</span></a></p></td>
+<td><p>views as editable SVG: build | check | normalize</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#cli-variants"><span class="std std-ref">curatrix variants</span></a></p></td>
+<td><p>variant rules F1, F2, V1-V5 on the model JSON</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cli-needs-diff"><span class="std std-ref">curatrix needs-diff</span></a></p></td>
+<td><p>change impact between two sets of needs.json (R7)</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#cli-work"><span class="std std-ref">curatrix work</span></a></p></td>
+<td><p>git worktrees for parallel work: start &lt;branch&gt; &lt;repos…&gt; | done &lt;branch&gt; | list (D125)</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cli-ci"><span class="std std-ref">curatrix ci</span></a></p></td>
+<td><p>CI helpers: `ci siblings` resolves sibling revisions (D127)</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#cli-evidence"><span class="std std-ref">curatrix evidence</span></a></p></td>
+<td><p>test run records: record (Twister dir -&gt; evidence branch), read (-&gt; TR needs), validate</p></td>
+</tr>
+</tbody>
+</table>
+<section id="curatrix-env">
+<span id="cli-env"></span><h2>curatrix env<a class="headerlink" href="#curatrix-env" title="Link to this heading"></a></h2>
+<p>print the workspace environment: eval “$(curatrix env)”.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>usage: curatrix env [-h] [--shell {sh,fish}]
+
+options:
+  -h, --help         show this help message and exit
+  --shell {sh,fish}
+</pre></div>
+</div>
+</section>
+<section id="curatrix-run">
+<span id="cli-run"></span><h2>curatrix run<a class="headerlink" href="#curatrix-run" title="Link to this heading"></a></h2>
+<p>run any command with the workspace env and limits (limits.yaml).</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>usage: curatrix run [-h] [--use USE] [-m MEMORY] [-t TIMEOUT] [-v] ...
+
+positional arguments:
+  cmd
+
+options:
+  -h, --help            show this help message and exit
+  --use USE             limits.yaml use (default: script)
+  -m, --memory MEMORY   memory limit, e.g. 2G (overrides the use)
+  -t, --timeout TIMEOUT
+                        timeout, e.g. 10m or none (overrides the use)
+  -v, --verbose
+</pre></div>
+</div>
+</section>
+<section id="curatrix-limits">
+<span id="cli-limits"></span><h2>curatrix limits<a class="headerlink" href="#curatrix-limits" title="Link to this heading"></a></h2>
+<p>show the resolved limits table and backend.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>usage: curatrix limits [-h]
+
+options:
+  -h, --help  show this help message and exit
+</pre></div>
+</div>
+</section>
+<section id="curatrix-doctor">
+<span id="cli-doctor"></span><h2>curatrix doctor<a class="headerlink" href="#curatrix-doctor" title="Link to this heading"></a></h2>
+<p>check tools, versions (tools.yaml), paths, hooks, west state.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>usage: curatrix doctor [-h] [--ci]
+
+options:
+  -h, --help  show this help message and exit
+  --ci        CI runner: system tool mismatches are warnings (tools.yaml tools
+              must still match)
+</pre></div>
+</div>
+</section>
+<section id="curatrix-bootstrap">
+<span id="cli-bootstrap"></span><h2>curatrix bootstrap<a class="headerlink" href="#curatrix-bootstrap" title="Link to this heading"></a></h2>
+<p>set up the workspace for a role (group filter, venv, tools, hooks).</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>usage: curatrix bootstrap [-h] --role ROLE [--adopt] [--no-west] [--no-doctor]
+
+options:
+  -h, --help   show this help message and exit
+  --role ROLE  syseng | ee | ee3d | me | sw | integration | full | ci-full
+  --adopt      stamp tools already in .venv/opt instead of reinstalling
+  --no-west    skip group filter and west update
+  --no-doctor  skip the final doctor run (CI runners have other system tool
+               versions)
+</pre></div>
+</div>
+</section>
+<section id="curatrix-update">
+<span id="cli-update"></span><h2>curatrix update<a class="headerlink" href="#curatrix-update" title="Link to this heading"></a></h2>
+<p>west update -k, then refresh venv, tools, links, hooks.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>usage: curatrix update [-h] [--adopt]
+
+options:
+  -h, --help  show this help message and exit
+  --adopt
+</pre></div>
+</div>
+</section>
+<section id="curatrix-launch">
+<span id="cli-launch"></span><h2>curatrix launch<a class="headerlink" href="#curatrix-launch" title="Link to this heading"></a></h2>
+<p>start a GUI tool / Claude Code with workspace-local config.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>usage: curatrix launch [-h] {kicad,freecad,drawio,claude} ...
+
+positional arguments:
+  {kicad,freecad,drawio,claude}
+  args
+
+options:
+  -h, --help            show this help message and exit
+</pre></div>
+</div>
+</section>
+<section id="curatrix-docs">
+<span id="cli-docs"></span><h2>curatrix docs<a class="headerlink" href="#curatrix-docs" title="Link to this heading"></a></h2>
+<p>zdocs build of a repo (or `full`) into build/&lt;area&gt;/docs (strict).</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>usage: curatrix docs [-h] [--open] target
+
+positional arguments:
+  target
+
+options:
+  -h, --help  show this help message and exit
+  --open
+</pre></div>
+</div>
+</section>
+<section id="curatrix-check">
+<span id="cli-check"></span><h2>curatrix check<a class="headerlink" href="#curatrix-check" title="Link to this heading"></a></h2>
+<p>run a repo’s checks (checks.yaml) for a stage.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>usage: curatrix check [-h] [--stage {local,pr,full,baseline}] [--no-cad]
+                      [--only ONLY] [--base BASE] [--json]
+                      [repo]
+
+positional arguments:
+  repo
+
+options:
+  -h, --help            show this help message and exit
+  --stage {local,pr,full,baseline}
+  --no-cad              skip checks that need CAD tools (CI)
+  --only ONLY           comma list of check IDs or prefixes, e.g. CK-D,CK-C1
+  --base BASE           folder with the needs.json files to diff against
+                        (CK-G1/G2)
+  --json                print the summary JSON on stdout (log on stderr)
+</pre></div>
+</div>
+</section>
+<section id="curatrix-gen">
+<span id="cli-gen"></span><h2>curatrix gen<a class="headerlink" href="#curatrix-gen" title="Link to this heading"></a></h2>
+<p>generated files: stubs, model, cad-needs, freecad-json, tombstones, all; cad-exports (build/&lt;area&gt;/cad, not committed).</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>usage: curatrix gen [-h] [--check] [--needs NEEDS [NEEDS ...]]
+                    [--textconv FCSTD] [--shape]
+                    {stubs,model,cad-needs,freecad-json,tombstones,cad-exports,all}
+                    [repo]
+
+positional arguments:
+  {stubs,model,cad-needs,freecad-json,tombstones,cad-exports,all}
+  repo
+
+options:
+  -h, --help            show this help message and exit
+  --check               only compare with the committed files
+  --needs NEEDS [NEEDS ...]
+                        stubs: needs.json files instead of the last docs build
+  --textconv FCSTD      freecad-json: print the trace JSON of one file (git
+                        textconv)
+  --shape               freecad-json: add the shape part (needs FreeCAD)
+</pre></div>
+</div>
+</section>
+<section id="curatrix-ids">
+<span id="cli-ids"></span><h2>curatrix ids<a class="headerlink" href="#curatrix-ids" title="Link to this heading"></a></h2>
+<p>issue IDs from the ledger, replace placeholders.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>usage: curatrix ids [-h] {new,fix,check} ...
+
+positional arguments:
+  {new,fix,check}
+    new            issue one ID: ids new KIND [FILE]
+    fix            replace every &lt;KIND&gt;-NEW-&lt;tag&gt; placeholder in a repo
+    check          CK-C1 + CK-C2 for a repo
+
+options:
+  -h, --help       show this help message and exit
+</pre></div>
+</div>
+</section>
+<section id="curatrix-views">
+<span id="cli-views"></span><h2>curatrix views<a class="headerlink" href="#curatrix-views" title="Link to this heading"></a></h2>
+<p>views as editable SVG: build | check | normalize.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>usage: curatrix views [-h] [--view VIEW] [--check]
+                      {build,check,normalize} [targets ...]
+
+positional arguments:
+  {build,check,normalize}
+  targets               repo, or .drawio.svg files (normalize)
+
+options:
+  -h, --help            show this help message and exit
+  --view VIEW           build only this view (repeatable)
+  --check               normalize: report only
+</pre></div>
+</div>
+</section>
+<section id="curatrix-variants">
+<span id="cli-variants"></span><h2>curatrix variants<a class="headerlink" href="#curatrix-variants" title="Link to this heading"></a></h2>
+<p>variant rules F1, F2, V1-V5 on the model JSON.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>usage: curatrix variants [-h] [--model MODEL] [-v] [repo]
+
+positional arguments:
+  repo
+
+options:
+  -h, --help     show this help message and exit
+  --model MODEL  a model JSON (Pilot export or compact) instead of the repo&#39;s
+  -v, --verbose
+</pre></div>
+</div>
+</section>
+<section id="curatrix-needs-diff">
+<span id="cli-needs-diff"></span><h2>curatrix needs-diff<a class="headerlink" href="#curatrix-needs-diff" title="Link to this heading"></a></h2>
+<p>change impact between two sets of needs.json (R7).</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>usage: curatrix needs-diff [-h] [-o OUT] before after
+
+positional arguments:
+  before
+  after
+
+options:
+  -h, --help     show this help message and exit
+  -o, --out OUT
+</pre></div>
+</div>
+</section>
+<section id="curatrix-work">
+<span id="cli-work"></span><h2>curatrix work<a class="headerlink" href="#curatrix-work" title="Link to this heading"></a></h2>
+<p>git worktrees for parallel work: start &lt;branch&gt; &lt;repos…&gt; | done &lt;branch&gt; | list (D125).</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>usage: curatrix work [-h] [--force] [--delete-branch]
+                     {start,done,list} [args ...]
+
+positional arguments:
+  {start,done,list}
+  args
+
+options:
+  -h, --help         show this help message and exit
+  --force            done: also with uncommitted changes
+  --delete-branch    done: delete the branches if merged
+</pre></div>
+</div>
+</section>
+<section id="curatrix-ci">
+<span id="cli-ci"></span><h2>curatrix ci<a class="headerlink" href="#curatrix-ci" title="Link to this heading"></a></h2>
+<p>CI helpers: `ci siblings` resolves sibling revisions (D127).</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>usage: curatrix ci [-h] --branch BRANCH --repo REPO [--sha SHA] {siblings}
+
+positional arguments:
+  {siblings}
+
+options:
+  -h, --help       show this help message and exit
+  --branch BRANCH  the PR&#39;s head branch name (push: the branch pushed)
+  --repo REPO      west name of the repo under check
+  --sha SHA        its PR head commit
+</pre></div>
+</div>
+</section>
+<section id="curatrix-evidence">
+<span id="cli-evidence"></span><h2>curatrix evidence<a class="headerlink" href="#curatrix-evidence" title="Link to this heading"></a></h2>
+<p>test run records: record (Twister dir -&gt; evidence branch), read (-&gt; TR needs), validate.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>usage: curatrix evidence [-h] [--config CONFIG] [--kind {sim,hil}]
+                         [--setup SETUP] [--tests TESTS] [--map MAP]
+                         [--note NOTE] [--repo REPO] [--branch BRANCH]
+                         [--create] [--trailer TRAILER] [--dry-run]
+                         [--offline] [--ref REF] [-o OUT]
+                         {record,read,validate} [target]
+
+positional arguments:
+  {record,read,validate}
+  target                record: Twister output dir; validate: record.json
+
+options:
+  -h, --help            show this help message and exit
+  --config CONFIG       record: the SYS-CFG of the run (required)
+  --kind {sim,hil}      hil: on the HIL setup; sim: native_sim/QEMU (never HIL
+                        evidence)
+  --setup SETUP         record --kind hil: the setup folder hil/&lt;setup&gt;
+  --tests TESTS         test source folders for the ZTEST -&gt; test case IDs
+                        (default: Twister&#39;s testsuite roots)
+  --map MAP             TEST=ID: test case ID for a Twister test (overrides
+                        the source comments)
+  --note NOTE
+  --repo REPO
+  --branch BRANCH       evidence (default) or a scratch branch for records
+                        that are not evidence
+  --create              create the branch as an orphan if it does not exist
+  --trailer TRAILER     trailer line for the commit (agents: Co-Authored-By:
+                        ...)
+  --dry-run             record: print the record, write nothing
+  --offline             record: don&#39;t check main/baseline at the remotes (the
+                        rule then fails)
+  --ref REF             read: a git ref instead of the remote branch
+  -o, --out OUT         read: output file (default build/&lt;repo&gt;/evidence/tr-
+                        needs.json)
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="curatrix Reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="api.html" class="btn btn-neutral float-right" title="curatrix Python API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, curatrix Reference.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

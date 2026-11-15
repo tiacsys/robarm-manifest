@@ -1,0 +1,24 @@
+# XDMOD Manual
+
+> XDMOD: a method and tools for cross-domain, multi-repo systems engineering.
+
+
+2026, XDMOD Manual
+
+## Pages in this subsection
+
+- [How-to guides](index.html.md): Each guide answers one question: “How do I …?”. It assumes you have a workspace
+- [Add a requirement](add-a-requirement.html.md): Use this guide when you add a system requirement (&#96;sys-req&#96;) or a domain requirement
+- [Add a model element](add-a-model-element.html.md): Use this guide when you add a SysML element that takes part in a trace link: a function, a
+- [Add a view](add-a-view.html.md): Use this guide when you want a diagram of the model in the docs. Views come from the model:
+- [Add a PCBA or circuit block](add-a-pcba.html.md): Use this guide when you add a KiCad project (a PCBA), a circuit block or a component that takes
+- [Add a FreeCAD part or assembly](add-a-part.html.md): Use this guide when you add a FreeCAD part (&#96;ME-PART&#96;) or assembly (&#96;ME-ASM&#96;) that takes part
+- [Add a feature or configuration](add-a-configuration.html.md): Use this guide when the product line gets a new feature, a new variant at a variation point, or
+- [Add a test](add-a-test.html.md): Use this guide when you add a test case and want its results to count as evidence.
+- [Make a change across repos](cross-repo-change.html.md): Use this guide when one change touches more than one repo, for example a new system requirement
+- [Work as an agent](work-as-an-agent.html.md): Use this guide if you are an AI agent, or if you brief one. Agents do the same work with the same
+- [Make a baseline](make-a-baseline.html.md): Use this guide when you want a fixed, released set of repo versions. A &#42;&#42;baseline&#42;&#42; is a tag
+
+## Optional
+
+- [Top-level llms.txt](../llms.txt): Complete documentation index.

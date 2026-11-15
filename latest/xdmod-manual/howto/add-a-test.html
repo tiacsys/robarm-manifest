@@ -1,0 +1,273 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<link rel="alternate" type="text/markdown" href="add-a-test.html.md">
+<link rel="describedby" href="llms.txt">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Add a test &mdash; XDMOD Manual</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../_static/zdocs-need-types.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/common_css/need_links.css?v=2150a916" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/common_css/needstable.css?v=7b67799e" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/modern.css?v=c1bc121d" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-test-results/common.css?v=b776391d" />
+      <link rel="stylesheet" type="text/css" href="../_static/zdocs-sphinx.css?v=1afe8e97" />
+      <link rel="stylesheet" type="text/css" href="../_static/zdocs-needs.css?v=f0382e39" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f348a06a"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/zdocs-need-preview.js?v=98728251"></script>
+      <script src="../_static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
+      <script src="../_static/sphinx-data-viewer/jsonview_loader.js?v=f7ff7e7d"></script>
+      <script src="../_static/sphinx-needs/libs/html/sphinx_needs_collapse.js?v=dca66431"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Make a change across repos" href="cross-repo-change.html" />
+    <link rel="prev" title="Add a feature or configuration" href="add-a-configuration.html" /> 
+<script id="xdmod-version-switcher" src="../../../version-switcher.js" data-site-root="../../.." defer></script>
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            XDMOD Manual
+          </a>
+<div class="version zdocs-version">v0.0-dev+g4afe2f3</div>
+
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+  
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">How-to guides</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="add-a-requirement.html">Add a requirement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="add-a-model-element.html">Add a model element</a></li>
+<li class="toctree-l2"><a class="reference internal" href="add-a-view.html">Add a view</a></li>
+<li class="toctree-l2"><a class="reference internal" href="add-a-pcba.html">Add a PCBA or circuit block</a></li>
+<li class="toctree-l2"><a class="reference internal" href="add-a-part.html">Add a FreeCAD part or assembly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="add-a-configuration.html">Add a feature or configuration</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Add a test</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#where-the-test-lives">Where the test lives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#steps">Steps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#evidence-rules">Evidence rules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#checks">Checks</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cross-repo-change.html">Make a change across repos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="work-as-an-agent.html">Work as an agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="make-a-baseline.html">Make a baseline</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../explanation/index.html">Explanation</a></li>
+</ul>
+
+  
+  <div class="toctree-wrapper compound reference-groups-wrapper">
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Project</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../robarm/index.html">Robot Arm: Project Overview</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">System</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../se-req/index.html">Stakeholder & System Requirements Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../se-arch/index.html">System Architecture</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Software</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../sw-req/index.html">SW Requirements Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../sw-arch/index.html">SW Architecture & Design</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../sw-api/index.html">SW API and Implementation</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../sw-test-spec/index.html">SW Test Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../sw-test-report/index.html">SW Test Report</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Electrical</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../ee-design/index.html">EE Requirements & Design</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Mechanical</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../me-design/index.html">ME Requirements & Design</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Integration</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../int-test-spec/index.html">System & Integration Test Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../int-test-report/index.html">System & Integration Test Report</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Framework</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../xdmod-ref/index.html">curatrix Reference</a></li>
+      
+    </ul>
+    
+  </div>
+  
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">XDMOD Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">How-to guides</a></li>
+      <li class="breadcrumb-item active">Add a test</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/howto/add-a-test.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="add-a-test">
+<span id="howto-add-a-test"></span><h1>Add a test<a class="headerlink" href="#add-a-test" title="Link to this heading"></a></h1>
+<p>Use this guide when you add a test case and want its results to count as evidence.</p>
+<section id="where-the-test-lives">
+<h2>Where the test lives<a class="headerlink" href="#where-the-test-lives" title="Link to this heading"></a></h2>
+<p>Tests live by what they verify (<a class="reference internal" href="../explanation/decisions/traces.html#XD-ADR-0104" title="XD-ADR-0104"><em class="xref need">Tests live by what they verify (XD-ADR-0104)</em></a>):</p>
+<ul class="simple">
+<li><p>A test that verifies a system requirement or an interface is a system test case (<code class="docutils literal notranslate"><span class="pre">INT-STC</span></code>)
+or an integration test case (<code class="docutils literal notranslate"><span class="pre">INT-ITC</span></code>) in the integration repo, even if it touches one
+domain only.</p></li>
+<li><p>A test of a domain requirement stays in its domain repo: <code class="docutils literal notranslate"><span class="pre">SW-TC</span></code>, <code class="docutils literal notranslate"><span class="pre">EE-TC</span></code> or <code class="docutils literal notranslate"><span class="pre">ME-TC</span></code>.</p></li>
+</ul>
+</section>
+<section id="steps">
+<h2>Steps<a class="headerlink" href="#steps" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p>Write the test case with a <code class="docutils literal notranslate"><span class="pre">verifies</span></code> link to the requirement. For authored test cases
+(rst):</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">int-itc</span><span class="p">::</span> Servo PWM on the joint connector
+   <span class="nc">:id:</span> INT-ITC-NEW-pwm
+   <span class="nc">:verifies:</span> SYS-IF-0002
+</pre></div>
+</div>
+<p>For Zephyr tests, the ID goes into the ZTEST comment and is written there by a tool
+(<a class="reference internal" href="../explanation/decisions/traces.html#XD-ADR-0073" title="XD-ADR-0073"><em class="xref need">SW test case IDs come from ... (XD-ADR-0073)</em></a>); the <code class="docutils literal notranslate"><span class="pre">\verifies</span></code> tag makes the link.</p>
+</li>
+<li><p>If the test runs only on some configurations, set <code class="docutils literal notranslate"><span class="pre">configs</span></code>.</p></li>
+<li><p>Issue the ID:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>curatrix<span class="w"> </span>ids<span class="w"> </span>fix<span class="w"> </span>robarm-integration
+</pre></div>
+</div>
+</li>
+<li><p>Run the test. Results become test result needs (<code class="docutils literal notranslate"><span class="pre">TR-&lt;test</span> <span class="pre">case</span> <span class="pre">ID&gt;-&lt;run</span> <span class="pre">hash&gt;</span></code>) with a
+<code class="docutils literal notranslate"><span class="pre">result_of</span></code> link to the test case and the <code class="docutils literal notranslate"><span class="pre">config</span></code> they ran on.</p></li>
+</ol>
+</section>
+<section id="evidence-rules">
+<h2>Evidence rules<a class="headerlink" href="#evidence-rules" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>HIL results carry the firmware hash and the SHAs of all pinned repos (<a class="reference internal" href="../explanation/rules/trace.html#XD-RULE-0012" title="XD-RULE-0012"><em class="xref need">HIL results carry the firmw... (XD-RULE-0012)</em></a>,
+<a class="reference internal" href="../reference/checks.html#XD-CHECK-0005" title="XD-CHECK-0005"><em class="xref need">HIL results carry firmware ... (XD-CHECK-0005)</em></a>).</p></li>
+<li><p>Evidence counts only from commits on <code class="docutils literal notranslate"><span class="pre">main</span></code> or baseline tags (<a class="reference internal" href="../explanation/decisions/checks.html#XD-ADR-0053" title="XD-ADR-0053"><em class="xref need">Evidence only from main or ... (XD-ADR-0053)</em></a>). Runs on PR
+branches are previews.</p></li>
+<li><p>A result whose SHAs no longer match the pins is stale and doesn’t count (<a class="reference internal" href="../explanation/rules/trace.html#XD-RULE-0013" title="XD-RULE-0013"><em class="xref need">Only valid evidence counts (XD-RULE-0013)</em></a>,
+<a class="reference internal" href="../reference/checks.html#XD-CHECK-0011" title="XD-CHECK-0011"><em class="xref need">stale evidence (R5a) (XD-CHECK-0011)</em></a>).</p></li>
+<li><p>Every requirement needs a <code class="docutils literal notranslate"><span class="pre">verifies</span></code> link (<a class="reference internal" href="../explanation/rules/trace.html#XD-RULE-0009" title="XD-RULE-0009"><em class="xref need">Every requirement is verified (XD-RULE-0009)</em></a>, <a class="reference internal" href="../reference/checks.html#XD-CHECK-0007" title="XD-CHECK-0007"><em class="xref need">every requirement verified ... (XD-CHECK-0007)</em></a>).</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The run-record schema and the extraction of <code class="docutils literal notranslate"><span class="pre">TR</span></code> needs from test reports are being
+built (task 4.5a). Until then, test reports show the sphinx-test-reports needs.</p>
+</div>
+</section>
+<section id="checks">
+<h2>Checks<a class="headerlink" href="#checks" title="Link to this heading"></a></h2>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>curatrix<span class="w"> </span>check<span class="w"> </span>robarm-integration<span class="w"> </span>--stage<span class="w"> </span><span class="nb">local</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="add-a-configuration.html" class="btn btn-neutral float-left" title="Add a feature or configuration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cross-repo-change.html" class="btn btn-neutral float-right" title="Make a change across repos" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, XDMOD Manual.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

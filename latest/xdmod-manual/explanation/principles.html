@@ -1,0 +1,272 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<link rel="alternate" type="text/markdown" href="principles.html.md">
+<link rel="describedby" href="llms.txt">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Principles &mdash; XDMOD Manual</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../_static/zdocs-need-types.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/common_css/need_links.css?v=2150a916" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/common_css/needstable.css?v=7b67799e" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/modern.css?v=c1bc121d" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-test-results/common.css?v=b776391d" />
+      <link rel="stylesheet" type="text/css" href="../_static/zdocs-sphinx.css?v=1afe8e97" />
+      <link rel="stylesheet" type="text/css" href="../_static/zdocs-needs.css?v=f0382e39" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f348a06a"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/zdocs-need-preview.js?v=98728251"></script>
+      <script src="../_static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
+      <script src="../_static/sphinx-data-viewer/jsonview_loader.js?v=f7ff7e7d"></script>
+      <script src="../_static/sphinx-needs/libs/html/sphinx_needs_collapse.js?v=dca66431"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="The V-model and trace links" href="v-model-and-traces.html" />
+    <link rel="prev" title="Explanation" href="index.html" /> 
+<script id="xdmod-version-switcher" src="../../../version-switcher.js" data-site-root="../../.." defer></script>
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            XDMOD Manual
+          </a>
+<div class="version zdocs-version">v0.0-dev+g4afe2f3</div>
+
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+  
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../howto/index.html">How-to guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Explanation</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Principles</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#the-concrete-side-holds-the-link">The concrete side holds the link</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#generate-commit-check">Generate, commit, check</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#text-first-for-people-and-agents">Text first, for people and agents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#documents-come-from-the-models">Documents come from the models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#every-check-runs-locally">Every check runs locally</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ids-are-stable">IDs are stable</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="v-model-and-traces.html">The V-model and trace links</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sysmod-and-sysml.html">SYSMOD and SysML v2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="variants.html">Variants</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multi-repo.html">Many repos, one workspace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="humans-and-agents.html">Humans and agents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decisions/index.html">Decisions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rules/index.html">Rules</a></li>
+</ul>
+</li>
+</ul>
+
+  
+  <div class="toctree-wrapper compound reference-groups-wrapper">
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Project</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../robarm/index.html">Robot Arm: Project Overview</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">System</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../se-req/index.html">Stakeholder & System Requirements Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../se-arch/index.html">System Architecture</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Software</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../sw-req/index.html">SW Requirements Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../sw-arch/index.html">SW Architecture & Design</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../sw-api/index.html">SW API and Implementation</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../sw-test-spec/index.html">SW Test Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../sw-test-report/index.html">SW Test Report</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Electrical</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../ee-design/index.html">EE Requirements & Design</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Mechanical</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../me-design/index.html">ME Requirements & Design</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Integration</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../int-test-spec/index.html">System & Integration Test Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../int-test-report/index.html">System & Integration Test Report</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Framework</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../xdmod-ref/index.html">curatrix Reference</a></li>
+      
+    </ul>
+    
+  </div>
+  
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">XDMOD Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Explanation</a></li>
+      <li class="breadcrumb-item active">Principles</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/explanation/principles.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="principles">
+<span id="expl-principles"></span><h1>Principles<a class="headerlink" href="#principles" title="Link to this heading"></a></h1>
+<p>XDMOD rests on a few ideas. Most rules in this manual follow from them.</p>
+<section id="the-concrete-side-holds-the-link">
+<h2>The concrete side holds the link<a class="headerlink" href="#the-concrete-side-holds-the-link" title="Link to this heading"></a></h2>
+<p>A trace link is written on the <strong>more concrete</strong> artifact and points to the more abstract one
+(<a class="reference internal" href="decisions/traces.html#XD-ADR-0004" title="XD-ADR-0004"><em class="xref need">Trace rule: the concrete si... (XD-ADR-0004)</em></a>, refined by <a class="reference internal" href="decisions/traces.html#XD-ADR-0030" title="XD-ADR-0030"><em class="xref need">Link-type table and interfa... (XD-ADR-0030)</em></a>). In the V-model, links point from right to left and from
+bottom to top: a test case says what it verifies, a design element says what it realizes, a
+domain requirement says what it refines. The abstract side never lists its children. Backlinks
+such as “refined by” or “verified by” are only ever computed by the tools (<a class="reference internal" href="rules/trace.html#XD-RULE-0001" title="XD-RULE-0001"><em class="xref need">The concrete side holds the... (XD-RULE-0001)</em></a>).</p>
+<p>Why? The concrete artifact is the one that changes most often, and its author knows what it is
+for. An upstream document stays stable while downstream work goes on, and many repos can add
+links to it in parallel without touching it.</p>
+<p>Each link type belongs to the need type that owns it (<a class="reference internal" href="rules/trace.html#XD-RULE-0002" title="XD-RULE-0002"><em class="xref need">Link types are declared on ... (XD-RULE-0002)</em></a>). There is no global link
+table. A link written on the wrong side, to an unknown ID or to a wrong target type fails the
+build. Peer domains (for example EE and SW) never link to each other: they both link to a shared
+interface need in the systems engineering repo (<a class="reference internal" href="rules/trace.html#XD-RULE-0003" title="XD-RULE-0003"><em class="xref need">Peer interfaces live in sys... (XD-RULE-0003)</em></a>). Allocation is stored on the concrete
+side, too (<a class="reference internal" href="rules/trace.html#XD-RULE-0004" title="XD-RULE-0004"><em class="xref need">Allocation is stored on the... (XD-RULE-0004)</em></a>).</p>
+</section>
+<section id="generate-commit-check">
+<h2>Generate, commit, check<a class="headerlink" href="#generate-commit-check" title="Link to this heading"></a></h2>
+<p>Many files are made by tools: SysML stubs for requirements, needs extracted from the model and
+from CAD files, views of the model. XDMOD <strong>commits</strong> these files and <strong>checks</strong> that they still
+match their sources (<a class="reference internal" href="rules/checks.html#XD-RULE-0033" title="XD-RULE-0033"><em class="xref need">Generated files are committ... (XD-RULE-0033)</em></a>). That has three benefits:</p>
+<ul class="simple">
+<li><p>Reviewers see the generated change in the pull request, next to the change that caused it.</p></li>
+<li><p>CI does not need the heavy tools (Java, KiCad, FreeCAD) to see the full trace graph
+(<a class="reference internal" href="decisions/checks.html#XD-ADR-0100" title="XD-ADR-0100"><em class="xref need">CAD-derived needs are commi... (XD-ADR-0100)</em></a>).</p></li>
+<li><p>A stale file is a check failure, not a silent error.</p></li>
+</ul>
+<p>Generated needs follow the same rules as authored needs (<a class="reference internal" href="rules/trace.html#XD-RULE-0006" title="XD-RULE-0006"><em class="xref need">Generated needs follow the ... (XD-RULE-0006)</em></a>).</p>
+</section>
+<section id="text-first-for-people-and-agents">
+<h2>Text first, for people and agents<a class="headerlink" href="#text-first-for-people-and-agents" title="Link to this heading"></a></h2>
+<p>Everything that people review is text in git: reStructuredText for needs and documents
+(<a class="reference internal" href="decisions/method.html#XD-ADR-0005" title="XD-ADR-0005"><em class="xref need">Requirements in sphinx-needs (XD-ADR-0005)</em></a>), SysML v2 textual notation for the model (<a class="reference internal" href="decisions/method.html#XD-ADR-0001" title="XD-ADR-0001"><em class="xref need">SysML v2 textual notation f... (XD-ADR-0001)</em></a>), uncompressed FreeCAD files
+and drawio views (<a class="reference internal" href="rules/checks.html#XD-RULE-0039" title="XD-RULE-0039"><em class="xref need">Design files are stored unc... (XD-RULE-0039)</em></a>). Agents edit and review this content the same way engineers do
+(<a class="reference internal" href="decisions/workflow.html#XD-ADR-0003" title="XD-ADR-0003"><em class="xref need">Agents are first-class (XD-ADR-0003)</em></a>). Diffs are readable, merges are possible, and every change goes through a pull
+request.</p>
+</section>
+<section id="documents-come-from-the-models">
+<h2>Documents come from the models<a class="headerlink" href="#documents-come-from-the-models" title="Link to this heading"></a></h2>
+<p>Documents pull content out of the design models, the way API documentation comes from code
+comments (<a class="reference internal" href="decisions/documents.html#XD-ADR-0017" title="XD-ADR-0017"><em class="xref need">Documents extract content f... (XD-ADR-0017)</em></a>). Authored rst gives the structure and the prose; Sphinx extensions add
+tables, pictures and needs from SysML, KiCad, FreeCAD, code and test results.</p>
+</section>
+<section id="every-check-runs-locally">
+<h2>Every check runs locally<a class="headerlink" href="#every-check-runs-locally" title="Link to this heading"></a></h2>
+<p>Every check that CI runs can also run on your machine, with one command per repo, from the
+workspace root (<a class="reference internal" href="decisions/checks.html#XD-ADR-0040" title="XD-ADR-0040"><em class="xref need">Every check also runs locally (XD-ADR-0040)</em></a>, <a class="reference internal" href="rules/checks.html#XD-RULE-0032" title="XD-RULE-0032"><em class="xref need">Every check runs locally (XD-RULE-0032)</em></a>). Every tool runs under a memory limit and a timeout
+(<a class="reference internal" href="decisions/checks.html#XD-ADR-0064" title="XD-ADR-0064"><em class="xref need">A memory limit and a timeou... (XD-ADR-0064)</em></a>, <a class="reference internal" href="rules/checks.html#XD-RULE-0044" title="XD-RULE-0044"><em class="xref need">Every tool runs under limits (XD-RULE-0044)</em></a>), so a runaway tool cannot stall the machine or other agents.</p>
+</section>
+<section id="ids-are-stable">
+<h2>IDs are stable<a class="headerlink" href="#ids-are-stable" title="Link to this heading"></a></h2>
+<p>Every need has an ID like <code class="docutils literal notranslate"><span class="pre">SYS-REQ-0012</span></code> from the repo’s ledger (<a class="reference internal" href="decisions/traces.html#XD-ADR-0071" title="XD-ADR-0071"><em class="xref need">ID format DOMAIN-KIND-NNNN (XD-ADR-0071)</em></a>). An ID never
+changes when its need is renamed or moved, and it is never issued again (<a class="reference internal" href="rules/ids.html#XD-RULE-0020" title="XD-RULE-0020"><em class="xref need">IDs are never reused; retir... (XD-RULE-0020)</em></a>). See
+<a class="reference internal" href="../reference/id-scheme.html"><span class="doc">ID scheme</span></a>.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Explanation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="v-model-and-traces.html" class="btn btn-neutral float-right" title="The V-model and trace links" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, XDMOD Manual.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

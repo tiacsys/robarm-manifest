@@ -1,0 +1,117 @@
+<a id="ref-workspace"></a>
+
+# Workspace
+
+Paths, roles, environment and limits of an XDMOD workspace. Background:
+[Many repos, one workspace](../explanation/multi-repo.html.md).
+
+## Layout
+
+The workspace root is the west topdir ([*One west topdir at the work... (XD-ADR-0061)*](../explanation/decisions/repos.html.md#XD-ADR-0061)). Every command runs from here
+([*All commands run from the w... (XD-ADR-0060)*](../explanation/decisions/repos.html.md#XD-ADR-0060)); paths in output and documents are relative to it.
+
+```text
+<workspace>/
+  .west/                west config, incl. manifest.group-filter and the role
+  .venv/                workspace venv: west, curatrix, pinned packages, opt/ tools
+  .xdmod/               workspace-local tool configs, caches, limit overrides (not a repo)
+  .claude/              links to the shared and per-repo agent skills and commands
+  .worktrees/<branch>/  worktree sets for parallel work
+  build/<area>/         all build output
+  CLAUDE.md             launch file, copied from xdmod by the bootstrap
+  <manifest repo>/
+  xdmod/
+  <design repos>/       one per domain, plus integration, at the top level
+  tools/                zdocs, affirmatrix
+  libs/                 SYSMOD library, PLEML, KiCad and FreeCAD libraries
+  zephyr/  modules/     Zephyr and its allowlisted modules, if the project uses Zephyr
+```
+
+Design repos sit at the top level, because people and agents work in them. Dependencies go
+under `tools/` and `libs/` ([*Workspace paths (XD-ADR-0083)*](../explanation/decisions/repos.html.md#XD-ADR-0083)).
+
+## Roles
+
+A role decides which repos a workspace checks out, through west’s group filter
+([*West submanifests and proje... (XD-ADR-0079)*](../explanation/decisions/repos.html.md#XD-ADR-0079)). The manifest’s default is minimal ([*A minimal default group filter (XD-ADR-0084)*](../explanation/decisions/repos.html.md#XD-ADR-0084)). The roles that curatrix knows:
+
+| Role          | Group filter (added to the default)   | Gets                                                                                                                                                                  |
+|---------------|---------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `syseng`      | (manifest default)                    | framework, systems engineering, SYSMOD and PLEML libraries, Zephyr                                                                                                    |
+| `ee`          | `+ee`                                 | plus the EE repo and the KiCad libraries without 3D models                                                                                                            |
+| `ee3d`        | `+ee,+kicad-3d`                       | like `ee`, plus the KiCad 3D models                                                                                                                                   |
+| `me`          | `+me,+freecad-parts`                  | plus the ME repo and the FreeCAD parts library                                                                                                                        |
+| `sw`          | `+sw`                                 | plus the SW repo                                                                                                                                                      |
+| `integration` | `+ee,+me,+sw,+integration`            | everything except the big libraries ([*The integration role (XD-ADR-0082)*](../explanation/decisions/repos.html.md#XD-ADR-0082))                                 |
+| `full`        | all groups                            | everything, for local full builds and baselines                                                                                                                       |
+| `ci-full`     | same as `integration`                 | what the full-set CI job uses; CI builds without CAD content ([*CI runs without CAD content (XD-ADR-0049)*](../explanation/decisions/checks.html.md#XD-ADR-0049)) |
+
+Set or change the role with `curatrix bootstrap --role <role>`. Repos that become inactive are
+left on disk.
+
+## Bootstrap
+
+From an empty folder (example: the robot arm’s manifest repo):
+
+```sh
+git clone https://github.com/tiacsys/robarm-manifest
+robarm-manifest/scripts/bootstrap.sh --role ee
+```
+
+`bootstrap.sh` creates `.venv` with west, runs `west init -l` and `west update`,
+installs curatrix from xdmod (editable), and hands over to `curatrix bootstrap --role <role>`.
+That command:
+
+1. sets the role’s group filter and runs `west update`;
+2. installs the active repos’ `requirements.txt` into `.venv` and their `tools.yaml`
+   tools into `.venv/opt/`, with sha256 checks ([*Tool versions of the refere... (XD-ADR-0014)*](../explanation/decisions/checks.html.md#XD-ADR-0014));
+3. copies `xdmod/launch/CLAUDE.md` to the root ([*Agent material in each repo... (XD-ADR-0062)*](../explanation/decisions/repos.html.md#XD-ADR-0062)) and links `.claude/`
+   ([*The bootstrap assembles .cl... (XD-ADR-0103)*](../explanation/decisions/repos.html.md#XD-ADR-0103));
+4. installs the pre-commit hooks and the FreeCAD diff driver in every active repo
+   ([*Pre-commit hooks (XD-ADR-0091)*](../explanation/decisions/checks.html.md#XD-ADR-0091));
+5. creates `.xdmod/`;
+6. runs `curatrix doctor`.
+
+On branches, use `curatrix update` (it runs `west update -k`). Plain `west update` moves
+every project back to its pin, as a detached HEAD.
+
+## Environment
+
+`eval "$(curatrix env)"` sets `PATH` (with `.venv/bin`), `ZEPHYR_BASE`, `JAVA_HOME`,
+the `XD_KICAD_*` and `XD_FREECAD_PARTS` library variables, the `env:` entries of the
+`tools.yaml` tools, and `PYTHONDONTWRITEBYTECODE=1`. `curatrix run -- <cmd>` runs any
+command with this environment and the default limits.
+
+No user-global configuration is used. KiCad, FreeCAD and drawio get workspace-local config
+folders under `.xdmod/` through `curatrix launch` ([*Pinned, isolated component ... (XD-ADR-0080)*](../explanation/decisions/repos.html.md#XD-ADR-0080)).
+
+## Limits
+
+Every tool runs under a memory limit and a timeout ([*A memory limit and a timeou... (XD-ADR-0064)*](../explanation/decisions/checks.html.md#XD-ADR-0064), [*Every tool runs under limits (XD-RULE-0044)*](../explanation/rules/checks.html.md#XD-RULE-0044)). curatrix applies
+them itself from `xdmod/curatrix/limits.yaml`, which `<workspace>/.xdmod/limits.yaml` can
+override per key. `curatrix limits` shows the resolved table.
+
+- Backend: a systemd user scope with `MemoryMax` and no swap, plus `timeout`. Without a
+  systemd user session, curatrix falls back to `timeout` plus `ulimit -v`.
+- Exit code 124 means timeout, 137 means killed for memory.
+- GUI tools started with `curatrix launch` get a memory limit only, no timeout
+  ([*GUI tools get a memory limi... (XD-ADR-0106)*](../explanation/decisions/checks.html.md#XD-ADR-0106)).
+- Never raise a limit to make a runaway tool pass; find out why it runs away.
+
+## Commands
+
+`curatrix` is the only command layer ([*One framework tool: curatrix (XD-ADR-0089)*](../explanation/decisions/checks.html.md#XD-ADR-0089), [*The command layer is only c... (XD-ADR-0105)*](../explanation/decisions/checks.html.md#XD-ADR-0105)). The full list of subcommands
+and options is in the curatrix reference. The most used:
+
+| Command                                       | Does                                                                                                                                        |
+|-----------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|
+| `curatrix doctor`                             | checks tools, versions, paths, hooks and the west state                                                                                     |
+| `curatrix update`                             | `west update -k`, refresh `.venv`, tools, `.claude/` links and hooks                                                                        |
+| `curatrix check <repo> --stage local`         | the repo’s checks ([Checks](checks.html.md))                                                                   |
+| `curatrix docs <repo>` / `docs full`          | strict docs build into `build/<area>/docs/`                                                                                                 |
+| `curatrix gen <what> <repo>`                  | regenerate the committed generated files                                                                                                    |
+| `curatrix ids new <KIND>` / `ids fix <repo>`  | issue IDs, replace placeholders ([ID scheme](id-scheme.html.md))                                                  |
+| `curatrix views build|check|normalize <repo>` | views as editable `.drawio.svg`                                                                                                             |
+| `curatrix launch kicad|freecad|drawio|claude` | GUI tools with workspace-local config                                                                                                       |
+| `curatrix work start|done`                    | worktree sets for parallel work ([*Parallel agents work in git... (XD-ADR-0114)*](../explanation/decisions/workflow.html.md#XD-ADR-0114)) |
+| `curatrix run -- <cmd>`                       | anything else, with the workspace env and limits                                                                                            |

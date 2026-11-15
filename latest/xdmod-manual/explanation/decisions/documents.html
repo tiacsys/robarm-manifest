@@ -1,0 +1,593 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<link rel="alternate" type="text/markdown" href="documents.html.md">
+<link rel="describedby" href="llms.txt">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Documents &mdash; XDMOD Manual</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/zdocs-need-types.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-needs/common_css/need_links.css?v=2150a916" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-needs/common_css/needstable.css?v=7b67799e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-needs/modern.css?v=c1bc121d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-test-results/common.css?v=b776391d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/zdocs-sphinx.css?v=1afe8e97" />
+      <link rel="stylesheet" type="text/css" href="../../_static/zdocs-needs.css?v=f0382e39" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=f348a06a"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/zdocs-need-preview.js?v=98728251"></script>
+      <script src="../../_static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
+      <script src="../../_static/sphinx-data-viewer/jsonview_loader.js?v=f7ff7e7d"></script>
+      <script src="../../_static/sphinx-needs/libs/html/sphinx_needs_collapse.js?v=dca66431"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Repos and workspace" href="repos.html" />
+    <link rel="prev" title="Traces and IDs" href="traces.html" /> 
+<script id="xdmod-version-switcher" src="../../../../version-switcher.js" data-site-root="../../../.." defer></script>
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            XDMOD Manual
+          </a>
+<div class="version zdocs-version">v0.0-dev+g4afe2f3</div>
+
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+  
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../howto/index.html">How-to guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Explanation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../principles.html">Principles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v-model-and-traces.html">The V-model and trace links</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sysmod-and-sysml.html">SYSMOD and SysML v2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../variants.html">Variants</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../multi-repo.html">Many repos, one workspace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../humans-and-agents.html">Humans and agents</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Decisions</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="index.html#how-to-read-a-decision">How to read a decision</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html#how-to-add-a-decision">How to add a decision</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#all-decisions">All decisions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../rules/index.html">Rules</a></li>
+</ul>
+</li>
+</ul>
+
+  
+  <div class="toctree-wrapper compound reference-groups-wrapper">
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Project</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../../robarm/index.html">Robot Arm: Project Overview</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">System</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../../se-req/index.html">Stakeholder & System Requirements Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../../se-arch/index.html">System Architecture</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Software</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../../sw-req/index.html">SW Requirements Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../../sw-arch/index.html">SW Architecture & Design</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../../sw-api/index.html">SW API and Implementation</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../../sw-test-spec/index.html">SW Test Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../../sw-test-report/index.html">SW Test Report</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Electrical</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../../ee-design/index.html">EE Requirements & Design</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Mechanical</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../../me-design/index.html">ME Requirements & Design</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Integration</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../../int-test-spec/index.html">System & Integration Test Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../../int-test-report/index.html">System & Integration Test Report</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Framework</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../../xdmod-ref/index.html">curatrix Reference</a></li>
+      
+    </ul>
+    
+  </div>
+  
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">XDMOD Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Explanation</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Decisions</a></li>
+      <li class="breadcrumb-item active">Documents</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/explanation/decisions/documents.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="documents">
+<span id="adr-documents"></span><h1>Documents<a class="headerlink" href="#documents" title="Link to this heading"></a></h1>
+<p>The linked document set, zdocs, and how documents get their content.</p>
+<div class="need_container docutils container" id="SNCB-962392ce">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0010">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Framework Decision</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">The framework has its own Sphinx documentation</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#XD-ADR-0010" title="XD-ADR-0010">XD-ADR-0010</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_legacy_id"><span class="needs_label">legacy_id: </span><span class="needs_data">D13</span></span></div>
+<div class="line"><span class="needs_date"><span class="needs_label">date: </span><span class="needs_data">2026-11-14</span></span></div>
+<div class="line"><span class="needs_decision_status"><span class="needs_label">decision_status: </span><span class="needs_data">accepted</span></span></div>
+</span></span></div>
+<div class="line"><span></span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p>The framework itself gets its <strong>own Sphinx documentation</strong>, separate from the example’s design docs.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-2a703609">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0015">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Framework Decision</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">All content is in English</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#XD-ADR-0015" title="XD-ADR-0015">XD-ADR-0015</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_legacy_id"><span class="needs_label">legacy_id: </span><span class="needs_data">D20</span></span></div>
+<div class="line"><span class="needs_date"><span class="needs_label">date: </span><span class="needs_data">2026-11-14</span></span></div>
+<div class="line"><span class="needs_decision_status"><span class="needs_label">decision_status: </span><span class="needs_data">accepted</span></span></div>
+</span></span></div>
+<div class="line"><span></span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p>All content is in <strong>English</strong>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-51416618">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0016">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Framework Decision</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">A set of linked Sphinx documents</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#XD-ADR-0016" title="XD-ADR-0016">XD-ADR-0016</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_legacy_id"><span class="needs_label">legacy_id: </span><span class="needs_data">D21</span></span></div>
+<div class="line"><span class="needs_date"><span class="needs_label">date: </span><span class="needs_data">2026-11-14</span></span></div>
+<div class="line"><span class="needs_decision_status"><span class="needs_label">decision_status: </span><span class="needs_data">accepted</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">refined by: <span class="refines"><span><a class="zd-need-ref reference internal" href="#XD-ADR-0099" title="XD-ADR-0016">XD-ADR-0099</a>, <a class="zd-need-ref reference internal" href="#XD-ADR-0102" title="XD-ADR-0016">XD-ADR-0102</a></span></span></div>
+<div class="line">followed by: <span class="follows"><span><a class="external_link zd-need-ref reference external" href="../../../robarm/decisions.html#PRJ-DEC-0006">PRJ-DEC-0006</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p>The result is a <strong>set of linked Sphinx documents</strong> that describes the project in full: system architecture; SW requirements, SW architecture and design, SW test specification; ME and EE requirements; ME assembly design; one design doc per PCBA.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-89714561">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0017">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Framework Decision</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Documents extract content from the models</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#XD-ADR-0017" title="XD-ADR-0017">XD-ADR-0017</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_legacy_id"><span class="needs_label">legacy_id: </span><span class="needs_data">D22</span></span></div>
+<div class="line"><span class="needs_date"><span class="needs_label">date: </span><span class="needs_data">2026-11-14</span></span></div>
+<div class="line"><span class="needs_decision_status"><span class="needs_label">decision_status: </span><span class="needs_data">accepted</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">decides: <span class="decided_by"><span><a class="zd-need-ref reference internal" href="../rules/trace.html#XD-RULE-0006" title="XD-ADR-0017">XD-RULE-0006</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p>Documents <strong>extract content from the design models</strong> where possible (SysML, FreeCAD, KiCad), the way API docs come from Doxygen comments.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-e933bc6e">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0020">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Framework Decision</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">zdocs links the documents</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#XD-ADR-0020" title="XD-ADR-0020">XD-ADR-0020</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_legacy_id"><span class="needs_label">legacy_id: </span><span class="needs_data">D25</span></span></div>
+<div class="line"><span class="needs_date"><span class="needs_label">date: </span><span class="needs_data">2026-11-14</span></span></div>
+<div class="line"><span class="needs_decision_status"><span class="needs_label">decision_status: </span><span class="needs_data">accepted</span></span></div>
+</span></span></div>
+<div class="line"><span></span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p><strong>zdocs</strong> (<a class="reference external" href="https://github.com/tiacsys/zdocs">https://github.com/tiacsys/zdocs</a>) links the documents together.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-14e4b04d">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0021">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Framework Decision</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">One zdocs registry per repo, the full set in the manifest repo</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#XD-ADR-0021" title="XD-ADR-0021">XD-ADR-0021</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_legacy_id"><span class="needs_label">legacy_id: </span><span class="needs_data">D26</span></span></div>
+<div class="line"><span class="needs_date"><span class="needs_label">date: </span><span class="needs_data">2026-11-14</span></span></div>
+<div class="line"><span class="needs_decision_status"><span class="needs_label">decision_status: </span><span class="needs_data">revised</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">revised by: <span class="revises"><span><a class="zd-need-ref reference internal" href="#XD-ADR-0029" title="XD-ADR-0021">XD-ADR-0029</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p>Each repo has <strong>its own zdocs registry</strong>. The manifest repo has a registry that builds the <strong>full linked set</strong>. Revised by <a class="zd-need-ref reference internal" href="#XD-ADR-0029" title="XD-ADR-0029"><em class="xref need">Upstream documents are buil... (XD-ADR-0029)</em></a>: upstream docs are built locally, not used as remote documents.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-39820a8a">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0022">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Framework Decision</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">More documents: needs, test specs, prototype setups</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#XD-ADR-0022" title="XD-ADR-0022">XD-ADR-0022</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_legacy_id"><span class="needs_label">legacy_id: </span><span class="needs_data">D27</span></span></div>
+<div class="line"><span class="needs_date"><span class="needs_label">date: </span><span class="needs_data">2026-11-14</span></span></div>
+<div class="line"><span class="needs_decision_status"><span class="needs_label">decision_status: </span><span class="needs_data">accepted</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">refined by: <span class="refines"><span><a class="zd-need-ref reference internal" href="#XD-ADR-0102" title="XD-ADR-0022">XD-ADR-0102</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p>Added documents: stakeholder needs and system requirements spec; system and integration test spec; EE and ME test specs; one doc per prototype setup.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-0173aaab">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0027">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Framework Decision</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">No document control in iteration 1</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#XD-ADR-0027" title="XD-ADR-0027">XD-ADR-0027</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_legacy_id"><span class="needs_label">legacy_id: </span><span class="needs_data">D33</span></span></div>
+<div class="line"><span class="needs_date"><span class="needs_label">date: </span><span class="needs_data">2026-11-14</span></span></div>
+<div class="line"><span class="needs_decision_status"><span class="needs_label">decision_status: </span><span class="needs_data">accepted</span></span></div>
+</span></span></div>
+<div class="line"><span></span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p><strong>No document control</strong> (<code class="docutils literal notranslate"><span class="pre">doc_control</span></code>) in iteration 1. Git history and PR reviews are enough for now.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-e5751c3e">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0028">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Framework Decision</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Missing zdocs features become Sphinx extensions in xdmod</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#XD-ADR-0028" title="XD-ADR-0028">XD-ADR-0028</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_legacy_id"><span class="needs_label">legacy_id: </span><span class="needs_data">D34</span></span></div>
+<div class="line"><span class="needs_date"><span class="needs_label">date: </span><span class="needs_data">2026-11-14</span></span></div>
+<div class="line"><span class="needs_decision_status"><span class="needs_label">decision_status: </span><span class="needs_data">accepted</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">refined by: <span class="refines"><span><a class="zd-need-ref reference internal" href="#XD-ADR-0055" title="XD-ADR-0028">XD-ADR-0055</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p>Features that zdocs lacks are built as <strong>separate Sphinx extensions in the framework repo</strong>. Useful ones may move into zdocs later.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-8b927a97">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0029">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Framework Decision</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Upstream documents are built locally</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#XD-ADR-0029" title="XD-ADR-0029">XD-ADR-0029</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_legacy_id"><span class="needs_label">legacy_id: </span><span class="needs_data">D35</span></span></div>
+<div class="line"><span class="needs_date"><span class="needs_label">date: </span><span class="needs_data">2026-11-14</span></span></div>
+<div class="line"><span class="needs_decision_status"><span class="needs_label">decision_status: </span><span class="needs_data">accepted</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">revises: <span class="revises"><span><a class="zd-need-ref reference internal" href="#XD-ADR-0021" title="XD-ADR-0029">XD-ADR-0021</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p><strong>Cross-repo traces:</strong> each repo’s zdocs registry also <strong>builds its upstream documents locally</strong> from the west checkout that the manifest pins. This is how a downstream repo checks its links into upstream needs. (zdocs imports needs only from locally built documents.)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-9d3e589d">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0048">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Framework Decision</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Docs hosting on GitHub Pages with versions</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#XD-ADR-0048" title="XD-ADR-0048">XD-ADR-0048</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_legacy_id"><span class="needs_label">legacy_id: </span><span class="needs_data">D55</span></span></div>
+<div class="line"><span class="needs_date"><span class="needs_label">date: </span><span class="needs_data">2026-11-14</span></span></div>
+<div class="line"><span class="needs_decision_status"><span class="needs_label">decision_status: </span><span class="needs_data">accepted</span></span></div>
+</span></span></div>
+<div class="line"><span></span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p><strong>Docs hosting:</strong> GitHub Pages on the manifest repo hosts the full linked set, with <code class="docutils literal notranslate"><span class="pre">main</span></code> as “latest” plus one folder per baseline. PR docs are CI artifacts. This adds <strong>multi-version hosting</strong>, which zdocs lacks today. The model to follow is the tiacsys/bridle docs.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-a85db4ff">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0055">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Framework Decision</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">zdocs gaps are fixed upstream</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#XD-ADR-0055" title="XD-ADR-0055">XD-ADR-0055</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_legacy_id"><span class="needs_label">legacy_id: </span><span class="needs_data">D62</span></span></div>
+<div class="line"><span class="needs_date"><span class="needs_label">date: </span><span class="needs_data">2026-11-14</span></span></div>
+<div class="line"><span class="needs_decision_status"><span class="needs_label">decision_status: </span><span class="needs_data">accepted</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">refines: <span class="refines"><span><a class="zd-need-ref reference internal" href="#XD-ADR-0028" title="XD-ADR-0055">XD-ADR-0028</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p><strong>X7 zdocs gaps</strong> (version_project ignored for Sphinx docs; every indirect upstream doc must be listed by hand; no import-only mode) are fixed through <strong>issues and PRs on tiacsys/zdocs</strong>. Until those merge, the framework uses workarounds. Refines <a class="zd-need-ref reference internal" href="#XD-ADR-0028" title="XD-ADR-0028"><em class="xref need">Missing zdocs features beco... (XD-ADR-0028)</em></a> for these three gaps.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-db046ad6">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0099">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Framework Decision</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Test reports are separate documents</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#XD-ADR-0099" title="XD-ADR-0099">XD-ADR-0099</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_legacy_id"><span class="needs_label">legacy_id: </span><span class="needs_data">D109</span></span></div>
+<div class="line"><span class="needs_date"><span class="needs_label">date: </span><span class="needs_data">2026-11-14</span></span></div>
+<div class="line"><span class="needs_decision_status"><span class="needs_label">decision_status: </span><span class="needs_data">accepted</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">refines: <span class="refines"><span><a class="zd-need-ref reference internal" href="#XD-ADR-0016" title="XD-ADR-0099">XD-ADR-0016</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p><strong>Test reports are separate documents</strong>: one spec doc and one report doc per domain and for integration.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-b3127d7e">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0101">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Framework Decision</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">The XDMOD manual is part of the full set</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#XD-ADR-0101" title="XD-ADR-0101">XD-ADR-0101</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_legacy_id"><span class="needs_label">legacy_id: </span><span class="needs_data">D111</span></span></div>
+<div class="line"><span class="needs_date"><span class="needs_label">date: </span><span class="needs_data">2026-11-14</span></span></div>
+<div class="line"><span class="needs_decision_status"><span class="needs_label">decision_status: </span><span class="needs_data">accepted</span></span></div>
+</span></span></div>
+<div class="line"><span></span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p>The <strong>XDMOD manual is part of the robarm full set</strong>, built from the pinned xdmod. robarm docs link to method pages; xdmod never links to robarm.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-162290f1">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0102">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Framework Decision</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">One EE document per PCBA and per prototype configuration</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#XD-ADR-0102" title="XD-ADR-0102">XD-ADR-0102</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_legacy_id"><span class="needs_label">legacy_id: </span><span class="needs_data">D112</span></span></div>
+<div class="line"><span class="needs_date"><span class="needs_label">date: </span><span class="needs_data">2026-11-14</span></span></div>
+<div class="line"><span class="needs_decision_status"><span class="needs_label">decision_status: </span><span class="needs_data">accepted</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">refines: <span class="refines"><span><a class="zd-need-ref reference internal" href="#XD-ADR-0016" title="XD-ADR-0102">XD-ADR-0016</a>, <a class="zd-need-ref reference internal" href="#XD-ADR-0022" title="XD-ADR-0102">XD-ADR-0022</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p><strong>One EE design doc per PCBA</strong> and <strong>one per prototype configuration</strong>. <strong>WireViz</strong> is evaluated for wiring harnesses (prototype jumper wiring, cables between boards).</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-74ac955c">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0111">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Framework Decision</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Agent-readable docs with sphinx-llm</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#XD-ADR-0111" title="XD-ADR-0111">XD-ADR-0111</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_legacy_id"><span class="needs_label">legacy_id: </span><span class="needs_data">D122</span></span></div>
+<div class="line"><span class="needs_date"><span class="needs_label">date: </span><span class="needs_data">2026-11-14</span></span></div>
+<div class="line"><span class="needs_decision_status"><span class="needs_label">decision_status: </span><span class="needs_data">accepted</span></span></div>
+</span></span></div>
+<div class="line"><span></span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p><strong>Agent-readable docs:</strong> the <strong>sphinx-llm</strong> extension is tried for llms.txt / Markdown output of the doc sets.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="traces.html" class="btn btn-neutral float-left" title="Traces and IDs" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="repos.html" class="btn btn-neutral float-right" title="Repos and workspace" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, XDMOD Manual.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

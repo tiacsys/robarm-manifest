@@ -1,0 +1,269 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<link rel="alternate" type="text/markdown" href="add-a-part.html.md">
+<link rel="describedby" href="llms.txt">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Add a FreeCAD part or assembly &mdash; XDMOD Manual</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../_static/zdocs-need-types.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/common_css/need_links.css?v=2150a916" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/common_css/needstable.css?v=7b67799e" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/modern.css?v=c1bc121d" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-test-results/common.css?v=b776391d" />
+      <link rel="stylesheet" type="text/css" href="../_static/zdocs-sphinx.css?v=1afe8e97" />
+      <link rel="stylesheet" type="text/css" href="../_static/zdocs-needs.css?v=f0382e39" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f348a06a"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/zdocs-need-preview.js?v=98728251"></script>
+      <script src="../_static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
+      <script src="../_static/sphinx-data-viewer/jsonview_loader.js?v=f7ff7e7d"></script>
+      <script src="../_static/sphinx-needs/libs/html/sphinx_needs_collapse.js?v=dca66431"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Add a feature or configuration" href="add-a-configuration.html" />
+    <link rel="prev" title="Add a PCBA or circuit block" href="add-a-pcba.html" /> 
+<script id="xdmod-version-switcher" src="../../../version-switcher.js" data-site-root="../../.." defer></script>
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            XDMOD Manual
+          </a>
+<div class="version zdocs-version">v0.0-dev+g4afe2f3</div>
+
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+  
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">How-to guides</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="add-a-requirement.html">Add a requirement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="add-a-model-element.html">Add a model element</a></li>
+<li class="toctree-l2"><a class="reference internal" href="add-a-view.html">Add a view</a></li>
+<li class="toctree-l2"><a class="reference internal" href="add-a-pcba.html">Add a PCBA or circuit block</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Add a FreeCAD part or assembly</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#steps">Steps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#checks">Checks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pitfalls">Pitfalls</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="add-a-configuration.html">Add a feature or configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="add-a-test.html">Add a test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cross-repo-change.html">Make a change across repos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="work-as-an-agent.html">Work as an agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="make-a-baseline.html">Make a baseline</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../explanation/index.html">Explanation</a></li>
+</ul>
+
+  
+  <div class="toctree-wrapper compound reference-groups-wrapper">
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Project</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../robarm/index.html">Robot Arm: Project Overview</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">System</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../se-req/index.html">Stakeholder & System Requirements Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../se-arch/index.html">System Architecture</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Software</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../sw-req/index.html">SW Requirements Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../sw-arch/index.html">SW Architecture & Design</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../sw-api/index.html">SW API and Implementation</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../sw-test-spec/index.html">SW Test Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../sw-test-report/index.html">SW Test Report</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Electrical</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../ee-design/index.html">EE Requirements & Design</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Mechanical</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../me-design/index.html">ME Requirements & Design</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Integration</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../int-test-spec/index.html">System & Integration Test Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../int-test-report/index.html">System & Integration Test Report</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Framework</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../xdmod-ref/index.html">curatrix Reference</a></li>
+      
+    </ul>
+    
+  </div>
+  
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">XDMOD Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">How-to guides</a></li>
+      <li class="breadcrumb-item active">Add a FreeCAD part or assembly</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/howto/add-a-part.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="add-a-freecad-part-or-assembly">
+<span id="howto-add-a-part"></span><h1>Add a FreeCAD part or assembly<a class="headerlink" href="#add-a-freecad-part-or-assembly" title="Link to this heading"></a></h1>
+<p>Use this guide when you add a FreeCAD part (<code class="docutils literal notranslate"><span class="pre">ME-PART</span></code>) or assembly (<code class="docutils literal notranslate"><span class="pre">ME-ASM</span></code>) that takes part
+in trace links.</p>
+<section id="steps">
+<h2>Steps<a class="headerlink" href="#steps" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p>Start FreeCAD with the launcher. It uses a workspace-local config that saves <code class="docutils literal notranslate"><span class="pre">.FCStd</span></code> files
+<strong>uncompressed</strong> and points at the pinned parts library (<a class="reference internal" href="../explanation/decisions/checks.html#XD-ADR-0056" title="XD-ADR-0056"><em class="xref need">FreeCAD files uncompressed,... (XD-ADR-0056)</em></a>, <a class="reference internal" href="../explanation/decisions/repos.html#XD-ADR-0080" title="XD-ADR-0080"><em class="xref need">Pinned, isolated component ... (XD-ADR-0080)</em></a>):</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>curatrix<span class="w"> </span>launch<span class="w"> </span>freecad<span class="w"> </span>robarm-me/parts/link.FCStd
+</pre></div>
+</div>
+</li>
+<li><p>Add string properties in the group <code class="docutils literal notranslate"><span class="pre">Trace</span></code> to the part or assembly object: <code class="docutils literal notranslate"><span class="pre">TraceID</span></code>,
+<code class="docutils literal notranslate"><span class="pre">Realizes</span></code>, <code class="docutils literal notranslate"><span class="pre">Satisfies</span></code>, <code class="docutils literal notranslate"><span class="pre">Conforms</span></code>, <code class="docutils literal notranslate"><span class="pre">PartOf</span></code>, <code class="docutils literal notranslate"><span class="pre">Status</span></code>, <code class="docutils literal notranslate"><span class="pre">Configs</span></code>. They mean the
+same as the KiCad fields (<a class="reference internal" href="add-a-pcba.html"><span class="doc">Add a PCBA or circuit block</span></a>).</p></li>
+<li><p>Set the <code class="docutils literal notranslate"><span class="pre">TraceID</span></code> to a real ID. Placeholders inside <code class="docutils literal notranslate"><span class="pre">.FCStd</span></code> files are refused, so issue
+the ID first:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>curatrix<span class="w"> </span>ids<span class="w"> </span>new<span class="w"> </span>ME-PART<span class="w"> </span>--repo<span class="w"> </span>robarm-me
+</pre></div>
+</div>
+</li>
+<li><p>Keep parameters in a spreadsheet with aliases. The <code class="docutils literal notranslate"><span class="pre">freecad-params</span></code> directive shows them in
+the docs, also in CI.</p></li>
+<li><p>Regenerate the CAD needs and the semantic JSON, and commit both with the part:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>curatrix<span class="w"> </span>gen<span class="w"> </span>cad-needs<span class="w"> </span>robarm-me
+curatrix<span class="w"> </span>gen<span class="w"> </span>freecad-json<span class="w"> </span>robarm-me
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="checks">
+<h2>Checks<a class="headerlink" href="#checks" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="../reference/checks.html#XD-CHECK-0025" title="XD-CHECK-0025"><em class="xref need">.FCStd uncompressed; drawio... (XD-CHECK-0025)</em></a>: the <code class="docutils literal notranslate"><span class="pre">.FCStd</span></code> is stored uncompressed (<a class="reference internal" href="../explanation/rules/checks.html#XD-RULE-0039" title="XD-RULE-0039"><em class="xref need">Design files are stored unc... (XD-RULE-0039)</em></a>).</p></li>
+<li><p><a class="reference internal" href="../reference/checks.html#XD-CHECK-0019" title="XD-CHECK-0019"><em class="xref need">cad-needs.json matches the ... (XD-CHECK-0019)</em></a>: <code class="docutils literal notranslate"><span class="pre">cad-needs.json</span></code> matches the FreeCAD files.</p></li>
+<li><p><a class="reference internal" href="../reference/checks.html#XD-CHECK-0020" title="XD-CHECK-0020"><em class="xref need">generated files record the ... (XD-CHECK-0020)</em></a>: the generated files record the tool versions that made them.</p></li>
+</ul>
+<p>For review, <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">diff</span></code> shows <code class="docutils literal notranslate"><span class="pre">.FCStd</span></code> changes as semantic JSON through the textconv driver
+that the bootstrap installs. GitHub does not, so reviewers read the committed JSON.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The full review report (drawing SVGs, image diff, 3D views) stays local in iteration 1
+(<a class="reference internal" href="../explanation/decisions/scope.html#XD-ADR-0124" title="XD-ADR-0124"><em class="xref need">Scope cuts for iteration 1 (XD-ADR-0124)</em></a>). Publishing it as a Pages preview (<a class="reference internal" href="../explanation/decisions/scope.html#XD-ADR-0098" title="XD-ADR-0098"><em class="xref need">FreeCAD review report as a ... (XD-ADR-0098)</em></a>) comes later. TechDraw and GLB
+exports are not implemented yet.</p>
+</div>
+</section>
+<section id="pitfalls">
+<h2>Pitfalls<a class="headerlink" href="#pitfalls" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">.FCStd</span></code> files can’t be merged. On a conflict, take one side and redo the other change.</p></li>
+<li><p>An unchanged save still changes the file. The pre-commit hook warns when a <code class="docutils literal notranslate"><span class="pre">.FCStd</span></code> changed
+but its semantic JSON didn’t.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="add-a-pcba.html" class="btn btn-neutral float-left" title="Add a PCBA or circuit block" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="add-a-configuration.html" class="btn btn-neutral float-right" title="Add a feature or configuration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, XDMOD Manual.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

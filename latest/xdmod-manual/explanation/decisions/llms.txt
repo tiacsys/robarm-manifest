@@ -1,0 +1,21 @@
+# XDMOD Manual
+
+> XDMOD: a method and tools for cross-domain, multi-repo systems engineering.
+
+
+2026, XDMOD Manual
+
+## Pages in this subsection
+
+- [Decisions](index.html.md): This part records every decision about the XDMOD framework. Each decision is a need of type
+- [Method and model](method.html.md): How the system is modelled: SysML v2, SYSMOD, requirements, views and variants.
+- [Traces and IDs](traces.html.md): The trace rule, link types, need kinds and the ID scheme.
+- [Documents](documents.html.md): The linked document set, zdocs, and how documents get their content.
+- [Repos and workspace](repos.html.md): Repos, the west workspace, names, tags and paths.
+- [Checks, CI and evidence](checks.html.md): Where checks run, CI, tool limits, generated files and test evidence.
+- [Workflow and agents](workflow.html.md): Branches, merging, reviews, and what agents may do.
+- [Scope and iterations](scope.html.md): What is in iteration 1 and what moved to iteration 2.
+
+## Optional
+
+- [Top-level llms.txt](../../llms.txt): Complete documentation index.
