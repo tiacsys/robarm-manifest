@@ -11,7 +11,7 @@ manifest:
   projects:
     - name: robarm-ee
       remote: tiacsys
-      revision: ad148d0af0b1a8cfc6ef070d46e2253a3b9b8095
+      revision: 56f14ae4844006e552e219118b3391d7968461c1
       groups: [ee]
 
     - name: kicad-symbols
