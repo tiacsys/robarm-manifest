@@ -1,0 +1,146 @@
+# Publishes the full linked document set to GitHub Pages (D55, doc-architecture.md §5).
+#
+#   push to main               -> latest/
+#   push of tag baseline/vX.Y.Z -> vX.Y.Z/   (one folder per baseline, D40, D54)
+#   pull_request (these files), workflow_dispatch on any other ref -> dry run: build + site artifact
+#   workflow_dispatch with root-only -> refresh only the root files (index, versions.json, switcher)
+#
+# The site lives on the branch `gh-pages` (Pages source: "deploy from a branch", gh-pages, /).
+# Each publish checks the branch out, replaces ONLY its own version folder, rewrites the root files
+# (scripts/pages/site.py) and pushes one commit. Older version folders are never touched, so every
+# baseline stays published. A push that loses a race is retried on the new branch head.
+# (actions/deploy-pages would replace the whole site each time, research/zdocs.md §8.)
+#
+# The build is `curatrix docs full` in the integration role at EXACTLY the manifest's pins (no
+# sibling resolution, no CAD content, D56), through the local action .github/actions/workspace.
+name: pages
+on:
+  push:
+    branches: [main]
+    tags: ["baseline/v*"]
+  pull_request:
+    paths:
+      - .github/workflows/pages.yml
+      - .github/actions/workspace/**
+      - scripts/pages/**
+  workflow_dispatch:
+    inputs:
+      root-only:
+        description: only refresh the root files of gh-pages (no docs build)
+        type: boolean
+        default: false
+
+permissions:
+  contents: write          # push to gh-pages
+
+concurrency:
+  # One run per version folder; a newer push to main supersedes a running latest/ build.
+  group: pages-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref == 'refs/heads/main' }}
+
+env:
+  PYTHONDONTWRITEBYTECODE: "1"
+
+jobs:
+  pages:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - name: What to publish
+        id: what
+        env:
+          REF: ${{ github.ref }}
+          EVENT: ${{ github.event_name }}
+          ROOT_ONLY: ${{ inputs.root-only || false }}
+        run: |
+          publish=false; version=preview
+          case "$REF" in
+            refs/heads/main) version=latest ;;
+            refs/tags/baseline/v*) version="${REF#refs/tags/baseline/}" ;;
+          esac
+          if [ "$EVENT" != pull_request ] && [ "$version" != preview ]; then publish=true; fi
+          if [ "$ROOT_ONLY" = true ] && [ "$EVENT" = workflow_dispatch ]; then
+            publish=true; version=root-only
+          fi
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          echo "publish=$publish" >> "$GITHUB_OUTPUT"
+          echo "### pages: version \`$version\`, publish: $publish" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Manifest
+        uses: actions/checkout@v4
+        with:
+          path: ws/robarm-manifest   # west init -l needs the manifest at this path
+          fetch-depth: 0             # tags: the robarm document shows the baseline (version_scope)
+
+      - name: Workspace at the pins (integration role)
+        if: steps.what.outputs.version != 'root-only'
+        uses: ./ws/robarm-manifest/.github/actions/workspace
+        with:
+          role: integration
+
+      - name: curatrix docs full
+        if: steps.what.outputs.version != 'root-only'
+        working-directory: ws
+        run: .venv/bin/curatrix docs full
+
+      - name: Upload the HTML of the full set
+        if: always() && steps.what.outputs.version != 'root-only'
+        uses: actions/upload-artifact@v4
+        with:
+          name: full-set-html-${{ steps.what.outputs.version }}
+          path: |
+            ws/build/full/docs/deploy/html/
+            ws/build/full/docs-build.log
+          if-no-files-found: ignore
+
+      - name: Dry run (site into an empty folder)
+        if: steps.what.outputs.publish != 'true'
+        run: |
+          python3 ws/robarm-manifest/scripts/pages/site.py --site "$RUNNER_TEMP/site" \
+            --html ws/build/full/docs/deploy/html --version latest --ref "$GITHUB_REF" --sha "$GITHUB_SHA"
+
+      - name: Upload the dry-run site
+        if: steps.what.outputs.publish != 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: pages-site-dry-run
+          path: ${{ runner.temp }}/site/
+          include-hidden-files: true
+
+      - name: Publish to gh-pages
+        if: steps.what.outputs.publish == 'true'
+        working-directory: ws/robarm-manifest
+        env:
+          VERSION: ${{ steps.what.outputs.version }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          site="$RUNNER_TEMP/site"
+          html="$GITHUB_WORKSPACE/ws/build/full/docs/deploy/html"
+          script="$PWD/scripts/pages/site.py"
+          if [ "$VERSION" = root-only ]; then args=(); else
+            args=(--html "$html" --version "$VERSION" --ref "${GITHUB_REF#refs/*/}" --sha "$GITHUB_SHA"); fi
+          for attempt in 1 2 3 4 5; do
+            git worktree remove --force "$site" 2>/dev/null || rm -rf "$site"
+            git worktree prune
+            if git fetch -q --depth 1 origin gh-pages; then
+              git worktree add -q --detach "$site" FETCH_HEAD
+            else
+              echo "gh-pages does not exist yet: starting it"
+              git branch -D pages-orphan 2>/dev/null || true
+              git worktree add -q --orphan -b pages-orphan "$site"
+            fi
+            python3 "$script" --site "$site" "${args[@]}"
+            git -C "$site" add -A
+            if git -C "$site" diff --cached --quiet; then echo "nothing changed"; exit 0; fi
+            git -C "$site" commit -q -m "pages: $VERSION from ${GITHUB_REF#refs/*/} @ ${GITHUB_SHA::12}" \
+              -m "Run: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+            if git -C "$site" push -q origin HEAD:refs/heads/gh-pages; then
+              echo "published $VERSION (attempt $attempt)"
+              owner="${GITHUB_REPOSITORY%/*}"; repo="${GITHUB_REPOSITORY#*/}"
+              echo "Published: https://${owner,,}.github.io/$repo/${VERSION/root-only/}" >> "$GITHUB_STEP_SUMMARY"
+              exit 0
+            fi
+            echo "push rejected (gh-pages moved?); retrying"; sleep $((attempt * 5))
+          done
+          exit 1
