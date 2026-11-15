@@ -18,9 +18,9 @@ inputs:
 runs:
   using: composite
   steps:
-    - name: System packages (graphviz for needflow, ninja for zdocs)
+    - name: System packages (graphviz for needflow, ninja for zdocs, doxygen for sw-api)
       shell: bash
-      run: sudo apt-get update -q && sudo apt-get install -y -q graphviz ninja-build
+      run: sudo apt-get update -q && sudo apt-get install -y -q graphviz ninja-build doxygen
 
     - uses: actions/setup-python@v5
       with:
