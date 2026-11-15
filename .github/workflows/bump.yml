@@ -10,8 +10,14 @@
 # (`curatrix check robarm-manifest --stage full --no-cad`, integration role, exactly at the bumped
 # pins) and reports it on the PR head as the commit status `full-set` (the same name as the
 # `full-set` job in check.yml, so one required check covers both kinds of PR) and as a PR comment.
-# If the bump branch is unchanged since the last run and that run reported a result, the check is
-# not repeated (dispatch with force-check to repeat it).
+# If the bump branch is unchanged since the last run and that run reported a result (success,
+# failure or error), the check is not repeated: a broken setup does not rebuild and comment every 30
+# minutes. Dispatch with force-check to repeat it. The bot keeps ONE result comment per PR and edits it.
+#
+# Three jobs, least privilege: `prepare` (write scopes, runs only this repo's bot code) moves the pins,
+# pushes bump/auto, opens/updates the PR and sets `full-set` to pending; `check` (contents: read, no
+# persisted credentials) runs the third-party build; `report` (statuses/issues write, runs no build
+# code) sets the final status and the comment from check's result and its summary.json artifact.
 #
 # Keep-alive: GitHub switches off scheduled workflows after 60 days without repository activity.
 # Each scheduled run re-enables this workflow through the API, which resets that timer.
@@ -37,14 +43,11 @@ on:
       - scripts/bump.py
 
 permissions:
-  contents: write          # push bump/auto
-  pull-requests: write     # open / edit the bump PR
-  issues: write            # label and comment
-  statuses: write          # the full-set commit status
-  actions: write           # keep-alive (re-enable this workflow)
+  contents: read
 
 concurrency:
-  group: bump
+  # The bot's runs queue one after the other; dry runs on PRs have their own group per PR.
+  group: bump-${{ github.event_name == 'pull_request' && github.ref || 'bot' }}
   cancel-in-progress: false
 
 env:
@@ -55,25 +58,35 @@ env:
   GH_REPO: ${{ github.repository }}
   RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
   TRAILER: "🤖 Generated with [Claude Code](https://claude.com/claude-code)"
+  MARKER: "<!-- bump-bot:full-set -->"
   PYTHONDONTWRITEBYTECODE: "1"
 
 jobs:
-  bump:
+  prepare:
     runs-on: ubuntu-latest
-    timeout-minutes: 120
+    timeout-minutes: 15
+    permissions:
+      contents: write          # push bump/auto
+      pull-requests: write     # open / edit the bump PR
+      issues: write            # label and comment
+      statuses: write          # full-set = pending
+      actions: write           # keep-alive (re-enable this workflow)
+    outputs:
+      sha: ${{ steps.pr.outputs.sha }}
+      number: ${{ steps.pr.outputs.number }}
+      check: ${{ steps.pr.outputs.check }}
     steps:
       - name: Keep the schedule alive
         if: github.event_name == 'schedule'
         continue-on-error: true
         run: gh api -X PUT "repos/$GH_REPO/actions/workflows/bump.yml/enable"
 
-      - name: Bot (scripts and actions of this workflow's commit)
+      - name: Bot (scripts of this workflow's commit)
         uses: actions/checkout@v4
         with:
           path: bot
-          sparse-checkout: |
-            scripts
-            .github
+          sparse-checkout: scripts
+          persist-credentials: false
 
       - name: Manifest main
         uses: actions/checkout@v4
@@ -153,7 +166,7 @@ jobs:
           state="$(gh api "repos/$GH_REPO/commits/$sha/status" \
                    --jq "[.statuses[] | select(.context == \"$CONTEXT\")][0].state // \"\"")"
           check=true
-          if [ "$changed" = false ] && [ "$FORCE" != true ] && { [ "$state" = success ] || [ "$state" = failure ]; }; then
+          if [ "$changed" = false ] && [ "$FORCE" != true ] && [ -n "$state" ] && [ "$state" != pending ]; then
             check=false; echo "full-set already reported ($state) on $sha"
           fi
           { echo "sha=$sha"; echo "number=$n"; echo "check=$check"; } >> "$GITHUB_OUTPUT"
@@ -168,32 +181,79 @@ jobs:
             -f description="curatrix check robarm-manifest --stage full --no-cad: running" \
             -f target_url="$RUN_URL" >/dev/null
 
+  check:
+    needs: prepare
+    if: needs.prepare.outputs.check == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 100
+    permissions:
+      contents: read
+    steps:
+      - name: Bot (the workspace action of this workflow's commit)
+        uses: actions/checkout@v4
+        with:
+          path: bot
+          sparse-checkout: .github
+          persist-credentials: false
+
+      - name: Manifest at the bump commit
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.prepare.outputs.sha }}
+          path: ws/robarm-manifest
+          fetch-depth: 0
+          persist-credentials: false
+
       - name: Workspace at the bumped pins (integration role)
-        id: ws
-        if: steps.pr.outputs.check == 'true'
         uses: ./bot/.github/actions/workspace
         with:
           role: integration
 
       - name: curatrix check robarm-manifest --stage full --no-cad
-        id: check
-        if: steps.pr.outputs.check == 'true'
         working-directory: ws
         run: .venv/bin/curatrix check robarm-manifest --stage full --no-cad
 
-      - name: Report full-set (status and PR comment)
-        if: always() && steps.pr.outputs.check == 'true'
+      - name: Upload check results and docs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bump-full-set
+          path: |
+            ws/build/full/checks/
+            ws/build/full/docs/deploy/html/
+            ws/build/full/docs-build.log
+          if-no-files-found: ignore
+
+  report:
+    needs: [prepare, check]
+    if: always() && needs.prepare.outputs.check == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      statuses: write          # the full-set commit status
+      issues: write            # the result comment
+      pull-requests: write
+      actions: read            # download the artifact
+    steps:
+      - name: Results of the check job
+        uses: actions/download-artifact@v4
+        continue-on-error: true
+        with:
+          name: bump-full-set
+          path: result
+
+      - name: Report full-set (status and the one bot comment)
         env:
-          SHA: ${{ steps.pr.outputs.sha }}
-          N: ${{ steps.pr.outputs.number }}
-          OUTCOME: ${{ steps.check.outcome }}
-          SUMMARY: ws/build/full/checks/summary.json
+          SHA: ${{ needs.prepare.outputs.sha }}
+          N: ${{ needs.prepare.outputs.number }}
+          RESULT: ${{ needs.check.result }}
+          SUMMARY: result/checks/summary.json
         run: |
-          case "$OUTCOME" in
+          case "$RESULT" in
             success) state=success; desc="full set: all checks passed" ;;
             failure) if [ -f "$SUMMARY" ]; then state=failure; desc="full set: checks failed"
-                     else state=error; desc="full set: the check did not run to the end"; fi ;;
-            *) state=error; desc="full set: workspace setup failed or cancelled ($OUTCOME)" ;;
+                     else state=error; desc="full set: setup failed or the check stopped early"; fi ;;
+            *) state=error; desc="full set: check job $RESULT" ;;
           esac
           gh api "repos/$GH_REPO/statuses/$SHA" -f state="$state" -f context="$CONTEXT" \
             -f description="$desc" -f target_url="$RUN_URL" >/dev/null
@@ -201,7 +261,14 @@ jobs:
           import json, os, sys
           path, state = sys.argv[1], sys.argv[2]
           sha, run = os.environ["SHA"], os.environ["RUN_URL"]
+
+          def code(text):
+              # Code spans: no @mention notifications, no Markdown from check output.
+              text = str(text).replace("`", "'").replace("|", "\\|").replace("\n", " ")
+              return f"`{text}`"
+
           word = {"success": "passed", "failure": "FAILED", "error": "ERROR"}[state]
+          print(os.environ["MARKER"])
           print(f"**Full-set check {word}** on `{sha[:12]}` "
                 f"(`curatrix check robarm-manifest --stage full --no-cad`, integration role, "
                 f"status `{os.environ['CONTEXT']}`). [Run log and artifacts]({run})")
@@ -216,22 +283,22 @@ jobs:
               if rows:
                   print(); print("| Check | Status | Findings |"); print("|---|---|---|")
                   for c in rows:
-                      f = "<br>".join(x.replace("|", "\\|") for x in c.get("findings", [])[:5]) or "-"
-                      print(f"| {c['id']} {c['name']} | {c['status']} | {f} |")
+                      f = "<br>".join(code(x) for x in c.get("findings", [])[:5]) or "-"
+                      print(f"| {code(c['id'] + ' ' + c['name'])} | {code(c['status'])} | {f} |")
           else:
               print("No summary.json: the workspace setup or the check stopped early; see the run log.")
+          if state == "error":
+              print(); print("The bot does not retry this head by itself; dispatch `bump` with "
+                             "`force-check` once the cause is fixed.")
           print(); print(os.environ["TRAILER"])
           EOF
-          gh api "repos/$GH_REPO/issues/$N/comments" -F body=@"$RUNNER_TEMP/comment.md" >/dev/null
+          id="$(gh api --paginate "repos/$GH_REPO/issues/$N/comments" \
+                --jq ".[] | select(.user.login == \"github-actions[bot]\" and (.body | contains(\"$MARKER\"))) | .id" | head -1)"
+          if [ -n "$id" ]; then
+            gh api -X PATCH "repos/$GH_REPO/issues/comments/$id" -F body=@"$RUNNER_TEMP/comment.md" >/dev/null
+            echo "edited comment $id"
+          else
+            gh api "repos/$GH_REPO/issues/$N/comments" -F body=@"$RUNNER_TEMP/comment.md" >/dev/null
+            echo "added the result comment"
+          fi
           cat "$RUNNER_TEMP/comment.md" >> "$GITHUB_STEP_SUMMARY"
-
-      - name: Upload check results and docs
-        if: always() && steps.pr.outputs.check == 'true'
-        uses: actions/upload-artifact@v4
-        with:
-          name: bump-full-set
-          path: |
-            ws/build/full/checks/
-            ws/build/full/docs/deploy/html/
-            ws/build/full/docs-build.log
-          if-no-files-found: ignore
