@@ -7,9 +7,14 @@
 #
 # The site lives on the branch `gh-pages` (Pages source: "deploy from a branch", gh-pages, /).
 # Each publish checks the branch out, replaces ONLY its own version folder, rewrites the root files
-# (scripts/pages/site.py) and pushes one commit. Older version folders are never touched, so every
-# baseline stays published. A push that loses a race is retried on the new branch head.
+# (scripts/pages/site.py) and pushes one commit. Other version folders are not touched, so every
+# baseline stays published; a baseline folder is only rewritten by an explicit re-run on its tag.
+# A push that loses a race is retried on the new branch head.
 # (actions/deploy-pages would replace the whole site each time, research/zdocs.md §8.)
+#
+# Two jobs, least privilege: `build` runs third-party code (pip, tools, Sphinx/Doxygen over every
+# pinned repo) with a read-only token that is not kept in .git/config; `publish` only runs site.py
+# on the uploaded HTML and pushes gh-pages with a write token.
 #
 # The build is `curatrix docs full` in the integration role at EXACTLY the manifest's pins (no
 # sibling resolution, no CAD content, D56), through the local action .github/actions/workspace.
@@ -31,21 +36,26 @@ on:
         default: false
 
 permissions:
-  contents: write          # push to gh-pages
-  pages: write             # request a Pages build after the push
+  contents: read
 
 concurrency:
   # One run per version folder; a newer push to main supersedes a running latest/ build.
-  group: pages-${{ github.ref }}
-  cancel-in-progress: ${{ github.ref == 'refs/heads/main' }}
+  # root-only runs have their own group, so they never cancel a latest/ build.
+  group: pages-${{ github.ref }}-${{ inputs.root-only && 'root' || 'build' }}
+  cancel-in-progress: ${{ github.ref == 'refs/heads/main' && !inputs.root-only }}
 
 env:
   PYTHONDONTWRITEBYTECODE: "1"
 
 jobs:
-  pages:
+  build:
     runs-on: ubuntu-latest
     timeout-minutes: 90
+    permissions:
+      contents: read
+    outputs:
+      version: ${{ steps.what.outputs.version }}
+      publish: ${{ steps.what.outputs.publish }}
     steps:
       - name: What to publish
         id: what
@@ -68,10 +78,12 @@ jobs:
           echo "### pages: version \`$version\`, publish: $publish" >> "$GITHUB_STEP_SUMMARY"
 
       - name: Manifest
+        if: steps.what.outputs.version != 'root-only'
         uses: actions/checkout@v4
         with:
           path: ws/robarm-manifest   # west init -l needs the manifest at this path
           fetch-depth: 0             # tags: the robarm document shows the baseline (version_scope)
+          persist-credentials: false
 
       - name: Workspace at the pins (integration role)
         if: steps.what.outputs.version != 'root-only'
@@ -88,7 +100,7 @@ jobs:
         if: always() && steps.what.outputs.version != 'root-only'
         uses: actions/upload-artifact@v4
         with:
-          name: full-set-html-${{ steps.what.outputs.version }}
+          name: full-set-html
           path: |
             ws/build/full/docs/deploy/html/
             ws/build/full/docs-build.log
@@ -108,19 +120,41 @@ jobs:
           path: ${{ runner.temp }}/site/
           include-hidden-files: true
 
+  publish:
+    needs: build
+    if: needs.build.outputs.publish == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: write          # push to gh-pages
+      pages: write             # request a Pages build after the push
+    steps:
+      - name: Manifest (site.py and the remote for gh-pages)
+        uses: actions/checkout@v4
+        with:
+          path: repo
+          sparse-checkout: scripts
+
+      - name: HTML of the full set
+        if: needs.build.outputs.version != 'root-only'
+        uses: actions/download-artifact@v4
+        with:
+          name: full-set-html
+          path: html
+
       - name: Publish to gh-pages
-        if: steps.what.outputs.publish == 'true'
-        working-directory: ws/robarm-manifest
+        working-directory: repo
         env:
-          VERSION: ${{ steps.what.outputs.version }}
+          VERSION: ${{ needs.build.outputs.version }}
           GH_TOKEN: ${{ github.token }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           site="$RUNNER_TEMP/site"
-          html="$GITHUB_WORKSPACE/ws/build/full/docs/deploy/html"
+          html="$GITHUB_WORKSPACE/html/docs/deploy/html"
           script="$PWD/scripts/pages/site.py"
           if [ "$VERSION" = root-only ]; then args=(); else
+            test -d "$html" || { echo "::error::no HTML in the artifact"; exit 1; }
             args=(--html "$html" --version "$VERSION" --ref "${GITHUB_REF#refs/*/}" --sha "$GITHUB_SHA"); fi
           for attempt in 1 2 3 4 5; do
             git worktree remove --force "$site" 2>/dev/null || rm -rf "$site"
