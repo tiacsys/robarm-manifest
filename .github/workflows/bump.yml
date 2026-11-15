@@ -1,0 +1,237 @@
+# Bump bot (D61, D89, repo-topology.md §7.5).
+#
+# Every 30 minutes (and on demand) it compares the `main` of xdmod and of each robarm-* repo with the
+# pins in submanifests/*.yml (scripts/bump.py). If any moved, it rebuilds the branch `bump/auto` as
+# ONE commit on top of `main` and opens or updates ONE pull request (label `bump`). Tools, libraries
+# and Zephyr are never bumped here; their upgrades are deliberate PRs (D39).
+#
+# The PR is opened with this workflow's GITHUB_TOKEN, and pushes with that token start no workflows,
+# so `check` does not run on it. This job therefore runs the full-set check itself
+# (`curatrix check robarm-manifest --stage full --no-cad`, integration role, exactly at the bumped
+# pins) and reports it on the PR head as the commit status `full-set` (the same name as the
+# `full-set` job in check.yml, so one required check covers both kinds of PR) and as a PR comment.
+# If the bump branch is unchanged since the last run and that run reported a result, the check is
+# not repeated (dispatch with force-check to repeat it).
+#
+# Keep-alive: GitHub switches off scheduled workflows after 60 days without repository activity.
+# Each scheduled run re-enables this workflow through the API, which resets that timer.
+#
+# pull_request (changes to the bot itself) and dispatch with dry-run: compute and show the bump only.
+name: bump
+on:
+  schedule:
+    - cron: "17,47 * * * *"
+  workflow_dispatch:
+    inputs:
+      dry-run:
+        description: only compute and show the bump (no branch, PR, check)
+        type: boolean
+        default: false
+      force-check:
+        description: run the full-set check even if the bump branch is unchanged
+        type: boolean
+        default: false
+  pull_request:
+    paths:
+      - .github/workflows/bump.yml
+      - scripts/bump.py
+
+permissions:
+  contents: write          # push bump/auto
+  pull-requests: write     # open / edit the bump PR
+  issues: write            # label and comment
+  statuses: write          # the full-set commit status
+  actions: write           # keep-alive (re-enable this workflow)
+
+concurrency:
+  group: bump
+  cancel-in-progress: false
+
+env:
+  BRANCH: bump/auto
+  BASE: main
+  CONTEXT: full-set
+  GH_TOKEN: ${{ github.token }}
+  GH_REPO: ${{ github.repository }}
+  RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+  TRAILER: "🤖 Generated with [Claude Code](https://claude.com/claude-code)"
+  PYTHONDONTWRITEBYTECODE: "1"
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - name: Keep the schedule alive
+        if: github.event_name == 'schedule'
+        continue-on-error: true
+        run: gh api -X PUT "repos/$GH_REPO/actions/workflows/bump.yml/enable"
+
+      - name: Bot (scripts and actions of this workflow's commit)
+        uses: actions/checkout@v4
+        with:
+          path: bot
+          sparse-checkout: |
+            scripts
+            .github
+
+      - name: Manifest main
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.BASE }}
+          path: ws/robarm-manifest   # west init -l needs the manifest at this path
+          fetch-depth: 0
+
+      - name: Compare the pins with main
+        id: bump
+        env:
+          DRY: ${{ github.event_name == 'pull_request' || inputs.dry-run == true }}
+        run: |
+          python3 bot/scripts/bump.py --manifest ws/robarm-manifest --out "$RUNNER_TEMP/bump" --apply
+          title="$(cat "$RUNNER_TEMP/bump/title.txt")"
+          echo "title=$title" >> "$GITHUB_OUTPUT"
+          echo "dry=$DRY" >> "$GITHUB_OUTPUT"
+          { echo "### ${title:-nothing to bump} (dry run: $DRY)"; echo; cat "$RUNNER_TEMP/bump/body.md"; } \
+            >> "$GITHUB_STEP_SUMMARY"
+          git -C ws/robarm-manifest diff --stat
+
+      - name: Nothing to bump, so close a stale bump PR
+        if: steps.bump.outputs.title == '' && steps.bump.outputs.dry != 'true'
+        run: |
+          n="$(gh pr list --head "$BRANCH" --base "$BASE" --state open --json number --jq '.[0].number // empty')"
+          [ -z "$n" ] && exit 0
+          gh api "repos/$GH_REPO/issues/$n/comments" -f body="The pins on \`$BASE\` match the \`main\` of every repo now; nothing left to bump. Closing.
+
+          $TRAILER" >/dev/null
+          gh api -X PATCH "repos/$GH_REPO/pulls/$n" -f state=closed >/dev/null
+          git -C ws/robarm-manifest push -q origin --delete "$BRANCH" || true
+          echo "closed #$n"
+
+      - name: Bump branch and pull request
+        id: pr
+        if: steps.bump.outputs.title != '' && steps.bump.outputs.dry != 'true'
+        working-directory: ws/robarm-manifest
+        env:
+          TITLE: ${{ steps.bump.outputs.title }}
+          FORCE: ${{ inputs.force-check == true }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          base="$(git rev-parse HEAD)"
+          python3 - "$RUNNER_TEMP/bump/bump.json" > "$RUNNER_TEMP/msg.txt" <<'EOF'
+          import json, os, sys
+          print(os.environ["TITLE"]); print()
+          for b in json.load(open(sys.argv[1])):
+              print(f"{b['name']}: {b['old'][:12]} -> {b['new'][:12]} ({b['status']}, {b['ahead_by']} commits)")
+          print(); print(f"Bump bot run: {os.environ['RUN_URL']}")
+          EOF
+          git commit -q -a -F "$RUNNER_TEMP/msg.txt"
+          changed=true
+          if git fetch -q origin "$BRANCH" 2>/dev/null \
+             && [ "$(git rev-parse FETCH_HEAD^)" = "$base" ] \
+             && [ "$(git rev-parse 'FETCH_HEAD^{tree}')" = "$(git rev-parse 'HEAD^{tree}')" ]; then
+            git reset -q --hard FETCH_HEAD; changed=false
+            echo "bump branch unchanged at $(git rev-parse --short HEAD)"
+          else
+            git push -q -f origin "HEAD:refs/heads/$BRANCH"
+            echo "pushed $BRANCH at $(git rev-parse --short HEAD)"
+          fi
+          sha="$(git rev-parse HEAD)"
+
+          { cat "$RUNNER_TEMP/bump/body.md"; echo; echo "$TRAILER"; } > "$RUNNER_TEMP/pr.md"
+          n="$(gh pr list --head "$BRANCH" --base "$BASE" --state open --json number --jq '.[0].number // empty')"
+          if [ -z "$n" ]; then
+            n="$(gh api "repos/$GH_REPO/pulls" -f title="$TITLE" -f head="$BRANCH" -f base="$BASE" \
+                 -F body=@"$RUNNER_TEMP/pr.md" --jq .number)"
+            gh api "repos/$GH_REPO/issues/$n/labels" -f "labels[]=bump" >/dev/null
+            echo "opened #$n"
+          elif [ "$changed" = true ]; then
+            gh api -X PATCH "repos/$GH_REPO/pulls/$n" -f title="$TITLE" -F body=@"$RUNNER_TEMP/pr.md" >/dev/null
+            echo "updated #$n"
+          fi
+
+          state="$(gh api "repos/$GH_REPO/commits/$sha/status" \
+                   --jq "[.statuses[] | select(.context == \"$CONTEXT\")][0].state // \"\"")"
+          check=true
+          if [ "$changed" = false ] && [ "$FORCE" != true ] && { [ "$state" = success ] || [ "$state" = failure ]; }; then
+            check=false; echo "full-set already reported ($state) on $sha"
+          fi
+          { echo "sha=$sha"; echo "number=$n"; echo "check=$check"; } >> "$GITHUB_OUTPUT"
+          echo "Bump PR: $GITHUB_SERVER_URL/$GH_REPO/pull/$n (head ${sha::12}, full-set check: $check)" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Status full-set = pending
+        if: steps.pr.outputs.check == 'true'
+        env:
+          SHA: ${{ steps.pr.outputs.sha }}
+        run: |
+          gh api "repos/$GH_REPO/statuses/$SHA" -f state=pending -f context="$CONTEXT" \
+            -f description="curatrix check robarm-manifest --stage full --no-cad: running" \
+            -f target_url="$RUN_URL" >/dev/null
+
+      - name: Workspace at the bumped pins (integration role)
+        id: ws
+        if: steps.pr.outputs.check == 'true'
+        uses: ./bot/.github/actions/workspace
+        with:
+          role: integration
+
+      - name: curatrix check robarm-manifest --stage full --no-cad
+        id: check
+        if: steps.pr.outputs.check == 'true'
+        working-directory: ws
+        run: .venv/bin/curatrix check robarm-manifest --stage full --no-cad
+
+      - name: Report full-set (status and PR comment)
+        if: always() && steps.pr.outputs.check == 'true'
+        env:
+          SHA: ${{ steps.pr.outputs.sha }}
+          N: ${{ steps.pr.outputs.number }}
+          OUTCOME: ${{ steps.check.outcome }}
+          SUMMARY: ws/build/full/checks/summary.json
+        run: |
+          case "$OUTCOME" in
+            success) state=success; desc="full set: all checks passed" ;;
+            failure) if [ -f "$SUMMARY" ]; then state=failure; desc="full set: checks failed"
+                     else state=error; desc="full set: the check did not run to the end"; fi ;;
+            *) state=error; desc="full set: workspace setup failed or cancelled ($OUTCOME)" ;;
+          esac
+          gh api "repos/$GH_REPO/statuses/$SHA" -f state="$state" -f context="$CONTEXT" \
+            -f description="$desc" -f target_url="$RUN_URL" >/dev/null
+          python3 - "$SUMMARY" "$state" > "$RUNNER_TEMP/comment.md" <<'EOF'
+          import json, os, sys
+          path, state = sys.argv[1], sys.argv[2]
+          sha, run = os.environ["SHA"], os.environ["RUN_URL"]
+          word = {"success": "passed", "failure": "FAILED", "error": "ERROR"}[state]
+          print(f"**Full-set check {word}** on `{sha[:12]}` "
+                f"(`curatrix check robarm-manifest --stage full --no-cad`, integration role, "
+                f"status `{os.environ['CONTEXT']}`). [Run log and artifacts]({run})")
+          print()
+          if os.path.exists(path):
+              s = json.load(open(path))
+              counts = {}
+              for c in s["checks"]:
+                  counts[c["status"]] = counts.get(c["status"], 0) + 1
+              print(", ".join(f"{v} {k}" for k, v in sorted(counts.items())))
+              rows = [c for c in s["checks"] if c["status"] not in ("pass", "skip")]
+              if rows:
+                  print(); print("| Check | Status | Findings |"); print("|---|---|---|")
+                  for c in rows:
+                      f = "<br>".join(x.replace("|", "\\|") for x in c.get("findings", [])[:5]) or "-"
+                      print(f"| {c['id']} {c['name']} | {c['status']} | {f} |")
+          else:
+              print("No summary.json: the workspace setup or the check stopped early; see the run log.")
+          print(); print(os.environ["TRAILER"])
+          EOF
+          gh api "repos/$GH_REPO/issues/$N/comments" -F body=@"$RUNNER_TEMP/comment.md" >/dev/null
+          cat "$RUNNER_TEMP/comment.md" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload check results and docs
+        if: always() && steps.pr.outputs.check == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: bump-full-set
+          path: |
+            ws/build/full/checks/
+            ws/build/full/docs/deploy/html/
+            ws/build/full/docs-build.log
+          if-no-files-found: ignore

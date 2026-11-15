@@ -16,6 +16,9 @@ The west manifest of the robot-arm workspace, the full document set, and the bas
    - Pins of xdmod and robarm-* move through bump PRs, after the upstream PRs are merged. Do not
      pin a branch name or a PR branch, except zdocs (see the comment in
      `submanifests/00-framework.yml`).
+   - The bump bot (`.github/workflows/bump.yml`) owns the branch `bump/auto` and rebuilds it from
+     `main` on every run. Do not push to it; change `scripts/bump.py` instead. It finds pins by
+     the line layout `- name:` / `remote: tiacsys` / `revision: <sha>`; keep that layout.
    - Library and Zephyr upgrades are their own PRs.
 2. **Groups decide what a role gets** (`repo-topology.md` §4). West makes a project active as
    soon as ONE of its groups is enabled. So a big library carries only its own group
