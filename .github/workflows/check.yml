@@ -5,7 +5,11 @@
 # The manifest under check is this commit (manifest-ref), not main, so a PR that moves pins is
 # checked with its own pins. The integration role gets every repo except the big libraries (D90).
 #
-# Pages publishing (D55) is pages.yml; the bump bot (D89) comes in a later task.
+# Pages publishing (D55) is pages.yml, the bump bot (D89) bump.yml.
+#
+# `full-set` is the check to require on main (ruleset, task 4.4). It passes iff the check job
+# passed. Bump PRs get no workflow runs (they are pushed with GITHUB_TOKEN); bump.yml sets a commit
+# status with the same name on their head instead, so one required check covers both.
 name: check
 on:
   pull_request:
@@ -20,3 +24,15 @@ jobs:
       repo: robarm-manifest
       role: integration
       manifest-ref: ${{ github.event.pull_request.head.sha || github.sha }}
+
+  full-set:
+    needs: check
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: check passed
+        env:
+          RESULT: ${{ needs.check.result }}
+        run: |
+          echo "check: $RESULT"
+          test "$RESULT" = success

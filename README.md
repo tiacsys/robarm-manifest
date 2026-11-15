@@ -96,6 +96,17 @@ Pins move through pull requests on this repo. A change across repos has one PR p
 after they are merged, one PR here that moves the pins together. Library and Zephyr upgrades are
 their own PRs.
 
+The **bump bot** (`.github/workflows/bump.yml`, `scripts/bump.py`) does the "moves the pins"
+part. Every 30 minutes it compares the `main` of xdmod and of each robarm repo with the pins.
+When any moved, it rebuilds the branch `bump/auto` from `main` and opens or updates one pull
+request with the label `bump`. It then runs `curatrix check robarm-manifest --stage full
+--no-cad` itself and reports the result as the commit status `full-set` and as a comment. A
+person reviews and merges the bump PR. To see what it would bump, run from the workspace root:
+
+```sh
+python3 robarm-manifest/scripts/bump.py --manifest robarm-manifest --out build/robarm-manifest/bump
+```
+
 ## Licence
 
 Apache-2.0 (see `LICENSE`).
