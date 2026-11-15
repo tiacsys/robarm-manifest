@@ -63,7 +63,7 @@ setup. While you work on branches, use `curatrix update` instead of `west update
 | `ids.yaml` | ID ledger; this repo owns the project decisions `PRJ-DEC` |
 | `requirements.txt`, `tools.yaml` | what this repo needs from pip (west) and as other tools (nothing yet) |
 | `claude/` | rules for agents that work in this repo |
-| `.github/` | CI (calls the reusable check workflow in xdmod), Pages publishing, the workspace action, the pull request template |
+| `.github/` | CI and Pages publishing (both call the reusable check workflow in xdmod), the pull request template |
 | `scripts/pages/` | puts one version of the full set into the Pages site; the version switcher |
 
 ## Common commands

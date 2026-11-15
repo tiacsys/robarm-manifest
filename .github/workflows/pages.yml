@@ -12,12 +12,11 @@
 # A push that loses a race is retried on the new branch head.
 # (actions/deploy-pages would replace the whole site each time, research/zdocs.md §8.)
 #
-# Two jobs, least privilege: `build` runs third-party code (pip, tools, Sphinx/Doxygen over every
-# pinned repo) with a read-only token that is not kept in .git/config; `publish` only runs site.py
-# on the uploaded HTML and pushes gh-pages with a write token.
-#
-# The build is `curatrix docs full` in the integration role at EXACTLY the manifest's pins (no
-# sibling resolution, no CAD content, D56), through the local action .github/actions/workspace.
+# Least privilege: `build` is xdmod's reusable workflow (curatrix-check.yml) with a read-only token.
+# It runs the strict full-set docs build (`curatrix check robarm-manifest --only CK-A6`, the same
+# build as `curatrix docs full`) in the integration role at EXACTLY the manifest's pins
+# (`resolve-siblings: false`, no CAD content, D56) and uploads the HTML. `publish` only runs
+# site.py on that HTML and pushes gh-pages with a write token.
 name: pages
 on:
   push:
@@ -26,7 +25,6 @@ on:
   pull_request:
     paths:
       - .github/workflows/pages.yml
-      - .github/actions/workspace/**
       - scripts/pages/**
   workflow_dispatch:
     inputs:
@@ -48,11 +46,8 @@ env:
   PYTHONDONTWRITEBYTECODE: "1"
 
 jobs:
-  build:
+  what:
     runs-on: ubuntu-latest
-    timeout-minutes: 90
-    permissions:
-      contents: read
     outputs:
       version: ${{ steps.what.outputs.version }}
       publish: ${{ steps.what.outputs.publish }}
@@ -77,52 +72,50 @@ jobs:
           echo "publish=$publish" >> "$GITHUB_OUTPUT"
           echo "### pages: version \`$version\`, publish: $publish" >> "$GITHUB_STEP_SUMMARY"
 
-      - name: Manifest
-        if: steps.what.outputs.version != 'root-only'
-        uses: actions/checkout@v4
+  build:
+    needs: what
+    if: needs.what.outputs.version != 'root-only'
+    permissions:
+      contents: read
+    uses: tiacsys/xdmod/.github/workflows/curatrix-check.yml@main
+    with:
+      repo: robarm-manifest
+      role: integration
+      manifest-ref: ${{ github.sha }}
+      resolve-siblings: false
+      extra-args: --only CK-A6
+    # uploads the artifact curatrix-robarm-manifest-pr with full/docs/deploy/html/
+
+  dry-run:
+    needs: [what, build]
+    if: needs.what.outputs.publish != 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
         with:
-          path: ws/robarm-manifest   # west init -l needs the manifest at this path
-          fetch-depth: 0             # tags: the robarm document shows the baseline (version_scope)
+          sparse-checkout: scripts
           persist-credentials: false
-
-      - name: Workspace at the pins (integration role)
-        if: steps.what.outputs.version != 'root-only'
-        uses: ./ws/robarm-manifest/.github/actions/workspace
+      - uses: actions/download-artifact@v4
         with:
-          role: integration
-
-      - name: curatrix docs full
-        if: steps.what.outputs.version != 'root-only'
-        working-directory: ws
-        run: .venv/bin/curatrix docs full
-
-      - name: Upload the HTML of the full set
-        if: always() && steps.what.outputs.version != 'root-only'
-        uses: actions/upload-artifact@v4
-        with:
-          name: full-set-html
-          path: |
-            ws/build/full/docs/deploy/html/
-            ws/build/full/docs-build.log
-          if-no-files-found: ignore
-
-      - name: Dry run (site into an empty folder)
-        if: steps.what.outputs.publish != 'true'
+          name: curatrix-robarm-manifest-pr
+          path: art
+      - name: Site into an empty folder
         run: |
-          python3 ws/robarm-manifest/scripts/pages/site.py --site "$RUNNER_TEMP/site" \
-            --html ws/build/full/docs/deploy/html --version latest --ref "$GITHUB_REF" --sha "$GITHUB_SHA"
-
-      - name: Upload the dry-run site
-        if: steps.what.outputs.publish != 'true'
-        uses: actions/upload-artifact@v4
+          # the artifact root is the common folder of the uploaded paths (build/ or build/full/)
+          html="$(find art -type d -path '*docs/deploy/html' | head -1)"
+          python3 scripts/pages/site.py --site "$RUNNER_TEMP/site" \
+            --html "$html" --version latest --ref "$GITHUB_REF" --sha "$GITHUB_SHA"
+      - uses: actions/upload-artifact@v4
         with:
           name: pages-site-dry-run
           path: ${{ runner.temp }}/site/
           include-hidden-files: true
 
   publish:
-    needs: build
-    if: needs.build.outputs.publish == 'true'
+    needs: [what, build]
+    if: >-
+      always() && needs.what.outputs.publish == 'true' &&
+      (needs.build.result == 'success' || needs.what.outputs.version == 'root-only')
     runs-on: ubuntu-latest
     timeout-minutes: 20
     permissions:
@@ -136,25 +129,25 @@ jobs:
           sparse-checkout: scripts
 
       - name: HTML of the full set
-        if: needs.build.outputs.version != 'root-only'
+        if: needs.what.outputs.version != 'root-only'
         uses: actions/download-artifact@v4
         with:
-          name: full-set-html
-          path: html
+          name: curatrix-robarm-manifest-pr
+          path: art
 
       - name: Publish to gh-pages
         working-directory: repo
         env:
-          VERSION: ${{ needs.build.outputs.version }}
+          VERSION: ${{ needs.what.outputs.version }}
           GH_TOKEN: ${{ github.token }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           site="$RUNNER_TEMP/site"
-          html="$GITHUB_WORKSPACE/html/docs/deploy/html"
+          html="$(find "$GITHUB_WORKSPACE/art" -type d -path '*docs/deploy/html' 2>/dev/null | head -1)"
           script="$PWD/scripts/pages/site.py"
           if [ "$VERSION" = root-only ]; then args=(); else
-            test -d "$html" || { echo "::error::no HTML in the artifact"; exit 1; }
+            [ -n "$html" ] && test -d "$html" || { echo "::error::no HTML in the artifact"; exit 1; }
             args=(--html "$html" --version "$VERSION" --ref "${GITHUB_REF#refs/*/}" --sha "$GITHUB_SHA"); fi
           for attempt in 1 2 3 4 5; do
             git worktree remove --force "$site" 2>/dev/null || rm -rf "$site"
