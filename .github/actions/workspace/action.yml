@@ -1,0 +1,62 @@
+# West workspace at EXACTLY the manifest's pins, plus the curatrix venv and tools.
+#
+# Used by the Pages publishing (pages.yml) and the bump bot (bump.yml). The steps mirror steps 1-3 and
+# 5-6 of xdmod's reusable workflow (xdmod/.github/workflows/curatrix-check.yml), but WITHOUT the sibling
+# resolution of D127: a baseline, `latest` and a bump PR must be built from the pins, not from the
+# repos' main branches. Keep the two in step until xdmod offers this as an input (resolve-siblings).
+#
+# The caller checks out the manifest under test at `ws/robarm-manifest` first (west init -l needs it
+# there). Afterwards `ws/` is the workspace root; run curatrix as `.venv/bin/curatrix` from there.
+name: xdmod workspace at the manifest pins
+description: west init/update with a role's group filter, then curatrix bootstrap (venv, tools)
+inputs:
+  role:
+    description: curatrix role (group filter); the full set needs integration (D90)
+    default: integration
+  python-version:
+    default: "3.14"
+runs:
+  using: composite
+  steps:
+    - name: System packages (graphviz for needflow, ninja for zdocs)
+      shell: bash
+      run: sudo apt-get update -q && sudo apt-get install -y -q graphviz ninja-build
+
+    - uses: actions/setup-python@v5
+      with:
+        python-version: ${{ inputs.python-version }}
+
+    - name: West workspace (role ${{ inputs.role }}, at the pins)
+      shell: bash
+      working-directory: ws
+      env:
+        ROLE: ${{ inputs.role }}
+      run: |
+        python -m venv .venv
+        .venv/bin/pip install -q west==1.4.0
+        .venv/bin/west init -l robarm-manifest
+        case "$ROLE" in
+          syseng) ;;
+          ee) .venv/bin/west config manifest.group-filter -- +ee ;;
+          me) .venv/bin/west config manifest.group-filter -- +me ;;
+          sw) .venv/bin/west config manifest.group-filter -- +sw ;;
+          *) .venv/bin/west config manifest.group-filter -- +ee,+me,+sw,+integration ;;
+        esac
+        .venv/bin/west config xdmod.role "$ROLE"
+        .venv/bin/west update --fetch-opt=--filter=blob:none
+        .venv/bin/west list -f "{name:20} {sha}" | grep -E '^(xdmod|robarm-)' || true
+
+    - name: Tool downloads cache
+      uses: actions/cache@v4
+      with:
+        path: ws/.xdmod/cache/downloads
+        key: xdmod-tools-${{ hashFiles('ws/**/tools.yaml') }}
+
+    - name: curatrix (venv, tools)
+      shell: bash
+      working-directory: ws
+      env:
+        ROLE: ${{ inputs.role }}
+      run: |
+        .venv/bin/pip install -q -e xdmod/curatrix
+        .venv/bin/curatrix bootstrap --role "$ROLE" --no-west --no-doctor

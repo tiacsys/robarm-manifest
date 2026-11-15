@@ -5,7 +5,7 @@
 # The manifest under check is this commit (manifest-ref), not main, so a PR that moves pins is
 # checked with its own pins. The integration role gets every repo except the big libraries (D90).
 #
-# The bump bot (D89) and Pages publishing (D55) come in later tasks.
+# Pages publishing (D55) is pages.yml; the bump bot (D89) comes in a later task.
 name: check
 on:
   pull_request:
