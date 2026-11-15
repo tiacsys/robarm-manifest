@@ -53,8 +53,12 @@ Documents
    * -
      - :external+int-test-report:doc:`index`
      - ``robarm-integration``
-
-The XDMOD manual (methods, trace model, ID scheme) will be added to this set once it exists.
+   * - Framework
+     - :external+xdmod-manual:doc:`index`
+     - ``xdmod``
+   * -
+     - :external+xdmod-ref:doc:`index`
+     - ``xdmod``
 
 Get the workspace
 -----------------

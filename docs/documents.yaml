@@ -31,8 +31,8 @@ groups:
     title: "Mechanical"
   - id: g-integration
     title: "Integration"
-  # - id: g-framework          # switch on together with the xdmod documents below
-  #   title: "Framework"
+  - id: g-framework
+    title: "Framework"
 
 documents:
   # ---------------------------------------------------------------- robarm-manifest (this repo)
@@ -144,21 +144,21 @@ documents:
     needs: {source: json}
 
   # ---------------------------------------------------------------- xdmod (D111)
-  # xdmod has no documents yet (the XDMOD manual is a later task). Once it has, switch these on
-  # (and the g-framework group above). robarm documents may link to them; xdmod never links back.
-  # xdmod-manual:
-  #   title: "XDMOD Manual"
-  #   group: g-framework
-  #   prefix: xdmod-manual
-  #   doc_dir: ../../xdmod/docs/xdmod-manual
-  #   version_project: xdmod
-  #   builders: [html]
-  #   needs: {source: json}
-  # xdmod-ref:
-  #   title: "curatrix Reference"
-  #   group: g-framework
-  #   prefix: xdmod-ref
-  #   doc_dir: ../../xdmod/docs/xdmod-ref
-  #   version_project: xdmod
-  #   builders: [html]
-  #   needs: {source: json}
+  # The XDMOD manual and the curatrix reference, built from the pinned xdmod. robarm documents may
+  # link to them (e.g. project decisions `follows` framework decisions); xdmod never links back.
+  xdmod-manual:
+    title: "XDMOD Manual"
+    group: g-framework
+    prefix: xdmod-manual
+    doc_dir: ../../xdmod/docs/xdmod-manual
+    version_project: xdmod
+    builders: [html]
+    needs: {source: json}
+  xdmod-ref:
+    title: "curatrix Reference"
+    group: g-framework
+    prefix: xdmod-ref
+    doc_dir: ../../xdmod/docs/xdmod-ref
+    version_project: xdmod
+    builders: [html]
+    needs: {source: json}
