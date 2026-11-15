@@ -84,7 +84,7 @@ the pins, without CAD content) and publishes it to the branch `gh-pages`:
 | Folder | Built from |
 |---|---|
 | `latest/` | every push to `main` |
-| `vX.Y.Z/` | the tag `baseline/vX.Y.Z`; one folder per baseline, never rewritten later |
+| `vX.Y.Z/` | the tag `baseline/vX.Y.Z`; one folder per baseline. It is only rewritten by an explicit re-run of the workflow on that tag |
 
 `versions.json` at the site root lists the versions. Every page loads `version-switcher.js` from
 the root, which offers the same page in another version. A publish replaces only its own folder.
