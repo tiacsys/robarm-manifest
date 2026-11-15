@@ -15,7 +15,7 @@ manifest:
     # System needs, requirements, SysML model and views. The bump bot moves this pin (D89).
     - name: robarm-syseng
       remote: tiacsys
-      revision: 80f48d30632a93b7294f530e8d41542038c9a448
+      revision: 0e72561d8a8be242554c4c9cad2127a3b6f68194
 
     # Doc engine (D25), a Zephyr module.
     # Task 4.3a (D62, D139): zdocs is pinned to an open PR branch until its fixes merge:

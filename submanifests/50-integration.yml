@@ -8,5 +8,5 @@ manifest:
   projects:
     - name: robarm-integration
       remote: tiacsys
-      revision: c6c484dc984726a0973313d76d8a5e7beffbe560
+      revision: 0e93477cb15ef00c8ca4f2566fa81467a8ab0211
       groups: [integration]
