@@ -1,4 +1,11 @@
 {
   "comment": "Written by robarm-manifest/.github/workflows/pages.yml (scripts/pages/site.py).",
-  "versions": []
+  "versions": [
+    {
+      "name": "latest",
+      "ref": "main",
+      "sha": "481e0c9829e7e9cd2f9738987d13d1d9002b2453",
+      "published": "2026-11-15T03:29:22Z"
+    }
+  ]
 }
