@@ -1,0 +1,21 @@
+# Mechanical engineering (repo-topology.md §3, D88). Group `me`.
+# The FreeCAD parts library (about 5.7 GB) is cloned shallow and carries ONLY the group
+# `freecad-parts` (see 20-ee.yml for why). The roles me and full enable it (`+me,+freecad-parts`);
+# the integration role leaves it out (D90).
+manifest:
+  remotes:
+    - name: tiacsys
+      url-base: https://github.com/tiacsys
+
+  projects:
+    - name: robarm-me
+      remote: tiacsys
+      revision: e6c8e18c1c65e0053ccc8b0f26a403aff5dae931
+      groups: [me]
+
+    - name: FreeCAD-library
+      url: https://github.com/FreeCAD/FreeCAD-library
+      revision: f5ca01cdcaa2f69b9295a6382719c2d90628780c
+      path: libs/freecad
+      clone-depth: 1
+      groups: [freecad-parts]

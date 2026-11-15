@@ -1,0 +1,11 @@
+# Software (repo-topology.md §3). Group `sw`. robarm-sw is a Zephyr module (D114).
+manifest:
+  remotes:
+    - name: tiacsys
+      url-base: https://github.com/tiacsys
+
+  projects:
+    - name: robarm-sw
+      remote: tiacsys
+      revision: c869d731914e256025c7075a5c2bf123f26978ad
+      groups: [sw]

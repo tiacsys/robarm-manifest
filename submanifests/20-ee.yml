@@ -1,0 +1,46 @@
+# Electrical engineering (repo-topology.md §3, D88). Group `ee`.
+# The tiacsys KiCad libraries go under libs/kicad/ (D91). The 3D models (about 1.8 GB) are cloned
+# shallow and carry ONLY the group `kicad-3d`: west makes a project active as soon as ONE of its
+# groups is enabled, so with `[ee, kicad-3d]` the plain `ee` role would get them too. Only the
+# roles ee3d and full (`+ee,+kicad-3d`) get them.
+manifest:
+  remotes:
+    - name: tiacsys
+      url-base: https://github.com/tiacsys
+
+  projects:
+    - name: robarm-ee
+      remote: tiacsys
+      revision: c83de861415d5f3e214d0bdcc1eb9a3f630e86af
+      groups: [ee]
+
+    - name: kicad-symbols
+      remote: tiacsys
+      revision: 9fa442824ffd3786b0c420b5d7e45f9a461b7c72
+      path: libs/kicad/symbols
+      groups: [ee]
+
+    - name: kicad-footprints
+      remote: tiacsys
+      revision: a0dcd398e7ea4b00cdeb91efc35f09cceaa9097d
+      path: libs/kicad/footprints
+      groups: [ee]
+
+    - name: kicad-templates
+      remote: tiacsys
+      revision: 3ed4538b0f965d821df63a5fffc4441e723cfe7f
+      path: libs/kicad/templates
+      groups: [ee]
+
+    - name: kicad-library-utils
+      remote: tiacsys
+      revision: 90b0af91eaffcd91552027c3bfd166896f78c7de
+      path: libs/kicad/library-utils
+      groups: [ee]
+
+    - name: kicad-packages3D
+      remote: tiacsys
+      revision: afa6aab16f43a736cd062b8c853863e753653921
+      path: libs/kicad/packages3D
+      clone-depth: 1
+      groups: [kicad-3d]

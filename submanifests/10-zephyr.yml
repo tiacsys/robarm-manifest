@@ -1,0 +1,11 @@
+# Zephyr RTOS (repo-topology.md §3). No groups: every role gets the full Zephyr tree for now (D87).
+# Pinned by tag. Only the modules on the allowlist are imported from Zephyr's own west.yml.
+manifest:
+  projects:
+    - name: zephyr
+      url: https://github.com/zephyrproject-rtos/zephyr
+      revision: v4.4.2
+      import:
+        name-allowlist:
+          - cmsis_6        # Cortex-M support
+          - hal_stm32      # NUCLEO-G474RE (D16)

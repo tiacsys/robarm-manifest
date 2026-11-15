@@ -1,0 +1,50 @@
+# Framework, tools and the system-level repo (repo-topology.md §3).
+# No groups: these projects are active in every role (D35, D66, D93).
+# robarm-syseng is here because every domain needs it as its upstream (D35).
+manifest:
+  remotes:
+    - name: tiacsys
+      url-base: https://github.com/tiacsys
+
+  projects:
+    # The framework (D66). Pinned by SHA until it has SemVer releases (D92).
+    - name: xdmod
+      remote: tiacsys
+      revision: 0f7dc6a8cd348c0cf6be3e2218fc6a3754d8b9b8
+
+    # System needs, requirements, SysML model and views. The bump bot moves this pin (D89).
+    - name: robarm-syseng
+      remote: tiacsys
+      revision: 80f48d30632a93b7294f530e8d41542038c9a448
+
+    # Doc engine (D25), a Zephyr module.
+    # Task 4.3a (D62, D139): zdocs is pinned to an open PR branch until its fixes merge:
+    #   #35 tkaestner/34-sphinx-needs-9.2   sphinx-needs 9.2, unique prefixes
+    #   #36 tkaestner/29-strict-mode        strict mode (ZDOCS_STRICT)          <- pinned here
+    #   #37 tkaestner/25-version-project    version_project for Sphinx documents
+    #   #38 tkaestner/26-needs-imports      per-document needs imports, transitive
+    # The four PRs are independent branches, so only one can be pinned. Until they merge, the
+    # others are covered by workarounds (doc-architecture.md §3). Once #35-#38 are merged, this
+    # pin moves to a commit on zdocs main.
+    - name: zdocs
+      remote: tiacsys
+      revision: c66f43641d28181ae0046a525bfbfa4d6b1fea3e   # head of zdocs PR #36
+      path: tools/zdocs
+
+    # Suspect-link tool (D44, D59).
+    - name: affirmatrix
+      remote: tiacsys
+      revision: fb3f4dcd8439c1566b6a69d3e5e6ca7fb8fb61ab
+      path: tools/affirmatrix
+
+    # SYSMOD v5 SysML library (D84).
+    - name: sysmod-sysmlv2
+      url: https://github.com/mbse4u/sysmod-sysmlv2
+      revision: 621454a0df9e6c84824176eecb503ce53ee379c9
+      path: libs/sysmod-sysmlv2
+
+    # Variant library, SysML v2 successor of VAMOS (D102).
+    - name: PLEML
+      url: https://github.com/MBSE4U/PLEML
+      revision: b694648cce4b96126eda2de3eb881c54397ae035
+      path: libs/pleml

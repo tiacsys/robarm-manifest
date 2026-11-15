@@ -1,0 +1,19 @@
+# West manifest of the robot-arm workspace (repo-topology.md §3, D7, D14, D86).
+#
+# This file and the files in submanifests/ are the ONLY place that pins revisions (D39).
+# The project list is split by area into submanifests/*.yml, imported in name order.
+# Projects carry groups, so each role checks out only what it needs (repo-topology.md §4).
+#
+# Set up a workspace with scripts/bootstrap.sh (see README.md), not by hand.
+manifest:
+  version: "1.2"
+
+  self:
+    path: robarm-manifest
+    import: submanifests            # every *.yml in submanifests/, in name order
+
+  # Minimal by default (D93): framework, syseng and Zephyr only. A role switches its groups on
+  # with `west config manifest.group-filter` (done by `curatrix bootstrap --role <role>`).
+  # A project is active unless ALL of its groups are disabled, so one enabled group is enough.
+  # That is why the big libraries carry only their own group (kicad-3d, freecad-parts).
+  group-filter: [-ee, -me, -sw, -integration, -kicad-3d, -freecad-parts]

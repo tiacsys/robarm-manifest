@@ -1,0 +1,12 @@
+# System and integration tests, HIL setups, evidence branch (repo-topology.md §3, D73).
+# Group `integration`.
+manifest:
+  remotes:
+    - name: tiacsys
+      url-base: https://github.com/tiacsys
+
+  projects:
+    - name: robarm-integration
+      remote: tiacsys
+      revision: c6c484dc984726a0973313d76d8a5e7beffbe560
+      groups: [integration]
