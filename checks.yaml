@@ -1,0 +1,18 @@
+# What `curatrix check robarm-manifest` runs (format: xdmod/curatrix/README.md, "checks.yaml").
+# This repo builds the FULL linked document set, so its build area is `full` (build/full/),
+# the same as `curatrix docs full`.
+version: 1
+area: full
+
+docs:                               # CK-A6 strict build of the full set + the graph checks on its needs
+  registry: docs/documents.yaml
+
+ids:                                # CK-C1, CK-C2 (this repo owns PRJ-DEC)
+  ledger: ids.yaml
+  # Markdown files, agent notes and GitHub templates only hold examples, not trace IDs.
+  exclude: ["*.md", "claude/**", ".github/**"]
+
+# CK-H5: the copy must equal xdmod/templates/bootstrap.sh (D118). Switched off for now: curatrix
+# (xdmod 0f7dc6a) crashes on this key (checkcfg.section() expects a mapping, not the path that its
+# README documents). Switch it on once xdmod is fixed.
+# bootstrap_template: scripts/bootstrap.sh

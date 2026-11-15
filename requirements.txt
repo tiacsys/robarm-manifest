@@ -1,0 +1,3 @@
+# pip packages this repo needs (D19). Every package is pinned.
+# The doc build and curatrix get their packages from xdmod/requirements.txt.
+west==1.4.0

@@ -1,0 +1,3 @@
+# Non-pip tools this repo needs (D19). Format: xdmod/curatrix/README.md ("tools.yaml").
+# The manifest repo needs none of its own; the doc build uses xdmod's tools.
+tools: []
