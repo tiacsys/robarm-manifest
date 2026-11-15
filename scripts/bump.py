@@ -13,12 +13,14 @@ Writes into --out:
 `status` comes from the GitHub compare API (pin...main): ahead (normal) or diverged (the pin is not
 on main, e.g. a PR branch commit before a rebase merge; the PR text flags it). A pin that is AHEAD
 of main (status behind) is never moved backwards: it is held and only listed in the PR text. The
-compare needs `gh` with a token; without it status is "unknown" and the pin is moved.
+compare needs `gh` with a token; if it is missing or the call fails, the direction is unknown and
+the run stops with exit code 3 and changes nothing (the bump PR stays as it is; the next run
+retries). A pin is never moved blindly.
 
 Stdlib only (runs on the bare runner before the workspace exists). Usage, from the workspace root:
     python3 robarm-manifest/scripts/bump.py --manifest robarm-manifest --out build/robarm-manifest/bump
     python3 robarm-manifest/scripts/bump.py --manifest robarm-manifest --out ... --apply
-Exit code 0 in both cases; title.txt tells whether there is a bump.
+Exit code 0 in both cases (title.txt tells whether there is a bump); 3 if a compare failed.
 """
 
 import argparse
@@ -111,9 +113,10 @@ def body(bumps, manifest_rel, held=()):
         out += ["", "⚠ A pin that is *diverged* was not on `main` (for example a PR branch "
                 "commit before a rebase merge). Check that the new pin is what you want."]
     if held:
-        out += ["", "Not moved, because the pin is ahead of `main` (it would go backwards): "
-                + ", ".join(f"{h['name']} (pin `{h['old'][:12]}`, main `{h['new'][:12]}`)" for h in held)
-                + ". Fix the pin by a deliberate PR."]
+        out += ["", "Not moved (a pin is only moved when it is certainly behind `main`): "
+                + ", ".join(f"{h['name']} (pin `{h['old'][:12]}`, main `{h['new'][:12]}`: {h['why']})"
+                            for h in held)
+                + ". A pin ahead of `main` needs a deliberate PR; a failed compare is retried next run."]
     for b in bumps:
         if b["commits"]:
             out += ["", f"<details><summary>{b['name']}: commits</summary>", "", "```"]
@@ -143,9 +146,11 @@ def main(argv=None):
         if new == pin:
             continue
         status, ahead_by, commits = compare(name, pin, new)
-        if status == "behind":
-            print(f"{name}: pin is ahead of main; not moving it backwards", file=sys.stderr)
-            held.append({"name": name, "old": pin, "new": new})
+        if status not in ("ahead", "diverged"):
+            why = ("the pin is ahead of main" if status == "behind"
+                   else f"compare pin...main gave {status!r}")
+            print(f"{name}: {why}; pin held", file=sys.stderr)
+            held.append({"name": name, "old": pin, "new": new, "why": why})
             continue
         bumps.append({"name": name, "file": f.relative_to(a.manifest).as_posix(), "path": f,
                       "old": pin, "new": new, "status": status, "ahead_by": ahead_by, "commits": commits})
@@ -156,10 +161,15 @@ def main(argv=None):
     (a.out / "body.md").write_text(body(bumps, a.manifest.name, held) if bumps else "")
     (a.out / "bump.json").write_text(json.dumps([{k: v for k, v in b.items() if k != "path"} for b in bumps],
                                                 indent=2) + "\n")
-    if bumps and a.apply:
+    if bumps and a.apply and not any(not h["why"].startswith("the pin is ahead") for h in held):
         apply(bumps)
         print(f"rewrote {len(bumps)} pin(s)")
     print(title or "nothing to bump")
+    unsure = [h["name"] for h in held if not h["why"].startswith("the pin is ahead")]
+    if unsure:
+        print(f"compare failed for {', '.join(unsure)}: stopping without a bump (retry next run)",
+              file=sys.stderr)
+        return 3
     return 0
 
 
