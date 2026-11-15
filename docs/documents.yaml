@@ -1,0 +1,165 @@
+# zdocs registry of the FULL linked document set (D26, D35, doc-architecture.md §2-§3).
+#
+# `curatrix docs full` (or `curatrix check robarm-manifest`) builds every document listed here
+# from the west workspace, at the revisions the manifest pins (D39). Output:
+# build/full/docs/deploy/html/<doc-id>/.
+#
+# - Every document appears once. `doc_dir` is relative to THIS file and points into the west
+#   project that owns the document: ../../<repo>/docs/<doc-id>.
+# - Each entry mirrors the entry in the owning repo's own registry (same id, title, prefix and
+#   kind). If a repo changes an entry, change it here too.
+# - Prefix = doc id (doc-architecture.md §3), so cross-document references read the same in
+#   every registry, e.g. :external+se-req:doc:`index`.
+# - version_project: the document shows its own repo's version (`git describe` of that repo).
+#   zdocs ignores it for Sphinx documents until zdocs PR #37 merges (known workaround).
+# - Iteration 1 document set (doc-architecture.md §2 with D135): robarm-ee and robarm-me start
+#   with one document each (ee-design, me-design). More documents come with tests, PCBAs and
+#   prototype wiring.
+# - Group ids must differ from document ids (zdocs makes a "<group>-<builder>" target for each).
+base_url: "http://localhost:8000/"
+
+groups:
+  - id: g-project
+    title: "Project"
+  - id: g-system
+    title: "System"
+  - id: g-software
+    title: "Software"
+  - id: g-electrical
+    title: "Electrical"
+  - id: g-mechanical
+    title: "Mechanical"
+  - id: g-integration
+    title: "Integration"
+  # - id: g-framework          # switch on together with the xdmod documents below
+  #   title: "Framework"
+
+documents:
+  # ---------------------------------------------------------------- robarm-manifest (this repo)
+  robarm:
+    title: "Robot Arm: Project Overview"
+    group: g-project
+    prefix: robarm
+    version_scope: "baseline"        # tags baseline/vX.Y.Z (D54) -> shown as vX.Y.Z
+    builders: [html]
+    needs: {source: json}
+
+  # ---------------------------------------------------------------- robarm-syseng
+  se-req:
+    title: "Stakeholder & System Requirements Specification"
+    group: g-system
+    prefix: se-req
+    doc_dir: ../../robarm-syseng/docs/se-req
+    version_project: robarm-syseng
+    builders: [html]
+    needs: {source: json}
+  se-arch:
+    title: "System Architecture"
+    group: g-system
+    prefix: se-arch
+    doc_dir: ../../robarm-syseng/docs/se-arch
+    version_project: robarm-syseng
+    builders: [html]
+    needs: {source: json}
+
+  # ---------------------------------------------------------------- robarm-sw
+  sw-req:
+    title: "SW Requirements Specification"
+    group: g-software
+    prefix: sw-req
+    doc_dir: ../../robarm-sw/docs/sw-req
+    version_project: robarm-sw
+    builders: [html]
+    needs: {source: json}
+  sw-arch:
+    title: "SW Architecture & Design"
+    group: g-software
+    prefix: sw-arch
+    doc_dir: ../../robarm-sw/docs/sw-arch
+    version_project: robarm-sw
+    builders: [html]
+    needs: {source: json}
+  sw-api:
+    # Code units from Doxygen (@xdid, \satisfies). If robarm-sw's registry adds Doxygen settings
+    # (e.g. a `kind: doxygen` document and `symbol_needs`), copy them here as well.
+    title: "SW API & Implementation"
+    group: g-software
+    prefix: sw-api
+    doc_dir: ../../robarm-sw/docs/sw-api
+    version_project: robarm-sw
+    builders: [html]
+    needs: {source: json}
+  sw-test-spec:
+    title: "SW Test Specification"
+    group: g-software
+    prefix: sw-test-spec
+    doc_dir: ../../robarm-sw/docs/sw-test-spec
+    version_project: robarm-sw
+    builders: [html]
+    needs: {source: json}
+  sw-test-report:
+    title: "SW Test Report"
+    group: g-software
+    prefix: sw-test-report
+    doc_dir: ../../robarm-sw/docs/sw-test-report
+    version_project: robarm-sw
+    builders: [html]
+    needs: {source: json}
+
+  # ---------------------------------------------------------------- robarm-ee (one document, D135)
+  ee-design:
+    title: "EE Requirements & Design"
+    group: g-electrical
+    prefix: ee-design
+    doc_dir: ../../robarm-ee/docs/ee-design
+    version_project: robarm-ee
+    builders: [html]
+    needs: {source: json}
+
+  # ---------------------------------------------------------------- robarm-me (one document, D135)
+  me-design:
+    title: "ME Requirements & Design"
+    group: g-mechanical
+    prefix: me-design
+    doc_dir: ../../robarm-me/docs/me-design
+    version_project: robarm-me
+    builders: [html]
+    needs: {source: json}
+
+  # ---------------------------------------------------------------- robarm-integration
+  int-test-spec:
+    title: "System & Integration Test Specification"
+    group: g-integration
+    prefix: int-test-spec
+    doc_dir: ../../robarm-integration/docs/int-test-spec
+    version_project: robarm-integration
+    builders: [html]
+    needs: {source: json}
+  int-test-report:
+    title: "System & Integration Test Report"
+    group: g-integration
+    prefix: int-test-report
+    doc_dir: ../../robarm-integration/docs/int-test-report
+    version_project: robarm-integration
+    builders: [html]
+    needs: {source: json}
+
+  # ---------------------------------------------------------------- xdmod (D111)
+  # xdmod has no documents yet (the XDMOD manual is a later task). Once it has, switch these on
+  # (and the g-framework group above). robarm documents may link to them; xdmod never links back.
+  # xdmod-manual:
+  #   title: "XDMOD Manual"
+  #   group: g-framework
+  #   prefix: xdmod-manual
+  #   doc_dir: ../../xdmod/docs/xdmod-manual
+  #   version_project: xdmod
+  #   builders: [html]
+  #   needs: {source: json}
+  # xdmod-ref:
+  #   title: "curatrix Reference"
+  #   group: g-framework
+  #   prefix: xdmod-ref
+  #   doc_dir: ../../xdmod/docs/xdmod-ref
+  #   version_project: xdmod
+  #   builders: [html]
+  #   needs: {source: json}
