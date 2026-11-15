@@ -1,5 +1,22 @@
 # ID ledger (id-scheme.md §4, D133). Every number issued per kind, one per line.
 # Append-only: a number listed here is never issued again. Edit it only through
 # `curatrix ids new` / `curatrix ids fix`.
-# Project decisions (D120) live in the `robarm` overview document (docs/robarm/decisions.rst).
-PRJ-DEC: []
+PRJ-DEC:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
+  - 10
+  - 11
+  - 12
+  - 13
+  - 14
+  - 15
+  - 16
+  - 17
+  - 18
