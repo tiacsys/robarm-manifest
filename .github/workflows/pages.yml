@@ -32,6 +32,7 @@ on:
 
 permissions:
   contents: write          # push to gh-pages
+  pages: write             # request a Pages build after the push
 
 concurrency:
   # One run per version folder; a newer push to main supersedes a running latest/ build.
@@ -112,6 +113,7 @@ jobs:
         working-directory: ws/robarm-manifest
         env:
           VERSION: ${{ steps.what.outputs.version }}
+          GH_TOKEN: ${{ github.token }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -137,6 +139,9 @@ jobs:
               -m "Run: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
             if git -C "$site" push -q origin HEAD:refs/heads/gh-pages; then
               echo "published $VERSION (attempt $attempt)"
+              # The push normally starts "pages build and deployment" by itself; asking once more
+              # costs nothing and covers the case that a GITHUB_TOKEN push does not.
+              gh api -X POST "repos/$GITHUB_REPOSITORY/pages/builds" >/dev/null || echo "::warning::could not request a Pages build"
               owner="${GITHUB_REPOSITORY%/*}"; repo="${GITHUB_REPOSITORY#*/}"
               echo "Published: https://${owner,,}.github.io/$repo/${VERSION/root-only/}" >> "$GITHUB_STEP_SUMMARY"
               exit 0
