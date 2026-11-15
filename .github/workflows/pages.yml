@@ -15,7 +15,8 @@
 # Least privilege: `build` is xdmod's reusable workflow (curatrix-check.yml) with a read-only token.
 # It runs the strict full-set docs build (`curatrix check robarm-manifest --only CK-A6`, the same
 # build as `curatrix docs full`) in the integration role at EXACTLY the manifest's pins
-# (`resolve-siblings: false`, no CAD content, D56) and uploads the HTML. `publish` only runs
+# (`resolve-siblings: false`, no CAD content, D56; dry runs use D127 resolution like PR CI) and
+# uploads the HTML. `publish` only runs
 # site.py on that HTML and pushes gh-pages with a write token.
 name: pages
 on:
@@ -82,7 +83,9 @@ jobs:
       repo: robarm-manifest
       role: integration
       manifest-ref: ${{ github.sha }}
-      resolve-siblings: false
+      # Publishing (latest, baselines): exactly the pins. Dry runs on PRs preview what PR CI sees
+      # (D127 sibling resolution), so they also work while a pin is older than what CI needs.
+      resolve-siblings: ${{ needs.what.outputs.publish != 'true' }}
       extra-args: --only CK-A6
     # uploads the artifact curatrix-robarm-manifest-pr with full/docs/deploy/html/
 
