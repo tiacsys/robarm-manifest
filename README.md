@@ -63,7 +63,8 @@ setup. While you work on branches, use `curatrix update` instead of `west update
 | `ids.yaml` | ID ledger; this repo owns the project decisions `PRJ-DEC` |
 | `requirements.txt`, `tools.yaml` | what this repo needs from pip (west) and as other tools (nothing yet) |
 | `claude/` | rules for agents that work in this repo |
-| `.github/` | CI (calls the reusable check workflow in xdmod) and the pull request template |
+| `.github/` | CI (calls the reusable check workflow in xdmod), Pages publishing, the workspace action, the pull request template |
+| `scripts/pages/` | puts one version of the full set into the Pages site; the version switcher |
 
 ## Common commands
 
@@ -73,6 +74,21 @@ Run them from the workspace root.
 curatrix docs full                              # build the full document set into build/full/
 curatrix check robarm-manifest --stage local    # the checks of this repo
 ```
+
+## Published documentation
+
+The full document set is on GitHub Pages: <https://tiacsys.github.io/robarm-manifest/>.
+The workflow `.github/workflows/pages.yml` builds it (`curatrix docs full`, integration role, at
+the pins, without CAD content) and publishes it to the branch `gh-pages`:
+
+| Folder | Built from |
+|---|---|
+| `latest/` | every push to `main` |
+| `vX.Y.Z/` | the tag `baseline/vX.Y.Z`; one folder per baseline, never rewritten later |
+
+`versions.json` at the site root lists the versions. Every page loads `version-switcher.js` from
+the root, which offers the same page in another version. A publish replaces only its own folder.
+Do not edit `gh-pages` by hand. Pull requests get the HTML as a workflow artifact instead.
 
 ## Changing pins
 
