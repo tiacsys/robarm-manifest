@@ -73,7 +73,7 @@ decision's number in the planning log.
    :status: valid
    :follows: XD-ADR-0016
 
-   The number of PCBAs is **left to the SE work** (trade study in Phase 5).
+   The number of PCBAs is **left to the SE work** (trade study in Phase 6).
 
 .. prj-dec:: Public repos in the tiacsys GitHub org
    :id: PRJ-DEC-0007
