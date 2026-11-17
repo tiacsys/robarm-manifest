@@ -10,7 +10,7 @@ manifest:
     # The framework (D66). Pinned by SHA until it has SemVer releases (D92).
     - name: xdmod
       remote: tiacsys
-      revision: 6f566e850f5fe3d0dae992f1510a255c6eb624c6
+      revision: f62af4e1a07bbf80f6f85ce332acd1dff65e107e
 
     # System needs, requirements, SysML model and views. The bump bot moves this pin (D89).
     - name: robarm-syseng
