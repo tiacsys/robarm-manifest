@@ -25,7 +25,7 @@
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=2918d1a6"></script>
+      <script src="_static/documentation_options.js?v=51e01ba6"></script>
       <script src="_static/doctools.js?v=fd6eb6e6"></script>
       <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="_static/zdocs-need-preview.js?v=98728251"></script>
@@ -50,7 +50,7 @@
           <a href="index.html" class="icon icon-home">
             SW Architecture and Design
           </a>
-<div class="version zdocs-version">v0.0-dev+g94822ec</div>
+<div class="version zdocs-version">v0.0-dev+g696ed9d</div>
 
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -160,7 +160,7 @@
 <h1>Canary<a class="headerlink" href="#canary" title="Link to this heading"></a></h1>
 <p>The canary module belongs to the system configuration <code class="docutils literal notranslate"><span class="pre">canary</span></code> (SYS-CFG-0001), a small trace
 chain that tests the tools (plan task 5.3). It is not part of the robot arm firmware.</p>
-<div class="need_container docutils container" id="SNCB-4f4afc7c">
+<div class="need_container docutils container" id="SNCB-7f6ec25e">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_sw-arch zd-status-valid docutils align-default" id="SW-ARCH-0001">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -185,7 +185,7 @@ into the robot arm firmware; only the test <code class="docutils literal notrans
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-a2a3ffe4">
+<div class="need_container docutils container" id="SNCB-60126a0a">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_sw-dd zd-status-valid docutils align-default" id="SW-DD-0001">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -199,12 +199,40 @@ into the robot arm firmware; only the test <code class="docutils literal notrans
 </span></span></div>
 <div class="line"><span><div class="line">refines: <span class="refines"><span><a class="zd-need-ref reference internal" href="#SW-ARCH-0001" title="SW-DD-0001">SW-ARCH-0001</a></span></span></div>
 <div class="line">satisfies: <span class="satisfies"><span><a class="external_link zd-need-ref reference external" href="../sw-req/canary.html#SW-REQ-0001">SW-REQ-0001</a></span></span></div>
+<div class="line">implemented by: <span class="implements"><span><a class="zd-need-ref reference internal" href="#SW-IMPL-0001" title="SW-DD-0001">SW-IMPL-0001</a></span></span></div>
 </span></div>
 </div>
 </td>
 </tr>
 <tr class="need content row-odd"><td class="need content" colspan="1"><p><code class="docutils literal notranslate"><span class="pre">int32_t</span> <span class="pre">canary_update(int32_t</span> <span class="pre">input)</span></code> returns the new output for an input value. The output
 equals the input, computed at once, with no waiting and no state.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The code unit that implements the design element is generated from the <code class="docutils literal notranslate"><span class="pre">&#64;xdid</span></code> Doxygen block in
+<code class="docutils literal notranslate"><span class="pre">app/src/canary.h</span></code> (<code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">gen</span> <span class="pre">code-needs</span> <span class="pre">robarm-sw</span></code>) and imported here:</p>
+<div class="need_container docutils container" id="SNCB-0f13bf9b">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_sw-impl zd-status-valid docutils align-default" id="SW-IMPL-0001">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Code Unit</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">canary_update()</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#SW-IMPL-0001" title="SW-IMPL-0001">SW-IMPL-0001</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_source_file"><span class="needs_label">source_file: </span><span class="needs_data">app/src/canary.h</span></span></div>
+<div class="line"><span class="needs_configs"><span class="needs_label">configs: </span><span class="needs_data_container"><span class="needs_data">SYS-CFG-0001</span></span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">implements: <span class="implements"><span><a class="zd-need-ref reference internal" href="#SW-DD-0001" title="SW-IMPL-0001">SW-DD-0001</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p>Return the new canary output for an input value.</p>
+<p>Declared in <code class="docutils literal notranslate"><span class="pre">app/src/canary.h</span></code>: <code class="docutils literal notranslate"><span class="pre">int32_t</span> <span class="pre">canary_update(int32_t</span> <span class="pre">input)</span></code>.</p>
+</td>
 </tr>
 </tbody>
 </table>
