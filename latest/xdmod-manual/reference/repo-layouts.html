@@ -27,7 +27,7 @@
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=3d3e411e"></script>
+      <script src="../_static/documentation_options.js?v=2918d1a6"></script>
       <script src="../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../_static/zdocs-need-preview.js?v=98728251"></script>
@@ -53,7 +53,7 @@
           <a href="../index.html" class="icon icon-home">
             XDMOD Manual
           </a>
-<div class="version zdocs-version">v0.0-dev+gc9cc446</div>
+<div class="version zdocs-version">v0.0-dev+g94822ec</div>
 
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -231,33 +231,46 @@ docs/se-req/  docs/se-arch/
 </section>
 <section id="ee-repo">
 <h2>EE repo<a class="headerlink" href="#ee-repo" title="Link to this heading"></a></h2>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>pcba/&lt;name&gt;/            one KiCad project per PCBA, with project-local library tables
-proto/&lt;config&gt;/         prototype wiring per prototype configuration (KiCad or WireViz)
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>model/                  EE domain model: board defs, connector port defs with pin maps,
+                        cable defs, external parts, board variants
+pcba/&lt;name&gt;/            one KiCad project per board def: &lt;name&gt;.kicad_pro, schematic, board,
+                        library tables, &lt;name&gt;.kicad_jobset, accepted.yaml
+proto/&lt;name&gt;/           one KiCad project per block of the prototype configuration
+harness/&lt;name&gt;/         one WireViz harness per cable def: &lt;name&gt;.yml
 lib/                    project-local symbols, footprints, 3D models
-tests/                  scripted EE checks (netlist vs. pin map, ERC), JUnit output
-generated/              cad-needs.json
-docs/                   EE requirements and design; one document per PCBA and per
-                        prototype configuration
+tests/                  scripted EE checks, JUnit output
+generated/              cad-needs.json, model.json, &lt;project&gt;.connectors.json
+docs/                   ee-design; one document per board (pcba-&lt;name&gt;), prototype
+                        project (proto-&lt;name&gt;) and harness (harness-&lt;name&gt;)
 </pre></div>
 </div>
 <p>KiCad library tables refer to the shared libraries only through variables (<code class="docutils literal notranslate"><span class="pre">${XD_KICAD_SYMBOLS}</span></code>
 and so on) and to <code class="docutils literal notranslate"><span class="pre">lib/</span></code> through <code class="docutils literal notranslate"><span class="pre">${KIPRJMOD}</span></code>. <code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">launch</span> <span class="pre">kicad</span></code> sets the variables
-(<a class="reference internal" href="../explanation/decisions/repos.html#XD-ADR-0080" title="XD-ADR-0080"><em class="xref need">Pinned, isolated component ... (XD-ADR-0080)</em></a>). There is one document per PCBA and one per prototype configuration (<a class="reference internal" href="../explanation/decisions/documents.html#XD-ADR-0102" title="XD-ADR-0102"><em class="xref need">One EE document per PCBA an... (XD-ADR-0102)</em></a>).</p>
+(<a class="reference internal" href="../explanation/decisions/repos.html#XD-ADR-0080" title="XD-ADR-0080"><em class="xref need">Pinned, isolated component ... (XD-ADR-0080)</em></a>). The domain model owns the board, port and harness IDs; KiCad and WireViz
+files refer to them (<a class="reference internal" href="../explanation/decisions/domains.html#XD-ADR-0128" title="XD-ADR-0128"><em class="xref need">The domain model owns the I... (XD-ADR-0128)</em></a>). The jobset is a copy of the xdmod template
+(<a class="reference internal" href="../explanation/decisions/scope.html#XD-ADR-0142" title="XD-ADR-0142"><em class="xref need">EE design output in iterati... (XD-ADR-0142)</em></a>); <code class="docutils literal notranslate"><span class="pre">accepted.yaml</span></code> holds the accepted ERC and DRC findings (<a class="reference internal" href="../explanation/decisions/checks.html#XD-ADR-0126" title="XD-ADR-0126"><em class="xref need">One accepted.yaml format, w... (XD-ADR-0126)</em></a>).
+There is one document per board, prototype project and harness (<a class="reference internal" href="../explanation/decisions/documents.html#XD-ADR-0129" title="XD-ADR-0129"><em class="xref need">One document per board, har... (XD-ADR-0129)</em></a>,
+<a class="reference internal" href="../explanation/decisions/documents.html#XD-ADR-0127" title="XD-ADR-0127"><em class="xref need">WireViz for harnesses (XD-ADR-0127)</em></a>).</p>
 </section>
 <section id="me-repo">
 <h2>ME repo<a class="headerlink" href="#me-repo" title="Link to this heading"></a></h2>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>parts/&lt;part&gt;.FCStd      single parts, stored uncompressed
-assemblies/&lt;asm&gt;/       &lt;asm&gt;.FCStd and assembly-specific parts
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>model/                  ME domain model: assembly defs, mechanical port defs, variants
+parts/&lt;part&gt;.FCStd      shared parts, stored uncompressed
+assemblies/&lt;name&gt;/      &lt;name&gt;.FCStd (top document), skeleton.FCStd (parameters, variant
+                        table, master sketch), parts/, accepted.yaml
 lib/                    project-local parts
 templates/              TechDraw templates
 print/                  print-settings profiles
 tests/                  scripted ME checks, JUnit output
-generated/              cad-needs.json, semantic JSON of each .FCStd
-docs/
+generated/              cad-needs.json, model.json, semantic JSON of each .FCStd
+docs/                   me-design; one document per top-level assembly (asm-&lt;name&gt;)
 </pre></div>
 </div>
 <p>FreeCAD files are stored uncompressed, with a git textconv for readable diffs (<a class="reference internal" href="../explanation/decisions/checks.html#XD-ADR-0056" title="XD-ADR-0056"><em class="xref need">FreeCAD files uncompressed,... (XD-ADR-0056)</em></a>,
-<a class="reference internal" href="../explanation/rules/checks.html#XD-RULE-0039" title="XD-RULE-0039"><em class="xref need">Design files are stored unc... (XD-RULE-0039)</em></a>).</p>
+<a class="reference internal" href="../explanation/rules/checks.html#XD-RULE-0039" title="XD-RULE-0039"><em class="xref need">Design files are stored unc... (XD-RULE-0039)</em></a>). Parts refer only to the skeleton, never to the top document
+(<a class="reference internal" href="../explanation/decisions/domains.html#XD-ADR-0137" title="XD-ADR-0137"><em class="xref need">FreeCAD assemblies: a skele... (XD-ADR-0137)</em></a>, proposed). Board models come at fixed versions from a board library repo
+(<a class="reference internal" href="../explanation/decisions/domains.html#XD-ADR-0139" title="XD-ADR-0139"><em class="xref need">A board library repo for ME (XD-ADR-0139)</em></a>, proposed). Boards, harnesses and assemblies have their own tags
+<code class="docutils literal notranslate"><span class="pre">&lt;name&gt;/vX.Y.Z</span></code>, made by the owner only (<a class="reference internal" href="../explanation/decisions/repos.html#XD-ADR-0140" title="XD-ADR-0140"><em class="xref need">Tags per board, assembly an... (XD-ADR-0140)</em></a>).</p>
 </section>
 <section id="sw-repo">
 <h2>SW repo<a class="headerlink" href="#sw-repo" title="Link to this heading"></a></h2>
@@ -331,7 +344,7 @@ docs/xdmod-manual/  docs/xdmod-ref/
 <td><p>shared</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">xdmod/claude/commands/</span></code></p></td>
-<td><p>slash commands, e.g. <code class="docutils literal notranslate"><span class="pre">/review-pr</span></code></p></td>
+<td><p>slash commands, linked as <code class="docutils literal notranslate"><span class="pre">/xd-&lt;name&gt;</span></code>, e.g. <code class="docutils literal notranslate"><span class="pre">/xd-review-pr</span></code></p></td>
 <td><p>shared</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;repo&gt;/claude/CLAUDE.md</span></code></p></td>

@@ -1,0 +1,623 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<link rel="alternate" type="text/markdown" href="domains.html.md">
+<link rel="describedby" href="llms.txt">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Domain models and CAD &mdash; XDMOD Manual</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/zdocs-need-types.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-needs/common_css/need_links.css?v=2150a916" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-needs/common_css/needstable.css?v=7b67799e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-needs/modern.css?v=c1bc121d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-test-results/common.css?v=b776391d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/zdocs-sphinx.css?v=1afe8e97" />
+      <link rel="stylesheet" type="text/css" href="../../_static/zdocs-needs.css?v=f0382e39" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2918d1a6"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/zdocs-need-preview.js?v=98728251"></script>
+      <script src="../../_static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
+      <script src="../../_static/sphinx-data-viewer/jsonview_loader.js?v=f7ff7e7d"></script>
+      <script src="../../_static/sphinx-needs/libs/html/sphinx_needs_collapse.js?v=dca66431"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Documents" href="documents.html" />
+    <link rel="prev" title="Traces and IDs" href="traces.html" /> 
+<script id="xdmod-version-switcher" src="../../../../version-switcher.js" data-site-root="../../../.." defer></script>
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            XDMOD Manual
+          </a>
+<div class="version zdocs-version">v0.0-dev+g94822ec</div>
+
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+  
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../howto/index.html">How-to guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Explanation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../principles.html">Principles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../v-model-and-traces.html">The V-model and trace links</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sysmod-and-sysml.html">SYSMOD and SysML v2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../variants.html">Variants</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../multi-repo.html">Many repos, one workspace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../humans-and-agents.html">Humans and agents</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Decisions</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="index.html#how-to-read-a-decision">How to read a decision</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html#how-to-add-a-decision">How to add a decision</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#all-decisions">All decisions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../rules/index.html">Rules</a></li>
+</ul>
+</li>
+</ul>
+
+  
+  <div class="toctree-wrapper compound reference-groups-wrapper">
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Project</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../../robarm/index.html">Robot Arm: Project Overview</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">System</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../../se-req/index.html">Stakeholder & System Requirements Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../../se-arch/index.html">System Architecture</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Software</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../../sw-req/index.html">SW Requirements Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../../sw-arch/index.html">SW Architecture & Design</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../../sw-api/index.html">SW API and Implementation</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../../sw-test-spec/index.html">SW Test Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../../sw-test-report/index.html">SW Test Report</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Electrical</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../../ee-design/index.html">EE Requirements & Design</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Mechanical</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../../me-design/index.html">ME Requirements & Design</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Integration</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../../int-test-spec/index.html">System & Integration Test Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../../int-test-report/index.html">System & Integration Test Report</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Framework</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="../../../xdmod-ref/index.html">curatrix Reference</a></li>
+      
+    </ul>
+    
+  </div>
+  
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">XDMOD Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Explanation</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Decisions</a></li>
+      <li class="breadcrumb-item active">Domain models and CAD</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/explanation/decisions/domains.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="domain-models-and-cad">
+<span id="adr-domains"></span><h1>Domain models and CAD<a class="headerlink" href="#domain-models-and-cad" title="Link to this heading"></a></h1>
+<p>How the EE and ME repos refine the system model, which needs their models emit, and how KiCad
+and FreeCAD files refer to them (Phase 5, task 5.14). Decisions that rest on the FreeCAD spike are
+<em>proposed</em> until that spike is merged.</p>
+<div class="need_container docutils container" id="SNCB-5fb05196">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0130">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Framework Decision</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Domain repos refine the system model by specialization</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#XD-ADR-0130" title="XD-ADR-0130">XD-ADR-0130</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_date"><span class="needs_label">date: </span><span class="needs_data">2026-11-17</span></span></div>
+<div class="line"><span class="needs_decision_status"><span class="needs_label">decision_status: </span><span class="needs_data">accepted</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">refines: <span class="refines"><span><a class="zd-need-ref reference internal" href="traces.html#XD-ADR-0030" title="XD-ADR-0130">XD-ADR-0030</a></span></span></div>
+<div class="line">refined by: <span class="refines"><span><a class="zd-need-ref reference internal" href="#XD-ADR-0132" title="XD-ADR-0130">XD-ADR-0132</a>, <a class="zd-need-ref reference internal" href="#XD-ADR-0137" title="XD-ADR-0130">XD-ADR-0137</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p><strong>The EE and ME repos each have their own SysML model in</strong> <code class="docutils literal notranslate"><span class="pre">model/</span></code> <strong>and refine the system
+model by specialization.</strong> SW keeps its architecture in rst in iteration 1 (<a class="zd-need-ref reference internal" href="method.html#XD-ADR-0069" title="XD-ADR-0069"><em class="xref need">SW architecture in rst in i... (XD-ADR-0069)</em></a>);
+a SW sub-model would follow the same pattern in iteration 2. There are three levels of detail:</p>
+<ul class="simple">
+<li><p><strong>System model</strong> (the systems engineering repo): what crosses a domain boundary. Blocks down to
+the product level (one part def per board, assembly and SW component), their ports, and the
+interface defs (<code class="docutils literal notranslate"><span class="pre">SYS-IF</span></code>) at signal level: signal names, direction, kind, values from the
+requirements. No connector types, pin numbers or part numbers.</p></li>
+<li><p><strong>Domain model</strong> (<code class="docutils literal notranslate"><span class="pre">&lt;domain</span> <span class="pre">repo&gt;/model/</span></code>): how the domain realizes a block. EE: board defs,
+connector port defs with connector type and pin map (pin number and net name per signal), cable
+defs, external parts, board variants. ME: assembly and sub-assembly defs, mechanical port defs
+with geometry, assembly variants. In iteration 1 there are no circuit block diagrams inside a
+board.</p></li>
+<li><p><strong>Implementation</strong> (KiCad projects, WireViz files, FreeCAD documents): they name the domain
+model elements they implement.</p></li>
+</ul>
+<p>A domain def specializes the system def it realizes (<code class="docutils literal notranslate"><span class="pre">part</span> <span class="pre">def</span> <span class="pre">JointControllerBoard</span> <span class="pre">:&gt;</span>
+<span class="pre">JointController</span></code>) and redefines every inherited port with a port whose def specializes the
+interface def (<code class="docutils literal notranslate"><span class="pre">port</span> <span class="pre">def</span> <span class="pre">ServoHeader</span> <span class="pre">:&gt;</span> <span class="pre">ServoIf</span></code>). A domain def may specialize several system
+defs; a name clash between inherited ports is solved by one port that redefines all of them
+(<code class="docutils literal notranslate"><span class="pre">port</span> <span class="pre">:&gt;&gt;</span> <span class="pre">A::p,</span> <span class="pre">B::p</span> <span class="pre">:</span> <span class="pre">X;</span></code>). Redefined signal ports repeat their direction (<code class="docutils literal notranslate"><span class="pre">out</span> <span class="pre">port</span> <span class="pre">:&gt;&gt;</span>
+<span class="pre">pwm</span></code>). Inside a def that specializes a system def, outer elements are named by qualified name,
+because inherited members hide outer names.</p>
+<p>A domain model imports only the system model and the xdmod libraries; SW reads the EE model
+(<a class="zd-need-ref reference internal" href="#XD-ADR-0131" title="XD-ADR-0131"><em class="xref need">SW reads the board pin maps... (XD-ADR-0131)</em></a>). It reads the upstream model twice, both from the same west pin: as a
+library set for the Pilot, and as the upstream’s committed <code class="docutils literal notranslate"><span class="pre">generated/model.json</span></code> for the
+checks that run without Java. The repo’s own model files are read as one set, so their order does
+not matter. Each domain model costs one more Pilot run; the owner accepted that. Based on the
+model spike (<code class="docutils literal notranslate"><span class="pre">claude/notes/model-spike.md</span></code>).</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-2d222b2b">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0132">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Framework Decision</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">curatrix checks conformance and derives the links</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#XD-ADR-0132" title="XD-ADR-0132">XD-ADR-0132</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_date"><span class="needs_label">date: </span><span class="needs_data">2026-11-17</span></span></div>
+<div class="line"><span class="needs_decision_status"><span class="needs_label">decision_status: </span><span class="needs_data">accepted</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">refines: <span class="refines"><span><a class="zd-need-ref reference internal" href="#XD-ADR-0130" title="XD-ADR-0132">XD-ADR-0130</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p><strong>Conformance is a curatrix check, not a Pilot result.</strong> The Pilot finds neither a missing
+redefinition nor a redefinition with the wrong port def. So curatrix checks, on the committed
+model JSON of the domain repo and its upstream: every port that a domain def inherits from a
+system def is redefined somewhere in the chain between the two, and the most specific
+redefinition’s def specializes the inherited port’s def. The same rule holds inside port defs at
+signal level. A variant def of a board does not repeat the redefinitions of its parent. An
+unsolved name clash of inherited ports is an error.</p>
+<p><strong>Links come from specialization.</strong> <code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">gen</span> <span class="pre">model</span></code> turns a <code class="docutils literal notranslate"><span class="pre">:&gt;</span></code> across the repo boundary
+into a trace link on the domain need, chosen by the pair of kinds: <code class="docutils literal notranslate"><span class="pre">EE-PCBA</span></code> / <code class="docutils literal notranslate"><span class="pre">ME-ASM</span></code> /
+<code class="docutils literal notranslate"><span class="pre">EE-HAR</span></code> to <code class="docutils literal notranslate"><span class="pre">SYS-EL</span></code> is <code class="docutils literal notranslate"><span class="pre">realizes</span></code>; <code class="docutils literal notranslate"><span class="pre">EE-PORT</span></code> / <code class="docutils literal notranslate"><span class="pre">ME-PORT</span></code> to <code class="docutils literal notranslate"><span class="pre">SYS-IF</span></code> is <code class="docutils literal notranslate"><span class="pre">conforms</span></code>.
+Any other pair is a finding, never skipped. A def without an ID of its own that specializes a
+system element is allowed only below the port level (for example a signal def inside a port def);
+anywhere else it is a warning.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-a66eb605">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0128">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Framework Decision</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">The domain model owns the IDs of boards, assemblies, ports and harnesses</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#XD-ADR-0128" title="XD-ADR-0128">XD-ADR-0128</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_date"><span class="needs_label">date: </span><span class="needs_data">2026-11-17</span></span></div>
+<div class="line"><span class="needs_decision_status"><span class="needs_label">decision_status: </span><span class="needs_data">accepted</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">refined by: <span class="refines"><span><a class="zd-need-ref reference internal" href="#XD-ADR-0139" title="XD-ADR-0128">XD-ADR-0139</a></span></span></div>
+<div class="line">revises: <span class="revises"><span><a class="zd-need-ref reference internal" href="traces.html#XD-ADR-0023" title="XD-ADR-0128">XD-ADR-0023</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p><strong>The domain model emits the</strong> <code class="docutils literal notranslate"><span class="pre">EE-PCBA</span></code>, <code class="docutils literal notranslate"><span class="pre">EE-PORT</span></code>, <code class="docutils literal notranslate"><span class="pre">EE-HAR</span></code>, <code class="docutils literal notranslate"><span class="pre">ME-ASM</span></code> <strong>and</strong>
+<code class="docutils literal notranslate"><span class="pre">ME-PORT</span></code> <strong>needs.</strong> The ID is the short name of the def in the domain model. KiCad, WireViz and
+FreeCAD files carry these IDs only as references: the <code class="docutils literal notranslate"><span class="pre">TraceID</span></code> of a KiCad project or of the top
+FreeCAD document of an assembly, the <code class="docutils literal notranslate"><span class="pre">Port</span></code> field of a KiCad connector, the <code class="docutils literal notranslate"><span class="pre">Port</span></code> property of
+a FreeCAD LCS, the port names at both ends of a harness. The <code class="docutils literal notranslate"><span class="pre">Realizes</span></code> and <code class="docutils literal notranslate"><span class="pre">Conforms</span></code> fields on
+KiCad projects and FreeCAD documents go away: these links are derived from specialization
+(<a class="zd-need-ref reference internal" href="#XD-ADR-0132" title="XD-ADR-0132"><em class="xref need">curatrix checks conformance... (XD-ADR-0132)</em></a>). <code class="docutils literal notranslate"><span class="pre">EE-CMP</span></code> and <code class="docutils literal notranslate"><span class="pre">ME-PART</span></code> stay owned by the CAD files, as before
+(<a class="zd-need-ref reference internal" href="traces.html#XD-ADR-0023" title="XD-ADR-0023"><em class="xref need">Trace IDs live inside the C... (XD-ADR-0023)</em></a>).</p>
+<p><strong>One CAD file per domain def.</strong> Each board def has exactly one KiCad project
+<code class="docutils literal notranslate"><span class="pre">pcba/&lt;name&gt;/&lt;name&gt;.kicad_pro</span></code>, each cable def exactly one harness folder <code class="docutils literal notranslate"><span class="pre">harness/&lt;name&gt;/</span></code>, each
+assembly or sub-assembly def exactly one FreeCAD document; and each of these files names exactly
+one def. The folder name comes from the element name (<code class="docutils literal notranslate"><span class="pre">JointController</span></code> →
+<code class="docutils literal notranslate"><span class="pre">joint-controller</span></code>). The project’s entry point is its <code class="docutils literal notranslate"><span class="pre">.kicad_pro</span></code>; the root schematic has the
+same name. Instances are usages of the def, in any number; the trace stays on the def
+(<a class="zd-need-ref reference internal" href="method.html#XD-ADR-0117" title="XD-ADR-0117"><em class="xref need">The definition holds the tr... (XD-ADR-0117)</em></a>). A single ME part is 1:1 with a model element only when the model treats it
+as a block. The CK-D4 readers change with this decision.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-c0f33122">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0133">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Framework Decision</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Need kinds EE-PORT, ME-PORT and EE-HAR</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#XD-ADR-0133" title="XD-ADR-0133">XD-ADR-0133</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_date"><span class="needs_label">date: </span><span class="needs_data">2026-11-17</span></span></div>
+<div class="line"><span class="needs_decision_status"><span class="needs_label">decision_status: </span><span class="needs_data">accepted</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">refines: <span class="refines"><span><a class="zd-need-ref reference internal" href="traces.html#XD-ADR-0030" title="XD-ADR-0133">XD-ADR-0030</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p><strong>Three new need kinds.</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">EE-PORT</span></code>: a connector port of a board, or a port of an external part, in the EE model. It
+<code class="docutils literal notranslate"><span class="pre">conforms</span></code> to the <code class="docutils literal notranslate"><span class="pre">SYS-IF</span></code> it specializes and is <code class="docutils literal notranslate"><span class="pre">part_of</span></code> its board (<code class="docutils literal notranslate"><span class="pre">EE-PCBA</span></code>). A port
+of an external part has no <code class="docutils literal notranslate"><span class="pre">part_of</span></code>; its qualified name names the part. A KiCad connector
+names it in its <code class="docutils literal notranslate"><span class="pre">Port</span></code> field; a connector without a port says so with <code class="docutils literal notranslate"><span class="pre">Port</span> <span class="pre">=</span> <span class="pre">-</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ME-PORT</span></code>: a mechanical interface of an assembly in the ME model, with its geometry. It
+<code class="docutils literal notranslate"><span class="pre">conforms</span></code> to the <code class="docutils literal notranslate"><span class="pre">SYS-IF</span></code> it specializes and is <code class="docutils literal notranslate"><span class="pre">part_of</span></code> its assembly (<code class="docutils literal notranslate"><span class="pre">ME-ASM</span></code>). In
+FreeCAD it is an LCS with a <code class="docutils literal notranslate"><span class="pre">Port</span></code> property.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">EE-HAR</span></code>: a wiring harness, 1:1 with a cable def in the EE model. It <code class="docutils literal notranslate"><span class="pre">connects</span></code> the two or more
+<code class="docutils literal notranslate"><span class="pre">EE-PORT</span></code> s its ends mate with. The harness is built to fit those ports, so it is the more
+concrete side and holds the link (<a class="zd-need-ref reference internal" href="traces.html#XD-ADR-0004" title="XD-ADR-0004"><em class="xref need">Trace rule: the concrete si... (XD-ADR-0004)</em></a>). Like every design element it must
+<code class="docutils literal notranslate"><span class="pre">realizes</span></code> a <code class="docutils literal notranslate"><span class="pre">SYS-EL</span></code> or <code class="docutils literal notranslate"><span class="pre">satisfies</span></code> an <code class="docutils literal notranslate"><span class="pre">EE-REQ</span></code> (no orphans, <a class="zd-need-ref reference internal" href="../rules/trace.html#XD-RULE-0010" title="XD-RULE-0010"><em class="xref need">No orphan design elements (XD-RULE-0010)</em></a>); it may
+also <code class="docutils literal notranslate"><span class="pre">conforms</span></code> to a <code class="docutils literal notranslate"><span class="pre">SYS-IF</span></code>. Ports are not in the orphan rule: a port of an external part
+may conform to nothing.</p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-955e4e13">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0131">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Framework Decision</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">SW reads the board pin maps from EE</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#XD-ADR-0131" title="XD-ADR-0131">XD-ADR-0131</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_date"><span class="needs_label">date: </span><span class="needs_data">2026-11-17</span></span></div>
+<div class="line"><span class="needs_decision_status"><span class="needs_label">decision_status: </span><span class="needs_data">accepted</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">revises: <span class="revises"><span><a class="zd-need-ref reference internal" href="traces.html#XD-ADR-0030" title="XD-ADR-0131">XD-ADR-0030</a></span></span></div>
+<div class="line">decides: <span class="decided_by"><span><a class="zd-need-ref reference internal" href="../rules/trace.html#XD-RULE-0003" title="XD-ADR-0131">XD-RULE-0003</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p><strong>First exception to the peer rule: SW is downstream of EE for the board model.</strong> The MCU pin map
+of a board is an EE design decision, so it lives in the EE model, not in a <code class="docutils literal notranslate"><span class="pre">SYS-IF</span></code>. SW reads it
+from there: SW needs (<code class="docutils literal notranslate"><span class="pre">SW-ARCH</span></code>, <code class="docutils literal notranslate"><span class="pre">SW-DD</span></code>) may <code class="docutils literal notranslate"><span class="pre">conforms</span></code> to an <code class="docutils literal notranslate"><span class="pre">EE-PCBA</span></code> or an
+<code class="docutils literal notranslate"><span class="pre">EE-PORT</span></code>, the SW repo lists the EE documents and the EE model as upstream, and the sw role gets
+the EE repo. EE never links to SW. The direction stays acyclic: syseng → EE → SW. CK-F2
+(devicetree against the model) compares with the EE board model. In iteration 1 the devicetree is
+written by hand; a generator from KiCad is iteration 2. Each Zephyr board variant maps to one
+board variant by name, and SW adds no board variants of its own in iteration 1.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-a6306ca3">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0134">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Framework Decision</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">ME writes board geometry into KiCad in a co-design change</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#XD-ADR-0134" title="XD-ADR-0134">XD-ADR-0134</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_date"><span class="needs_label">date: </span><span class="needs_data">2026-11-17</span></span></div>
+<div class="line"><span class="needs_decision_status"><span class="needs_label">decision_status: </span><span class="needs_data">proposed</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">revises: <span class="revises"><span><a class="zd-need-ref reference internal" href="traces.html#XD-ADR-0030" title="XD-ADR-0134">XD-ADR-0030</a></span></span></div>
+<div class="line">decides: <span class="decided_by"><span><a class="zd-need-ref reference internal" href="../rules/trace.html#XD-RULE-0003" title="XD-ADR-0134">XD-RULE-0003</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p><strong>Second exception to the peer rule: ME may write into EE’s KiCad project, but only inside a
+co-design change.</strong> The space a board may take (a box, the hole list, the connector positions) is
+a <code class="docutils literal notranslate"><span class="pre">SYS-IF</span></code> budget in the system model; EE and ME both conform to it. A geometry change that
+starts in ME is one change with one branch name over the ME, EE and (when the budget changes)
+systems engineering repos (<a class="zd-need-ref reference internal" href="workflow.html#XD-ADR-0045" title="XD-ADR-0045"><em class="xref need">One branch name across repos (XD-ADR-0045)</em></a>). The push from FreeCAD into the <code class="docutils literal notranslate"><span class="pre">.kicad_pcb</span></code> is a
+defined tool step (KiCad StepUp, at least outline and mounting holes); the pushed file is re-saved
+by KiCad 10 before the commit. The EE side reviews and merges its part. ME never takes EE geometry
+outside such a change, and ME needs never link to EE needs. Keep-outs, connector positions, the
+harness length and route, and pushing back from EE are decided by the co-design spike (task
+5.28). Proposed until StepUp has run on a KiCad 10 board (FreeCAD spike §7: not run) and 5.28
+reports.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-1546b968">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0135">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Framework Decision</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">External parts and prototype projects</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#XD-ADR-0135" title="XD-ADR-0135">XD-ADR-0135</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_date"><span class="needs_label">date: </span><span class="needs_data">2026-11-17</span></span></div>
+<div class="line"><span class="needs_decision_status"><span class="needs_label">decision_status: </span><span class="needs_data">accepted</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">refines: <span class="refines"><span><a class="zd-need-ref reference internal" href="traces.html#XD-ADR-0067" title="XD-ADR-0135">XD-ADR-0067</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p><strong>Bought boards and parts are external parts:</strong> a def in the EE model with their headers or
+terminals as ports (<code class="docutils literal notranslate"><span class="pre">EE-PORT</span></code>), but no KiCad project. They are outside the 1:1 project rule
+(<a class="zd-need-ref reference internal" href="#XD-ADR-0128" title="XD-ADR-0128"><em class="xref need">The domain model owns the I... (XD-ADR-0128)</em></a>). Examples: an MCU evaluation board, a PWM or ADC breakout, a servo, a
+potentiometer. Harness ends and prototype wiring name their ports, and CK-F1 checks against them.</p>
+<p><strong>A prototype project</strong> <code class="docutils literal notranslate"><span class="pre">proto/&lt;name&gt;/&lt;name&gt;.kicad_pro</span></code> <strong>is 1:1 with a block of the prototype
+configuration</strong> in the system model (for example <code class="docutils literal notranslate"><span class="pre">JointProtoRig</span></code>), like a board project with its
+board def. Its schematic shows the wiring between external parts (<a class="zd-need-ref reference internal" href="traces.html#XD-ADR-0067" title="XD-ADR-0067"><em class="xref need">Prototype wiring is EE content (XD-ADR-0067)</em></a>).</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-236565b9">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0136">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Framework Decision</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Variants: the domain variant names what it serves</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#XD-ADR-0136" title="XD-ADR-0136">XD-ADR-0136</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_date"><span class="needs_label">date: </span><span class="needs_data">2026-11-17</span></span></div>
+<div class="line"><span class="needs_decision_status"><span class="needs_label">decision_status: </span><span class="needs_data">accepted</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">refines: <span class="refines"><span><a class="zd-need-ref reference internal" href="method.html#XD-ADR-0092" title="XD-ADR-0136">XD-ADR-0092</a>, <a class="zd-need-ref reference internal" href="method.html#XD-ADR-0093" title="XD-ADR-0136">XD-ADR-0093</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p><strong>Board and assembly variants are named in the domain model.</strong> Each domain variant names the
+system configurations (<code class="docutils literal notranslate"><span class="pre">SYS-CFG</span></code>) and usages it serves (<code class="docutils literal notranslate"><span class="pre">Configs</span></code>). The table
+“configuration → variant per usage” is computed, like a backlink; nobody writes it. A check in the
+domain repo, against the published needs of the systems engineering repo: exactly one variant per
+usage and configuration, and the variant exists in the domain model and in KiCad or FreeCAD. At
+most two variants per board and per assembly in iteration 1. Unused variants are not reported in
+iteration 1.</p>
+<p><strong>EE:</strong> board variants are KiCad assembly variants. A solder jumper or 0 Ω link is fitted (=
+bridged) or DNP per variant. The position of a pin-header shunt is set by hand after assembly, so
+it is not an assembly matter: the EE model holds it per variant (with its meaning, for example an
+I²C address), and the KiCad part carries the same value in a per-variant field <code class="docutils literal notranslate"><span class="pre">Setting</span></code> (KiCad
+10 can override any field per variant, KiCad spike §3.3), so the BOM shows it. A check compares
+the variant names and settings in the EE model, the <code class="docutils literal notranslate"><span class="pre">.kicad_pro</span></code>, the <code class="docutils literal notranslate"><span class="pre">.kicad_sch</span></code> and the
+<code class="docutils literal notranslate"><span class="pre">.kicad_pcb</span></code>. Each Zephyr board variant maps to one board variant by name (checked on the
+canary). ME variants: <a class="zd-need-ref reference internal" href="#XD-ADR-0137" title="XD-ADR-0137"><em class="xref need">FreeCAD assemblies: a skele... (XD-ADR-0137)</em></a>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-2f768f5a">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0138">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Framework Decision</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Who owns instance counts</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#XD-ADR-0138" title="XD-ADR-0138">XD-ADR-0138</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_date"><span class="needs_label">date: </span><span class="needs_data">2026-11-17</span></span></div>
+<div class="line"><span class="needs_decision_status"><span class="needs_label">decision_status: </span><span class="needs_data">accepted</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">refines: <span class="refines"><span><a class="zd-need-ref reference internal" href="method.html#XD-ADR-0117" title="XD-ADR-0138">XD-ADR-0117</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p><strong>The systems engineering repo owns the usages it sees</strong> (the blocks of the product architecture,
+for example six joints). A domain model refers to them and does not repeat them. <strong>The domain model
+owns its internal usages</strong> (sub-assemblies and parts that the system model never sees). The check
+that counts FreeCAD links per part or sub-assembly against the usages uses both, filtered by
+<code class="docutils literal notranslate"><span class="pre">Configs</span></code> per variant. Instances may differ only through variants (<a class="zd-need-ref reference internal" href="#XD-ADR-0136" title="XD-ADR-0136"><em class="xref need">Variants: the domain varian... (XD-ADR-0136)</em></a>); in
+iteration 1 they get no IDs of their own.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-f942ac17">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0137">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Framework Decision</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">FreeCAD assemblies: a skeleton document, values from the model</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#XD-ADR-0137" title="XD-ADR-0137">XD-ADR-0137</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_date"><span class="needs_label">date: </span><span class="needs_data">2026-11-17</span></span></div>
+<div class="line"><span class="needs_decision_status"><span class="needs_label">decision_status: </span><span class="needs_data">accepted</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">refines: <span class="refines"><span><a class="zd-need-ref reference internal" href="#XD-ADR-0130" title="XD-ADR-0137">XD-ADR-0130</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p><strong>Each top-level assembly is a folder</strong> <code class="docutils literal notranslate"><span class="pre">assemblies/&lt;name&gt;/</span></code> with its top document
+<code class="docutils literal notranslate"><span class="pre">&lt;name&gt;.FCStd</span></code>, a skeleton document <code class="docutils literal notranslate"><span class="pre">skeleton.FCStd</span></code>, and its own parts; shared parts stay in
+<code class="docutils literal notranslate"><span class="pre">parts/</span></code>. The skeleton holds the parameter spreadsheet <code class="docutils literal notranslate"><span class="pre">Params</span></code> and the master sketch. The
+master sketch cannot live in the top document: parts that refer to it would form a document cycle,
+and FreeCAD then recomputes in an undefined order (FreeCAD spike §1). Parts refer only to the
+skeleton, never to the top document; the top document links the skeleton and the parts. At most ten
+driving parameters in iteration 1.</p>
+<p><strong>The model drives the CAD.</strong> <code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">gen</span> <span class="pre">freecad-params</span></code> writes the model values into
+<code class="docutils literal notranslate"><span class="pre">Params</span></code> (aliases <code class="docutils literal notranslate"><span class="pre">&lt;port&gt;_&lt;attribute&gt;</span></code>): it opens the top document first, writes values only
+(it never rebuilds objects, so object IDs do not churn), recomputes skeleton, parts, sub-assemblies
+and top in this order, and saves only the documents whose values changed. CK-F3 checks that they
+agree.</p>
+<p><strong>Interfaces</strong> are LCS with a <code class="docutils literal notranslate"><span class="pre">Port</span></code> property (the <code class="docutils literal notranslate"><span class="pre">ME-PORT</span></code> ID). <strong>Variants</strong> are rows of a
+configuration table in <code class="docutils literal notranslate"><span class="pre">Params</span></code> plus <code class="docutils literal notranslate"><span class="pre">Configs</span></code> on the links; part presence comes from
+<code class="docutils literal notranslate"><span class="pre">Configs</span></code>, never from a suppressed state. Checks, value writes and the exploded view run in
+<code class="docutils literal notranslate"><span class="pre">FreeCADCmd</span></code>. The exploded view uses the fallback of the FreeCAD spike (§5): the moves are data
+(a small table per assembly, or read from the <code class="docutils literal notranslate"><span class="pre">Move</span></code> objects in <code class="docutils literal notranslate"><span class="pre">Document.xml</span></code>), and a script
+builds the exploded compound and its TechDraw view; the Assembly workbench’s exploded view in the
+GUI binary hung in 6 of 8 runs, so it is only a design aid. Only full TechDraw pages and StepUp
+need the GUI binary with <code class="docutils literal notranslate"><span class="pre">QT_QPA_PLATFORM=offscreen</span></code>; task 5.26 first shows that the page export
+runs reliably, or falls back to view SVGs. Both run through curatrix with the workspace-local
+configuration. Based on the FreeCAD spike (<code class="docutils literal notranslate"><span class="pre">claude/notes/freecad-spike.md</span></code>).</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-ad221836">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0139">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Framework Decision</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">A board library repo for ME</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#XD-ADR-0139" title="XD-ADR-0139">XD-ADR-0139</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_date"><span class="needs_label">date: </span><span class="needs_data">2026-11-17</span></span></div>
+<div class="line"><span class="needs_decision_status"><span class="needs_label">decision_status: </span><span class="needs_data">proposed</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">refines: <span class="refines"><span><a class="zd-need-ref reference internal" href="#XD-ADR-0128" title="XD-ADR-0139">XD-ADR-0128</a>, <a class="zd-need-ref reference internal" href="repos.html#XD-ADR-0141" title="XD-ADR-0139">XD-ADR-0141</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p><strong>FreeCAD models of the boards live in their own repo,</strong> <code class="docutils literal notranslate"><span class="pre">robarm-freecad-pcba</span></code> in the robot arm
+(path <code class="docutils literal notranslate"><span class="pre">libs/freecad-pcba</span></code>, in a west group that the ee and me roles both get). EE writes into it,
+ME reads from it, so neither depends on the other’s repo. Only tagged board versions go in
+(<a class="zd-need-ref reference internal" href="repos.html#XD-ADR-0140" title="XD-ADR-0140"><em class="xref need">Tags per board, assembly an... (XD-ADR-0140)</em></a>): <code class="docutils literal notranslate"><span class="pre">kicad-cli</span> <span class="pre">pcb</span> <span class="pre">export</span> <span class="pre">step</span></code> with the variant and the version, then a
+headless FreeCAD import that adds the board’s <code class="docutils literal notranslate"><span class="pre">EE-PCBA</span></code> ID and version as properties. The EE agent
+opens the PR that adds a board version. At most 5 MB per file to start (board body, connectors and
+tall parts, no tracks). An ME assembly links one fixed board version; a newer version gives a note
+or an issue on the ME repo, and moving to it is an ME change. Creating the repo is an admin action
+that needs the owner’s approval (<a class="zd-need-ref reference internal" href="workflow.html#XD-ADR-0112" title="XD-ADR-0112"><em class="xref need">GitHub admin by agents only... (XD-ADR-0112)</em></a>). Proposed until task 5.29 has shown the
+headless STEP import (the FreeCAD spike did not test it).</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="traces.html" class="btn btn-neutral float-left" title="Traces and IDs" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="documents.html" class="btn btn-neutral float-right" title="Documents" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, XDMOD Manual.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -34,36 +34,39 @@ exporting tool puts a project code in front, with `:` as the separator. Example 
 
 Generated from curatrix and the needs configuration:
 
-| Kind       | Need type                  | Directive   |
-|------------|----------------------------|-------------|
-| `EE-CMP`   | Circuit Block / Component  | `ee-cmp`    |
-| `EE-PCBA`  | PCBA                       | `ee-pcba`   |
-| `EE-REQ`   | EE Requirement             | `ee-req`    |
-| `EE-TC`    | EE Test Case               | `ee-tc`     |
-| `INT-ITC`  | Integration Test Case      | `int-itc`   |
-| `INT-STC`  | System Test Case           | `int-stc`   |
-| `ME-ASM`   | Assembly                   | `me-asm`    |
-| `ME-PART`  | Part                       | `me-part`   |
-| `ME-REQ`   | ME Requirement             | `me-req`    |
-| `ME-TC`    | ME Test Case               | `me-tc`     |
-| `PRJ-DEC`  | Project Decision           | `prj-dec`   |
-| `SW-ARCH`  | SW Architecture Element    | `sw-arch`   |
-| `SW-DD`    | SW Detailed Design Element | `sw-dd`     |
-| `SW-IMPL`  | Code Unit                  | `sw-impl`   |
-| `SW-REQ`   | SW Requirement             | `sw-req`    |
-| `SW-TC`    | SW Test Case               | `sw-tc`     |
-| `SYS-CFG`  | Configuration              | `sys-cfg`   |
-| `SYS-EL`   | System Model Element       | `sys-el`    |
-| `SYS-FEAT` | Feature                    | `sys-feat`  |
-| `SYS-IF`   | Interface                  | `sys-if`    |
-| `SYS-NEED` | Stakeholder Need           | `sys-need`  |
-| `SYS-REQ`  | System Requirement         | `sys-req`   |
-| `SYS-STH`  | Stakeholder                | `sys-sth`   |
-| `SYS-UC`   | Use Case                   | `sys-uc`    |
-| `SYS-VIEW` | (reserved, not a need)     |             |
-| `XD-ADR`   | Framework Decision         | `xd-adr`    |
-| `XD-CHECK` | curatrix Check             | `xd-check`  |
-| `XD-RULE`  | Method Rule                | `xd-rule`   |
+| Kind       | Need type                      | Directive   |
+|------------|--------------------------------|-------------|
+| `EE-CMP`   | Circuit Block / Component      | `ee-cmp`    |
+| `EE-HAR`   | Wiring Harness                 | `ee-har`    |
+| `EE-PCBA`  | PCBA                           | `ee-pcba`   |
+| `EE-PORT`  | EE Port (connector)            | `ee-port`   |
+| `EE-REQ`   | EE Requirement                 | `ee-req`    |
+| `EE-TC`    | EE Test Case                   | `ee-tc`     |
+| `INT-ITC`  | Integration Test Case          | `int-itc`   |
+| `INT-STC`  | System Test Case               | `int-stc`   |
+| `ME-ASM`   | Assembly                       | `me-asm`    |
+| `ME-PART`  | Part                           | `me-part`   |
+| `ME-PORT`  | ME Port (mechanical interface) | `me-port`   |
+| `ME-REQ`   | ME Requirement                 | `me-req`    |
+| `ME-TC`    | ME Test Case                   | `me-tc`     |
+| `PRJ-DEC`  | Project Decision               | `prj-dec`   |
+| `SW-ARCH`  | SW Architecture Element        | `sw-arch`   |
+| `SW-DD`    | SW Detailed Design Element     | `sw-dd`     |
+| `SW-IMPL`  | Code Unit                      | `sw-impl`   |
+| `SW-REQ`   | SW Requirement                 | `sw-req`    |
+| `SW-TC`    | SW Test Case                   | `sw-tc`     |
+| `SYS-CFG`  | Configuration                  | `sys-cfg`   |
+| `SYS-EL`   | System Model Element           | `sys-el`    |
+| `SYS-FEAT` | Feature                        | `sys-feat`  |
+| `SYS-IF`   | Interface                      | `sys-if`    |
+| `SYS-NEED` | Stakeholder Need               | `sys-need`  |
+| `SYS-REQ`  | System Requirement             | `sys-req`   |
+| `SYS-STH`  | Stakeholder                    | `sys-sth`   |
+| `SYS-UC`   | Use Case                       | `sys-uc`    |
+| `SYS-VIEW` | (reserved, not a need)         |             |
+| `XD-ADR`   | Framework Decision             | `xd-adr`    |
+| `XD-CHECK` | curatrix Check                 | `xd-check`  |
+| `XD-RULE`  | Method Rule                    | `xd-rule`   |
 
 `SYS-VIEW` is a reserved kind that is not a need. It is only used as the SysML short name of a
 view ([*View definitions live in th... (XD-ADR-0085)*](../explanation/decisions/method.md#XD-ADR-0085)). Its numbers still come from the ledger. Configurations and features have the

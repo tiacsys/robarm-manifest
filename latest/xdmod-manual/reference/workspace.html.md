@@ -35,18 +35,18 @@ under `tools/` and `libs/` ([*Workspace paths (XD-ADR-0083)*](../explanation/dec
 A role decides which repos a workspace checks out, through west’s group filter
 ([*West submanifests and proje... (XD-ADR-0079)*](../explanation/decisions/repos.html.md#XD-ADR-0079)). The manifest’s default is minimal ([*A minimal default group filter (XD-ADR-0084)*](../explanation/decisions/repos.html.md#XD-ADR-0084)). The roles that curatrix knows:
 
-| Role          | Group filter (added to the default)   | Gets                                                                                                                                                                  |
-|---------------|---------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `syseng`      | (manifest default)                    | framework, systems engineering, SYSMOD and PLEML libraries, Zephyr                                                                                                    |
-| `ee`          | `+ee`                                 | plus the EE repo and the KiCad libraries without 3D models                                                                                                            |
-| `ee3d`        | `+ee,+kicad-3d`                       | like `ee`, plus the KiCad 3D models                                                                                                                                   |
-| `me`          | `+me,+freecad-parts`                  | plus the ME repo and the FreeCAD parts library                                                                                                                        |
-| `sw`          | `+sw`                                 | plus the SW repo                                                                                                                                                      |
-| `integration` | `+ee,+me,+sw,+integration`            | everything except the big libraries ([*The integration role (XD-ADR-0082)*](../explanation/decisions/repos.html.md#XD-ADR-0082))                                 |
-| `full`        | all groups                            | everything, for local full builds and baselines                                                                                                                       |
-| `ci-full`     | same as `integration`                 | what the full-set CI job uses; CI builds without CAD content ([*CI runs without CAD content (XD-ADR-0049)*](../explanation/decisions/checks.html.md#XD-ADR-0049)) |
+| Role          | Group filter (added to the default)   | Gets                                                                                                                                                                                                  |
+|---------------|---------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `syseng`      | (manifest default)                    | framework, systems engineering, SYSMOD and PLEML libraries, Zephyr                                                                                                                                    |
+| `ee`          | `+ee`                                 | plus the EE repo and the KiCad libraries without 3D models                                                                                                                                            |
+| `ee3d`        | `+ee,+kicad-3d`                       | like `ee`, plus the KiCad 3D models                                                                                                                                                                   |
+| `me`          | `+me,+freecad-parts,+ee`              | plus the ME repo, the FreeCAD parts library, and the EE repo with the KiCad libraries<br/>([*Roles: EE gets FreeCAD, ME ... (XD-ADR-0141)*](../explanation/decisions/repos.html.md#XD-ADR-0141)) |
+| `sw`          | `+sw,+ee`                             | plus the SW repo and the EE repo, for the board pin maps ([*SW reads the board pin maps... (XD-ADR-0131)*](../explanation/decisions/domains.html.md#XD-ADR-0131))                                  |
+| `integration` | `+ee,+me,+sw,+integration`            | everything except the big libraries ([*The integration role (XD-ADR-0082)*](../explanation/decisions/repos.html.md#XD-ADR-0082))                                                                 |
+| `full`        | all groups                            | everything, for local full builds and baselines                                                                                                                                                       |
+| `ci-full`     | same as `integration`                 | what the full-set CI job uses; CI builds without CAD content ([*CI runs without CAD content (XD-ADR-0049)*](../explanation/decisions/checks.html.md#XD-ADR-0049))                                 |
 
-Set or change the role with `curatrix bootstrap --role <role>`. Repos that become inactive are
+Set or change the role with `curatrix bootstrap --role <role>`. `curatrix update` applies the group filter of the current role again, so a role that gains groups (for example `me` and `sw` in Phase 5) gets them on the next update. Repos that become inactive are
 left on disk.
 
 ## Bootstrap

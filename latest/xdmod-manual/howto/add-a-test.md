@@ -44,8 +44,10 @@ Tests live by what they verify ([*Tests live by what they verify (XD-ADR-0104)*]
 - Every requirement needs a `verifies` link ([*Every requirement is verified (XD-RULE-0009)*](../explanation/rules/trace.md#XD-RULE-0009), [*every requirement verified ... (XD-CHECK-0007)*](../reference/checks.md#XD-CHECK-0007)).
 
 #### NOTE
-The run-record schema and the extraction of `TR` needs from test reports are being
-built (task 4.5a). Until then, test reports show the sphinx-test-reports needs.
+Run records exist: `curatrix evidence record` writes one from a Twister run onto the
+`evidence` branch, and `curatrix evidence read` turns the records into `TR` needs (curatrix
+README, “Evidence”). Showing these `TR` needs in the test reports comes with task 5.10. Until
+then, test reports show the sphinx-test-reports needs.
 
 ## Checks
 

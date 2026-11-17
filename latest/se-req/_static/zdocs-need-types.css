@@ -15,10 +15,13 @@ table.need.need.need.need.needs_type_sw-impl { --zd-type: #D9E1F2; }
 table.need.need.need.need.needs_type_sw-tc { --zd-type: #D9E1F2; }
 table.need.need.need.need.needs_type_ee-req { --zd-type: #F8CBAD; }
 table.need.need.need.need.needs_type_ee-pcba { --zd-type: #F8CBAD; }
+table.need.need.need.need.needs_type_ee-port { --zd-type: #F8CBAD; }
+table.need.need.need.need.needs_type_ee-har { --zd-type: #F8CBAD; }
 table.need.need.need.need.needs_type_ee-cmp { --zd-type: #F8CBAD; }
 table.need.need.need.need.needs_type_ee-tc { --zd-type: #F8CBAD; }
 table.need.need.need.need.needs_type_me-req { --zd-type: #C6E0B4; }
 table.need.need.need.need.needs_type_me-asm { --zd-type: #C6E0B4; }
+table.need.need.need.need.needs_type_me-port { --zd-type: #C6E0B4; }
 table.need.need.need.need.needs_type_me-part { --zd-type: #C6E0B4; }
 table.need.need.need.need.needs_type_me-tc { --zd-type: #C6E0B4; }
 table.need.need.need.need.needs_type_xd-adr { --zd-type: #EDEDED; }

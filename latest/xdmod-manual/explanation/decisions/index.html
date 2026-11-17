@@ -27,7 +27,7 @@
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=3d3e411e"></script>
+      <script src="../../_static/documentation_options.js?v=2918d1a6"></script>
       <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../../_static/zdocs-need-preview.js?v=98728251"></script>
@@ -53,7 +53,7 @@
           <a href="../../index.html" class="icon icon-home">
             XDMOD Manual
           </a>
-<div class="version zdocs-version">v0.0-dev+gc9cc446</div>
+<div class="version zdocs-version">v0.0-dev+g94822ec</div>
 
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -192,7 +192,7 @@ project.</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">legacy_id</span></code> is the number the decision had in the planning log (<code class="docutils literal notranslate"><span class="pre">D1</span></code> to <code class="docutils literal notranslate"><span class="pre">D142</span></code>) before it
 became a need. Old texts and commit messages use these numbers.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">date</span></code> is the day it was made.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">decision_status</span></code> is <code class="docutils literal notranslate"><span class="pre">accepted</span></code>, <code class="docutils literal notranslate"><span class="pre">revised</span></code> (a newer decision changed part of it) or
+<li><p><code class="docutils literal notranslate"><span class="pre">decision_status</span></code> is <code class="docutils literal notranslate"><span class="pre">proposed</span></code> (written, but waiting for a spike or the owner), <code class="docutils literal notranslate"><span class="pre">accepted</span></code>, <code class="docutils literal notranslate"><span class="pre">revised</span></code> (a newer decision changed part of it) or
 <code class="docutils literal notranslate"><span class="pre">superseded</span></code> (a newer decision replaced it). Changed decisions are never deleted or edited
 into something new: they keep their need, and the newer decision holds the link to them
 (<code class="docutils literal notranslate"><span class="pre">refines</span></code>, <code class="docutils literal notranslate"><span class="pre">revises</span></code> or <code class="docutils literal notranslate"><span class="pre">supersedes</span></code>). The older need shows the link back as
@@ -215,6 +215,7 @@ ID, and set the older need’s <code class="docutils literal notranslate"><span 
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="method.html">Method and model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="traces.html">Traces and IDs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="domains.html">Domain models and CAD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="documents.html">Documents</a></li>
 <li class="toctree-l1"><a class="reference internal" href="repos.html">Repos and workspace</a></li>
 <li class="toctree-l1"><a class="reference internal" href="checks.html">Checks, CI and evidence</a></li>
@@ -378,7 +379,7 @@ ID, and set the older need’s <code class="docutils literal notranslate"><span 
 <tr class="need row-even" data-need-id="XD-ADR-0023"><td class="needs_id"><p><a class="reference internal" href="traces.html#XD-ADR-0023">XD-ADR-0023</a></p></td>
 <td class="needs_legacy_id"><p>D29</p></td>
 <td class="needs_title"><p>Trace IDs live inside the CAD files</p></td>
-<td class="needs_decision_status"><p>accepted</p></td>
+<td class="needs_decision_status"><p>revised</p></td>
 <td class="needs_date"><p>2026-11-14</p></td>
 </tr>
 <tr class="need row-odd" data-need-id="XD-ADR-0024"><td class="needs_id"><p><a class="reference internal" href="scope.html#XD-ADR-0024">XD-ADR-0024</a></p></td>
@@ -420,7 +421,7 @@ ID, and set the older need’s <code class="docutils literal notranslate"><span 
 <tr class="need row-odd" data-need-id="XD-ADR-0030"><td class="needs_id"><p><a class="reference internal" href="traces.html#XD-ADR-0030">XD-ADR-0030</a></p></td>
 <td class="needs_legacy_id"><p>D36</p></td>
 <td class="needs_title"><p>Link-type table and interface elements</p></td>
-<td class="needs_decision_status"><p>accepted</p></td>
+<td class="needs_decision_status"><p>revised</p></td>
 <td class="needs_date"><p>2026-11-14</p></td>
 </tr>
 <tr class="need row-even" data-need-id="XD-ADR-0031"><td class="needs_id"><p><a class="reference internal" href="method.html#XD-ADR-0031">XD-ADR-0031</a></p></td>
@@ -462,7 +463,7 @@ ID, and set the older need’s <code class="docutils literal notranslate"><span 
 <tr class="need row-even" data-need-id="XD-ADR-0037"><td class="needs_id"><p><a class="reference internal" href="scope.html#XD-ADR-0037">XD-ADR-0037</a></p></td>
 <td class="needs_legacy_id"><p>D43</p></td>
 <td class="needs_title"><p>Scope moved to iteration 2</p></td>
-<td class="needs_decision_status"><p>accepted</p></td>
+<td class="needs_decision_status"><p>revised</p></td>
 <td class="needs_date"><p>2026-11-14</p></td>
 </tr>
 <tr class="need row-odd" data-need-id="XD-ADR-0038"><td class="needs_id"><p><a class="reference internal" href="checks.html#XD-ADR-0038">XD-ADR-0038</a></p></td>
@@ -852,7 +853,7 @@ ID, and set the older need’s <code class="docutils literal notranslate"><span 
 <tr class="need row-odd" data-need-id="XD-ADR-0102"><td class="needs_id"><p><a class="reference internal" href="documents.html#XD-ADR-0102">XD-ADR-0102</a></p></td>
 <td class="needs_legacy_id"><p>D112</p></td>
 <td class="needs_title"><p>One EE document per PCBA and per prototype configuration</p></td>
-<td class="needs_decision_status"><p>accepted</p></td>
+<td class="needs_decision_status"><p>revised</p></td>
 <td class="needs_date"><p>2026-11-14</p></td>
 </tr>
 <tr class="need row-even" data-need-id="XD-ADR-0103"><td class="needs_id"><p><a class="reference internal" href="repos.html#XD-ADR-0103">XD-ADR-0103</a></p></td>
@@ -984,12 +985,126 @@ ID, and set the older need’s <code class="docutils literal notranslate"><span 
 <tr class="need row-odd" data-need-id="XD-ADR-0124"><td class="needs_id"><p><a class="reference internal" href="scope.html#XD-ADR-0124">XD-ADR-0124</a></p></td>
 <td class="needs_legacy_id"><p>D135</p></td>
 <td class="needs_title"><p>Scope cuts for iteration 1</p></td>
-<td class="needs_decision_status"><p>accepted</p></td>
+<td class="needs_decision_status"><p>revised</p></td>
 <td class="needs_date"><p>2026-11-14</p></td>
 </tr>
 <tr class="need row-even" data-need-id="XD-ADR-0125"><td class="needs_id"><p><a class="reference internal" href="checks.html#XD-ADR-0125">XD-ADR-0125</a></p></td>
 <td class="needs_legacy_id"><p></p></td>
 <td class="needs_title"><p>Checks that bite</p></td>
+<td class="needs_decision_status"><p>accepted</p></td>
+<td class="needs_date"><p>2026-11-17</p></td>
+</tr>
+<tr class="need row-odd" data-need-id="XD-ADR-0126"><td class="needs_id"><p><a class="reference internal" href="checks.html#XD-ADR-0126">XD-ADR-0126</a></p></td>
+<td class="needs_legacy_id"><p></p></td>
+<td class="needs_title"><p>One accepted.yaml format, with Accepted-by</p></td>
+<td class="needs_decision_status"><p>accepted</p></td>
+<td class="needs_date"><p>2026-11-17</p></td>
+</tr>
+<tr class="need row-even" data-need-id="XD-ADR-0127"><td class="needs_id"><p><a class="reference internal" href="documents.html#XD-ADR-0127">XD-ADR-0127</a></p></td>
+<td class="needs_legacy_id"><p></p></td>
+<td class="needs_title"><p>WireViz for harnesses</p></td>
+<td class="needs_decision_status"><p>accepted</p></td>
+<td class="needs_date"><p>2026-11-17</p></td>
+</tr>
+<tr class="need row-odd" data-need-id="XD-ADR-0128"><td class="needs_id"><p><a class="reference internal" href="domains.html#XD-ADR-0128">XD-ADR-0128</a></p></td>
+<td class="needs_legacy_id"><p></p></td>
+<td class="needs_title"><p>The domain model owns the IDs of boards, assemblies, ports and harnesses</p></td>
+<td class="needs_decision_status"><p>accepted</p></td>
+<td class="needs_date"><p>2026-11-17</p></td>
+</tr>
+<tr class="need row-even" data-need-id="XD-ADR-0129"><td class="needs_id"><p><a class="reference internal" href="documents.html#XD-ADR-0129">XD-ADR-0129</a></p></td>
+<td class="needs_legacy_id"><p></p></td>
+<td class="needs_title"><p>One document per board, harness and assembly</p></td>
+<td class="needs_decision_status"><p>accepted</p></td>
+<td class="needs_date"><p>2026-11-17</p></td>
+</tr>
+<tr class="need row-odd" data-need-id="XD-ADR-0130"><td class="needs_id"><p><a class="reference internal" href="domains.html#XD-ADR-0130">XD-ADR-0130</a></p></td>
+<td class="needs_legacy_id"><p></p></td>
+<td class="needs_title"><p>Domain repos refine the system model by specialization</p></td>
+<td class="needs_decision_status"><p>accepted</p></td>
+<td class="needs_date"><p>2026-11-17</p></td>
+</tr>
+<tr class="need row-even" data-need-id="XD-ADR-0131"><td class="needs_id"><p><a class="reference internal" href="domains.html#XD-ADR-0131">XD-ADR-0131</a></p></td>
+<td class="needs_legacy_id"><p></p></td>
+<td class="needs_title"><p>SW reads the board pin maps from EE</p></td>
+<td class="needs_decision_status"><p>accepted</p></td>
+<td class="needs_date"><p>2026-11-17</p></td>
+</tr>
+<tr class="need row-odd" data-need-id="XD-ADR-0132"><td class="needs_id"><p><a class="reference internal" href="domains.html#XD-ADR-0132">XD-ADR-0132</a></p></td>
+<td class="needs_legacy_id"><p></p></td>
+<td class="needs_title"><p>curatrix checks conformance and derives the links</p></td>
+<td class="needs_decision_status"><p>accepted</p></td>
+<td class="needs_date"><p>2026-11-17</p></td>
+</tr>
+<tr class="need row-even" data-need-id="XD-ADR-0133"><td class="needs_id"><p><a class="reference internal" href="domains.html#XD-ADR-0133">XD-ADR-0133</a></p></td>
+<td class="needs_legacy_id"><p></p></td>
+<td class="needs_title"><p>Need kinds EE-PORT, ME-PORT and EE-HAR</p></td>
+<td class="needs_decision_status"><p>accepted</p></td>
+<td class="needs_date"><p>2026-11-17</p></td>
+</tr>
+<tr class="need row-odd" data-need-id="XD-ADR-0134"><td class="needs_id"><p><a class="reference internal" href="domains.html#XD-ADR-0134">XD-ADR-0134</a></p></td>
+<td class="needs_legacy_id"><p></p></td>
+<td class="needs_title"><p>ME writes board geometry into KiCad in a co-design change</p></td>
+<td class="needs_decision_status"><p>proposed</p></td>
+<td class="needs_date"><p>2026-11-17</p></td>
+</tr>
+<tr class="need row-even" data-need-id="XD-ADR-0135"><td class="needs_id"><p><a class="reference internal" href="domains.html#XD-ADR-0135">XD-ADR-0135</a></p></td>
+<td class="needs_legacy_id"><p></p></td>
+<td class="needs_title"><p>External parts and prototype projects</p></td>
+<td class="needs_decision_status"><p>accepted</p></td>
+<td class="needs_date"><p>2026-11-17</p></td>
+</tr>
+<tr class="need row-odd" data-need-id="XD-ADR-0136"><td class="needs_id"><p><a class="reference internal" href="domains.html#XD-ADR-0136">XD-ADR-0136</a></p></td>
+<td class="needs_legacy_id"><p></p></td>
+<td class="needs_title"><p>Variants: the domain variant names what it serves</p></td>
+<td class="needs_decision_status"><p>accepted</p></td>
+<td class="needs_date"><p>2026-11-17</p></td>
+</tr>
+<tr class="need row-even" data-need-id="XD-ADR-0137"><td class="needs_id"><p><a class="reference internal" href="domains.html#XD-ADR-0137">XD-ADR-0137</a></p></td>
+<td class="needs_legacy_id"><p></p></td>
+<td class="needs_title"><p>FreeCAD assemblies: a skeleton document, values from the model</p></td>
+<td class="needs_decision_status"><p>accepted</p></td>
+<td class="needs_date"><p>2026-11-17</p></td>
+</tr>
+<tr class="need row-odd" data-need-id="XD-ADR-0138"><td class="needs_id"><p><a class="reference internal" href="domains.html#XD-ADR-0138">XD-ADR-0138</a></p></td>
+<td class="needs_legacy_id"><p></p></td>
+<td class="needs_title"><p>Who owns instance counts</p></td>
+<td class="needs_decision_status"><p>accepted</p></td>
+<td class="needs_date"><p>2026-11-17</p></td>
+</tr>
+<tr class="need row-even" data-need-id="XD-ADR-0139"><td class="needs_id"><p><a class="reference internal" href="domains.html#XD-ADR-0139">XD-ADR-0139</a></p></td>
+<td class="needs_legacy_id"><p></p></td>
+<td class="needs_title"><p>A board library repo for ME</p></td>
+<td class="needs_decision_status"><p>proposed</p></td>
+<td class="needs_date"><p>2026-11-17</p></td>
+</tr>
+<tr class="need row-odd" data-need-id="XD-ADR-0140"><td class="needs_id"><p><a class="reference internal" href="repos.html#XD-ADR-0140">XD-ADR-0140</a></p></td>
+<td class="needs_legacy_id"><p></p></td>
+<td class="needs_title"><p>Tags per board, assembly and harness, made by the owner</p></td>
+<td class="needs_decision_status"><p>accepted</p></td>
+<td class="needs_date"><p>2026-11-17</p></td>
+</tr>
+<tr class="need row-even" data-need-id="XD-ADR-0141"><td class="needs_id"><p><a class="reference internal" href="repos.html#XD-ADR-0141">XD-ADR-0141</a></p></td>
+<td class="needs_legacy_id"><p></p></td>
+<td class="needs_title"><p>Roles: EE gets FreeCAD, ME gets the KiCad files, SW gets the EE model</p></td>
+<td class="needs_decision_status"><p>accepted</p></td>
+<td class="needs_date"><p>2026-11-17</p></td>
+</tr>
+<tr class="need row-odd" data-need-id="XD-ADR-0142"><td class="needs_id"><p><a class="reference internal" href="scope.html#XD-ADR-0142">XD-ADR-0142</a></p></td>
+<td class="needs_legacy_id"><p></p></td>
+<td class="needs_title"><p>EE design output in iteration 1</p></td>
+<td class="needs_decision_status"><p>accepted</p></td>
+<td class="needs_date"><p>2026-11-17</p></td>
+</tr>
+<tr class="need row-even" data-need-id="XD-ADR-0143"><td class="needs_id"><p><a class="reference internal" href="scope.html#XD-ADR-0143">XD-ADR-0143</a></p></td>
+<td class="needs_legacy_id"><p></p></td>
+<td class="needs_title"><p>ME design output in iteration 1</p></td>
+<td class="needs_decision_status"><p>accepted</p></td>
+<td class="needs_date"><p>2026-11-17</p></td>
+</tr>
+<tr class="need row-odd" data-need-id="XD-ADR-0144"><td class="needs_id"><p><a class="reference internal" href="scope.html#XD-ADR-0144">XD-ADR-0144</a></p></td>
+<td class="needs_legacy_id"><p></p></td>
+<td class="needs_title"><p>A PCB layout in iteration 1, without routing</p></td>
 <td class="needs_decision_status"><p>accepted</p></td>
 <td class="needs_date"><p>2026-11-17</p></td>
 </tr>

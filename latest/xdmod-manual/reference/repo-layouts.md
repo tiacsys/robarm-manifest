@@ -49,34 +49,47 @@ docs/se-req/  docs/se-arch/
 ## EE repo
 
 ```text
-pcba/<name>/            one KiCad project per PCBA, with project-local library tables
-proto/<config>/         prototype wiring per prototype configuration (KiCad or WireViz)
+model/                  EE domain model: board defs, connector port defs with pin maps,
+                        cable defs, external parts, board variants
+pcba/<name>/            one KiCad project per board def: <name>.kicad_pro, schematic, board,
+                        library tables, <name>.kicad_jobset, accepted.yaml
+proto/<name>/           one KiCad project per block of the prototype configuration
+harness/<name>/         one WireViz harness per cable def: <name>.yml
 lib/                    project-local symbols, footprints, 3D models
-tests/                  scripted EE checks (netlist vs. pin map, ERC), JUnit output
-generated/              cad-needs.json
-docs/                   EE requirements and design; one document per PCBA and per
-                        prototype configuration
+tests/                  scripted EE checks, JUnit output
+generated/              cad-needs.json, model.json, <project>.connectors.json
+docs/                   ee-design; one document per board (pcba-<name>), prototype
+                        project (proto-<name>) and harness (harness-<name>)
 ```
 
 KiCad library tables refer to the shared libraries only through variables (`${XD_KICAD_SYMBOLS}`
 and so on) and to `lib/` through `${KIPRJMOD}`. `curatrix launch kicad` sets the variables
-([*Pinned, isolated component ... (XD-ADR-0080)*](../explanation/decisions/repos.md#XD-ADR-0080)). There is one document per PCBA and one per prototype configuration ([*One EE document per PCBA an... (XD-ADR-0102)*](../explanation/decisions/documents.md#XD-ADR-0102)).
+([*Pinned, isolated component ... (XD-ADR-0080)*](../explanation/decisions/repos.md#XD-ADR-0080)). The domain model owns the board, port and harness IDs; KiCad and WireViz
+files refer to them ([*The domain model owns the I... (XD-ADR-0128)*](../explanation/decisions/domains.md#XD-ADR-0128)). The jobset is a copy of the xdmod template
+([*EE design output in iterati... (XD-ADR-0142)*](../explanation/decisions/scope.md#XD-ADR-0142)); `accepted.yaml` holds the accepted ERC and DRC findings ([*One accepted.yaml format, w... (XD-ADR-0126)*](../explanation/decisions/checks.md#XD-ADR-0126)).
+There is one document per board, prototype project and harness ([*One document per board, har... (XD-ADR-0129)*](../explanation/decisions/documents.md#XD-ADR-0129),
+[*WireViz for harnesses (XD-ADR-0127)*](../explanation/decisions/documents.md#XD-ADR-0127)).
 
 ## ME repo
 
 ```text
-parts/<part>.FCStd      single parts, stored uncompressed
-assemblies/<asm>/       <asm>.FCStd and assembly-specific parts
+model/                  ME domain model: assembly defs, mechanical port defs, variants
+parts/<part>.FCStd      shared parts, stored uncompressed
+assemblies/<name>/      <name>.FCStd (top document), skeleton.FCStd (parameters, variant
+                        table, master sketch), parts/, accepted.yaml
 lib/                    project-local parts
 templates/              TechDraw templates
 print/                  print-settings profiles
 tests/                  scripted ME checks, JUnit output
-generated/              cad-needs.json, semantic JSON of each .FCStd
-docs/
+generated/              cad-needs.json, model.json, semantic JSON of each .FCStd
+docs/                   me-design; one document per top-level assembly (asm-<name>)
 ```
 
 FreeCAD files are stored uncompressed, with a git textconv for readable diffs ([*FreeCAD files uncompressed,... (XD-ADR-0056)*](../explanation/decisions/checks.md#XD-ADR-0056),
-[*Design files are stored unc... (XD-RULE-0039)*](../explanation/rules/checks.md#XD-RULE-0039)).
+[*Design files are stored unc... (XD-RULE-0039)*](../explanation/rules/checks.md#XD-RULE-0039)). Parts refer only to the skeleton, never to the top document
+([*FreeCAD assemblies: a skele... (XD-ADR-0137)*](../explanation/decisions/domains.md#XD-ADR-0137), proposed). Board models come at fixed versions from a board library repo
+([*A board library repo for ME (XD-ADR-0139)*](../explanation/decisions/domains.md#XD-ADR-0139), proposed). Boards, harnesses and assemblies have their own tags
+`<name>/vX.Y.Z`, made by the owner only ([*Tags per board, assembly an... (XD-ADR-0140)*](../explanation/decisions/repos.md#XD-ADR-0140)).
 
 ## SW repo
 
@@ -135,7 +148,7 @@ docs/xdmod-manual/  docs/xdmod-ref/
 |----------------------------------------------------|-------------------------------------------------------------------------------|-------------------|
 | `xdmod/launch/CLAUDE.md` → `<workspace>/CLAUDE.md` | workspace rules: run from the root, limits, build paths, trace rule, trailers | shared            |
 | `xdmod/claude/skills/`                             | skills per SYSMOD step, EARS writing, ID issuing, change workflow             | shared            |
-| `xdmod/claude/commands/`                           | slash commands, e.g. `/review-pr`                                             | shared            |
+| `xdmod/claude/commands/`                           | slash commands, linked as `/xd-<name>`, e.g. `/xd-review-pr`                  | shared            |
 | `<repo>/claude/CLAUDE.md`                          | repo rules: layout, checks, pitfalls                                          | local             |
 | `<repo>/claude/skills/`, `commands/`               | domain skills, e.g. KiCad edits through scripts                               | local             |
 

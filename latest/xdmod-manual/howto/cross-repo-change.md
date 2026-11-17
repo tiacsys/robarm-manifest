@@ -50,8 +50,8 @@ the framework ([*West submanifests and proje... (XD-ADR-0079)*](../explanation/d
 |--------------------|----------------------------|----------------------------------------------------------------------------------------------------------------------------------------|
 | `syseng` (default) | (manifest default)         | framework, syseng, libraries, Zephyr                                                                                                   |
 | `ee` / `ee3d`      | `+ee` / `+ee,+kicad-3d`    | plus the EE repo and KiCad libraries (with 3D models)                                                                                  |
-| `me`               | `+me,+freecad-parts`       | plus the ME repo and the FreeCAD parts library                                                                                         |
-| `sw`               | `+sw`                      | plus the SW repo                                                                                                                       |
+| `me`               | `+me,+freecad-parts,+ee`   | plus the ME repo, the FreeCAD parts library, the EE repo and KiCad libraries                                                           |
+| `sw`               | `+sw,+ee`                  | plus the SW repo and the EE repo                                                                                                       |
 | `integration`      | `+ee,+me,+sw,+integration` | every repo without the big libraries ([*The integration role (XD-ADR-0082)*](../explanation/decisions/repos.md#XD-ADR-0082)) |
 | `full`             | all groups                 | everything                                                                                                                             |
 

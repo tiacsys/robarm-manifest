@@ -17,6 +17,7 @@
 - [Decisions](decisions/index.html.md): This part records every decision about the XDMOD framework. Each decision is a need of type
 - [Method and model](decisions/method.html.md): How the system is modelled: SysML v2, SYSMOD, requirements, views and variants.
 - [Traces and IDs](decisions/traces.html.md): The trace rule, link types, need kinds and the ID scheme.
+- [Domain models and CAD](decisions/domains.html.md): How the EE and ME repos refine the system model, which needs their models emit, and how KiCad
 - [Documents](decisions/documents.html.md): The linked document set, zdocs, and how documents get their content.
 - [Repos and workspace](decisions/repos.html.md): Repos, the west workspace, names, tags and paths.
 - [Checks, CI and evidence](decisions/checks.html.md): Where checks run, CI, tool limits, generated files and test evidence.
