@@ -1,0 +1,15 @@
+# The board library (XD-ADR-0139, task 5.29): FreeCAD models of the tagged board versions of
+# robarm-ee, for the assemblies of robarm-me. EE writes into it, ME reads from it, so it carries
+# both groups and the roles ee and me (and integration, full) get it (XD-ADR-0141). It is a design
+# repo with its own checks.yaml, so it sits at the top level like the other robarm-* repos (worktree
+# sets and CI sibling resolution need that). The bump bot moves this pin (robarm-*, D89).
+manifest:
+  remotes:
+    - name: tiacsys
+      url-base: https://github.com/tiacsys
+
+  projects:
+    - name: robarm-freecad-pcba
+      remote: tiacsys
+      revision: 76e1039e131c520ed13650b5e33a82da20c08c34
+      groups: [ee, me]

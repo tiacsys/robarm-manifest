@@ -125,6 +125,16 @@ documents:
     builders: [html]
     needs: {source: json}
 
+  # ---------------------------------------------------------------- robarm-freecad-pcba (board library)
+  board-library:
+    title: "Board Library"
+    group: g-mechanical
+    prefix: board-library
+    doc_dir: ../../robarm-freecad-pcba/docs/board-library
+    version_project: robarm-freecad-pcba
+    builders: [html]
+    needs: {source: json}
+
   # ---------------------------------------------------------------- robarm-integration
   int-test-spec:
     title: "System & Integration Test Specification"
