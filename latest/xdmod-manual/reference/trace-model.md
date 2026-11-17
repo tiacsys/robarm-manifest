@@ -238,6 +238,9 @@ The trace principles and graph rules:
 | [XD-RULE-0047](../explanation/rules/trace.md#XD-RULE-0047) |                 | Domain models conform to the system model                |
 | [XD-RULE-0049](../explanation/rules/trace.md#XD-RULE-0049) |                 | One KiCad project per board def                          |
 | [XD-RULE-0050](../explanation/rules/trace.md#XD-RULE-0050) |                 | Connectors name their port and follow its pin map        |
+| [XD-RULE-0055](../explanation/rules/trace.md#XD-RULE-0055) |                 | One FreeCAD document per assembly def                    |
+| [XD-RULE-0056](../explanation/rules/trace.md#XD-RULE-0056) |                 | FreeCAD links follow the usages                          |
+| [XD-RULE-0057](../explanation/rules/trace.md#XD-RULE-0057) |                 | The ME model drives the FreeCAD parameters               |
 
 Where each rule is checked:
 
