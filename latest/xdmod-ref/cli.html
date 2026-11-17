@@ -25,7 +25,7 @@
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=e9fc772a"></script>
+      <script src="_static/documentation_options.js?v=d59484d2"></script>
       <script src="_static/doctools.js?v=fd6eb6e6"></script>
       <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="_static/zdocs-need-preview.js?v=98728251"></script>
@@ -51,7 +51,7 @@
           <a href="index.html" class="icon icon-home">
             curatrix Reference
           </a>
-<div class="version zdocs-version">v0.0-dev+gdb6166b</div>
+<div class="version zdocs-version">v0.0-dev+g30cc77b</div>
 
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -239,7 +239,7 @@ below. This page is generated from curatrix’s argument parser.</p>
 <td><p>scaffolds: `new pcba &lt;BoardDef&gt;` makes the KiCad project, jobset, library tables and the pcba-&lt;name&gt; document of a board def of the EE model; `new asm &lt;AssemblyDef&gt;` the FreeCAD top document, skeleton.FCStd and the asm-&lt;name&gt; document of an assembly def of the ME model</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#cli-cam"><span class="std std-ref">curatrix cam</span></a></p></td>
-<td><p>EE design output into build/&lt;area&gt;/cam/&lt;name&gt;/&lt;version&gt;/: a pcba/ project (copy, version, its jobset; local, needs KiCad) or a harness (WireViz diagram and BOM, a separate process)</p></td>
+<td><p>design output into build/&lt;area&gt;/cam/&lt;name&gt;/&lt;version&gt;/: EE a pcba/ project (copy, version, its jobset; local, needs KiCad) or a harness (WireViz diagram and BOM, a separate process); ME a top-level assembly (FreeCADCmd: STEP, 3MF/STL of the printed parts with the version embossed, drawing SVG/PDF, exploded view, BOM; per variant)</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#cli-trace"><span class="std std-ref">curatrix trace</span></a></p></td>
 <td><p>trace report per SYS-REQ (refined, satisfied, verified, latest result, gaps) from the last docs build; the canary configuration in its own section</p></td>
@@ -448,12 +448,12 @@ options:
 </section>
 <section id="curatrix-cam">
 <span id="cli-cam"></span><h2>curatrix cam<a class="headerlink" href="#curatrix-cam" title="Link to this heading"></a></h2>
-<p>EE design output into build/&lt;area&gt;/cam/&lt;name&gt;/&lt;version&gt;/: a pcba/ project (copy, version, its jobset; local, needs KiCad) or a harness (WireViz diagram and BOM, a separate process).</p>
+<p>design output into build/&lt;area&gt;/cam/&lt;name&gt;/&lt;version&gt;/: EE a pcba/ project (copy, version, its jobset; local, needs KiCad) or a harness (WireViz diagram and BOM, a separate process); ME a top-level assembly (FreeCADCmd: STEP, 3MF/STL of the printed parts with the version embossed, drawing SVG/PDF, exploded view, BOM; per variant).</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>usage: curatrix cam [-h] [--update-jobset] repo [name]
 
 positional arguments:
-  repo             the EE repo
-  name             one pcba/ project or harness (default: all)
+  repo             the EE or ME repo
+  name             one pcba/ project, harness or assembly (default: all)
 
 options:
   -h, --help       show this help message and exit
