@@ -190,3 +190,4 @@ project.
 | [XD-ADR-0142](scope.html.md#XD-ADR-0142) |          | EE design output in iteration 1                                          | accepted   | 2026-11-17 |
 | [XD-ADR-0143](scope.html.md#XD-ADR-0143) |          | ME design output in iteration 1                                          | accepted   | 2026-11-17 |
 | [XD-ADR-0144](scope.html.md#XD-ADR-0144) |          | A PCB layout in iteration 1, without routing                             | accepted   | 2026-11-17 |
+| [XD-ADR-0145](repos.html.md#XD-ADR-0145) |          | KiCad and FreeCAD never run outside curatrix; shims in .venv/bin         | accepted   | 2026-11-17 |

@@ -27,7 +27,7 @@
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=9f5d9d7d"></script>
+      <script src="../_static/documentation_options.js?v=6f5be532"></script>
       <script src="../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../_static/zdocs-need-preview.js?v=98728251"></script>
@@ -53,7 +53,7 @@
           <a href="../index.html" class="icon icon-home">
             XDMOD Manual
           </a>
-<div class="version zdocs-version">v0.0-dev+g13af60f</div>
+<div class="version zdocs-version">v0.0-dev+gd87cdc9</div>
 
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -295,6 +295,14 @@ the <code class="docutils literal notranslate"><span class="pre">XD_KICAD_*</spa
 command with this environment and the default limits.</p>
 <p>No user-global configuration is used. KiCad, FreeCAD and drawio get workspace-local config
 folders under <code class="docutils literal notranslate"><span class="pre">.xdmod/</span></code> through <code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">launch</span></code> (<a class="reference internal" href="../explanation/decisions/repos.html#XD-ADR-0080" title="XD-ADR-0080"><em class="xref need">Pinned, isolated component ... (XD-ADR-0080)</em></a>).</p>
+<p><code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">bootstrap</span></code> and <code class="docutils literal notranslate"><span class="pre">update</span></code> also write shims into <code class="docutils literal notranslate"><span class="pre">.venv/bin</span></code> for every KiCad and FreeCAD
+program found on the machine (<code class="docutils literal notranslate"><span class="pre">kicad-cli</span></code>, <code class="docutils literal notranslate"><span class="pre">kicad</span></code>, <code class="docutils literal notranslate"><span class="pre">eeschema</span></code>, <code class="docutils literal notranslate"><span class="pre">pcbnew</span></code>, <code class="docutils literal notranslate"><span class="pre">gerbview</span></code>,
+<code class="docutils literal notranslate"><span class="pre">pl_editor</span></code>, … and every <code class="docutils literal notranslate"><span class="pre">freecad*</span></code> program; <a class="reference internal" href="../explanation/decisions/repos.html#XD-ADR-0145" title="XD-ADR-0145"><em class="xref need">KiCad and FreeCAD never run... (XD-ADR-0145)</em></a>). From a worktree set they write
+the main workspace’s shims. A shim sets the same variables as <code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">run</span></code> (<code class="docutils literal notranslate"><span class="pre">KICAD_*</span></code> and
+<code class="docutils literal notranslate"><span class="pre">KICAD10_*</span></code> for KiCad, <code class="docutils literal notranslate"><span class="pre">LC_ALL</span></code> for <code class="docutils literal notranslate"><span class="pre">kicad-cli</span></code> only, <code class="docutils literal notranslate"><span class="pre">XDG_*</span></code> for FreeCAD) and runs the real
+binary by its absolute path. With <code class="docutils literal notranslate"><span class="pre">eval</span> <span class="pre">&quot;$(curatrix</span> <span class="pre">env)&quot;</span></code> the shims come first on <code class="docutils literal notranslate"><span class="pre">PATH</span></code>;
+<code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">doctor</span></code> warns when they do not, or when a shim’s real binary is gone. Nothing outside the workspace changes. The shims set no limits: still run the tools
+through curatrix.</p>
 </section>
 <section id="limits">
 <h2>Limits<a class="headerlink" href="#limits" title="Link to this heading"></a></h2>
