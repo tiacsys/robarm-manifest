@@ -25,7 +25,7 @@
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=616f40b9"></script>
+      <script src="_static/documentation_options.js?v=cfb5a7a1"></script>
       <script src="_static/doctools.js?v=fd6eb6e6"></script>
       <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="_static/zdocs-need-preview.js?v=98728251"></script>
@@ -51,7 +51,7 @@
           <a href="index.html" class="icon icon-home">
             curatrix Reference
           </a>
-<div class="version zdocs-version">v0.0-dev+g424fcb3</div>
+<div class="version zdocs-version">v0.0-dev+gc45556a</div>
 
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -75,6 +75,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#curatrix-docs">curatrix docs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#curatrix-check">curatrix check</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#curatrix-gen">curatrix gen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#curatrix-new">curatrix new</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#curatrix-trace">curatrix trace</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#curatrix-ids">curatrix ids</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#curatrix-views">curatrix views</a></li>
@@ -231,28 +232,31 @@ below. This page is generated from curatrix’s argument parser.</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#cli-gen"><span class="std std-ref">curatrix gen</span></a></p></td>
 <td><p>generated files: stubs, model, cad-needs, code-needs, freecad-json, tombstones, all; cad-exports (build/&lt;area&gt;/cad, not committed)</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cli-trace"><span class="std std-ref">curatrix trace</span></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cli-new"><span class="std std-ref">curatrix new</span></a></p></td>
+<td><p>scaffolds: `new pcba &lt;BoardDef&gt;` makes the KiCad project, jobset, library tables and the pcba-&lt;name&gt; document of a board def of the EE model</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#cli-trace"><span class="std std-ref">curatrix trace</span></a></p></td>
 <td><p>trace report per SYS-REQ (refined, satisfied, verified, latest result, gaps) from the last docs build; the canary configuration in its own section</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cli-ids"><span class="std std-ref">curatrix ids</span></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cli-ids"><span class="std std-ref">curatrix ids</span></a></p></td>
 <td><p>issue IDs from the ledger, replace placeholders</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cli-views"><span class="std std-ref">curatrix views</span></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#cli-views"><span class="std std-ref">curatrix views</span></a></p></td>
 <td><p>views as editable SVG: build | check | normalize</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cli-variants"><span class="std std-ref">curatrix variants</span></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cli-variants"><span class="std std-ref">curatrix variants</span></a></p></td>
 <td><p>variant rules F1, F2, V1-V5 on the model JSON</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cli-needs-diff"><span class="std std-ref">curatrix needs-diff</span></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#cli-needs-diff"><span class="std std-ref">curatrix needs-diff</span></a></p></td>
 <td><p>change impact between two sets of needs.json (R7)</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cli-work"><span class="std std-ref">curatrix work</span></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cli-work"><span class="std std-ref">curatrix work</span></a></p></td>
 <td><p>git worktrees for parallel work: start &lt;branch&gt; &lt;repos…&gt; | done &lt;branch&gt; | list (D125)</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cli-ci"><span class="std std-ref">curatrix ci</span></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#cli-ci"><span class="std std-ref">curatrix ci</span></a></p></td>
 <td><p>CI helpers: `ci siblings` resolves sibling revisions (D127); `ci base` fetches the published needs as the CK-G1/G2 base</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cli-evidence"><span class="std std-ref">curatrix evidence</span></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cli-evidence"><span class="std std-ref">curatrix evidence</span></a></p></td>
 <td><p>test run records: record (Twister dir -&gt; evidence branch), read (-&gt; TR needs), preview (Twister dir -&gt; preview TR needs for the docs), validate</p></td>
 </tr>
 </tbody>
@@ -413,6 +417,24 @@ options:
   --textconv FCSTD      freecad-json: print the trace JSON of one file (git
                         textconv)
   --shape               freecad-json: add the shape part (needs FreeCAD)
+</pre></div>
+</div>
+</section>
+<section id="curatrix-new">
+<span id="cli-new"></span><h2>curatrix new<a class="headerlink" href="#curatrix-new" title="Link to this heading"></a></h2>
+<p>scaffolds: `new pcba &lt;BoardDef&gt;` makes the KiCad project, jobset, library tables and the pcba-&lt;name&gt; document of a board def of the EE model.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>usage: curatrix new [-h] [--repo REPO] [--no-kicad] {pcba} element
+
+positional arguments:
+  {pcba}
+  element      the board def (name, qualified name or EE-PCBA ID) in the
+               repo&#39;s model.json
+
+options:
+  -h, --help   show this help message and exit
+  --repo REPO  the EE repo (name or path; default: the repo of the current
+               folder)
+  --no-kicad   do not let KiCad save the new files (tests)
 </pre></div>
 </div>
 </section>

@@ -236,6 +236,7 @@ The trace principles and graph rules:
 | [XD-RULE-0013](../explanation/rules/trace.md#XD-RULE-0013) | R5a             | Only valid evidence counts                               |
 | [XD-RULE-0014](../explanation/rules/trace.md#XD-RULE-0014) | R7              | Suspect links are reviewed before a baseline             |
 | [XD-RULE-0047](../explanation/rules/trace.md#XD-RULE-0047) |                 | Domain models conform to the system model                |
+| [XD-RULE-0049](../explanation/rules/trace.md#XD-RULE-0049) |                 | One KiCad project per board def                          |
 
 Where each rule is checked:
 
