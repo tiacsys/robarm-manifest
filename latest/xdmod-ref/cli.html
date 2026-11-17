@@ -25,7 +25,7 @@
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=d59484d2"></script>
+      <script src="_static/documentation_options.js?v=1ad1d2d6"></script>
       <script src="_static/doctools.js?v=fd6eb6e6"></script>
       <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="_static/zdocs-need-preview.js?v=98728251"></script>
@@ -51,7 +51,7 @@
           <a href="index.html" class="icon icon-home">
             curatrix Reference
           </a>
-<div class="version zdocs-version">v0.0-dev+g30cc77b</div>
+<div class="version zdocs-version">v0.0-dev+gcd2ac5b</div>
 
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -449,7 +449,9 @@ options:
 <section id="curatrix-cam">
 <span id="cli-cam"></span><h2>curatrix cam<a class="headerlink" href="#curatrix-cam" title="Link to this heading"></a></h2>
 <p>design output into build/&lt;area&gt;/cam/&lt;name&gt;/&lt;version&gt;/: EE a pcba/ project (copy, version, its jobset; local, needs KiCad) or a harness (WireViz diagram and BOM, a separate process); ME a top-level assembly (FreeCADCmd: STEP, 3MF/STL of the printed parts with the version embossed, drawing SVG/PDF, exploded view, BOM; per variant).</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>usage: curatrix cam [-h] [--update-jobset] repo [name]
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>usage: curatrix cam [-h] [--update-jobset] [--board-model] [--library]
+                    [--into DIR]
+                    repo [name]
 
 positional arguments:
   repo             the EE or ME repo
@@ -459,6 +461,15 @@ options:
   -h, --help       show this help message and exit
   --update-jobset  write the project&#39;s jobset from the shared template and its
                    variants, then stop
+  --board-model    the board&#39;s FreeCAD model (STEP export, headless FreeCAD
+                   import with the EE-PCBA ID and version) into
+                   build/&lt;area&gt;/board-model/&lt;name&gt;/&lt;version&gt;/, any version
+                   (XD-ADR-0139)
+  --library        the same for a tagged board version only, then copy the
+                   files into the board library checkout (a branch in a
+                   worktree set) for its pull request; refuses without a tag
+  --into DIR       with --library: the board library checkout (default: the
+                   repo with a board_library section in this workspace)
 </pre></div>
 </div>
 </section>

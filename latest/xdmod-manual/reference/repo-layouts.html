@@ -27,7 +27,7 @@
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=d59484d2"></script>
+      <script src="../_static/documentation_options.js?v=1ad1d2d6"></script>
       <script src="../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../_static/zdocs-need-preview.js?v=98728251"></script>
@@ -53,7 +53,7 @@
           <a href="../index.html" class="icon icon-home">
             XDMOD Manual
           </a>
-<div class="version zdocs-version">v0.0-dev+g30cc77b</div>
+<div class="version zdocs-version">v0.0-dev+gcd2ac5b</div>
 
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -78,6 +78,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#systems-engineering-repo">Systems engineering repo</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#ee-repo">EE repo</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#me-repo">ME repo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#board-library-repo">Board library repo</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#sw-repo">SW repo</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#integration-repo">Integration repo</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#manifest-repo">Manifest repo</a></li>
@@ -280,6 +281,21 @@ docs/                   me-design; one document per top-level assembly (asm-&lt;
 (<a class="reference internal" href="../explanation/decisions/domains.html#XD-ADR-0137" title="XD-ADR-0137"><em class="xref need">FreeCAD assemblies: a skele... (XD-ADR-0137)</em></a>, proposed). Board models come at fixed versions from a board library repo
 (<a class="reference internal" href="../explanation/decisions/domains.html#XD-ADR-0139" title="XD-ADR-0139"><em class="xref need">A board library repo for ME (XD-ADR-0139)</em></a>, proposed). Boards, harnesses and assemblies have their own tags
 <code class="docutils literal notranslate"><span class="pre">&lt;name&gt;/vX.Y.Z</span></code>, made by the owner only (<a class="reference internal" href="../explanation/decisions/repos.html#XD-ADR-0140" title="XD-ADR-0140"><em class="xref need">Tags per board, assembly an... (XD-ADR-0140)</em></a>).</p>
+</section>
+<section id="board-library-repo">
+<h2>Board library repo<a class="headerlink" href="#board-library-repo" title="Link to this heading"></a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>boards/&lt;board&gt;/&lt;board&gt;-&lt;vX.Y.Z&gt;[-&lt;variant&gt;].FCStd
+                        one FreeCAD model per tagged board version and variant: board body and
+                        components, no tracks; App::Part &quot;Board&quot; with TraceID (EE-PCBA),
+                        Version, Variant, Commit; uncompressed; at most 5 MB; never replaced
+docs/                   board-library: the list of board versions, made from the files
+checks.yaml             board_library: {source: &quot;{ws}/&lt;ee repo&gt;&quot;} (CK-F20); no ids.yaml
+</pre></div>
+</div>
+<p>A top-level west project in the west groups of EE and ME (<a class="reference internal" href="../explanation/decisions/domains.html#XD-ADR-0139" title="XD-ADR-0139"><em class="xref need">A board library repo for ME (XD-ADR-0139)</em></a>, proposed). EE writes
+a tagged board version with <code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">cam</span> <span class="pre">&lt;ee</span> <span class="pre">repo&gt;</span> <span class="pre">&lt;board&gt;</span> <span class="pre">--library</span></code> and opens the pull request;
+ME links one fixed version, and <code class="docutils literal notranslate"><span class="pre">cad.board_library</span></code> in the ME repo’s checks.yaml notes a newer one
+(CK-F21).</p>
 </section>
 <section id="sw-repo">
 <h2>SW repo<a class="headerlink" href="#sw-repo" title="Link to this heading"></a></h2>

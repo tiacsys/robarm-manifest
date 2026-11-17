@@ -98,6 +98,22 @@ FreeCAD files are stored uncompressed, with a git textconv for readable diffs ([
 ([*A board library repo for ME (XD-ADR-0139)*](../explanation/decisions/domains.md#XD-ADR-0139), proposed). Boards, harnesses and assemblies have their own tags
 `<name>/vX.Y.Z`, made by the owner only ([*Tags per board, assembly an... (XD-ADR-0140)*](../explanation/decisions/repos.md#XD-ADR-0140)).
 
+## Board library repo
+
+```text
+boards/<board>/<board>-<vX.Y.Z>[-<variant>].FCStd
+                        one FreeCAD model per tagged board version and variant: board body and
+                        components, no tracks; App::Part "Board" with TraceID (EE-PCBA),
+                        Version, Variant, Commit; uncompressed; at most 5 MB; never replaced
+docs/                   board-library: the list of board versions, made from the files
+checks.yaml             board_library: {source: "{ws}/<ee repo>"} (CK-F20); no ids.yaml
+```
+
+A top-level west project in the west groups of EE and ME ([*A board library repo for ME (XD-ADR-0139)*](../explanation/decisions/domains.md#XD-ADR-0139), proposed). EE writes
+a tagged board version with `curatrix cam <ee repo> <board> --library` and opens the pull request;
+ME links one fixed version, and `cad.board_library` in the ME repo’s checks.yaml notes a newer one
+(CK-F21).
+
 ## SW repo
 
 ```text
