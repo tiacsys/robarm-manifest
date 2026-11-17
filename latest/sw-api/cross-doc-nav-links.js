@@ -72,6 +72,10 @@ window.ZDOCS_NAV_LINKS = [
       {
         "label": "ME Requirements & Design",
         "href": "html/me-design/index.html"
+      },
+      {
+        "label": "Board Library",
+        "href": "html/board-library/index.html"
       }
     ]
   },
