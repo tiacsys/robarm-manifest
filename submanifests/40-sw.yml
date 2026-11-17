@@ -7,5 +7,5 @@ manifest:
   projects:
     - name: robarm-sw
       remote: tiacsys
-      revision: eb910fa3fb8ce781bb30a721b66c622f583b24e2
+      revision: 83ff1308e5df7a2090de17a706b8d3e12a634e72
       groups: [sw]

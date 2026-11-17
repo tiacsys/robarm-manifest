@@ -10,12 +10,12 @@ manifest:
     # The framework (D66). Pinned by SHA until it has SemVer releases (D92).
     - name: xdmod
       remote: tiacsys
-      revision: e626bd4eef2c91d016ac643c089c0f57e5a0ffca
+      revision: 52215d2deeb2527f4e763cb944c3145168cbbccc
 
     # System needs, requirements, SysML model and views. The bump bot moves this pin (D89).
     - name: robarm-syseng
       remote: tiacsys
-      revision: 21faea71d6504a5a536a5e9c95c69db0fe857c01
+      revision: 2670403c1c23d6c3580c6de1858941f38321f3a1
 
     # Doc engine (D25), a Zephyr module.
     # Task 4.3a (D62, D139): zdocs is pinned to an open PR branch until its fixes merge:
