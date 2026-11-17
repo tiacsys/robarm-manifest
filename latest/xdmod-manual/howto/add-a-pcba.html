@@ -27,7 +27,7 @@
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=f38544be"></script>
+      <script src="../_static/documentation_options.js?v=616f40b9"></script>
       <script src="../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../_static/zdocs-need-preview.js?v=98728251"></script>
@@ -53,7 +53,7 @@
           <a href="../index.html" class="icon icon-home">
             XDMOD Manual
           </a>
-<div class="version zdocs-version">v0.0-dev+g837dcb0</div>
+<div class="version zdocs-version">v0.0-dev+g424fcb3</div>
 
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -251,6 +251,12 @@ curatrix<span class="w"> </span>gen<span class="w"> </span>cad-needs<span class=
 <li><p>Show the schematic in the PCBA document with <code class="docutils literal notranslate"><span class="pre">kicad-sheet</span></code>, <code class="docutils literal notranslate"><span class="pre">kicad-bom</span></code> and <code class="docutils literal notranslate"><span class="pre">kicad-nets</span></code>.
 Make the exports locally with <code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">gen</span> <span class="pre">cad-exports</span> <span class="pre">robarm-ee</span></code>. In CI the directives show
 a “built locally” notice (<a class="reference internal" href="../explanation/decisions/checks.html#XD-ADR-0049" title="XD-ADR-0049"><em class="xref need">CI runs without CAD content (XD-ADR-0049)</em></a>).</p></li>
+<li><p>If the board has variants (at most two, <a class="reference internal" href="../explanation/decisions/domains.html#XD-ADR-0136" title="XD-ADR-0136"><em class="xref need">Variants: the domain varian... (XD-ADR-0136)</em></a>): add them in KiCad as assembly
+variants (Board Setup or the schematic’s variant list; DNP and fields per variant), write one
+def per variant in the EE model (<code class="docutils literal notranslate"><span class="pre">part</span> <span class="pre">def</span> <span class="pre">MyBoardAlt</span> <span class="pre">:&gt;</span> <span class="pre">MyBoard,</span> <span class="pre">XdDomain::DomainVariant</span>
+<span class="pre">{</span> <span class="pre">:&gt;&gt;</span> <span class="pre">variantName</span> <span class="pre">=</span> <span class="pre">&quot;alt&quot;;</span> <span class="pre">}</span></code>) with a dependency to the configurations and usages it serves, and
+add <code class="docutils literal notranslate"><span class="pre">variants:</span> <span class="pre">true</span></code> to <code class="docutils literal notranslate"><span class="pre">checks.yaml</span></code> (the check also needs <code class="docutils literal notranslate"><span class="pre">model.upstream</span></code>, the system
+repo’s committed <code class="docutils literal notranslate"><span class="pre">generated/model.json</span></code>).</p></li>
 </ol>
 </section>
 <section id="checks">
@@ -259,6 +265,7 @@ a “built locally” notice (<a class="reference internal" href="../explanation
 <li><p><a class="reference internal" href="../reference/checks.html#XD-CHECK-0019" title="XD-CHECK-0019"><em class="xref need">cad-needs.json matches the ... (XD-CHECK-0019)</em></a>: <code class="docutils literal notranslate"><span class="pre">cad-needs.json</span></code> matches the KiCad files (plain Python, no KiCad needed).</p></li>
 <li><p><a class="reference internal" href="../reference/checks.html#XD-CHECK-0016" title="XD-CHECK-0016"><em class="xref need">the Pilot parses the model ... (XD-CHECK-0016)</em></a>, <a class="reference internal" href="../reference/checks.html#XD-CHECK-0017" title="XD-CHECK-0017"><em class="xref need">model.json and model-needs.... (XD-CHECK-0017)</em></a>: the EE model parses and its generated files are fresh.</p></li>
 <li><p><a class="reference internal" href="../reference/checks.html#XD-CHECK-0033" title="XD-CHECK-0033"><em class="xref need">domain model conforms to it... (XD-CHECK-0033)</em></a>: the board def redefines every inherited port with a fitting port def.</p></li>
+<li><p><a class="reference internal" href="../reference/checks.html#XD-CHECK-0034" title="XD-CHECK-0034"><em class="xref need">variants across levels: one... (XD-CHECK-0034)</em></a>: exactly one variant per configuration and usage, and each variant is in the <code class="docutils literal notranslate"><span class="pre">.kicad_pro</span></code>.</p></li>
 <li><p><a class="reference internal" href="../reference/checks.html#XD-CHECK-0001" title="XD-CHECK-0001"><em class="xref need">docs build strict (zdocs, s... (XD-CHECK-0001)</em></a>: the strict docs build; its needs schema fails an element that realizes or satisfies nothing (<a class="reference internal" href="../explanation/rules/trace.html#XD-RULE-0010" title="XD-RULE-0010"><em class="xref need">No orphan design elements (XD-RULE-0010)</em></a>).</p></li>
 <li><p>Domain checks such as the netlist against the interface pin maps, and ERC, are commands in the
 repo’s <code class="docutils literal notranslate"><span class="pre">checks.yaml</span></code>.</p></li>

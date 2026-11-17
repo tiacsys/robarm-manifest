@@ -10,19 +10,20 @@ They run locally, in PR CI of the systems engineering repo, and in the full set.
 
 <a id="needtable-reference/variant-rules-0"></a>
 
-| ID                                                                       | Rule   | Title                                        |
-|--------------------------------------------------------------------------|--------|----------------------------------------------|
-| [XD-RULE-0021](../explanation/rules/variants.html.md#XD-RULE-0021) | F1     | A configuration respects its feature tree    |
-| [XD-RULE-0022](../explanation/rules/variants.html.md#XD-RULE-0022) | F2     | Feature constraints hold                     |
-| [XD-RULE-0023](../explanation/rules/variants.html.md#XD-RULE-0023) | V1     | One product model per configuration          |
-| [XD-RULE-0024](../explanation/rules/variants.html.md#XD-RULE-0024) | V2     | Every variation is bound                     |
-| [XD-RULE-0025](../explanation/rules/variants.html.md#XD-RULE-0025) | V3     | A variation is bound to its own variant      |
-| [XD-RULE-0026](../explanation/rules/variants.html.md#XD-RULE-0026) | V4     | The chosen variant is enabled                |
-| [XD-RULE-0027](../explanation/rules/variants.html.md#XD-RULE-0027) | V5     | Exactly one variant per variation            |
-| [XD-RULE-0028](../explanation/rules/variants.html.md#XD-RULE-0028) | V6     | Model constraints hold in each product model |
-| [XD-RULE-0029](../explanation/rules/variants.html.md#XD-RULE-0029) | T1     | configs matches the source                   |
-| [XD-RULE-0030](../explanation/rules/variants.html.md#XD-RULE-0030) | T2     | realizes respects configurations             |
-| [XD-RULE-0031](../explanation/rules/variants.html.md#XD-RULE-0031) | T3     | Coverage counts per configuration            |
+| ID                                                                       | Rule   | Title                                          |
+|--------------------------------------------------------------------------|--------|------------------------------------------------|
+| [XD-RULE-0021](../explanation/rules/variants.html.md#XD-RULE-0021) | F1     | A configuration respects its feature tree      |
+| [XD-RULE-0022](../explanation/rules/variants.html.md#XD-RULE-0022) | F2     | Feature constraints hold                       |
+| [XD-RULE-0023](../explanation/rules/variants.html.md#XD-RULE-0023) | V1     | One product model per configuration            |
+| [XD-RULE-0024](../explanation/rules/variants.html.md#XD-RULE-0024) | V2     | Every variation is bound                       |
+| [XD-RULE-0025](../explanation/rules/variants.html.md#XD-RULE-0025) | V3     | A variation is bound to its own variant        |
+| [XD-RULE-0026](../explanation/rules/variants.html.md#XD-RULE-0026) | V4     | The chosen variant is enabled                  |
+| [XD-RULE-0027](../explanation/rules/variants.html.md#XD-RULE-0027) | V5     | Exactly one variant per variation              |
+| [XD-RULE-0028](../explanation/rules/variants.html.md#XD-RULE-0028) | V6     | Model constraints hold in each product model   |
+| [XD-RULE-0029](../explanation/rules/variants.html.md#XD-RULE-0029) | T1     | configs matches the source                     |
+| [XD-RULE-0030](../explanation/rules/variants.html.md#XD-RULE-0030) | T2     | realizes respects configurations               |
+| [XD-RULE-0031](../explanation/rules/variants.html.md#XD-RULE-0031) | T3     | Coverage counts per configuration              |
+| [XD-RULE-0048](../explanation/rules/variants.html.md#XD-RULE-0048) |        | One domain variant per configuration and usage |
 
 ## Notes
 

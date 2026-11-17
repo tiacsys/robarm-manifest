@@ -27,7 +27,7 @@
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=f38544be"></script>
+      <script src="../_static/documentation_options.js?v=616f40b9"></script>
       <script src="../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../_static/zdocs-need-preview.js?v=98728251"></script>
@@ -53,7 +53,7 @@
           <a href="../index.html" class="icon icon-home">
             XDMOD Manual
           </a>
-<div class="version zdocs-version">v0.0-dev+g837dcb0</div>
+<div class="version zdocs-version">v0.0-dev+g424fcb3</div>
 
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -266,9 +266,27 @@ port def to the board or assembly that has a port of it (<a class="reference int
 <a class="reference internal" href="../reference/checks.html#XD-CHECK-0033" title="XD-CHECK-0033"><em class="xref need">domain model conforms to it... (XD-CHECK-0033)</em></a> checks conformance (<a class="reference internal" href="rules/trace.html#XD-RULE-0047" title="XD-RULE-0047"><em class="xref need">Domain models conform to th... (XD-RULE-0047)</em></a>). A conjugated port <code class="docutils literal notranslate"><span class="pre">~X</span></code> is
 redefined by a conjugated <code class="docutils literal notranslate"><span class="pre">~Y</span></code> with <code class="docutils literal notranslate"><span class="pre">Y</span> <span class="pre">:&gt;</span> <span class="pre">X</span></code>. A domain need gets the <code class="docutils literal notranslate"><span class="pre">configs</span></code> of the
 <code class="docutils literal notranslate"><span class="pre">SYS-CFG</span></code> s that configure the system elements it realizes.</p>
-<p>A variant of a board or assembly (<code class="docutils literal notranslate"><span class="pre">part</span> <span class="pre">def</span> <span class="pre">BoardB</span> <span class="pre">:&gt;</span> <span class="pre">Board</span></code>) has no ID of its own for now: a
-specialization between two domain defs makes no trace link, so a variant with an ID would realize
-nothing. Variants across levels come with task 5.16 (<a class="reference internal" href="decisions/domains.html#XD-ADR-0136" title="XD-ADR-0136"><em class="xref need">Variants: the domain varian... (XD-ADR-0136)</em></a>).</p>
+<p>A variant of a board or assembly specializes the board or assembly def and
+<code class="docutils literal notranslate"><span class="pre">XdDomain::DomainVariant</span></code>; <code class="docutils literal notranslate"><span class="pre">variantName</span></code> is its name in KiCad (an assembly variant in the
+<code class="docutils literal notranslate"><span class="pre">.kicad_pro</span></code>) or FreeCAD (a row of the configuration table). It has no ID of its own: a
+specialization between two domain defs makes no trace link. A dependency from the variant names the
+configurations and the system usages it serves (<a class="reference internal" href="decisions/domains.html#XD-ADR-0136" title="XD-ADR-0136"><em class="xref need">Variants: the domain varian... (XD-ADR-0136)</em></a>):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>part def JointBoardAlt :&gt; JointBoard, XdDomain::DomainVariant { :&gt;&gt; variantName = &quot;alt&quot;; }
+dependency from JointBoardAlt to MyConfigs::proto, MyProduct::Arm::joint1, MyProduct::Arm::joint2;
+</pre></div>
+</div>
+<p>Each dependency serves every pair of its configurations and usages; write one dependency per
+group, and name at least one of each in every dependency. The pairs a board must serve are built
+per system def it realizes: the usages of that def times the configurations that configure it (all
+configurations if none does). Nobody writes the table “configuration → variant per usage”: <a class="reference internal" href="../reference/checks.html#XD-CHECK-0034" title="XD-CHECK-0034"><em class="xref need">variants across levels: one... (XD-CHECK-0034)</em></a> computes it
+against the system repo’s committed model (<code class="docutils literal notranslate"><span class="pre">model.upstream</span></code>), writes it into its log
+(<code class="docutils literal notranslate"><span class="pre">build/&lt;area&gt;/checks/variants-across-levels.md</span></code>) and checks <a class="reference internal" href="rules/variants.html#XD-RULE-0048" title="XD-RULE-0048"><em class="xref need">One domain variant per conf... (XD-RULE-0048)</em></a>: exactly one
+variant per configuration and usage, every named variant in the KiCad project or FreeCAD
+configuration table, and Zephyr board variants by name (the Zephyr board name is the KiCad project
+name in lower case with <code class="docutils literal notranslate"><span class="pre">-</span></code> as <code class="docutils literal notranslate"><span class="pre">_</span></code>; <code class="docutils literal notranslate"><span class="pre">outer/inner</span></code> counts as <code class="docutils literal notranslate"><span class="pre">inner</span></code>; a Zephyr board without
+such a project is ignored). The domain repo switches it on with a <code class="docutils literal notranslate"><span class="pre">variants:</span></code>
+section in <code class="docutils literal notranslate"><span class="pre">checks.yaml</span></code>. At most two variants per board or assembly; a variant that names no
+configuration is not checked in iteration 1.</p>
 <p>Views of the model are SysML <code class="docutils literal notranslate"><span class="pre">view</span></code> definitions with an <code class="docutils literal notranslate"><span class="pre">&#64;XdView</span></code> annotation (<a class="reference internal" href="decisions/method.html#XD-ADR-0085" title="XD-ADR-0085"><em class="xref need">View definitions live in th... (XD-ADR-0085)</em></a>).
 curatrix renders them as editable <code class="docutils literal notranslate"><span class="pre">.drawio.svg</span></code> files (<a class="reference internal" href="decisions/method.html#XD-ADR-0087" title="XD-ADR-0087"><em class="xref need">Views are committed as edit... (XD-ADR-0087)</em></a>).</p>
 <p>The step-by-step mapping from SYSMOD steps to files and documents is in

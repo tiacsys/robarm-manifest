@@ -21,6 +21,11 @@ What will go here
 In iteration 1 this is one document. It will be split into a requirements document, one document
 per PCBA, one per prototype setup, and test documents once that content exists.
 
+The boards and their connector ports are defs in the EE model (``model/``), which refines the
+system model by specialization (XD-ADR-0130). Their needs and links come from the model:
+
+.. needimport:: /generated/model-needs.json
+
 Circuit blocks and components with a trace ID become needs. They are imported here from the
 generated file:
 

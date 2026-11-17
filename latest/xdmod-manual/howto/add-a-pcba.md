@@ -51,12 +51,19 @@ The board itself is a def in the EE model; the KiCad project only names it
 5. Show the schematic in the PCBA document with `kicad-sheet`, `kicad-bom` and `kicad-nets`.
    Make the exports locally with `curatrix gen cad-exports robarm-ee`. In CI the directives show
    a “built locally” notice ([*CI runs without CAD content (XD-ADR-0049)*](../explanation/decisions/checks.md#XD-ADR-0049)).
+6. If the board has variants (at most two, [*Variants: the domain varian... (XD-ADR-0136)*](../explanation/decisions/domains.md#XD-ADR-0136)): add them in KiCad as assembly
+   variants (Board Setup or the schematic’s variant list; DNP and fields per variant), write one
+   def per variant in the EE model (`part def MyBoardAlt :> MyBoard, XdDomain::DomainVariant
+   { :>> variantName = "alt"; }`) with a dependency to the configurations and usages it serves, and
+   add `variants: true` to `checks.yaml` (the check also needs `model.upstream`, the system
+   repo’s committed `generated/model.json`).
 
 ## Checks
 
 - [*cad-needs.json matches the ... (XD-CHECK-0019)*](../reference/checks.md#XD-CHECK-0019): `cad-needs.json` matches the KiCad files (plain Python, no KiCad needed).
 - [*the Pilot parses the model ... (XD-CHECK-0016)*](../reference/checks.md#XD-CHECK-0016), [*model.json and model-needs.... (XD-CHECK-0017)*](../reference/checks.md#XD-CHECK-0017): the EE model parses and its generated files are fresh.
 - [*domain model conforms to it... (XD-CHECK-0033)*](../reference/checks.md#XD-CHECK-0033): the board def redefines every inherited port with a fitting port def.
+- [*variants across levels: one... (XD-CHECK-0034)*](../reference/checks.md#XD-CHECK-0034): exactly one variant per configuration and usage, and each variant is in the `.kicad_pro`.
 - [*docs build strict (zdocs, s... (XD-CHECK-0001)*](../reference/checks.md#XD-CHECK-0001): the strict docs build; its needs schema fails an element that realizes or satisfies nothing ([*No orphan design elements (XD-RULE-0010)*](../explanation/rules/trace.md#XD-RULE-0010)).
 - Domain checks such as the netlist against the interface pin maps, and ERC, are commands in the
   repo’s `checks.yaml`.
