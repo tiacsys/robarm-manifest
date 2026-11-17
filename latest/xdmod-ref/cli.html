@@ -25,7 +25,7 @@
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=a0f1fab1"></script>
+      <script src="_static/documentation_options.js?v=3d3e411e"></script>
       <script src="_static/doctools.js?v=fd6eb6e6"></script>
       <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="_static/zdocs-need-preview.js?v=98728251"></script>
@@ -51,7 +51,7 @@
           <a href="index.html" class="icon icon-home">
             curatrix Reference
           </a>
-<div class="version zdocs-version">v0.0-dev+g38bfbdf</div>
+<div class="version zdocs-version">v0.0-dev+gc9cc446</div>
 
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -66,6 +66,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">curatrix command line</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#curatrix-env">curatrix env</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#curatrix-run">curatrix run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#curatrix-fixtures">curatrix fixtures</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#curatrix-limits">curatrix limits</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#curatrix-doctor">curatrix doctor</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#curatrix-bootstrap">curatrix bootstrap</a></li>
@@ -202,49 +203,52 @@ below. This page is generated from curatrix’s argument parser.</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#cli-run"><span class="std std-ref">curatrix run</span></a></p></td>
 <td><p>run any command with the workspace env and limits (limits.yaml)</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cli-limits"><span class="std std-ref">curatrix limits</span></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#cli-fixtures"><span class="std std-ref">curatrix fixtures</span></a></p></td>
+<td><p>run the planted error of every built-in check (also the tool-backed ones) and record the result</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cli-limits"><span class="std std-ref">curatrix limits</span></a></p></td>
 <td><p>show the resolved limits table and backend</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cli-doctor"><span class="std std-ref">curatrix doctor</span></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#cli-doctor"><span class="std std-ref">curatrix doctor</span></a></p></td>
 <td><p>check tools, versions (tools.yaml), paths, hooks, west state</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cli-bootstrap"><span class="std std-ref">curatrix bootstrap</span></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cli-bootstrap"><span class="std std-ref">curatrix bootstrap</span></a></p></td>
 <td><p>set up the workspace for a role (group filter, venv, tools, hooks)</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cli-update"><span class="std std-ref">curatrix update</span></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#cli-update"><span class="std std-ref">curatrix update</span></a></p></td>
 <td><p>west update -k, then refresh venv, tools, links, hooks</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cli-launch"><span class="std std-ref">curatrix launch</span></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cli-launch"><span class="std std-ref">curatrix launch</span></a></p></td>
 <td><p>start a GUI tool / Claude Code with workspace-local config</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cli-docs"><span class="std std-ref">curatrix docs</span></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#cli-docs"><span class="std std-ref">curatrix docs</span></a></p></td>
 <td><p>zdocs build of a repo (or `full`) into build/&lt;area&gt;/docs (strict)</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cli-check"><span class="std std-ref">curatrix check</span></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cli-check"><span class="std std-ref">curatrix check</span></a></p></td>
 <td><p>run a repo’s checks (checks.yaml) for a stage</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cli-gen"><span class="std std-ref">curatrix gen</span></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#cli-gen"><span class="std std-ref">curatrix gen</span></a></p></td>
 <td><p>generated files: stubs, model, cad-needs, freecad-json, tombstones, all; cad-exports (build/&lt;area&gt;/cad, not committed)</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cli-ids"><span class="std std-ref">curatrix ids</span></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cli-ids"><span class="std std-ref">curatrix ids</span></a></p></td>
 <td><p>issue IDs from the ledger, replace placeholders</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cli-views"><span class="std std-ref">curatrix views</span></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#cli-views"><span class="std std-ref">curatrix views</span></a></p></td>
 <td><p>views as editable SVG: build | check | normalize</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cli-variants"><span class="std std-ref">curatrix variants</span></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cli-variants"><span class="std std-ref">curatrix variants</span></a></p></td>
 <td><p>variant rules F1, F2, V1-V5 on the model JSON</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cli-needs-diff"><span class="std std-ref">curatrix needs-diff</span></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#cli-needs-diff"><span class="std std-ref">curatrix needs-diff</span></a></p></td>
 <td><p>change impact between two sets of needs.json (R7)</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cli-work"><span class="std std-ref">curatrix work</span></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cli-work"><span class="std std-ref">curatrix work</span></a></p></td>
 <td><p>git worktrees for parallel work: start &lt;branch&gt; &lt;repos…&gt; | done &lt;branch&gt; | list (D125)</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cli-ci"><span class="std std-ref">curatrix ci</span></a></p></td>
-<td><p>CI helpers: `ci siblings` resolves sibling revisions (D127)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#cli-ci"><span class="std std-ref">curatrix ci</span></a></p></td>
+<td><p>CI helpers: `ci siblings` resolves sibling revisions (D127); `ci base` fetches the published needs as the CK-G1/G2 base</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cli-evidence"><span class="std std-ref">curatrix evidence</span></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cli-evidence"><span class="std std-ref">curatrix evidence</span></a></p></td>
 <td><p>test run records: record (Twister dir -&gt; evidence branch), read (-&gt; TR needs), validate</p></td>
 </tr>
 </tbody>
@@ -275,6 +279,16 @@ options:
   -t, --timeout TIMEOUT
                         timeout, e.g. 10m or none (overrides the use)
   -v, --verbose
+</pre></div>
+</div>
+</section>
+<section id="curatrix-fixtures">
+<span id="cli-fixtures"></span><h2>curatrix fixtures<a class="headerlink" href="#curatrix-fixtures" title="Link to this heading"></a></h2>
+<p>run the planted error of every built-in check (also the tool-backed ones) and record the result.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>usage: curatrix fixtures [-h]
+
+options:
+  -h, --help  show this help message and exit
 </pre></div>
 </div>
 </section>
@@ -464,7 +478,7 @@ options:
 <section id="curatrix-work">
 <span id="cli-work"></span><h2>curatrix work<a class="headerlink" href="#curatrix-work" title="Link to this heading"></a></h2>
 <p>git worktrees for parallel work: start &lt;branch&gt; &lt;repos…&gt; | done &lt;branch&gt; | list (D125).</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>usage: curatrix work [-h] [--force] [--delete-branch]
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>usage: curatrix work [-h] [--force] [--delete-branch] [--base BASE]
                      {start,done,list} [args ...]
 
 positional arguments:
@@ -475,22 +489,29 @@ options:
   -h, --help         show this help message and exit
   --force            done: also with uncommitted changes
   --delete-branch    done: delete the branches if merged
+  --base BASE        start: the parent branch of a stacked PR (default: main)
 </pre></div>
 </div>
 </section>
 <section id="curatrix-ci">
 <span id="cli-ci"></span><h2>curatrix ci<a class="headerlink" href="#curatrix-ci" title="Link to this heading"></a></h2>
-<p>CI helpers: `ci siblings` resolves sibling revisions (D127).</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>usage: curatrix ci [-h] --branch BRANCH --repo REPO [--sha SHA] {siblings}
+<p>CI helpers: `ci siblings` resolves sibling revisions (D127); `ci base` fetches the published needs as the CK-G1/G2 base.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>usage: curatrix ci [-h] [-o OUT] [--version VERSION] [--branch BRANCH]
+                   --repo REPO [--sha SHA]
+                   {siblings,base}
 
 positional arguments:
-  {siblings}
+  {siblings,base}
 
 options:
-  -h, --help       show this help message and exit
-  --branch BRANCH  the PR&#39;s head branch name (push: the branch pushed)
-  --repo REPO      west name of the repo under check
-  --sha SHA        its PR head commit
+  -h, --help         show this help message and exit
+  -o, --out OUT      base: output folder (default build/ci/base)
+  --version VERSION  base: the Pages folder (latest = main, vX.Y.Z = a
+                     baseline)
+  --branch BRANCH    siblings: the PR&#39;s head branch name (push: the branch
+                     pushed)
+  --repo REPO        west name of the repo under check
+  --sha SHA          its PR head commit
 </pre></div>
 </div>
 </section>
