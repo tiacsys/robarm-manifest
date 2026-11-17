@@ -25,7 +25,7 @@
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=51e01ba6"></script>
+      <script src="_static/documentation_options.js?v=5f2c9aae"></script>
       <script src="_static/doctools.js?v=fd6eb6e6"></script>
       <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="_static/zdocs-need-preview.js?v=98728251"></script>
@@ -51,7 +51,7 @@
           <a href="index.html" class="icon icon-home">
             curatrix Reference
           </a>
-<div class="version zdocs-version">v0.0-dev+g696ed9d</div>
+<div class="version zdocs-version">v0.0-dev+gfe5cad0</div>
 
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -253,7 +253,7 @@ below. This page is generated from curatrix’s argument parser.</p>
 <td><p>CI helpers: `ci siblings` resolves sibling revisions (D127); `ci base` fetches the published needs as the CK-G1/G2 base</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#cli-evidence"><span class="std std-ref">curatrix evidence</span></a></p></td>
-<td><p>test run records: record (Twister dir -&gt; evidence branch), read (-&gt; TR needs), validate</p></td>
+<td><p>test run records: record (Twister dir -&gt; evidence branch), read (-&gt; TR needs), preview (Twister dir -&gt; preview TR needs for the docs), validate</p></td>
 </tr>
 </tbody>
 </table>
@@ -537,26 +537,29 @@ options:
 </section>
 <section id="curatrix-evidence">
 <span id="cli-evidence"></span><h2>curatrix evidence<a class="headerlink" href="#curatrix-evidence" title="Link to this heading"></a></h2>
-<p>test run records: record (Twister dir -&gt; evidence branch), read (-&gt; TR needs), validate.</p>
+<p>test run records: record (Twister dir -&gt; evidence branch), read (-&gt; TR needs), preview (Twister dir -&gt; preview TR needs for the docs), validate.</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>usage: curatrix evidence [-h] [--config CONFIG] [--kind {sim,hil}]
                          [--setup SETUP] [--tests TESTS] [--map MAP]
                          [--note NOTE] [--repo REPO] [--branch BRANCH]
                          [--create] [--trailer TRAILER] [--dry-run]
-                         [--offline] [--ref REF] [-o OUT]
-                         {record,read,validate} [target]
+                         [--offline] [--ref REF] [--commit-of COMMIT_OF]
+                         [-o OUT]
+                         {record,read,preview,validate} [target]
 
 positional arguments:
-  {record,read,validate}
-  target                record: Twister output dir; validate: record.json
+  {record,read,preview,validate}
+  target                record, preview: Twister output dir; validate:
+                        record.json
 
 options:
   -h, --help            show this help message and exit
-  --config CONFIG       record: the SYS-CFG of the run (required)
+  --config CONFIG       record: the SYS-CFG of the run (required); preview:
+                        optional
   --kind {sim,hil}      hil: on the HIL setup; sim: native_sim/QEMU (never HIL
                         evidence)
   --setup SETUP         record --kind hil: the setup folder hil/&lt;setup&gt;
-  --tests TESTS         test source folders for the ZTEST -&gt; test case IDs
-                        (default: Twister&#39;s testsuite roots)
+  --tests TESTS         record, preview: test source folders for the ZTEST -&gt;
+                        test case IDs (default: Twister&#39;s testsuite roots)
   --map MAP             TEST=ID: test case ID for a Twister test (overrides
                         the source comments)
   --note NOTE
@@ -571,8 +574,11 @@ options:
   --offline             record: don&#39;t check main/baseline at the remotes (the
                         rule then fails)
   --ref REF             read: a git ref instead of the remote branch
+  --commit-of COMMIT_OF
+                        preview: the repo whose commit the stamp records (the
+                        docs show the preview only for that commit)
   -o, --out OUT         read: output file (default build/&lt;repo&gt;/evidence/tr-
-                        needs.json)
+                        needs.json); preview: output file (required)
 </pre></div>
 </div>
 </section>
