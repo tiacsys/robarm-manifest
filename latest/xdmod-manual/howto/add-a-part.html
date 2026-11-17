@@ -27,7 +27,7 @@
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=2a1a6508"></script>
+      <script src="../_static/documentation_options.js?v=2111529d"></script>
       <script src="../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../_static/zdocs-need-preview.js?v=98728251"></script>
@@ -53,7 +53,7 @@
           <a href="../index.html" class="icon icon-home">
             XDMOD Manual
           </a>
-<div class="version zdocs-version">v0.0-dev+g3b8b1ed</div>
+<div class="version zdocs-version">v0.0-dev+g47ba0b8</div>
 
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -74,6 +74,7 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Add a FreeCAD part or assembly</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#steps">Steps</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#checks">Checks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-assembly-document">The assembly document</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#pitfalls">Pitfalls</a></li>
 </ul>
 </li>
@@ -227,9 +228,102 @@ that the bootstrap installs. GitHub does not, so reviewers read the committed JS
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The full review report (drawing SVGs, image diff, 3D views) stays local in iteration 1
-(<a class="reference internal" href="../explanation/decisions/scope.html#XD-ADR-0124" title="XD-ADR-0124"><em class="xref need">Scope cuts for iteration 1 (XD-ADR-0124)</em></a>). Publishing it as a Pages preview (<a class="reference internal" href="../explanation/decisions/scope.html#XD-ADR-0098" title="XD-ADR-0098"><em class="xref need">FreeCAD review report as a ... (XD-ADR-0098)</em></a>) comes later. TechDraw and GLB
+(<a class="reference internal" href="../explanation/decisions/scope.html#XD-ADR-0124" title="XD-ADR-0124"><em class="xref need">Scope cuts for iteration 1 (XD-ADR-0124)</em></a>). Publishing it as a Pages preview (<a class="reference internal" href="../explanation/decisions/scope.html#XD-ADR-0098" title="XD-ADR-0098"><em class="xref need">FreeCAD review report as a ... (XD-ADR-0098)</em></a>) comes later. The
+drawings and the exploded view of an assembly come from <code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">cam</span></code> (see below); GLB
 exports are not implemented yet.</p>
 </div>
+</section>
+<section id="the-assembly-document">
+<h2>The assembly document<a class="headerlink" href="#the-assembly-document" title="Link to this heading"></a></h2>
+<p>Every top-level assembly has one document <code class="docutils literal notranslate"><span class="pre">asm-&lt;name&gt;</span></code> (<a class="reference internal" href="../explanation/decisions/documents.html#XD-ADR-0129" title="XD-ADR-0129"><em class="xref need">One document per board, har... (XD-ADR-0129)</em></a>), made by
+<code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">new</span> <span class="pre">asm</span></code> with the same sections for every assembly, and a chapter per sub-assembly.
+Each section is one <code class="docutils literal notranslate"><span class="pre">xd-asm-*</span></code> directive with the assembly name as its argument:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Section</p></th>
+<th class="head"><p>Directive</p></th>
+<th class="head"><p>Source</p></th>
+<th class="head"><p>In CI</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Overview</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">xd-asm-overview</span></code></p></td>
+<td><p>FreeCAD files, local output (version)</p></td>
+<td><p>yes, without the version</p></td>
+</tr>
+<tr class="row-odd"><td><p>Drawings</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">xd-asm-drawing</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">drawing.svg</span></code> per variant; the PDF is named, not linked</p></td>
+<td><p>fixed sentence</p></td>
+</tr>
+<tr class="row-even"><td><p>Exploded view</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">xd-asm-exploded</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">exploded.svg</span></code> per variant (<code class="docutils literal notranslate"><span class="pre">explode.yaml</span></code> or automatic moves)</p></td>
+<td><p>fixed sentence</p></td>
+</tr>
+<tr class="row-odd"><td><p>Renderings</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">xd-asm-renderings</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&lt;variant&gt;/renderings/&lt;view&gt;.png</span></code> (front, top, right, iso), as <code class="docutils literal notranslate"><span class="pre">cam.json</span></code> lists them</p></td>
+<td><p>fixed sentence</p></td>
+</tr>
+<tr class="row-even"><td><p>Mass and center of gravity</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">xd-asm-mass</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">mass.json</span></code> per variant</p></td>
+<td><p>fixed sentence</p></td>
+</tr>
+<tr class="row-odd"><td><p>Parameters</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">xd-asm-parameters</span></code></p></td>
+<td><p>ME model and the skeleton’s <code class="docutils literal notranslate"><span class="pre">Params</span></code> (budget copies marked)</p></td>
+<td><p>yes</p></td>
+</tr>
+<tr class="row-even"><td><p>Materials</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">xd-asm-materials</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Material</span></code> and <code class="docutils literal notranslate"><span class="pre">PrintProfile</span></code> of the parts, densities of <code class="docutils literal notranslate"><span class="pre">curatrix/data/materials.yaml</span></code></p></td>
+<td><p>yes</p></td>
+</tr>
+<tr class="row-odd"><td><p>Interfaces</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">xd-asm-interfaces</span></code></p></td>
+<td><p>the ports of the assembly def: <code class="docutils literal notranslate"><span class="pre">ME-PORT</span></code>, <code class="docutils literal notranslate"><span class="pre">SYS-IF</span></code>, placement, LCS, values</p></td>
+<td><p>yes</p></td>
+</tr>
+<tr class="row-even"><td><p>Findings</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">xd-asm-findings</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">findings.json</span></code>: CK-F4c, CK-F16, CK-F17 with their acceptance state</p></td>
+<td><p>fixed sentence</p></td>
+</tr>
+<tr class="row-odd"><td><p>Sub-assemblies</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">xd-asm-subassemblies</span></code></p></td>
+<td><p>one chapter per sub-assembly (overview, interfaces, materials, mass, findings with <code class="docutils literal notranslate"><span class="pre">:sub:</span></code>)</p></td>
+<td><p>partly</p></td>
+</tr>
+<tr class="row-even"><td><p>Appendix: bill of materials</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">xd-asm-bom</span></code></p></td>
+<td><p>the indented BOM along the structure, a quantity column per variant</p></td>
+<td><p>yes</p></td>
+</tr>
+</tbody>
+</table>
+<p>The local sections show only the <code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">cam</span></code> output of the commit the repo is at
+(<a class="reference internal" href="../explanation/rules/trace.html#XD-RULE-0060" title="XD-RULE-0060"><em class="xref need">A board or assembly documen... (XD-RULE-0060)</em></a>); CK-D10 warns locally when it is missing. Make it before you build the
+document:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>curatrix<span class="w"> </span>cam<span class="w"> </span>robarm-me<span class="w"> </span>&lt;name&gt;
+curatrix<span class="w"> </span>docs<span class="w"> </span>robarm-me
+</pre></div>
+</div>
+<p>The mass is the solid volume of each present part times the density of its <code class="docutils literal notranslate"><span class="pre">Material</span></code>, or the
+part’s own <code class="docutils literal notranslate"><span class="pre">Mass</span></code> (<code class="docutils literal notranslate"><span class="pre">12</span> <span class="pre">g</span></code>) or <code class="docutils literal notranslate"><span class="pre">Density</span></code> (<code class="docutils literal notranslate"><span class="pre">1.24</span> <span class="pre">g/cm^3</span></code>) property; both need a unit, and a
+density outside 0.01 to 25 g/cm³ is refused. Printed parts count as solid; the infill of the print
+profile is not applied, so their mass is an upper bound. The center of gravity is in the frame of
+the top-level assembly. A sub-assembly chapter shows the mass of its first use; drawings, exploded
+view, renderings and parameters exist only for the top-level assembly (iteration 1), so these
+sections of a sub-assembly chapter print a fixed sentence.</p>
+<p>In the BOM, a standard fastener (any object with a <code class="docutils literal notranslate"><span class="pre">Standard</span></code> property such as
+<code class="docutils literal notranslate"><span class="pre">ISO</span> <span class="pre">4762</span> <span class="pre">M3x10,</span> <span class="pre">A2</span></code>, usually in <code class="docutils literal notranslate"><span class="pre">lib/</span></code>) is named by its standard designation; another bought
+part (a <code class="docutils literal notranslate"><span class="pre">lib/</span></code> object, or one with <code class="docutils literal notranslate"><span class="pre">Manufacturer</span></code> or <code class="docutils literal notranslate"><span class="pre">MPN</span></code>) names
+<code class="docutils literal notranslate"><span class="pre">Manufacturer</span></code> and <code class="docutils literal notranslate"><span class="pre">MPN</span></code>; a board model or harness is one line with its version and its
+<code class="docutils literal notranslate"><span class="pre">pcba-&lt;name&gt;</span></code> / <code class="docutils literal notranslate"><span class="pre">harness-&lt;name&gt;</span></code> document, its parts stay in the EE BOM. CK-F12 warns about a
+bought part without them and about an own part without <code class="docutils literal notranslate"><span class="pre">Material</span></code> (<a class="reference internal" href="../explanation/rules/trace.html#XD-RULE-0058" title="XD-RULE-0058"><em class="xref need">Every BOM part names its ma... (XD-RULE-0058)</em></a>).</p>
 </section>
 <section id="pitfalls">
 <h2>Pitfalls<a class="headerlink" href="#pitfalls" title="Link to this heading"></a></h2>

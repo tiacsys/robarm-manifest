@@ -39,8 +39,53 @@ that the bootstrap installs. GitHub does not, so reviewers read the committed JS
 
 #### NOTE
 The full review report (drawing SVGs, image diff, 3D views) stays local in iteration 1
-([*Scope cuts for iteration 1 (XD-ADR-0124)*](../explanation/decisions/scope.html.md#XD-ADR-0124)). Publishing it as a Pages preview ([*FreeCAD review report as a ... (XD-ADR-0098)*](../explanation/decisions/scope.html.md#XD-ADR-0098)) comes later. TechDraw and GLB
+([*Scope cuts for iteration 1 (XD-ADR-0124)*](../explanation/decisions/scope.html.md#XD-ADR-0124)). Publishing it as a Pages preview ([*FreeCAD review report as a ... (XD-ADR-0098)*](../explanation/decisions/scope.html.md#XD-ADR-0098)) comes later. The
+drawings and the exploded view of an assembly come from `curatrix cam` (see below); GLB
 exports are not implemented yet.
+
+## The assembly document
+
+Every top-level assembly has one document `asm-<name>` ([*One document per board, har... (XD-ADR-0129)*](../explanation/decisions/documents.html.md#XD-ADR-0129)), made by
+`curatrix new asm` with the same sections for every assembly, and a chapter per sub-assembly.
+Each section is one `xd-asm-*` directive with the assembly name as its argument:
+
+| Section                     | Directive              | Source                                                                                      | In CI                    |
+|-----------------------------|------------------------|---------------------------------------------------------------------------------------------|--------------------------|
+| Overview                    | `xd-asm-overview`      | FreeCAD files, local output (version)                                                       | yes, without the version |
+| Drawings                    | `xd-asm-drawing`       | `drawing.svg` per variant; the PDF is named, not linked                                     | fixed sentence           |
+| Exploded view               | `xd-asm-exploded`      | `exploded.svg` per variant (`explode.yaml` or automatic moves)                              | fixed sentence           |
+| Renderings                  | `xd-asm-renderings`    | `<variant>/renderings/<view>.png` (front, top, right, iso), as `cam.json` lists them        | fixed sentence           |
+| Mass and center of gravity  | `xd-asm-mass`          | `mass.json` per variant                                                                     | fixed sentence           |
+| Parameters                  | `xd-asm-parameters`    | ME model and the skeleton’s `Params` (budget copies marked)                                 | yes                      |
+| Materials                   | `xd-asm-materials`     | `Material` and `PrintProfile` of the parts, densities of `curatrix/data/materials.yaml`     | yes                      |
+| Interfaces                  | `xd-asm-interfaces`    | the ports of the assembly def: `ME-PORT`, `SYS-IF`, placement, LCS, values                  | yes                      |
+| Findings                    | `xd-asm-findings`      | `findings.json`: CK-F4c, CK-F16, CK-F17 with their acceptance state                         | fixed sentence           |
+| Sub-assemblies              | `xd-asm-subassemblies` | one chapter per sub-assembly (overview, interfaces, materials, mass, findings with `:sub:`) | partly                   |
+| Appendix: bill of materials | `xd-asm-bom`           | the indented BOM along the structure, a quantity column per variant                         | yes                      |
+
+The local sections show only the `curatrix cam` output of the commit the repo is at
+([*A board or assembly documen... (XD-RULE-0060)*](../explanation/rules/trace.html.md#XD-RULE-0060)); CK-D10 warns locally when it is missing. Make it before you build the
+document:
+
+```sh
+curatrix cam robarm-me <name>
+curatrix docs robarm-me
+```
+
+The mass is the solid volume of each present part times the density of its `Material`, or the
+part’s own `Mass` (`12 g`) or `Density` (`1.24 g/cm^3`) property; both need a unit, and a
+density outside 0.01 to 25 g/cm³ is refused. Printed parts count as solid; the infill of the print
+profile is not applied, so their mass is an upper bound. The center of gravity is in the frame of
+the top-level assembly. A sub-assembly chapter shows the mass of its first use; drawings, exploded
+view, renderings and parameters exist only for the top-level assembly (iteration 1), so these
+sections of a sub-assembly chapter print a fixed sentence.
+
+In the BOM, a standard fastener (any object with a `Standard` property such as
+`ISO 4762 M3x10, A2`, usually in `lib/`) is named by its standard designation; another bought
+part (a `lib/` object, or one with `Manufacturer` or `MPN`) names
+`Manufacturer` and `MPN`; a board model or harness is one line with its version and its
+`pcba-<name>` / `harness-<name>` document, its parts stay in the EE BOM. CK-F12 warns about a
+bought part without them and about an own part without `Material` ([*Every BOM part names its ma... (XD-RULE-0058)*](../explanation/rules/trace.html.md#XD-RULE-0058)).
 
 ## Pitfalls
 
