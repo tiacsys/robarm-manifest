@@ -241,6 +241,8 @@ The trace principles and graph rules:
 | [XD-RULE-0055](../explanation/rules/trace.html.md#XD-RULE-0055) |                 | One FreeCAD document per assembly def                    |
 | [XD-RULE-0056](../explanation/rules/trace.html.md#XD-RULE-0056) |                 | FreeCAD links follow the usages                          |
 | [XD-RULE-0057](../explanation/rules/trace.html.md#XD-RULE-0057) |                 | The ME model drives the FreeCAD parameters               |
+| [XD-RULE-0061](../explanation/rules/trace.html.md#XD-RULE-0061) |                 | FreeCAD documents build                                  |
+| [XD-RULE-0062](../explanation/rules/trace.html.md#XD-RULE-0062) |                 | Assemblies have no unaccepted overlaps                   |
 
 Where each rule is checked:
 
