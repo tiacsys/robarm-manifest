@@ -21,6 +21,7 @@ jobs:
   check:
     uses: tiacsys/xdmod/.github/workflows/curatrix-check.yml@main
     with:
+      manifest: tiacsys/robarm-manifest
       repo: robarm-manifest
       role: integration
       manifest-ref: ${{ github.event.pull_request.head.sha || github.sha }}

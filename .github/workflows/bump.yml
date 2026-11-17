@@ -191,6 +191,7 @@ jobs:
       contents: read
     uses: tiacsys/xdmod/.github/workflows/curatrix-check.yml@main
     with:
+      manifest: tiacsys/robarm-manifest
       repo: robarm-manifest
       role: integration
       stage: full
