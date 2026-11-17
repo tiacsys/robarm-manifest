@@ -21,6 +21,7 @@
 - [Add a feature or configuration](howto/add-a-configuration.html.md): Use this guide when the product line gets a new feature, a new variant at a variation point, or
 - [Add a test](howto/add-a-test.html.md): Use this guide when you add a test case and want its results to count as evidence.
 - [Make a change across repos](howto/cross-repo-change.html.md): Use this guide when one change touches more than one repo, for example a new system requirement
+- [Make a co-design change (ME and EE)](howto/co-design-change.html.md): Use this guide when a board’s mechanical interface changes: its outline, a mounting hole, the
 - [Work as an agent](howto/work-as-an-agent.html.md): Use this guide if you are an AI agent, or if you brief one. Agents do the same work with the same
 - [Make a baseline](howto/make-a-baseline.html.md): Use this guide when you want a fixed, released set of repo versions. A &#42;&#42;baseline&#42;&#42; is a tag
 - [Reference](reference/index.html.md): Facts to look up: need types and links, IDs, rules, checks, layouts and paths. Tables that come

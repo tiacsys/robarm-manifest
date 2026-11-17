@@ -14,5 +14,6 @@ workspace root.
 * [Add a feature or configuration](add-a-configuration.html.md)
 * [Add a test](add-a-test.html.md)
 * [Make a change across repos](cross-repo-change.html.md)
+* [Make a co-design change (ME and EE)](co-design-change.html.md)
 * [Work as an agent](work-as-an-agent.html.md)
 * [Make a baseline](make-a-baseline.html.md)

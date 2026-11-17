@@ -51,6 +51,7 @@ to the HTML ([*Agent-readable docs with sp... (XD-ADR-0111)*](explanation/decisi
   * [Add a feature or configuration](howto/add-a-configuration.html.md)
   * [Add a test](howto/add-a-test.html.md)
   * [Make a change across repos](howto/cross-repo-change.html.md)
+  * [Make a co-design change (ME and EE)](howto/co-design-change.html.md)
   * [Work as an agent](howto/work-as-an-agent.html.md)
   * [Make a baseline](howto/make-a-baseline.html.md)
 * [Reference](reference/index.html.md)

@@ -27,7 +27,7 @@
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=da37f49b"></script>
+      <script src="../../_static/documentation_options.js?v=e9fc772a"></script>
       <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../../_static/zdocs-need-preview.js?v=98728251"></script>
@@ -53,7 +53,7 @@
           <a href="../../index.html" class="icon icon-home">
             XDMOD Manual
           </a>
-<div class="version zdocs-version">v0.0-dev+gc1cfa1e</div>
+<div class="version zdocs-version">v0.0-dev+gdb6166b</div>
 
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -186,7 +186,7 @@
 <p>How the EE and ME repos refine the system model, which needs their models emit, and how KiCad
 and FreeCAD files refer to them (Phase 5, task 5.14). Decisions that rest on the FreeCAD spike are
 <em>proposed</em> until that spike is merged.</p>
-<div class="need_container docutils container" id="SNCB-d708ffd5">
+<div class="need_container docutils container" id="SNCB-43c5755e">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0130">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -240,7 +240,7 @@ model spike (<code class="docutils literal notranslate"><span class="pre">claude
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-4802be84">
+<div class="need_container docutils container" id="SNCB-dce9eaf8">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0132">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -277,7 +277,7 @@ anywhere else it is a warning.</p>
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-a717ef50">
+<div class="need_container docutils container" id="SNCB-90639bb8">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0128">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -318,7 +318,7 @@ as a block. The CK-D4 readers change with this decision.</p>
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-f94ea2b8">
+<div class="need_container docutils container" id="SNCB-44075b82">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0133">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -357,7 +357,7 @@ may conform to nothing.</p></li>
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-3037fac8">
+<div class="need_container docutils container" id="SNCB-8b68b140">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0131">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -388,7 +388,7 @@ board variant by name, and SW adds no board variants of its own in iteration 1.<
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-b6ae12d1">
+<div class="need_container docutils container" id="SNCB-bdc3cc45">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0134">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -401,28 +401,52 @@ board variant by name, and SW adds no board variants of its own in iteration 1.<
 <div class="line"><span class="needs_date"><span class="needs_label">date: </span><span class="needs_data">2026-11-17</span></span></div>
 <div class="line"><span class="needs_decision_status"><span class="needs_label">decision_status: </span><span class="needs_data">proposed</span></span></div>
 </span></span></div>
-<div class="line"><span><div class="line">revises: <span class="revises"><span><a class="zd-need-ref reference internal" href="traces.html#XD-ADR-0030" title="XD-ADR-0134">XD-ADR-0030</a></span></span></div>
+<div class="line"><span><div class="line">refines: <span class="refines"><span><a class="zd-need-ref reference internal" href="#XD-ADR-0137" title="XD-ADR-0134">XD-ADR-0137</a></span></span></div>
+<div class="line">revises: <span class="revises"><span><a class="zd-need-ref reference internal" href="traces.html#XD-ADR-0030" title="XD-ADR-0134">XD-ADR-0030</a></span></span></div>
 <div class="line">decides: <span class="decided_by"><span><a class="zd-need-ref reference internal" href="../rules/trace.html#XD-RULE-0003" title="XD-ADR-0134">XD-RULE-0003</a></span></span></div>
 </span></div>
 </div>
 </td>
 </tr>
 <tr class="need content row-odd"><td class="need content" colspan="1"><p><strong>Second exception to the peer rule: ME may write into EE’s KiCad project, but only inside a
-co-design change.</strong> The space a board may take (a box, the hole list, the connector positions) is
-a <code class="docutils literal notranslate"><span class="pre">SYS-IF</span></code> budget in the system model; EE and ME both conform to it. A geometry change that
-starts in ME is one change with one branch name over the ME, EE and (when the budget changes)
-systems engineering repos (<a class="zd-need-ref reference internal" href="workflow.html#XD-ADR-0045" title="XD-ADR-0045"><em class="xref need">One branch name across repos (XD-ADR-0045)</em></a>). The push from FreeCAD into the <code class="docutils literal notranslate"><span class="pre">.kicad_pcb</span></code> is a
-defined tool step (KiCad StepUp, at least outline and mounting holes); the pushed file is re-saved
-by KiCad 10 before the commit. The EE side reviews and merges its part. ME never takes EE geometry
-outside such a change, and ME needs never link to EE needs. Keep-outs, connector positions, the
-harness length and route, and pushing back from EE are decided by the co-design spike (task
-5.28). Proposed until StepUp has run on a KiCad 10 board (FreeCAD spike §7: not run) and 5.28
-reports.</p></td>
+co-design change.</strong> The space a board may take is a <code class="docutils literal notranslate"><span class="pre">SYS-IF</span></code> budget in the system model: a port
+def with a box (<code class="docutils literal notranslate"><span class="pre">width</span></code>, <code class="docutils literal notranslate"><span class="pre">depth</span></code>, <code class="docutils literal notranslate"><span class="pre">heightAbove</span></code>, <code class="docutils literal notranslate"><span class="pre">heightBelow</span></code>), a hole list
+(<code class="docutils literal notranslate"><span class="pre">hole&lt;n&gt;X</span></code>, <code class="docutils literal notranslate"><span class="pre">hole&lt;n&gt;Y</span></code>, <code class="docutils literal notranslate"><span class="pre">holeDiameter</span></code>) and connector positions (<code class="docutils literal notranslate"><span class="pre">&lt;ref&gt;X</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;ref&gt;Y</span></code>,
+pin 1), in the board frame (origin at the lower-left corner of the outline seen from the top, x
+right, y up, z = 0 on the top face). The values are defaults, so a domain def can restate them.
+The board def conforms to it by <code class="docutils literal notranslate"><span class="pre">dependency</span> <span class="pre">from</span> <span class="pre">&lt;board&gt;</span> <span class="pre">to</span> <span class="pre">&lt;budget&gt;</span></code> (a budget is no connector
+port); the ME port def of the board seat specializes it and restates the values FreeCAD needs.
+<strong>Open for the owner:</strong> the restated budget values (the attributes that redefine an attribute of
+the <code class="docutils literal notranslate"><span class="pre">SYS-IF</span></code> budget, not the placement and not attributes ME adds itself) are copied from the
+system model, not chosen in ME, so this decision proposes that they do not count toward the “at
+most ten driving parameters” of <a class="zd-need-ref reference internal" href="#XD-ADR-0137" title="XD-ADR-0137"><em class="xref need">FreeCAD assemblies: a skele... (XD-ADR-0137)</em></a>. That is an interpretation of XD-ADR-0137,
+although the copies drive the sketch <code class="docutils literal notranslate"><span class="pre">BoardOutline</span></code>; the owner decides it when accepting this
+decision. A geometry change is one change with one branch name over the systems engineering, ME
+and EE repos (<a class="zd-need-ref reference internal" href="workflow.html#XD-ADR-0045" title="XD-ADR-0045"><em class="xref need">One branch name across repos (XD-ADR-0045)</em></a>).</p>
+<p><strong>The push is one tool step on copies:</strong> the sketch <code class="docutils literal notranslate"><span class="pre">BoardOutline</span></code> of the skeleton (driven by
+the parameters) goes into a copy of the <code class="docutils literal notranslate"><span class="pre">.kicad_pcb</span></code> by KiCad StepUp (<code class="docutils literal notranslate"><span class="pre">export_pcb</span></code>), run from
+a script in the FreeCAD GUI binary offscreen, with <code class="docutils literal notranslate"><span class="pre">HOME</span></code> set to a folder under <code class="docutils literal notranslate"><span class="pre">.xdmod/</span></code> for
+that process only (StepUp writes <code class="docutils literal notranslate"><span class="pre">~/ksu-config.ini</span></code>); then <code class="docutils literal notranslate"><span class="pre">kicad-cli</span> <span class="pre">pcb</span> <span class="pre">upgrade</span> <span class="pre">--force</span></code>
+re-saves the copy in the KiCad 10 format, DRC runs on it, and only then the file goes back into
+the EE repo. StepUp is pinned by commit under <code class="docutils literal notranslate"><span class="pre">.xdmod/stepup/</span></code> (pin and licence gap:
+<a class="reference internal" href="../../howto/co-design-change.html#howto-co-design-change"><span class="std std-ref">Make a co-design change (ME and EE)</span></a>). It pushes the outline and the holes
+(as <code class="docutils literal notranslate"><span class="pre">Edge.Cuts</span></code> circles, non-plated cut-outs); the board frame lands on the grid origin, or on
+the lower-left corner of the old outline. The EE side reviews and merges its part. ME never takes
+EE geometry outside such a change, and ME needs never link to EE needs.</p>
+<p><strong>Scope in iteration 1</strong> (co-design spike, <code class="docutils literal notranslate"><span class="pre">claude/notes/codesign-spike.md</span></code>): keep-out zones
+are not pushed (the box covers the space; StepUp could push them, iteration 2). Connector
+positions are budget values, but never pushed: EE places connectors, and a planned check (task
+5.25) compares them. EE does not push back through StepUp: the board model reaches FreeCAD by the
+scripted STEP path (<code class="docutils literal notranslate"><span class="pre">kicad-cli</span> <span class="pre">pcb</span> <span class="pre">export</span> <span class="pre">step</span></code>, headless import), because StepUp’s board load
+stalls offscreen; a change EE needs (a bigger box, a moved hole) is a budget change in the same
+co-design branch. A harness length is a <code class="docutils literal notranslate"><span class="pre">SYS-IF</span></code> value its cable def conforms to like a board
+(<code class="docutils literal notranslate"><span class="pre">EE-HAR</span></code> to <code class="docutils literal notranslate"><span class="pre">SYS-IF</span></code>); its route in the ME assembly is iteration 2.</p>
+</td>
 </tr>
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-2afa1910">
+<div class="need_container docutils container" id="SNCB-45997849">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0135">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -453,7 +477,7 @@ board def. Its schematic shows the wiring between external parts (<a class="zd-n
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-3e391e5c">
+<div class="need_container docutils container" id="SNCB-edd8e4c6">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0136">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -492,7 +516,7 @@ canary). ME variants: <a class="zd-need-ref reference internal" href="#XD-ADR-01
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-5e6985dc">
+<div class="need_container docutils container" id="SNCB-177a1178">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0138">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -521,7 +545,7 @@ iteration 1 they get no IDs of their own.</p></td>
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-7960c0fe">
+<div class="need_container docutils container" id="SNCB-56ac0c49">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0137">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -535,7 +559,7 @@ iteration 1 they get no IDs of their own.</p></td>
 <div class="line"><span class="needs_decision_status"><span class="needs_label">decision_status: </span><span class="needs_data">accepted</span></span></div>
 </span></span></div>
 <div class="line"><span><div class="line">refines: <span class="refines"><span><a class="zd-need-ref reference internal" href="#XD-ADR-0130" title="XD-ADR-0137">XD-ADR-0130</a></span></span></div>
-<div class="line">refined by: <span class="refines"><span><a class="zd-need-ref reference internal" href="#XD-ADR-0146" title="XD-ADR-0137">XD-ADR-0146</a></span></span></div>
+<div class="line">refined by: <span class="refines"><span><a class="zd-need-ref reference internal" href="#XD-ADR-0134" title="XD-ADR-0137">XD-ADR-0134</a>, <a class="zd-need-ref reference internal" href="#XD-ADR-0146" title="XD-ADR-0137">XD-ADR-0146</a></span></span></div>
 <div class="line">decides: <span class="decided_by"><span><a class="zd-need-ref reference internal" href="../rules/trace.html#XD-RULE-0055" title="XD-ADR-0137">XD-RULE-0055</a>, <a class="zd-need-ref reference internal" href="../rules/trace.html#XD-RULE-0057" title="XD-ADR-0137">XD-RULE-0057</a>, <a class="zd-need-ref reference internal" href="../rules/trace.html#XD-RULE-0061" title="XD-ADR-0137">XD-RULE-0061</a>, <a class="zd-need-ref reference internal" href="../rules/trace.html#XD-RULE-0062" title="XD-ADR-0137">XD-RULE-0062</a></span></span></div>
 </span></div>
 </div>
@@ -568,7 +592,7 @@ configuration. Based on the FreeCAD spike (<code class="docutils literal notrans
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-e59ae206">
+<div class="need_container docutils container" id="SNCB-c431c959">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0146">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -610,7 +634,7 @@ then load fully through the top. The writer stops when any document is still par
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-658372a4">
+<div class="need_container docutils container" id="SNCB-73092bbc">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0139">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
