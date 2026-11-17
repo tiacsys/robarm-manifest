@@ -27,7 +27,7 @@
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=eb1d21ce"></script>
+      <script src="../_static/documentation_options.js?v=46365990"></script>
       <script src="../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../_static/zdocs-need-preview.js?v=98728251"></script>
@@ -37,8 +37,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Add a feature or configuration" href="add-a-configuration.html" />
-    <link rel="prev" title="Add a PCBA or circuit block" href="add-a-pcba.html" /> 
+    <link rel="next" title="Make the design output of a board or assembly" href="design-output.html" />
+    <link rel="prev" title="Add a board (PCBA) or circuit block" href="add-a-pcba.html" /> 
 <script id="xdmod-version-switcher" src="../../../version-switcher.js" data-site-root="../../.." defer></script>
 </head>
 
@@ -53,7 +53,7 @@
           <a href="../index.html" class="icon icon-home">
             XDMOD Manual
           </a>
-<div class="version zdocs-version">v0.0-dev+gab23a1a</div>
+<div class="version zdocs-version">v0.0-dev+gd1ddc5a</div>
 
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -70,19 +70,22 @@
 <li class="toctree-l2"><a class="reference internal" href="add-a-requirement.html">Add a requirement</a></li>
 <li class="toctree-l2"><a class="reference internal" href="add-a-model-element.html">Add a model element</a></li>
 <li class="toctree-l2"><a class="reference internal" href="add-a-view.html">Add a view</a></li>
-<li class="toctree-l2"><a class="reference internal" href="add-a-pcba.html">Add a PCBA or circuit block</a></li>
+<li class="toctree-l2"><a class="reference internal" href="add-a-pcba.html">Add a board (PCBA) or circuit block</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Add a FreeCAD part or assembly</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#steps">Steps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#new-assembly">New assembly</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#new-part">New part</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#checks">Checks</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#the-assembly-document">The assembly document</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#design-output-and-renderings">Design output and renderings</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#pitfalls">Pitfalls</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="design-output.html">Make the design output of a board or assembly</a></li>
 <li class="toctree-l2"><a class="reference internal" href="add-a-configuration.html">Add a feature or configuration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="add-a-test.html">Add a test</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cross-repo-change.html">Make a change across repos</a></li>
 <li class="toctree-l2"><a class="reference internal" href="co-design-change.html">Make a co-design change (ME and EE)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="review-a-domain-pr.html">Review an EE or ME pull request from a local docs build</a></li>
 <li class="toctree-l2"><a class="reference internal" href="work-as-an-agent.html">Work as an agent</a></li>
 <li class="toctree-l2"><a class="reference internal" href="make-a-baseline.html">Make a baseline</a></li>
 </ul>
@@ -187,10 +190,80 @@
              
   <section id="add-a-freecad-part-or-assembly">
 <span id="howto-add-a-part"></span><h1>Add a FreeCAD part or assembly<a class="headerlink" href="#add-a-freecad-part-or-assembly" title="Link to this heading"></a></h1>
-<p>Use this guide when you add a FreeCAD part (<code class="docutils literal notranslate"><span class="pre">ME-PART</span></code>) or assembly (<code class="docutils literal notranslate"><span class="pre">ME-ASM</span></code>) that takes part
-in trace links.</p>
-<section id="steps">
-<h2>Steps<a class="headerlink" href="#steps" title="Link to this heading"></a></h2>
+<p>Use this guide when you, in the ME role, add a new assembly (<code class="docutils literal notranslate"><span class="pre">ME-ASM</span></code>) with its skeleton,
+parameters, interfaces, checks, design output and assembly document, or a FreeCAD part
+(<code class="docutils literal notranslate"><span class="pre">ME-PART</span></code>) that takes part in trace links. The example is the canary assembly
+<code class="docutils literal notranslate"><span class="pre">canary-assembly</span></code> of robarm-me.</p>
+<p>Work on a branch in a worktree set (<a class="reference internal" href="cross-repo-change.html#howto-cross-repo-change"><span class="std std-ref">Make a change across repos</span></a>):</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>.venv/bin/curatrix<span class="w"> </span>work<span class="w"> </span>start<span class="w"> </span>feat/my-assembly<span class="w"> </span>robarm-me
+<span class="nb">cd</span><span class="w"> </span>.worktrees/feat/my-assembly
+</pre></div>
+</div>
+<p>In the set, call curatrix as <code class="docutils literal notranslate"><span class="pre">.venv/bin/curatrix</span></code> (it runs the set’s xdmod), or run
+<code class="docutils literal notranslate"><span class="pre">eval</span> <span class="pre">&quot;$(.venv/bin/curatrix</span> <span class="pre">env)&quot;</span></code> once, which puts <code class="docutils literal notranslate"><span class="pre">.venv/bin</span></code> first on <code class="docutils literal notranslate"><span class="pre">PATH</span></code>; the commands
+below are written as <code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">...</span></code>.</p>
+<section id="new-assembly">
+<h2>New assembly<a class="headerlink" href="#new-assembly" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p><strong>Assembly def.</strong> Add it to <code class="docutils literal notranslate"><span class="pre">model/</span></code> in the ME repo: <code class="docutils literal notranslate"><span class="pre">part</span> <span class="pre">def</span> <span class="pre">&lt;'ME-ASM-NEW-a'&gt;</span> <span class="pre">MyAssembly</span>
+<span class="pre">:&gt;</span> <span class="pre">&lt;the</span> <span class="pre">SYS-EL</span> <span class="pre">def&gt;,</span> <span class="pre">XdDomain::Assembly</span></code>, with a part usage per part or sub-assembly and a port
+usage per interface (a port def that specializes <code class="docutils literal notranslate"><span class="pre">XdDomain::MechanicalPort</span></code>, <code class="docutils literal notranslate"><span class="pre">ME-PORT</span></code>; the
+usage gives <code class="docutils literal notranslate"><span class="pre">x</span></code>, <code class="docutils literal notranslate"><span class="pre">y</span></code>, <code class="docutils literal notranslate"><span class="pre">z</span></code> and the angles). The assembly’s driving parameters are attributes
+of its usages, at most ten per top-level assembly (<a class="reference internal" href="../explanation/decisions/domains.html#XD-ADR-0137" title="XD-ADR-0137"><em class="xref need">FreeCAD assemblies: a skele... (XD-ADR-0137)</em></a>). Then:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>curatrix<span class="w"> </span>ids<span class="w"> </span>fix<span class="w"> </span>robarm-me
+curatrix<span class="w"> </span>gen<span class="w"> </span>model<span class="w"> </span>robarm-me
+</pre></div>
+</div>
+</li>
+<li><p><strong>FreeCAD documents and the assembly document.</strong> <code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">new</span> <span class="pre">asm</span></code> writes them with
+<code class="docutils literal notranslate"><span class="pre">FreeCADCmd</span></code> (<a class="reference internal" href="../explanation/decisions/domains.html#XD-ADR-0137" title="XD-ADR-0137"><em class="xref need">FreeCAD assemblies: a skele... (XD-ADR-0137)</em></a>, <a class="reference internal" href="../explanation/decisions/domains.html#XD-ADR-0146" title="XD-ADR-0146"><em class="xref need">FreeCAD assemblies: skeleto... (XD-ADR-0146)</em></a>):</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>curatrix<span class="w"> </span>new<span class="w"> </span>asm<span class="w"> </span>MyAssembly<span class="w"> </span>--repo<span class="w"> </span>robarm-me
+</pre></div>
+</div>
+<p>It makes <code class="docutils literal notranslate"><span class="pre">assemblies/&lt;name&gt;/</span></code> (<code class="docutils literal notranslate"><span class="pre">&lt;name&gt;</span></code> = the def’s name in kebab case) with the top document
+<code class="docutils literal notranslate"><span class="pre">&lt;name&gt;.FCStd</span></code> (an assembly with <code class="docutils literal notranslate"><span class="pre">TraceID</span></code> = the def’s <code class="docutils literal notranslate"><span class="pre">ME-ASM</span></code>, a <code class="docutils literal notranslate"><span class="pre">Joints</span></code> group and a
+link to the skeleton) and <code class="docutils literal notranslate"><span class="pre">&lt;name&gt;-skeleton.FCStd</span></code> (the spreadsheet <code class="docutils literal notranslate"><span class="pre">Params</span></code> and the master
+sketch <code class="docutils literal notranslate"><span class="pre">MasterSketch</span></code> in the part <code class="docutils literal notranslate"><span class="pre">Skeleton</span></code>), plus the document <code class="docutils literal notranslate"><span class="pre">docs/asm-&lt;name&gt;/</span></code> and its
+registry entry.</p>
+</li>
+<li><p><strong>Parameters from the model.</strong> Write the model values into <code class="docutils literal notranslate"><span class="pre">Params</span></code> (aliases
+<code class="docutils literal notranslate"><span class="pre">&lt;usage&gt;_&lt;attribute&gt;</span></code>, e.g. <code class="docutils literal notranslate"><span class="pre">canaryPart_length</span></code>); parts and the master sketch take their
+dimensions from there by expressions:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>curatrix<span class="w"> </span>gen<span class="w"> </span>freecad-params<span class="w"> </span>robarm-me
+</pre></div>
+</div>
+<p>Change a value in the model and run this command again; never type it into <code class="docutils literal notranslate"><span class="pre">Params</span></code>.</p>
+</li>
+<li><p><strong>Parts.</strong> Own parts of the assembly go to <code class="docutils literal notranslate"><span class="pre">assemblies/&lt;name&gt;/parts/</span></code>, shared parts to
+<code class="docutils literal notranslate"><span class="pre">parts/</span></code>, bought parts and fasteners to <code class="docutils literal notranslate"><span class="pre">lib/</span></code> (a fastener has a <code class="docutils literal notranslate"><span class="pre">Standard</span></code> property such as
+<code class="docutils literal notranslate"><span class="pre">ISO</span> <span class="pre">4762</span> <span class="pre">M3x10,</span> <span class="pre">A2</span></code>). Each part gets a <code class="docutils literal notranslate"><span class="pre">TraceID</span></code> (<code class="docutils literal notranslate"><span class="pre">ME-PART</span></code>, see “New part” below), an own
+part a <code class="docutils literal notranslate"><span class="pre">Material</span></code>, a bought part <code class="docutils literal notranslate"><span class="pre">Manufacturer</span></code> and <code class="docutils literal notranslate"><span class="pre">MPN</span></code>. A printed part names its print
+profile in <code class="docutils literal notranslate"><span class="pre">PrintProfile</span></code> (a file in <code class="docutils literal notranslate"><span class="pre">print/</span></code>) and has one LCS with <code class="docutils literal notranslate"><span class="pre">Role</span> <span class="pre">=</span> <span class="pre">version-emboss</span></code>
+where <code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">cam</span></code> embosses the version (CK-F19).</p></li>
+<li><p><strong>Links and interfaces.</strong> Add one FreeCAD link per usage of the model to the top document; a part
+that exists only in some configurations names them in the link’s <code class="docutils literal notranslate"><span class="pre">Configs</span></code> property (on the
+link, not on the part, <a class="reference internal" href="../explanation/decisions/domains.html#XD-ADR-0138" title="XD-ADR-0138"><em class="xref need">Who owns instance counts (XD-ADR-0138)</em></a>). Every port usage is an LCS in the skeleton named
+<code class="docutils literal notranslate"><span class="pre">LCS_&lt;usage&gt;</span></code> with a <code class="docutils literal notranslate"><span class="pre">Port</span></code> property = its <code class="docutils literal notranslate"><span class="pre">ME-PORT</span></code> ID; its placement comes from
+<code class="docutils literal notranslate"><span class="pre">Params</span></code>.</p></li>
+<li><p><strong>Regenerate and check.</strong> Write the CAD needs and the semantic JSON, then run the checks with
+CAD content:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>curatrix<span class="w"> </span>gen<span class="w"> </span>all<span class="w"> </span>robarm-me
+curatrix<span class="w"> </span>check<span class="w"> </span>robarm-me<span class="w"> </span>--stage<span class="w"> </span><span class="nb">local</span>
+</pre></div>
+</div>
+<p>The FreeCAD checks (CK-F4c recompute, CK-F16 valid solids, CK-F17 collisions between the direct
+children, CK-F18 boards in their space budget) run only locally. Accept a finding that is
+intended in <code class="docutils literal notranslate"><span class="pre">assemblies/&lt;name&gt;/accepted.yaml</span></code> (same format as the EE file,
+<a class="reference internal" href="../explanation/decisions/checks.html#XD-ADR-0126" title="XD-ADR-0126"><em class="xref need">One accepted.yaml format, w... (XD-ADR-0126)</em></a>): <strong>agents only propose</strong> the entry, the ME engineer or the owner accepts it
+with an own commit carrying <code class="docutils literal notranslate"><span class="pre">Accepted-by:</span> <span class="pre">&lt;name&gt;</span></code>.</p>
+</li>
+<li><p><strong>Design output and the document.</strong> <code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">cam</span> <span class="pre">robarm-me</span> <span class="pre">&lt;name&gt;</span></code>, then <code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">docs</span>
+<span class="pre">robarm-me</span></code> (<a class="reference internal" href="design-output.html#howto-design-output"><span class="std std-ref">Make the design output of a board or assembly</span></a>). The PR names the proposed <code class="docutils literal notranslate"><span class="pre">accepted.yaml</span></code> entries;
+the reviewer follows <a class="reference internal" href="review-a-domain-pr.html#howto-review-a-domain-pr"><span class="std std-ref">Review an EE or ME pull request from a local docs build</span></a>.</p></li>
+</ol>
+</section>
+<section id="new-part">
+<h2>New part<a class="headerlink" href="#new-part" title="Link to this heading"></a></h2>
 <ol class="arabic">
 <li><p>Start FreeCAD with the launcher. It uses a workspace-local config that saves <code class="docutils literal notranslate"><span class="pre">.FCStd</span></code> files
 <strong>uncompressed</strong> and points at the pinned parts library (<a class="reference internal" href="../explanation/decisions/checks.html#XD-ADR-0056" title="XD-ADR-0056"><em class="xref need">FreeCAD files uncompressed,... (XD-ADR-0056)</em></a>, <a class="reference internal" href="../explanation/decisions/repos.html#XD-ADR-0080" title="XD-ADR-0080"><em class="xref need">Pinned, isolated component ... (XD-ADR-0080)</em></a>):</p>
@@ -200,7 +273,7 @@ in trace links.</p>
 </li>
 <li><p>Add string properties in the group <code class="docutils literal notranslate"><span class="pre">Trace</span></code> to the part or assembly object: <code class="docutils literal notranslate"><span class="pre">TraceID</span></code>,
 <code class="docutils literal notranslate"><span class="pre">Realizes</span></code>, <code class="docutils literal notranslate"><span class="pre">Satisfies</span></code>, <code class="docutils literal notranslate"><span class="pre">Conforms</span></code>, <code class="docutils literal notranslate"><span class="pre">PartOf</span></code>, <code class="docutils literal notranslate"><span class="pre">Status</span></code>, <code class="docutils literal notranslate"><span class="pre">Configs</span></code>. They mean the
-same as the KiCad fields (<a class="reference internal" href="add-a-pcba.html"><span class="doc">Add a PCBA or circuit block</span></a>).</p></li>
+same as the KiCad fields (<a class="reference internal" href="add-a-pcba.html"><span class="doc">Add a board (PCBA) or circuit block</span></a>).</p></li>
 <li><p>Set the <code class="docutils literal notranslate"><span class="pre">TraceID</span></code> to a real ID. Placeholders inside <code class="docutils literal notranslate"><span class="pre">.FCStd</span></code> files are refused, so issue
 the ID first:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>curatrix<span class="w"> </span>ids<span class="w"> </span>new<span class="w"> </span>ME-PART<span class="w"> </span>--repo<span class="w"> </span>robarm-me
@@ -223,6 +296,12 @@ curatrix<span class="w"> </span>gen<span class="w"> </span>freecad-json<span cla
 <li><p><a class="reference internal" href="../reference/checks.html#XD-CHECK-0025" title="XD-CHECK-0025"><em class="xref need">.FCStd uncompressed; drawio... (XD-CHECK-0025)</em></a>: the <code class="docutils literal notranslate"><span class="pre">.FCStd</span></code> is stored uncompressed (<a class="reference internal" href="../explanation/rules/checks.html#XD-RULE-0039" title="XD-RULE-0039"><em class="xref need">Design files are stored unc... (XD-RULE-0039)</em></a>).</p></li>
 <li><p><a class="reference internal" href="../reference/checks.html#XD-CHECK-0019" title="XD-CHECK-0019"><em class="xref need">cad-needs.json matches the ... (XD-CHECK-0019)</em></a>: <code class="docutils literal notranslate"><span class="pre">cad-needs.json</span></code> matches the FreeCAD files.</p></li>
 <li><p><a class="reference internal" href="../reference/checks.html#XD-CHECK-0020" title="XD-CHECK-0020"><em class="xref need">generated files record the ... (XD-CHECK-0020)</em></a>: the generated files record the tool versions that made them.</p></li>
+<li><p>CK-F14, CK-F15: one document per assembly def and back; FreeCAD links per part equal the usages.</p></li>
+<li><p>CK-F3: the skeleton’s <code class="docutils literal notranslate"><span class="pre">Params</span></code> and the LCS placements equal the ME model.</p></li>
+<li><p>CK-F4c, CK-F16, CK-F17, CK-F18 (local, FreeCAD): recompute, valid solids, collisions, boards in
+their space budget; CK-F9 the acceptance of their findings.</p></li>
+<li><p>CK-F12, CK-F19: Manufacturer and MPN or <code class="docutils literal notranslate"><span class="pre">Material</span></code>; one version mark per printed part.</p></li>
+<li><p>CK-D10 (local): the <code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">cam</span></code> output of the current commit exists.</p></li>
 </ul>
 <p>For review, <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">diff</span></code> shows <code class="docutils literal notranslate"><span class="pre">.FCStd</span></code> changes as semantic JSON through the textconv driver
 that the bootstrap installs. GitHub does not, so reviewers read the committed JSON.</p>
@@ -328,21 +407,9 @@ bought part without them and about an own part without <code class="docutils lit
 </section>
 <section id="design-output-and-renderings">
 <h2>Design output and renderings<a class="headerlink" href="#design-output-and-renderings" title="Link to this heading"></a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">cam</span></code> writes the design output of a top-level assembly under
-<code class="docutils literal notranslate"><span class="pre">build/&lt;repo&gt;/cam/&lt;assembly&gt;/&lt;version&gt;/</span></code> (<a class="reference internal" href="../explanation/decisions/scope.html#XD-ADR-0143" title="XD-ADR-0143"><em class="xref need">ME design output in iterati... (XD-ADR-0143)</em></a>): STEP, the printed parts, the
-drawing, the exploded view, the BOM and four renderings per variant
-(<code class="docutils literal notranslate"><span class="pre">renderings/front|top|right|iso.png</span></code>):</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>curatrix<span class="w"> </span>cam<span class="w"> </span>robarm-me<span class="w"> </span>canary-assembly<span class="w">                </span><span class="c1"># Blender if installed, else the fallback</span>
-curatrix<span class="w"> </span>cam<span class="w"> </span>robarm-me<span class="w"> </span>canary-assembly<span class="w"> </span>--no-blender<span class="w">   </span><span class="c1"># always the renderer without Blender</span>
-</pre></div>
-</div>
-<p>With Blender on the machine the renderings come from Blender (Cycles on the CPU with half the
-cores, about 35 seconds for the four views of the canary on a 16-core machine); without it from a plain-Python renderer in <code class="docutils literal notranslate"><span class="pre">FreeCADCmd</span></code>
-(<a class="reference internal" href="../explanation/decisions/scope.html#XD-ADR-0147" title="XD-ADR-0147"><em class="xref need">ME renderings without OpenG... (XD-ADR-0147)</em></a>). <code class="docutils literal notranslate"><span class="pre">cam.json</span></code> says which (<code class="docutils literal notranslate"><span class="pre">renderings.method</span></code>: <code class="docutils literal notranslate"><span class="pre">blender</span></code> or <code class="docutils literal notranslate"><span class="pre">zbuffer</span></code>).
-Blender is optional and not pinnable, so these images are local only; CI never has Blender
-(<a class="reference internal" href="../explanation/decisions/scope.html#XD-ADR-0148" title="XD-ADR-0148"><em class="xref need">Blender as an optional loca... (XD-ADR-0148)</em></a>). Run Blender only through curatrix (<code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">run</span> <span class="pre">--</span> <span class="pre">blender</span></code>,
-<code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">launch</span> <span class="pre">blender</span></code>) or the <code class="docutils literal notranslate"><span class="pre">.venv/bin/blender</span></code> shim: they add <code class="docutils literal notranslate"><span class="pre">--factory-startup</span></code> and
-keep its user files in <code class="docutils literal notranslate"><span class="pre">.xdmod/blender/</span></code>. <code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">doctor</span></code> shows the Blender version.</p>
+<p><code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">cam</span> <span class="pre">robarm-me</span> <span class="pre">&lt;name&gt;</span></code> writes STEP, the printed parts, the drawing, the exploded view, the
+BOM, the mass and four renderings per variant; the renderings come from Blender when it is
+installed, else from the plain-Python fallback. See <a class="reference internal" href="design-output.html#howto-design-output"><span class="std std-ref">Make the design output of a board or assembly</span></a>.</p>
 </section>
 <section id="pitfalls">
 <h2>Pitfalls<a class="headerlink" href="#pitfalls" title="Link to this heading"></a></h2>
@@ -350,6 +417,9 @@ keep its user files in <code class="docutils literal notranslate"><span class="p
 <li><p><code class="docutils literal notranslate"><span class="pre">.FCStd</span></code> files can’t be merged. On a conflict, take one side and redo the other change.</p></li>
 <li><p>An unchanged save still changes the file. The pre-commit hook warns when a <code class="docutils literal notranslate"><span class="pre">.FCStd</span></code> changed
 but its semantic JSON didn’t.</p></li>
+<li><p>Open an assembly’s skeleton before its top document; opened through the top document it loads
+only partly. <code class="docutils literal notranslate"><span class="pre">gen</span> <span class="pre">freecad-params</span></code> does this for you.</p></li>
+<li><p>Never run FreeCAD or Blender outside curatrix or its <code class="docutils literal notranslate"><span class="pre">.venv/bin</span></code> shims (<a class="reference internal" href="../explanation/decisions/repos.html#XD-ADR-0145" title="XD-ADR-0145"><em class="xref need">KiCad and FreeCAD never run... (XD-ADR-0145)</em></a>).</p></li>
 </ul>
 </section>
 </section>
@@ -358,8 +428,8 @@ but its semantic JSON didn’t.</p></li>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="add-a-pcba.html" class="btn btn-neutral float-left" title="Add a PCBA or circuit block" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="add-a-configuration.html" class="btn btn-neutral float-right" title="Add a feature or configuration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="add-a-pcba.html" class="btn btn-neutral float-left" title="Add a board (PCBA) or circuit block" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="design-output.html" class="btn btn-neutral float-right" title="Make the design output of a board or assembly" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

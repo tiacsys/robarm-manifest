@@ -25,7 +25,7 @@
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=eb1d21ce"></script>
+      <script src="_static/documentation_options.js?v=46365990"></script>
       <script src="_static/doctools.js?v=fd6eb6e6"></script>
       <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="_static/zdocs-need-preview.js?v=98728251"></script>
@@ -51,7 +51,7 @@
           <a href="index.html" class="icon icon-home">
             curatrix Reference
           </a>
-<div class="version zdocs-version">v0.0-dev+gab23a1a</div>
+<div class="version zdocs-version">v0.0-dev+gd1ddc5a</div>
 
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -221,7 +221,7 @@ below. This page is generated from curatrix’s argument parser.</p>
 <td><p>set up the workspace for a role (group filter, venv, tools, hooks)</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#cli-update"><span class="std std-ref">curatrix update</span></a></p></td>
-<td><p>west update -k, then refresh venv, tools, links, hooks</p></td>
+<td><p>fast-forward the manifest repo, west update -k, then refresh venv, tools, links, hooks</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#cli-launch"><span class="std std-ref">curatrix launch</span></a></p></td>
 <td><p>start a GUI tool / Claude Code with workspace-local config</p></td>
@@ -346,7 +346,7 @@ options:
 </section>
 <section id="curatrix-update">
 <span id="cli-update"></span><h2>curatrix update<a class="headerlink" href="#curatrix-update" title="Link to this heading"></a></h2>
-<p>west update -k, then refresh venv, tools, links, hooks.</p>
+<p>fast-forward the manifest repo, west update -k, then refresh venv, tools, links, hooks.</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>usage: curatrix update [-h] [--adopt]
 
 options:

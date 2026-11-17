@@ -27,7 +27,7 @@
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=eb1d21ce"></script>
+      <script src="../_static/documentation_options.js?v=46365990"></script>
       <script src="../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../_static/zdocs-need-preview.js?v=98728251"></script>
@@ -53,7 +53,7 @@
           <a href="../index.html" class="icon icon-home">
             XDMOD Manual
           </a>
-<div class="version zdocs-version">v0.0-dev+gab23a1a</div>
+<div class="version zdocs-version">v0.0-dev+gd1ddc5a</div>
 
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -70,8 +70,9 @@
 <li class="toctree-l2"><a class="reference internal" href="add-a-requirement.html">Add a requirement</a></li>
 <li class="toctree-l2"><a class="reference internal" href="add-a-model-element.html">Add a model element</a></li>
 <li class="toctree-l2"><a class="reference internal" href="add-a-view.html">Add a view</a></li>
-<li class="toctree-l2"><a class="reference internal" href="add-a-pcba.html">Add a PCBA or circuit block</a></li>
+<li class="toctree-l2"><a class="reference internal" href="add-a-pcba.html">Add a board (PCBA) or circuit block</a></li>
 <li class="toctree-l2"><a class="reference internal" href="add-a-part.html">Add a FreeCAD part or assembly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design-output.html">Make the design output of a board or assembly</a></li>
 <li class="toctree-l2"><a class="reference internal" href="add-a-configuration.html">Add a feature or configuration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="add-a-test.html">Add a test</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Make a change across repos</a><ul>
@@ -81,6 +82,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="co-design-change.html">Make a co-design change (ME and EE)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="review-a-domain-pr.html">Review an EE or ME pull request from a local docs build</a></li>
 <li class="toctree-l2"><a class="reference internal" href="work-as-an-agent.html">Work as an agent</a></li>
 <li class="toctree-l2"><a class="reference internal" href="make-a-baseline.html">Make a baseline</a></li>
 </ul>
@@ -197,12 +199,13 @@ plus the domain requirements and design that follow from it.</p>
 <span class="nb">cd</span><span class="w"> </span>.worktrees/feat/latency
 </pre></div>
 </div>
-<p>Builds of the set go to <code class="docutils literal notranslate"><span class="pre">build/wt-feat-latency/</span></code>.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p><code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">work</span></code> is being added (task 4.4c). Until it is on <code class="docutils literal notranslate"><span class="pre">main</span></code>, make the
-worktrees by hand: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">-C</span> <span class="pre">&lt;repo&gt;</span> <span class="pre">worktree</span> <span class="pre">add</span> <span class="pre">../.worktrees/&lt;branch&gt;/&lt;repo&gt;</span> <span class="pre">-b</span> <span class="pre">&lt;branch&gt;</span></code>.</p>
-</div>
+<p>The set holds the named repos as worktrees on the branch (new branches start from <code class="docutils literal notranslate"><span class="pre">main</span></code>) and
+the other framework repos as detached worktrees; shared trees (Zephyr, libraries, <code class="docutils literal notranslate"><span class="pre">.venv</span></code>) are
+links to the main checkout. Run every command from the set root, and curatrix as
+<code class="docutils literal notranslate"><span class="pre">.venv/bin/curatrix</span></code>. Builds of the set go to <code class="docutils literal notranslate"><span class="pre">build/wt-&lt;branch&gt;/</span></code> in the workspace, with
+<code class="docutils literal notranslate"><span class="pre">/</span></code> in the branch name as <code class="docutils literal notranslate"><span class="pre">-</span></code> (here <code class="docutils literal notranslate"><span class="pre">build/wt-feat-latency/</span></code>); from the set root that is
+<code class="docutils literal notranslate"><span class="pre">build/</span></code>, through the set’s <code class="docutils literal notranslate"><span class="pre">build</span></code> link. To add a repo later, run <code class="docutils literal notranslate"><span class="pre">work</span> <span class="pre">start</span></code> again with
+that repo. For a stacked PR, <code class="docutils literal notranslate"><span class="pre">--base</span> <span class="pre">&lt;parent</span> <span class="pre">branch&gt;</span></code> starts the branch from the parent.</p>
 </li>
 <li><p><strong>Author</strong> the change in each repo, run <code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">gen</span></code> and <code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">ids</span> <span class="pre">fix</span></code> where
 needed.</p></li>
@@ -221,10 +224,14 @@ ancestor of it; the manifest pin (<a class="reference internal" href="../explana
 before the repos that use them. Every PR is rebase-merged (<a class="reference internal" href="../explanation/decisions/workflow.html#XD-ADR-0043" title="XD-ADR-0043"><em class="xref need">Trunk-based merging with re... (XD-ADR-0043)</em></a>).</p></li>
 <li><p><strong>Bump.</strong> The bump bot in the manifest repo collects the new <code class="docutils literal notranslate"><span class="pre">main</span></code> SHAs into one bump PR and
 builds the full set (<a class="reference internal" href="../explanation/decisions/checks.html#XD-ADR-0054" title="XD-ADR-0054"><em class="xref need">A bump bot for manifest pins (XD-ADR-0054)</em></a>, <a class="reference internal" href="../explanation/decisions/checks.html#XD-ADR-0081" title="XD-ADR-0081"><em class="xref need">The bump bot is a scheduled... (XD-ADR-0081)</em></a>). Merging it moves the pins (<a class="reference internal" href="../explanation/decisions/repos.html#XD-ADR-0033" title="XD-ADR-0033"><em class="xref need">The manifest is the only pl... (XD-ADR-0033)</em></a>).</p></li>
-<li><p>When everything is merged:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>curatrix<span class="w"> </span>work<span class="w"> </span><span class="k">done</span><span class="w"> </span>feat/latency
+<li><p><strong>Clean up after the merge.</strong> When every PR of the branch is merged, remove the set from the
+workspace root:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>curatrix<span class="w"> </span>work<span class="w"> </span><span class="k">done</span><span class="w"> </span>feat/latency<span class="w">                   </span><span class="c1"># removes the worktrees, links and folder</span>
+curatrix<span class="w"> </span>work<span class="w"> </span><span class="k">done</span><span class="w"> </span>feat/latency<span class="w"> </span>--delete-branch<span class="w">   </span><span class="c1"># also deletes the merged local branches</span>
 </pre></div>
 </div>
+<p><code class="docutils literal notranslate"><span class="pre">work</span> <span class="pre">done</span></code> refuses while a worktree has uncommitted changes (<code class="docutils literal notranslate"><span class="pre">--force</span></code> overrides). The
+main checkouts move to the new pins with <code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">update</span></code> once the bump PR is merged.</p>
 </li>
 </ol>
 </section>
@@ -272,6 +279,8 @@ the framework (<a class="reference internal" href="../explanation/decisions/repo
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">west</span> <span class="pre">update</span></code> moves repos back to their pins (detached HEAD). On branches use
 <code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">update</span></code>. Never run either inside a worktree set.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">work</span> <span class="pre">list</span></code> shows the sets of the workspace; a set left behind keeps its build area
+<code class="docutils literal notranslate"><span class="pre">build/wt-&lt;branch&gt;/</span></code> until <code class="docutils literal notranslate"><span class="pre">work</span> <span class="pre">done</span></code>.</p></li>
 <li><p>A ledger conflict after a rebase means two PRs issued the same ID. Rerun <code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">ids</span> <span class="pre">fix</span></code>.</p></li>
 </ul>
 </section>

@@ -27,7 +27,7 @@
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=eb1d21ce"></script>
+      <script src="../_static/documentation_options.js?v=46365990"></script>
       <script src="../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../_static/zdocs-need-preview.js?v=98728251"></script>
@@ -53,7 +53,7 @@
           <a href="../index.html" class="icon icon-home">
             XDMOD Manual
           </a>
-<div class="version zdocs-version">v0.0-dev+gab23a1a</div>
+<div class="version zdocs-version">v0.0-dev+gd1ddc5a</div>
 
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -288,6 +288,23 @@ tools into <code class="docutils literal notranslate"><span class="pre">.venv/op
 </ol>
 <p>On branches, use <code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">update</span></code> (it runs <code class="docutils literal notranslate"><span class="pre">west</span> <span class="pre">update</span> <span class="pre">-k</span></code>). Plain <code class="docutils literal notranslate"><span class="pre">west</span> <span class="pre">update</span></code> moves
 every project back to its pin, as a detached HEAD.</p>
+<p>Before the west step, <code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">update</span></code> fetches the manifest repo and fast-forwards it to its
+remote default branch (<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">fetch</span></code> and <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">merge</span> <span class="pre">--ff-only</span></code>, never <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span></code>), so the pins
+merged on GitHub by bump PRs are the ones west checks out. It does so only when the manifest repo
+is on that branch, has no changes to tracked files and no local commits; otherwise it warns and
+west uses the pins of the local checkout. When the west step moved <code class="docutils literal notranslate"><span class="pre">xdmod</span></code>, <code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">update</span></code>
+starts itself again, so the rest of the update runs the new curatrix code. It refuses to run inside
+a worktree set.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The first <code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">update</span></code> on a machine after this behaviour came in still runs the
+old code, which neither moves the manifest repo nor restarts itself. Fast-forward the manifest
+repo by hand once before it (never <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span></code>):</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>-C<span class="w"> </span>robarm-manifest<span class="w"> </span>fetch<span class="w"> </span>origin<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>git<span class="w"> </span>-C<span class="w"> </span>robarm-manifest<span class="w"> </span>merge<span class="w"> </span>--ff-only<span class="w"> </span>origin/main
+curatrix<span class="w"> </span>update
+</pre></div>
+</div>
+</div>
 </section>
 <section id="environment">
 <h2>Environment<a class="headerlink" href="#environment" title="Link to this heading"></a></h2>
@@ -339,7 +356,7 @@ and options is in the curatrix reference. The most used:</p>
 <td><p>checks tools, versions, paths, hooks and the west state</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">update</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">west</span> <span class="pre">update</span> <span class="pre">-k</span></code>, refresh <code class="docutils literal notranslate"><span class="pre">.venv</span></code>, tools, <code class="docutils literal notranslate"><span class="pre">.claude/</span></code> links and hooks</p></td>
+<td><p>fast-forward the manifest repo, <code class="docutils literal notranslate"><span class="pre">west</span> <span class="pre">update</span> <span class="pre">-k</span></code>, refresh <code class="docutils literal notranslate"><span class="pre">.venv</span></code>, tools, <code class="docutils literal notranslate"><span class="pre">.claude/</span></code> links and hooks</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">check</span> <span class="pre">&lt;repo&gt;</span> <span class="pre">--stage</span> <span class="pre">local</span></code></p></td>
 <td><p>the repo’s checks (<a class="reference internal" href="checks.html"><span class="doc">Checks</span></a>)</p></td>

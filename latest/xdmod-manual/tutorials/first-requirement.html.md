@@ -55,7 +55,7 @@ The examples use the robot-arm repos. Replace the repo names with your own.
    curatrix gen model robarm-syseng
    ```
 4. **Realize the model element in a domain.** In the EE repo, give a KiCad symbol or sheet the
-   hidden fields `TraceID` and `Realizes`; see [Add a PCBA or circuit block](../howto/add-a-pcba.html.md). Then:
+   hidden fields `TraceID` and `Realizes`; see [Add a board (PCBA) or circuit block](../howto/add-a-pcba.html.md). Then:
    ```sh
    curatrix gen cad-needs robarm-ee
    ```

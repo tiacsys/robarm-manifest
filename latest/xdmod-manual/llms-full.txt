@@ -48,12 +48,14 @@ to the HTML ([*Agent-readable docs with sp... (XD-ADR-0111)*](explanation/decisi
   * [Add a requirement](howto/add-a-requirement.html.md)
   * [Add a model element](howto/add-a-model-element.html.md)
   * [Add a view](howto/add-a-view.html.md)
-  * [Add a PCBA or circuit block](howto/add-a-pcba.html.md)
+  * [Add a board (PCBA) or circuit block](howto/add-a-pcba.html.md)
   * [Add a FreeCAD part or assembly](howto/add-a-part.html.md)
+  * [Make the design output of a board or assembly](howto/design-output.html.md)
   * [Add a feature or configuration](howto/add-a-configuration.html.md)
   * [Add a test](howto/add-a-test.html.md)
   * [Make a change across repos](howto/cross-repo-change.html.md)
   * [Make a co-design change (ME and EE)](howto/co-design-change.html.md)
+  * [Review an EE or ME pull request from a local docs build](howto/review-a-domain-pr.html.md)
   * [Work as an agent](howto/work-as-an-agent.html.md)
   * [Make a baseline](howto/make-a-baseline.html.md)
 * [Reference](reference/index.html.md)
@@ -1369,7 +1371,7 @@ Branches, merging, reviews, and what agents may do.
 | Framework Decision: **Parallel agents work in git worktrees** [XD-ADR-0114](explanation/decisions/workflow.html.md#XD-ADR-0114)  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg> <br/><br/>   |
 |------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | status: valid<br/><br/><br/>legacy_id: D125<br/><br/><br/>date: 2026-11-14<br/><br/><br/>decision_status: accepted<br/><br/><br/><br/><br/><br/>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| **Parallel agents work in git worktrees** under `<ws>/.worktrees/<branch>/<repo>` (`curatrix work start/done`). Shared parts aren’t duplicated, and builds go to `build/<branch>/`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| **Parallel agents work in git worktrees** under `<ws>/.worktrees/<branch>/<repo>` (`curatrix work start/done`). Shared parts aren’t duplicated, and builds go to `build/<branch>/`.<br/><br/>*Corrected 2026-11-17 (task 5.32):* the build folder of a set is `build/wt-<slug>/` (the branch with `/` as `-`: `feat/x` -> `build/wt-feat-x/`), as the code always did; the decision is unchanged.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 
 <a id="XD-ADR-0115"></a>
 
@@ -2626,10 +2628,80 @@ curatrix check robarm-syseng --stage local
 
 # Add a FreeCAD part or assembly
 
-Use this guide when you add a FreeCAD part (`ME-PART`) or assembly (`ME-ASM`) that takes part
-in trace links.
+Use this guide when you, in the ME role, add a new assembly (`ME-ASM`) with its skeleton,
+parameters, interfaces, checks, design output and assembly document, or a FreeCAD part
+(`ME-PART`) that takes part in trace links. The example is the canary assembly
+`canary-assembly` of robarm-me.
 
-## Steps
+Work on a branch in a worktree set ([Make a change across repos](howto/cross-repo-change.html.md#howto-cross-repo-change)):
+
+```sh
+.venv/bin/curatrix work start feat/my-assembly robarm-me
+cd .worktrees/feat/my-assembly
+```
+
+In the set, call curatrix as `.venv/bin/curatrix` (it runs the set’s xdmod), or run
+`eval "$(.venv/bin/curatrix env)"` once, which puts `.venv/bin` first on `PATH`; the commands
+below are written as `curatrix ...`.
+
+## New assembly
+
+1. **Assembly def.** Add it to `model/` in the ME repo: `part def <'ME-ASM-NEW-a'> MyAssembly
+   :> <the SYS-EL def>, XdDomain::Assembly`, with a part usage per part or sub-assembly and a port
+   usage per interface (a port def that specializes `XdDomain::MechanicalPort`, `ME-PORT`; the
+   usage gives `x`, `y`, `z` and the angles). The assembly’s driving parameters are attributes
+   of its usages, at most ten per top-level assembly ([*FreeCAD assemblies: a skele... (XD-ADR-0137)*](explanation/decisions/domains.html.md#XD-ADR-0137)). Then:
+   ```sh
+   curatrix ids fix robarm-me
+   curatrix gen model robarm-me
+   ```
+2. **FreeCAD documents and the assembly document.** `curatrix new asm` writes them with
+   `FreeCADCmd` ([*FreeCAD assemblies: a skele... (XD-ADR-0137)*](explanation/decisions/domains.html.md#XD-ADR-0137), [*FreeCAD assemblies: skeleto... (XD-ADR-0146)*](explanation/decisions/domains.html.md#XD-ADR-0146)):
+   ```sh
+   curatrix new asm MyAssembly --repo robarm-me
+   ```
+
+   It makes `assemblies/<name>/` (`<name>` = the def’s name in kebab case) with the top document
+   `<name>.FCStd` (an assembly with `TraceID` = the def’s `ME-ASM`, a `Joints` group and a
+   link to the skeleton) and `<name>-skeleton.FCStd` (the spreadsheet `Params` and the master
+   sketch `MasterSketch` in the part `Skeleton`), plus the document `docs/asm-<name>/` and its
+   registry entry.
+3. **Parameters from the model.** Write the model values into `Params` (aliases
+   `<usage>_<attribute>`, e.g. `canaryPart_length`); parts and the master sketch take their
+   dimensions from there by expressions:
+   ```sh
+   curatrix gen freecad-params robarm-me
+   ```
+
+   Change a value in the model and run this command again; never type it into `Params`.
+4. **Parts.** Own parts of the assembly go to `assemblies/<name>/parts/`, shared parts to
+   `parts/`, bought parts and fasteners to `lib/` (a fastener has a `Standard` property such as
+   `ISO 4762 M3x10, A2`). Each part gets a `TraceID` (`ME-PART`, see “New part” below), an own
+   part a `Material`, a bought part `Manufacturer` and `MPN`. A printed part names its print
+   profile in `PrintProfile` (a file in `print/`) and has one LCS with `Role = version-emboss`
+   where `curatrix cam` embosses the version (CK-F19).
+5. **Links and interfaces.** Add one FreeCAD link per usage of the model to the top document; a part
+   that exists only in some configurations names them in the link’s `Configs` property (on the
+   link, not on the part, [*Who owns instance counts (XD-ADR-0138)*](explanation/decisions/domains.html.md#XD-ADR-0138)). Every port usage is an LCS in the skeleton named
+   `LCS_<usage>` with a `Port` property = its `ME-PORT` ID; its placement comes from
+   `Params`.
+6. **Regenerate and check.** Write the CAD needs and the semantic JSON, then run the checks with
+   CAD content:
+   ```sh
+   curatrix gen all robarm-me
+   curatrix check robarm-me --stage local
+   ```
+
+   The FreeCAD checks (CK-F4c recompute, CK-F16 valid solids, CK-F17 collisions between the direct
+   children, CK-F18 boards in their space budget) run only locally. Accept a finding that is
+   intended in `assemblies/<name>/accepted.yaml` (same format as the EE file,
+   [*One accepted.yaml format, w... (XD-ADR-0126)*](explanation/decisions/checks.html.md#XD-ADR-0126)): **agents only propose** the entry, the ME engineer or the owner accepts it
+   with an own commit carrying `Accepted-by: <name>`.
+7. **Design output and the document.** `curatrix cam robarm-me <name>`, then `curatrix docs
+   robarm-me` ([Make the design output of a board or assembly](howto/design-output.html.md#howto-design-output)). The PR names the proposed `accepted.yaml` entries;
+   the reviewer follows [Review an EE or ME pull request from a local docs build](howto/review-a-domain-pr.html.md#howto-review-a-domain-pr).
+
+## New part
 
 1. Start FreeCAD with the launcher. It uses a workspace-local config that saves `.FCStd` files
    **uncompressed** and points at the pinned parts library ([*FreeCAD files uncompressed,... (XD-ADR-0056)*](explanation/decisions/checks.html.md#XD-ADR-0056), [*Pinned, isolated component ... (XD-ADR-0080)*](explanation/decisions/repos.html.md#XD-ADR-0080)):
@@ -2638,7 +2710,7 @@ in trace links.
    ```
 2. Add string properties in the group `Trace` to the part or assembly object: `TraceID`,
    `Realizes`, `Satisfies`, `Conforms`, `PartOf`, `Status`, `Configs`. They mean the
-   same as the KiCad fields ([Add a PCBA or circuit block](howto/add-a-pcba.html.md)).
+   same as the KiCad fields ([Add a board (PCBA) or circuit block](howto/add-a-pcba.html.md)).
 3. Set the `TraceID` to a real ID. Placeholders inside `.FCStd` files are refused, so issue
    the ID first:
    ```sh
@@ -2657,6 +2729,12 @@ in trace links.
 -  [*.FCStd uncompressed; drawio... (XD-CHECK-0025)*](reference/checks.html.md#XD-CHECK-0025): the `.FCStd` is stored uncompressed ([*Design files are stored unc... (XD-RULE-0039)*](explanation/rules/checks.html.md#XD-RULE-0039)).
 - [*cad-needs.json matches the ... (XD-CHECK-0019)*](reference/checks.html.md#XD-CHECK-0019): `cad-needs.json` matches the FreeCAD files.
 - [*generated files record the ... (XD-CHECK-0020)*](reference/checks.html.md#XD-CHECK-0020): the generated files record the tool versions that made them.
+- CK-F14, CK-F15: one document per assembly def and back; FreeCAD links per part equal the usages.
+- CK-F3: the skeleton’s `Params` and the LCS placements equal the ME model.
+- CK-F4c, CK-F16, CK-F17, CK-F18 (local, FreeCAD): recompute, valid solids, collisions, boards in
+  their space budget; CK-F9 the acceptance of their findings.
+- CK-F12, CK-F19: Manufacturer and MPN or `Material`; one version mark per printed part.
+- CK-D10 (local): the `curatrix cam` output of the current commit exists.
 
 For review, `git diff` shows `.FCStd` changes as semantic JSON through the textconv driver
 that the bootstrap installs. GitHub does not, so reviewers read the committed JSON.
@@ -2713,63 +2791,117 @@ bought part without them and about an own part without `Material` ([*Every BOM p
 
 ## Design output and renderings
 
-`curatrix cam` writes the design output of a top-level assembly under
-`build/<repo>/cam/<assembly>/<version>/` ([*ME design output in iterati... (XD-ADR-0143)*](explanation/decisions/scope.html.md#XD-ADR-0143)): STEP, the printed parts, the
-drawing, the exploded view, the BOM and four renderings per variant
-(`renderings/front|top|right|iso.png`):
-
-```sh
-curatrix cam robarm-me canary-assembly                # Blender if installed, else the fallback
-curatrix cam robarm-me canary-assembly --no-blender   # always the renderer without Blender
-```
-
-With Blender on the machine the renderings come from Blender (Cycles on the CPU with half the
-cores, about 35 seconds for the four views of the canary on a 16-core machine); without it from a plain-Python renderer in `FreeCADCmd`
-([*ME renderings without OpenG... (XD-ADR-0147)*](explanation/decisions/scope.html.md#XD-ADR-0147)). `cam.json` says which (`renderings.method`: `blender` or `zbuffer`).
-Blender is optional and not pinnable, so these images are local only; CI never has Blender
-([*Blender as an optional loca... (XD-ADR-0148)*](explanation/decisions/scope.html.md#XD-ADR-0148)). Run Blender only through curatrix (`curatrix run -- blender`,
-`curatrix launch blender`) or the `.venv/bin/blender` shim: they add `--factory-startup` and
-keep its user files in `.xdmod/blender/`. `curatrix doctor` shows the Blender version.
+`curatrix cam robarm-me <name>` writes STEP, the printed parts, the drawing, the exploded view, the
+BOM, the mass and four renderings per variant; the renderings come from Blender when it is
+installed, else from the plain-Python fallback. See [Make the design output of a board or assembly](howto/design-output.html.md#howto-design-output).
 
 ## Pitfalls
 
 - `.FCStd` files can’t be merged. On a conflict, take one side and redo the other change.
 - An unchanged save still changes the file. The pre-commit hook warns when a `.FCStd` changed
   but its semantic JSON didn’t.
+- Open an assembly’s skeleton before its top document; opened through the top document it loads
+  only partly. `gen freecad-params` does this for you.
+- Never run FreeCAD or Blender outside curatrix or its `.venv/bin` shims ([*KiCad and FreeCAD never run... (XD-ADR-0145)*](explanation/decisions/repos.html.md#XD-ADR-0145)).
 
 
 # howto/add-a-pcba.html.md
 
 <a id="howto-add-a-pcba"></a>
 
-# Add a PCBA or circuit block
+# Add a board (PCBA) or circuit block
 
-Use this guide when you add a KiCad project (a PCBA), a circuit block or a component that takes
-part in trace links. Prototype wiring is EE content too: a KiCad schematic of the prototype
-setup whose elements carry `configs` ([*Prototype wiring is EE content (XD-ADR-0067)*](explanation/decisions/traces.html.md#XD-ADR-0067)).
+Use this guide when you, in the EE role, add a new board: a KiCad project for a board def of the
+EE model, with its connectors, ERC and DRC, design output and board document. It also covers circuit
+blocks and components that take part in trace links. Prototype wiring is EE content too: a KiCad
+schematic of the prototype setup whose elements carry `configs` ([*Prototype wiring is EE content (XD-ADR-0067)*](explanation/decisions/traces.html.md#XD-ADR-0067)).
 
 The board itself is a def in the EE model; the KiCad project only names it
 ([*The domain model owns the I... (XD-ADR-0128)*](explanation/decisions/domains.html.md#XD-ADR-0128)). Circuit blocks and components keep their trace IDs inside the KiCad files
-([*Trace IDs live inside the C... (XD-ADR-0023)*](explanation/decisions/traces.html.md#XD-ADR-0023)).
+([*Trace IDs live inside the C... (XD-ADR-0023)*](explanation/decisions/traces.html.md#XD-ADR-0023)). The example is the canary board `canary-board` of robarm-ee.
+
+Work on a branch in a worktree set ([Make a change across repos](howto/cross-repo-change.html.md#howto-cross-repo-change)):
+
+```sh
+.venv/bin/curatrix work start feat/my-board robarm-ee
+cd .worktrees/feat/my-board
+```
+
+In the set, call curatrix as `.venv/bin/curatrix` (it runs the set’s xdmod), or run
+`eval "$(.venv/bin/curatrix env)"` once, which puts `.venv/bin` first on `PATH`; the commands
+below are written as `curatrix ...`.
 
 ## Steps
 
-1. Add the board def to `model/` in the EE repo: `part def <'EE-PCBA-NEW-a'> MyBoard :>
-   <the SYS-EL def>, XdDomain::Pcba`, with a connector port def (`EE-PORT`) for every port it
-   inherits ([*Domain repos refine the sys... (XD-ADR-0130)*](explanation/decisions/domains.html.md#XD-ADR-0130)). Run `curatrix ids fix robarm-ee` and `curatrix gen model
-   robarm-ee`; `realizes` and `conforms` come from `:>`.
-2. Make the KiCad project in the EE repo (e.g. `pcba/<name>/`). Use only the workspace
-   libraries: start KiCad with the launcher, which sets the library paths and keeps your
-   user-global setup out ([*Pinned, isolated component ... (XD-ADR-0080)*](explanation/decisions/repos.html.md#XD-ADR-0080)):
+1. **Board def.** Add the board def to `model/` in the EE repo: `part def <'EE-PCBA-NEW-a'>
+   MyBoard :> <the SYS-EL def>, XdDomain::Pcba`, with a connector port def (`EE-PORT`) for every
+   port it inherits, each with its pin map ([*Domain repos refine the sys... (XD-ADR-0130)*](explanation/decisions/domains.html.md#XD-ADR-0130)). Then issue the IDs and regenerate
+   the model; `realizes` and `conforms` come from `:>`:
    ```sh
-   curatrix launch kicad robarm-ee/pcba/<name>/<name>.kicad_sch
+   curatrix ids fix robarm-ee
+   curatrix gen model robarm-ee
    ```
-3. For the PCBA itself, set the text variable `TraceID` in `<name>.kicad_pro` to the board
-   def’s `EE-PCBA` ID: a reference, the need comes from the model. Nothing else goes there:
-   `Realizes`, `Configs` or other link fields next to it are reported, because links and
-   `configs` come from the model (`configs` from the `SYS-CFG` that configures the realized
-   `SYS-EL`). A `TraceID` that is not a need of the model is reported too. For circuit blocks and
-   components, add **hidden** symbol or sheet fields:
+2. **KiCad project and document.** `curatrix new pcba` makes them from the shared template in
+   `xdmod/templates/kicad-pcba/`:
+   ```sh
+   curatrix new pcba MyBoard --repo robarm-ee
+   ```
+
+   It writes `pcba/<name>/` (`<name>` = the board def’s name in kebab case, `MyBoard` ->
+   `my-board`): the `.kicad_pro` with
+   `TraceID` = the def’s `EE-PCBA` ID and `XD_VERSION = unversioned`, the ERC/DRC severities
+   of the template, library tables with workspace variables only, the CAM jobset, and a schematic
+   and board saved by KiCad. It also writes the board document `docs/pcba-<name>/` and its entry
+   in `docs/documents.yaml`. The `TraceID` is a reference; the need comes from the model.
+   `Realizes`, `Configs` or other link fields in the `.kicad_pro` are reported, because links
+   and `configs` come from the model.
+3. **Draw** schematic and board. Open the project only with the launcher, which sets the library
+   paths and keeps your user-global KiCad setup out ([*Pinned, isolated component ... (XD-ADR-0080)*](explanation/decisions/repos.html.md#XD-ADR-0080), [*KiCad and FreeCAD never run... (XD-ADR-0145)*](explanation/decisions/repos.html.md#XD-ADR-0145)):
+   ```sh
+   curatrix launch kicad robarm-ee/pcba/<name>/<name>.kicad_pro
+   ```
+
+   - Keep `${XD_VERSION}` in a title-block comment line of every sheet and of the board, and in a
+     silkscreen text; leave the `Rev` field empty (CK-F11).
+   - Iteration 1 stops before routing: placement, outline and silkscreen; the unrouted-net DRC
+     errors are accepted in one entry ([*A PCB layout in iteration 1... (XD-ADR-0144)*](explanation/decisions/scope.html.md#XD-ADR-0144), step 6).
+   - The outline and holes come from the board’s space budget through the co-design push, not by
+     hand ([Make a co-design change (ME and EE)](howto/co-design-change.html.md#howto-co-design-change)).
+4. **Connectors.** Every connector symbol (reference `J`, `P`, `CN`, or any symbol with a
+   `Port` field) gets a `Port` field with the `EE-PORT` def ID it implements. Then write the
+   connector tables and commit them:
+   ```sh
+   curatrix gen connectors robarm-ee        # generated/<name>.connectors.json
+   ```
+
+   CK-F1 compares pins and nets with the pin maps of the EE model, CK-D7 that the JSON is fresh, and
+   CK-D8 (local, KiCad) the extraction against KiCad’s XML netlist.
+5. **Variants** (at most two, [*Variants: the domain varian... (XD-ADR-0136)*](explanation/decisions/domains.html.md#XD-ADR-0136)): add them in KiCad as assembly variants (DNP and
+   fields per variant; a pin-header shunt position as a field `Setting`), write one def per
+   variant in the EE model (`part def MyBoardAlt :> MyBoard, XdDomain::DomainVariant { :>>
+   variantName = "alt"; }`) with a dependency to the configurations and usages it serves, and
+   rewrite the jobset so that every variant gets its jobs:
+   ```sh
+   curatrix cam robarm-ee <name> --update-jobset
+   ```
+6. **ERC and DRC.** `curatrix check robarm-ee --stage local` runs both (CK-F4a, CK-F4b) and fails
+   on an error that is neither excluded in KiCad nor accepted. Accept a finding in
+   `pcba/<name>/accepted.yaml`, keyed by check, rule and designators ([*One accepted.yaml format, w... (XD-ADR-0126)*](explanation/decisions/checks.html.md#XD-ADR-0126)):
+   ```yaml
+   version: 1
+   accepted:
+     - check: CK-F4b
+       rule: unconnected_items
+       items: all
+       reason: Placement and outline only; routing is not done in iteration 1 (XD-ADR-0144).
+   ```
+
+   An entry counts only when the newest commit that wrote it carries `Accepted-by: <name>`, has no
+   agent trailer and changes nothing but acceptance entries (CK-F9). **Agents only propose entries**
+   in their PR; the EE engineer or the owner accepts them with an own commit. Prefer
+   `accepted.yaml` to a KiCad exclusion: an exclusion is lost when its items move.
+7. **Circuit blocks and components** that take part in trace links get **hidden** symbol or sheet
+   fields:
 
    | Field       | Value                                                              |
    |-------------|--------------------------------------------------------------------|
@@ -2782,37 +2914,59 @@ The board itself is a def in the EE model; the KiCad project only names it
    | `Configs`   | `SYS-CFG` IDs, if it belongs only to some configurations           |
 
    A sheet used several times carries one ID; its usages become `instances` ([*The definition holds the tr... (XD-ADR-0117)*](explanation/decisions/method.html.md#XD-ADR-0117)).
-4. List the root schematic in the repo’s `checks.yaml` under `cad.kicad`, then issue the IDs
-   and regenerate the CAD needs:
+   Every BOM part needs `Manufacturer` and `MPN`, or a `Standard` designation (CK-F12). Then
+   issue the IDs and regenerate the CAD needs:
    ```sh
    curatrix ids fix robarm-ee
    curatrix gen cad-needs robarm-ee
    ```
 
    Commit `generated/cad-needs.json` ([*CAD-derived needs are commi... (XD-ADR-0100)*](explanation/decisions/checks.html.md#XD-ADR-0100)).
-5. Show the schematic in the PCBA document with `kicad-sheet`, `kicad-bom` and `kicad-nets`.
-   Make the exports locally with `curatrix gen cad-exports robarm-ee`. In CI the directives show
-   a “built locally” notice ([*CI runs without CAD content (XD-ADR-0049)*](explanation/decisions/checks.html.md#XD-ADR-0049)).
-6. If the board has variants (at most two, [*Variants: the domain varian... (XD-ADR-0136)*](explanation/decisions/domains.html.md#XD-ADR-0136)): add them in KiCad as assembly
-   variants (Board Setup or the schematic’s variant list; DNP and fields per variant), write one
-   def per variant in the EE model (`part def MyBoardAlt :> MyBoard, XdDomain::DomainVariant
-   { :>> variantName = "alt"; }`) with a dependency to the configurations and usages it serves, and
-   add `variants: true` to `checks.yaml` (the check also needs `model.upstream`, the system
-   repo’s committed `generated/model.json`).
+8. **Design output and the board document.** Make the design output of the current commit, then
+   build the document ([Make the design output of a board or assembly](howto/design-output.html.md#howto-design-output)):
+   ```sh
+   curatrix cam robarm-ee <name>
+   curatrix docs robarm-ee
+   ```
+9. **Check and open the PR.** `curatrix check robarm-ee --stage local` with CAD content
+   ([*Every check also runs locally (XD-ADR-0040)*](explanation/decisions/checks.html.md#XD-ADR-0040)). The PR names the proposed `accepted.yaml` entries; the reviewer follows
+   [Review an EE or ME pull request from a local docs build](howto/review-a-domain-pr.html.md#howto-review-a-domain-pr).
+
+## The board document
+
+Every board has one document `pcba-<name>` with the same sections ([*One document per board, har... (XD-ADR-0129)*](explanation/decisions/documents.html.md#XD-ADR-0129)), one
+`xd-pcba-*` directive each: overview, variants, renderings, schematic, stackup, design rules,
+connectors, ERC and DRC findings, and the BOM in the appendix (a column per variant). The tables come
+from the KiCad files in plain Python and show in CI too. Renderings, schematic and findings come
+from the `curatrix cam` output of the commit the repo is at ([*A board or assembly documen... (XD-RULE-0060)*](explanation/rules/trace.html.md#XD-RULE-0060)); without it, and
+in CI, they print a fixed sentence, and CK-D10 warns locally.
 
 ## Checks
 
-- [*cad-needs.json matches the ... (XD-CHECK-0019)*](reference/checks.html.md#XD-CHECK-0019): `cad-needs.json` matches the KiCad files (plain Python, no KiCad needed).
 - [*the Pilot parses the model ... (XD-CHECK-0016)*](reference/checks.html.md#XD-CHECK-0016), [*model.json and model-needs.... (XD-CHECK-0017)*](reference/checks.html.md#XD-CHECK-0017): the EE model parses and its generated files are fresh.
 - [*domain model conforms to it... (XD-CHECK-0033)*](reference/checks.html.md#XD-CHECK-0033): the board def redefines every inherited port with a fitting port def.
+- CK-F6, CK-F7: one project per `pcba/<name>/` folder, 1:1 with the board defs.
+- CK-D7, CK-D8, CK-F1: connectors (fresh JSON, KiCad netlist, pin maps of the model).
+- CK-F4a, CK-F4b, CK-F8, CK-F9: ERC, DRC, the template severities, acceptance.
+- CK-F10, CK-F11: the jobset is the template’s, the version variable is used.
+- CK-F12, CK-D9: Manufacturer and MPN; the BOM reader equals KiCad’s BOM export per variant.
 - [*variants across levels: one... (XD-CHECK-0034)*](reference/checks.html.md#XD-CHECK-0034): exactly one variant per configuration and usage, and each variant is in the `.kicad_pro`.
-- [*docs build strict (zdocs, s... (XD-CHECK-0001)*](reference/checks.html.md#XD-CHECK-0001): the strict docs build; its needs schema fails an element that realizes or satisfies nothing ([*No orphan design elements (XD-RULE-0010)*](explanation/rules/trace.html.md#XD-RULE-0010)).
-- Domain checks such as the netlist against the interface pin maps, and ERC, are commands in the
-  repo’s `checks.yaml`.
+- [*cad-needs.json matches the ... (XD-CHECK-0019)*](reference/checks.html.md#XD-CHECK-0019): `cad-needs.json` matches the KiCad files (plain Python, no KiCad needed).
+- [*docs build strict (zdocs, s... (XD-CHECK-0001)*](reference/checks.html.md#XD-CHECK-0001): the strict docs build; its needs schema fails an element that realizes or
+  satisfies nothing ([*No orphan design elements (XD-RULE-0010)*](explanation/rules/trace.html.md#XD-RULE-0010)).
+
+CK-D8, CK-D9, CK-F4a and CK-F4b need KiCad and run only locally; CK-D10 needs no CAD tool but runs
+only locally (it looks for the `cam` output). PR CI runs the rest.
 
 ## Pitfalls
 
-- Hidden fields are easy to lose when you replace a symbol. Check `cad-needs.json` in the diff.
+- Never run `kicad-cli` or KiCad outside curatrix or its `.venv/bin` shims, not even
+  `--version`: it rewrites `~/.config/kicad` ([*KiCad and FreeCAD never run... (XD-ADR-0145)*](explanation/decisions/repos.html.md#XD-ADR-0145)).
+- Save KiCad files through KiCad. A hand-edited file that KiCad has not re-saved shows up as a diff
+  on the next save.
+- Hidden fields are easy to lose when you replace a symbol. Check `cad-needs.json` and the
+  connector JSON in the diff.
+- A wire end inside another wire needs a junction, or the net is split.
 - There is one design document per PCBA and one per prototype configuration ([*One EE document per PCBA an... (XD-ADR-0102)*](explanation/decisions/documents.html.md#XD-ADR-0102)).
 
 
@@ -3089,7 +3243,14 @@ The example is the canary: the budget `CanaryBoardSpace` (`SYS-IF`), the seat
    curatrix check robarm-me --stage local
    curatrix check robarm-ee --stage local
    ```
-6. **Three PRs**, each naming the other two. Merge order: robarm-syseng, then robarm-me, then
+6. **Design output and documents** of the board and the assembly, to see the moved hole in the
+   renderings and drawings ([Make the design output of a board or assembly](howto/design-output.html.md#howto-design-output)):
+   ```sh
+   curatrix cam robarm-ee <board> && curatrix docs robarm-ee
+   curatrix cam robarm-me <asm> && curatrix docs robarm-me
+   ```
+7. **Three PRs**, each naming the other two. The reviewers build them locally
+   ([Review an EE or ME pull request from a local docs build](howto/review-a-domain-pr.html.md#howto-review-a-domain-pr)). Merge order: robarm-syseng, then robarm-me, then
    robarm-ee (the push result). A PR that needs a newer curatrix waits for the xdmod merge and the
    manifest bump.
 
@@ -3117,11 +3278,13 @@ The example is the canary: the budget `CanaryBoardSpace` (`SYS-IF`), the seat
 
 - CK-F3: the seat’s values in the skeleton’s `Params` and its LCS equal the ME model.
 - CK-F4b: DRC of the pushed board (the push itself adds no findings on the canary).
-- Planned (ME checks, task 5.25), “board inside its space budget”: the seat’s restated values
-  equal the budget’s; the KiCad outline and `Edge.Cuts` circles equal `width`, `depth` and the
-  hole list; each connector named in the budget sits at its position (footprint pin 1, in the
-  board frame); the board model (STEP) placed at the seat’s LCS fits the box and does not collide
-  with the direct children of the assembly.
+- CK-F18, “board inside its space budget”, exists but is still a skip with its reason (it skips
+  without a board model in the assembly, and reports “not checked yet” with one). Its rules, for
+  iteration 2: the seat’s restated values equal the budget’s; the KiCad outline and `Edge.Cuts`
+  circles equal `width`, `depth` and the hole list; each connector named in the budget sits at
+  its position (footprint pin 1, in the board frame); the board model (STEP) placed at the seat’s LCS
+  fits the box and does not collide with the direct children of the assembly. Until then, the
+  reviewers compare these values by eye.
 
 ## Pitfalls
 
@@ -3156,11 +3319,13 @@ plus the domain requirements and design that follow from it.
    cd .worktrees/feat/latency
    ```
 
-   Builds of the set go to `build/wt-feat-latency/`.
-
-   #### NOTE
-   `curatrix work` is being added (task 4.4c). Until it is on `main`, make the
-   worktrees by hand: `git -C <repo> worktree add ../.worktrees/<branch>/<repo> -b <branch>`.
+   The set holds the named repos as worktrees on the branch (new branches start from `main`) and
+   the other framework repos as detached worktrees; shared trees (Zephyr, libraries, `.venv`) are
+   links to the main checkout. Run every command from the set root, and curatrix as
+   `.venv/bin/curatrix`. Builds of the set go to `build/wt-<branch>/` in the workspace, with
+   `/` in the branch name as `-` (here `build/wt-feat-latency/`); from the set root that is
+   `build/`, through the set’s `build` link. To add a repo later, run `work start` again with
+   that repo. For a stacked PR, `--base <parent branch>` starts the branch from the parent.
 2. **Author** the change in each repo, run `curatrix gen` and `curatrix ids fix` where
    needed.
 3. **Check every repo you touched**, with CAD content where the repo has it ([*Every check also runs locally (XD-ADR-0040)*](explanation/decisions/checks.html.md#XD-ADR-0040)):
@@ -3177,10 +3342,15 @@ plus the domain requirements and design that follow from it.
    before the repos that use them. Every PR is rebase-merged ([*Trunk-based merging with re... (XD-ADR-0043)*](explanation/decisions/workflow.html.md#XD-ADR-0043)).
 7. **Bump.** The bump bot in the manifest repo collects the new `main` SHAs into one bump PR and
    builds the full set ([*A bump bot for manifest pins (XD-ADR-0054)*](explanation/decisions/checks.html.md#XD-ADR-0054), [*The bump bot is a scheduled... (XD-ADR-0081)*](explanation/decisions/checks.html.md#XD-ADR-0081)). Merging it moves the pins ([*The manifest is the only pl... (XD-ADR-0033)*](explanation/decisions/repos.html.md#XD-ADR-0033)).
-8. When everything is merged:
+8. **Clean up after the merge.** When every PR of the branch is merged, remove the set from the
+   workspace root:
    ```sh
-   curatrix work done feat/latency
+   curatrix work done feat/latency                   # removes the worktrees, links and folder
+   curatrix work done feat/latency --delete-branch   # also deletes the merged local branches
    ```
+
+   `work done` refuses while a worktree has uncommitted changes (`--force` overrides). The
+   main checkouts move to the new pins with `curatrix update` once the bump PR is merged.
 
 ## Roles
 
@@ -3200,7 +3370,137 @@ the framework ([*West submanifests and proje... (XD-ADR-0079)*](explanation/deci
 
 - `west update` moves repos back to their pins (detached HEAD). On branches use
   `curatrix update`. Never run either inside a worktree set.
+- `curatrix work list` shows the sets of the workspace; a set left behind keeps its build area
+  `build/wt-<branch>/` until `work done`.
 - A ledger conflict after a rebase means two PRs issued the same ID. Rerun `curatrix ids fix`.
+
+
+# howto/design-output.html.md
+
+<a id="howto-design-output"></a>
+
+# Make the design output of a board or assembly
+
+Use this guide when you need the manufacturing and review files of a board, a harness or an
+assembly: Gerber, drill, pick-and-place, STEP, printed parts, drawings, renderings, BOMs. One command
+makes them for both domains, always locally and on a copy under `build/`
+([*EE design output in iterati... (XD-ADR-0142)*](explanation/decisions/scope.html.md#XD-ADR-0142), [*ME design output in iterati... (XD-ADR-0143)*](explanation/decisions/scope.html.md#XD-ADR-0143)). CI never runs it; the documents show a fixed sentence
+there instead.
+
+```sh
+curatrix cam robarm-ee canary-board        # a board (pcba/<name>/)
+curatrix cam robarm-ee canary-cable        # a harness (harness/<name>/)
+curatrix cam robarm-me canary-assembly     # a top-level assembly (assemblies/<name>/)
+curatrix cam robarm-ee                     # every board and harness of the repo
+```
+
+## The version
+
+Each run writes into `build/<area>/cam/<name>/<version>/` (in a worktree set:
+`build/wt-<branch>/<area>/cam/...`). The version comes from the tags of that board, harness or
+assembly, `<name>/vX.Y.Z` (`git describe --tags --match '<name>/*'`):
+
+- **Release:** the commit is exactly a tag on `main` and the folder has no uncommitted changes. The
+  output carries `v1.2.0`.
+- **Preview:** anything else: commits after the tag, a dirty folder, or no tag yet
+  (`<name>/v0.0.0-<n>-g<sha>-preview`). The output carries the version with `-dirty` or
+  `-preview`, the renderings and drawings a red `PREVIEW`, an embossed part a `P`.
+
+Only the owner creates tags ([*Tags per board, assembly an... (XD-ADR-0140)*](explanation/decisions/repos.html.md#XD-ADR-0140)). To see the release marking, run `cam` on a
+tagged commit with a clean tree; to see the preview marking, change a file in the board’s or
+assembly’s folder and run it again.
+
+## Boards (EE)
+
+`curatrix cam robarm-ee <board>` copies the `pcba/<board>/` project into the version folder,
+writes the version into the copy’s `XD_VERSION` and runs the board’s KiCad jobset there (the shared
+template, CK-F10). Per variant (`default`, `alt`, …) it writes:
+
+| Output      | Files                                                                                                         |
+|-------------|---------------------------------------------------------------------------------------------------------------|
+| Fabrication | `gerbers/` (Gerber and drill), `pos-<variant>-all-pos.csv` (pick and place)                                   |
+| Assembly    | `bom-<variant>.csv`, `netlist.xml`                                                                            |
+| 3D          | `<board>-<variant>.step`, `render-top|bottom|3d-<variant>.png` (orthographic top and<br/>bottom, one 3D view) |
+| Schematic   | `<board>-schematic-<variant>.pdf`, `schematic-svg-<variant>/`                                                 |
+| Board data  | `stackup.csv`, `design-rules.csv` (plain Python; KiCad has no export)                                         |
+| Findings    | `erc-drc/` (KiCad’s JSON) and `findings.json` with the acceptance state of each finding                       |
+| Record      | `cam.json` (version, commit, files, tree state), `jobset.log`                                                 |
+
+The run fails when a job fails or fewer jobs ran than the jobset has. After you add a variant, write
+the jobset again with `curatrix cam robarm-ee <board> --update-jobset`. STEP and renderings show
+the parts only when the KiCad 3D models are in the workspace (role `ee3d` or `full`); otherwise
+the board is bare and `curatrix doctor` says so.
+
+A harness (`harness/<name>/<name>.yml`) gets its WireViz diagram (`<name>.svg`, `.png`) with
+the version as label and its BOM (`<name>.bom.tsv`) ([*WireViz for harnesses (XD-ADR-0127)*](explanation/decisions/documents.html.md#XD-ADR-0127)).
+
+The FreeCAD model of a board for the ME side comes from the same command:
+`--board-model` writes it for any version under `build/<area>/board-model/`; `--library` does
+so only for a tagged release and copies it into a board-library checkout for its PR
+([*A board library repo for ME (XD-ADR-0139)*](explanation/decisions/domains.html.md#XD-ADR-0139)).
+
+## Assemblies (ME)
+
+`curatrix cam robarm-me <assembly>` runs `FreeCADCmd` once per variant: each configuration that a
+link’s `Configs` names, plus `base` (the links without `Configs`), or `all` when no link has
+`Configs`. Per variant, in `<assembly>/<variant>/`:
+
+| Output        | Files                                                                                                                                    |
+|---------------|------------------------------------------------------------------------------------------------------------------------------------------|
+| 3D            | `<assembly>.step`                                                                                                                        |
+| Printed parts | `parts/<part>.3mf` and `.stl` with the short version embossed on the part’s version mark,<br/>`print/<profile>.ini` copied from the repo |
+| Drawing       | `drawing.svg` and `drawing.pdf` (front, top and right in first-angle projection, the iso<br/>view, frame and title block), `views/*.svg` |
+| Exploded view | `exploded.svg` (moves from `assemblies/<assembly>/explode.yaml`, else automatic)                                                         |
+| Renderings    | `renderings/front|top|right|iso.png`                                                                                                     |
+| BOM and mass  | `bom.csv` (flat, with totals), `mass.json` (mass and center of gravity)                                                                  |
+
+The version folder also holds `findings.json` (CK-F4c, CK-F16, CK-F17 with their acceptance state)
+and `cam.json`.
+
+### Blender or the fallback renderer
+
+The renderings come from one of two renderers. `cam.json` names the one used
+(`renderings.method`: `blender` or `zbuffer`):
+
+|               | Blender ([*Blender as an optional loca... (XD-ADR-0148)*](explanation/decisions/scope.html.md#XD-ADR-0148))            | Fallback ([*ME renderings without OpenG... (XD-ADR-0147)*](explanation/decisions/scope.html.md#XD-ADR-0147))   |
+|---------------|--------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------|
+| When          | Blender is on the machine and you did not pass `--no-blender`                                                                  | no Blender, or `--no-blender`; always in CI                                                                            |
+| How           | `FreeCADCmd` writes a coloured glTF scene, Blender renders it with Cycles on the CPU<br/>(fixed samples and seed, edges drawn) | FreeCAD’s tessellation drawn into a z-buffer in plain Python inside `FreeCADCmd`, with visible<br/>edges; no OpenGL    |
+| Look          | shaded with light and materials                                                                                                | flat shading by BOM kind, sharp edges                                                                                  |
+| Time (canary) | about 35 s for the whole `cam` run                                                                                             | about 6 s for the whole `cam` run                                                                                      |
+
+Both write the same files at the same scales (front, top and right at one scale, iso at its own),
+with assembly, variant, version and view on each image. Blender is optional and not pinnable, so its
+images are local only; `curatrix doctor` shows its version. Run Blender only through curatrix
+(`curatrix run -- blender`, `curatrix launch blender`) or the `.venv/bin/blender` shim: they
+start it with `--factory-startup --offline-mode --disable-autoexec` and keep its user files in
+`.xdmod/blender/`.
+
+```sh
+curatrix cam robarm-me canary-assembly                # Blender if installed, else the fallback
+curatrix cam robarm-me canary-assembly --no-blender   # always the fallback (quick look, as CI)
+```
+
+## Design output in the documents
+
+The board and assembly documents show renderings, schematic, drawings, exploded view, mass and
+findings only from the `cam` output of the commit the repo is at, or, with uncommitted changes, from
+a run newer than every changed file ([*A board or assembly documen... (XD-RULE-0060)*](explanation/rules/trace.html.md#XD-RULE-0060)). So run `cam` before `docs`:
+
+```sh
+curatrix cam robarm-ee canary-board && curatrix docs robarm-ee
+curatrix cam robarm-me canary-assembly && curatrix docs robarm-me
+```
+
+Without a matching run, these sections print a fixed sentence and CK-D10 warns locally.
+
+## Pitfalls
+
+- Never edit the copy under `build/` and commit it back; change the project and run `cam` again.
+- `cam` writes nothing into the repo. Its output is not committed; a release is reproduced from its
+  tag.
+- A tag made locally and never pushed gives release output that no one else can reproduce. Tags are
+  the owner’s ([*Tags per board, assembly an... (XD-ADR-0140)*](explanation/decisions/repos.html.md#XD-ADR-0140)).
 
 
 # howto/index.html.md
@@ -3216,12 +3516,14 @@ workspace root.
 * [Add a requirement](howto/add-a-requirement.html.md)
 * [Add a model element](howto/add-a-model-element.html.md)
 * [Add a view](howto/add-a-view.html.md)
-* [Add a PCBA or circuit block](howto/add-a-pcba.html.md)
+* [Add a board (PCBA) or circuit block](howto/add-a-pcba.html.md)
 * [Add a FreeCAD part or assembly](howto/add-a-part.html.md)
+* [Make the design output of a board or assembly](howto/design-output.html.md)
 * [Add a feature or configuration](howto/add-a-configuration.html.md)
 * [Add a test](howto/add-a-test.html.md)
 * [Make a change across repos](howto/cross-repo-change.html.md)
 * [Make a co-design change (ME and EE)](howto/co-design-change.html.md)
+* [Review an EE or ME pull request from a local docs build](howto/review-a-domain-pr.html.md)
 * [Work as an agent](howto/work-as-an-agent.html.md)
 * [Make a baseline](howto/make-a-baseline.html.md)
 
@@ -3271,6 +3573,117 @@ still being built.
 - Tombstones in `generated/retired-needs.json` are dropped at the next baseline. Remove the
   links to them before you tag.
 - Only a person makes baselines. Agents may prepare the gate results.
+
+
+# howto/review-a-domain-pr.html.md
+
+<a id="howto-review-a-domain-pr"></a>
+
+# Review an EE or ME pull request from a local docs build
+
+Use this guide when you review a PR of robarm-ee or robarm-me as the owner or a domain engineer.
+PR CI has no KiCad, FreeCAD or Blender, so it checks only the plain-Python part and its documents
+show a fixed sentence where renderings, schematics, drawings and findings belong
+([*CI runs without CAD content (XD-ADR-0049)*](explanation/decisions/checks.html.md#XD-ADR-0049)). You see the whole change only in a local build: the checks with CAD content,
+the design output and the board or assembly document made from them. The agent review
+(`/xd-review-pr`, [*Every PR gets an agent review (XD-ADR-0115)*](explanation/decisions/workflow.html.md#XD-ADR-0115)) runs the same checks first and posts the result table; this
+guide is the human review after it.
+
+## 1. Get the change
+
+Review in a worktree set of your own, so neither the main checkouts nor the author’s set change.
+Put every repo of the change into it (same branch name, [*One branch name across repos (XD-ADR-0045)*](explanation/decisions/workflow.html.md#XD-ADR-0045)), and xdmod too when the
+change needs an unmerged xdmod PR:
+
+```sh
+.venv/bin/gh pr view 15 -R tiacsys/robarm-ee --json headRefName,headRefOid,files
+.venv/bin/curatrix work start review/robarm-ee-15 robarm-ee
+cd .worktrees/review/robarm-ee-15
+git -C robarm-ee fetch origin feat/move-hole && git -C robarm-ee checkout --detach FETCH_HEAD
+git -C robarm-ee rev-parse HEAD          # equals headRefOid
+```
+
+Repeat the `fetch` and `checkout` for each sibling repo. From now on, run every command from the
+set root and call curatrix as `.venv/bin/curatrix` (inside the set it runs the set’s xdmod). The
+build area of the set is `build/wt-review-robarm-ee-15/` in the workspace, reached through the
+set’s `build` link.
+
+## 2. Run the checks with CAD content
+
+```sh
+.venv/bin/curatrix check robarm-ee --stage local
+.venv/bin/curatrix check robarm-me --stage local
+```
+
+This is the run of every check that needs a CAD tool (EE: CK-D8, CK-D9, CK-F4a, CK-F4b; ME: CK-F4c,
+CK-F16, CK-F17, CK-F18). CK-D10 needs no CAD tool but runs only locally: it looks for the `cam`
+output of the commit. Compare it with the table the agent reviewer posted. A warning
+of CK-D10 here only means that the design output of this commit is not made yet (next step).
+
+## 3. Make the design output and build the documents
+
+```sh
+.venv/bin/curatrix cam robarm-ee <board>
+.venv/bin/curatrix docs robarm-ee --open
+.venv/bin/curatrix cam robarm-me <assembly>          # with Blender if installed
+.venv/bin/curatrix docs robarm-me --open
+```
+
+`docs` prints the path of the start page (`build/<area>/docs/deploy/html/<doc>/index.html`,
+inside the set’s build area); `--open` opens it. The pages to read are `pcba-<board>`,
+`harness-<name>`, `asm-<assembly>` and the design document (`ee-design`, `me-design`). The
+output is a preview (red `PREVIEW` marking): a PR branch is never a release
+([Make the design output of a board or assembly](howto/design-output.html.md#howto-design-output)).
+
+To compare with what is merged, build the same documents in the main checkouts (they are at the
+merged state after the bump PR and `curatrix update`; from the workspace root, `curatrix cam ...` and `curatrix docs ...`) and open both side by side; they go to
+`build/robarm-ee/` and `build/robarm-me/`.
+
+## 4. What to look at
+
+| Document section   | Board (EE)                                                                                               | Assembly (ME)                                                                                                                      |
+|--------------------|----------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------|
+| Overview, variants | board def, `EE-PCBA`, the system element it realizes, the variants and the configurations<br/>they serve | assembly def, `ME-ASM`, sub-assemblies, the variants by `Configs`                                                                  |
+| Pictures           | top, bottom and 3D renderings; schematic per variant                                                     | drawing, exploded view, front/top/right/iso renderings (`cam.json` says Blender or<br/>fallback)                                   |
+| Values             | stackup, design rules, connector pin tables against the pin maps of the model                            | parameters (model values and `Params`; budget copies marked), interfaces with placement,<br/>materials, mass and center of gravity |
+| Findings           | ERC and DRC findings with their state: open, excluded in KiCad, accepted, proposed                       | recompute, solid and collision findings with their state                                                                           |
+| Appendix           | BOM with a column per variant; every part with Manufacturer and MPN                                      | indented BOM; fasteners by standard designation, boards and harnesses as one line each                                             |
+
+Also read the diff itself: `git -C robarm-me diff origin/main...HEAD` shows `.FCStd` changes as
+semantic JSON (the textconv driver of the bootstrap); on GitHub, read the committed
+`generated/freecad/*.json` instead. KiCad files are text and diff directly. For a co-design change,
+follow the review split of [Make a co-design change (ME and EE)](howto/co-design-change.html.md#howto-co-design-change).
+
+## 5. Accept findings, comment, merge
+
+- **Proposed acceptances.** An agent PR may add entries to `pcba/<name>/accepted.yaml` or
+  `assemblies/<name>/accepted.yaml`; they stay proposals. To accept one, make your own commit on
+  the PR branch that changes only that entry (for example its `reason`) and carries
+  `Accepted-by: <your name>` and no agent trailer ([*One accepted.yaml format, w... (XD-ADR-0126)*](explanation/decisions/checks.html.md#XD-ADR-0126)). **Not in the review set**:
+  its checkout is detached and is thrown away by `work done`. Commit in a checkout of your own on
+  the PR’s head branch, for example in the review set after
+  `git -C robarm-ee switch -c feat/move-hole --track origin/feat/move-hole`, then push the branch
+  before `work done`; or edit the file on GitHub in the PR with the trailer in the commit message.
+  Run the check again: the finding now shows as accepted.
+- **Comments** go into the PR. Ask for a fix rather than fixing it in the review set; the set is
+  detached and is thrown away.
+- **Merge** upstream first (syseng, then ME, then EE for a co-design change), then the bump PR in the
+  manifest ([Make a change across repos](howto/cross-repo-change.html.md#howto-cross-repo-change)).
+- **Clean up** the review set:
+  ```sh
+  cd <workspace root>
+  .venv/bin/curatrix work done review/robarm-ee-15 --force --delete-branch
+  ```
+
+## Pitfalls
+
+- Never `work start` the PR’s own branch name for a review: it reuses the author’s set or an old
+  local branch. Use `review/<repo>-<n>` and a detached checkout.
+- A docs build of the set without a `cam` run of the same commit shows the fixed sentences, as in
+  CI. Run `cam` first.
+- zdocs may keep an old page after a curatrix change of a directive; delete
+  `build/<area>/docs/` of the set and build again.
+- Do not run `curatrix update` or `west update` inside a set.
 
 
 # howto/work-as-an-agent.html.md
@@ -4859,6 +5272,24 @@ That command:
 On branches, use `curatrix update` (it runs `west update -k`). Plain `west update` moves
 every project back to its pin, as a detached HEAD.
 
+Before the west step, `curatrix update` fetches the manifest repo and fast-forwards it to its
+remote default branch (`git fetch` and `git merge --ff-only`, never `git pull`), so the pins
+merged on GitHub by bump PRs are the ones west checks out. It does so only when the manifest repo
+is on that branch, has no changes to tracked files and no local commits; otherwise it warns and
+west uses the pins of the local checkout. When the west step moved `xdmod`, `curatrix update`
+starts itself again, so the rest of the update runs the new curatrix code. It refuses to run inside
+a worktree set.
+
+#### NOTE
+The first `curatrix update` on a machine after this behaviour came in still runs the
+old code, which neither moves the manifest repo nor restarts itself. Fast-forward the manifest
+repo by hand once before it (never `git pull`):
+
+```sh
+git -C robarm-manifest fetch origin && git -C robarm-manifest merge --ff-only origin/main
+curatrix update
+```
+
 ## Environment
 
 `eval "$(curatrix env)"` sets `PATH` (with `.venv/bin`), `ZEPHYR_BASE`, `JAVA_HOME`,
@@ -4899,7 +5330,7 @@ and options is in the curatrix reference. The most used:
 | Command                                       | Does                                                                                                                                        |
 |-----------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|
 | `curatrix doctor`                             | checks tools, versions, paths, hooks and the west state                                                                                     |
-| `curatrix update`                             | `west update -k`, refresh `.venv`, tools, `.claude/` links and hooks                                                                        |
+| `curatrix update`                             | fast-forward the manifest repo, `west update -k`, refresh `.venv`, tools, `.claude/` links and hooks                                        |
 | `curatrix check <repo> --stage local`         | the repo’s checks ([Checks](reference/checks.html.md))                                                                   |
 | `curatrix docs <repo>` / `docs full`          | strict docs build into `build/<area>/docs/`                                                                                                 |
 | `curatrix gen <what> <repo>`                  | regenerate the committed generated files                                                                                                    |
@@ -5022,7 +5453,7 @@ The examples use the robot-arm repos. Replace the repo names with your own.
    curatrix gen model robarm-syseng
    ```
 4. **Realize the model element in a domain.** In the EE repo, give a KiCad symbol or sheet the
-   hidden fields `TraceID` and `Realizes`; see [Add a PCBA or circuit block](howto/add-a-pcba.html.md). Then:
+   hidden fields `TraceID` and `Realizes`; see [Add a board (PCBA) or circuit block](howto/add-a-pcba.html.md). Then:
    ```sh
    curatrix gen cad-needs robarm-ee
    ```

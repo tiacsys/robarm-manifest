@@ -27,7 +27,7 @@
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=eb1d21ce"></script>
+      <script src="../_static/documentation_options.js?v=46365990"></script>
       <script src="../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../_static/zdocs-need-preview.js?v=98728251"></script>
@@ -37,7 +37,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Work as an agent" href="work-as-an-agent.html" />
+    <link rel="next" title="Review an EE or ME pull request from a local docs build" href="review-a-domain-pr.html" />
     <link rel="prev" title="Make a change across repos" href="cross-repo-change.html" /> 
 <script id="xdmod-version-switcher" src="../../../version-switcher.js" data-site-root="../../.." defer></script>
 </head>
@@ -53,7 +53,7 @@
           <a href="../index.html" class="icon icon-home">
             XDMOD Manual
           </a>
-<div class="version zdocs-version">v0.0-dev+gab23a1a</div>
+<div class="version zdocs-version">v0.0-dev+gd1ddc5a</div>
 
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -70,8 +70,9 @@
 <li class="toctree-l2"><a class="reference internal" href="add-a-requirement.html">Add a requirement</a></li>
 <li class="toctree-l2"><a class="reference internal" href="add-a-model-element.html">Add a model element</a></li>
 <li class="toctree-l2"><a class="reference internal" href="add-a-view.html">Add a view</a></li>
-<li class="toctree-l2"><a class="reference internal" href="add-a-pcba.html">Add a PCBA or circuit block</a></li>
+<li class="toctree-l2"><a class="reference internal" href="add-a-pcba.html">Add a board (PCBA) or circuit block</a></li>
 <li class="toctree-l2"><a class="reference internal" href="add-a-part.html">Add a FreeCAD part or assembly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design-output.html">Make the design output of a board or assembly</a></li>
 <li class="toctree-l2"><a class="reference internal" href="add-a-configuration.html">Add a feature or configuration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="add-a-test.html">Add a test</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cross-repo-change.html">Make a change across repos</a></li>
@@ -84,6 +85,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#pitfalls">Pitfalls</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="review-a-domain-pr.html">Review an EE or ME pull request from a local docs build</a></li>
 <li class="toctree-l2"><a class="reference internal" href="work-as-an-agent.html">Work as an agent</a></li>
 <li class="toctree-l2"><a class="reference internal" href="make-a-baseline.html">Make a baseline</a></li>
 </ul>
@@ -289,7 +291,15 @@ curatrix<span class="w"> </span>check<span class="w"> </span>robarm-ee<span clas
 </pre></div>
 </div>
 </li>
-<li><p><strong>Three PRs</strong>, each naming the other two. Merge order: robarm-syseng, then robarm-me, then
+<li><p><strong>Design output and documents</strong> of the board and the assembly, to see the moved hole in the
+renderings and drawings (<a class="reference internal" href="design-output.html#howto-design-output"><span class="std std-ref">Make the design output of a board or assembly</span></a>):</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>curatrix<span class="w"> </span>cam<span class="w"> </span>robarm-ee<span class="w"> </span>&lt;board&gt;<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>curatrix<span class="w"> </span>docs<span class="w"> </span>robarm-ee
+curatrix<span class="w"> </span>cam<span class="w"> </span>robarm-me<span class="w"> </span>&lt;asm&gt;<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>curatrix<span class="w"> </span>docs<span class="w"> </span>robarm-me
+</pre></div>
+</div>
+</li>
+<li><p><strong>Three PRs</strong>, each naming the other two. The reviewers build them locally
+(<a class="reference internal" href="review-a-domain-pr.html#howto-review-a-domain-pr"><span class="std std-ref">Review an EE or ME pull request from a local docs build</span></a>). Merge order: robarm-syseng, then robarm-me, then
 robarm-ee (the push result). A PR that needs a newer curatrix waits for the xdmod merge and the
 manifest bump.</p></li>
 </ol>
@@ -323,11 +333,13 @@ again; never merge two <code class="docutils literal notranslate"><span class="p
 <ul class="simple">
 <li><p>CK-F3: the seat’s values in the skeleton’s <code class="docutils literal notranslate"><span class="pre">Params</span></code> and its LCS equal the ME model.</p></li>
 <li><p>CK-F4b: DRC of the pushed board (the push itself adds no findings on the canary).</p></li>
-<li><p>Planned (ME checks, task 5.25), “board inside its space budget”: the seat’s restated values
-equal the budget’s; the KiCad outline and <code class="docutils literal notranslate"><span class="pre">Edge.Cuts</span></code> circles equal <code class="docutils literal notranslate"><span class="pre">width</span></code>, <code class="docutils literal notranslate"><span class="pre">depth</span></code> and the
-hole list; each connector named in the budget sits at its position (footprint pin 1, in the
-board frame); the board model (STEP) placed at the seat’s LCS fits the box and does not collide
-with the direct children of the assembly.</p></li>
+<li><p>CK-F18, “board inside its space budget”, exists but is still a skip with its reason (it skips
+without a board model in the assembly, and reports “not checked yet” with one). Its rules, for
+iteration 2: the seat’s restated values equal the budget’s; the KiCad outline and <code class="docutils literal notranslate"><span class="pre">Edge.Cuts</span></code>
+circles equal <code class="docutils literal notranslate"><span class="pre">width</span></code>, <code class="docutils literal notranslate"><span class="pre">depth</span></code> and the hole list; each connector named in the budget sits at
+its position (footprint pin 1, in the board frame); the board model (STEP) placed at the seat’s LCS
+fits the box and does not collide with the direct children of the assembly. Until then, the
+reviewers compare these values by eye.</p></li>
 </ul>
 </section>
 <section id="pitfalls">
@@ -352,7 +364,7 @@ lost; accept such findings in <code class="docutils literal notranslate"><span c
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="cross-repo-change.html" class="btn btn-neutral float-left" title="Make a change across repos" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="work-as-an-agent.html" class="btn btn-neutral float-right" title="Work as an agent" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="review-a-domain-pr.html" class="btn btn-neutral float-right" title="Review an EE or ME pull request from a local docs build" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
