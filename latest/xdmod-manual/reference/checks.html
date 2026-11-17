@@ -27,7 +27,7 @@
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=1dd59d8b"></script>
+      <script src="../_static/documentation_options.js?v=ad2ca396"></script>
       <script src="../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../_static/zdocs-need-preview.js?v=98728251"></script>
@@ -53,7 +53,7 @@
           <a href="../index.html" class="icon icon-home">
             XDMOD Manual
           </a>
-<div class="version zdocs-version">v0.0-dev+gdb55918</div>
+<div class="version zdocs-version">v0.0-dev+g0141d5f</div>
 
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -546,49 +546,70 @@ locally (<a class="reference internal" href="../explanation/decisions/checks.htm
 <td><p>local: warning, pr: warning, baseline: warning</p></td>
 <td><p><a class="reference internal" href="../explanation/rules/trace.html#XD-RULE-0057" title="XD-RULE-0057"><em class="xref need">The ME model drives the Fre... (XD-RULE-0057)</em></a></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#XD-CHECK-0025" title="XD-CHECK-0025"><em class="xref need">.FCStd uncompressed; drawio... (XD-CHECK-0025)</em></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#XD-CHECK-0049" title="XD-CHECK-0049"><em class="xref need">every BOM part has Manufact... (XD-CHECK-0049)</em></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">CK-F12</span></code></p></td>
+<td><p>every BOM part has Manufacturer and MPN, or a Standard designation</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">cad.projects</span></code></p></td>
+<td><p>local: warning, pr: warning</p></td>
+<td><p><a class="reference internal" href="../explanation/rules/trace.html#XD-RULE-0058" title="XD-RULE-0058"><em class="xref need">Every BOM part names its ma... (XD-RULE-0058)</em></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#XD-CHECK-0050" title="XD-CHECK-0050"><em class="xref need">the plain-Python BOM equals... (XD-CHECK-0050)</em></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">CK-D9</span></code></p></td>
+<td><p>the plain-Python BOM equals kicad-cli sch export bom, every board and variant</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">cad.projects</span></code></p></td>
+<td><p>local: warning, baseline: warning</p></td>
+<td><p><a class="reference internal" href="../explanation/rules/trace.html#XD-RULE-0059" title="XD-RULE-0059"><em class="xref need">The board document's BOM is... (XD-RULE-0059)</em></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#XD-CHECK-0051" title="XD-CHECK-0051"><em class="xref need">the local curatrix cam outp... (XD-CHECK-0051)</em></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">CK-D10</span></code></p></td>
+<td><p>the local curatrix cam output of the current commit exists for every board</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">cad.projects</span></code></p></td>
+<td><p>local: warning, baseline: warning</p></td>
+<td><p><a class="reference internal" href="../explanation/rules/trace.html#XD-RULE-0060" title="XD-RULE-0060"><em class="xref need">A board document shows only... (XD-RULE-0060)</em></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#XD-CHECK-0025" title="XD-CHECK-0025"><em class="xref need">.FCStd uncompressed; drawio... (XD-CHECK-0025)</em></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">CK-H1</span></code></p></td>
 <td><p>.FCStd uncompressed; drawio uncompressed</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">always</span></code></p></td>
 <td><p>local: error, pr: error, baseline: error</p></td>
 <td><p><a class="reference internal" href="../explanation/rules/checks.html#XD-RULE-0039" title="XD-RULE-0039"><em class="xref need">Design files are stored unc... (XD-RULE-0039)</em></a></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#XD-CHECK-0026" title="XD-CHECK-0026"><em class="xref need">no build output inside the ... (XD-CHECK-0026)</em></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#XD-CHECK-0026" title="XD-CHECK-0026"><em class="xref need">no build output inside the ... (XD-CHECK-0026)</em></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">CK-H2</span></code></p></td>
 <td><p>no build output inside the repo</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">always</span></code></p></td>
 <td><p>local: error, pr: error</p></td>
 <td><p><a class="reference internal" href="../explanation/rules/checks.html#XD-RULE-0040" title="XD-RULE-0040"><em class="xref need">Build output only under build/ (XD-RULE-0040)</em></a></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#XD-CHECK-0027" title="XD-CHECK-0027"><em class="xref need">pins in requirements.txt / ... (XD-CHECK-0027)</em></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#XD-CHECK-0027" title="XD-CHECK-0027"><em class="xref need">pins in requirements.txt / ... (XD-CHECK-0027)</em></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">CK-H3</span></code></p></td>
 <td><p>pins in requirements.txt / tools.yaml</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">always</span></code></p></td>
 <td><p>local: warning, pr: warning</p></td>
 <td><p><a class="reference internal" href="../explanation/rules/checks.html#XD-RULE-0041" title="XD-RULE-0041"><em class="xref need">Tools and packages are pinned (XD-RULE-0041)</em></a></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#XD-CHECK-0028" title="XD-CHECK-0028"><em class="xref need">commit trailers on agent co... (XD-CHECK-0028)</em></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#XD-CHECK-0028" title="XD-CHECK-0028"><em class="xref need">commit trailers on agent co... (XD-CHECK-0028)</em></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">CK-H4</span></code></p></td>
 <td><p>commit trailers on agent commits</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">always</span></code></p></td>
 <td><p>pr: warning</p></td>
 <td><p><a class="reference internal" href="../explanation/rules/checks.html#XD-RULE-0042" title="XD-RULE-0042"><em class="xref need">Agent commits carry a trailer (XD-RULE-0042)</em></a></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#XD-CHECK-0029" title="XD-CHECK-0029"><em class="xref need">scripts/bootstrap.sh matche... (XD-CHECK-0029)</em></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#XD-CHECK-0029" title="XD-CHECK-0029"><em class="xref need">scripts/bootstrap.sh matche... (XD-CHECK-0029)</em></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">CK-H5</span></code></p></td>
 <td><p>scripts/bootstrap.sh matches the xdmod template</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">bootstrap_template</span></code></p></td>
 <td><p>local: warning, pr: warning, full: warning, baseline: warning</p></td>
 <td><p><a class="reference internal" href="../explanation/rules/checks.html#XD-RULE-0043" title="XD-RULE-0043"><em class="xref need">Template copies match the t... (XD-RULE-0043)</em></a></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#XD-CHECK-0030" title="XD-CHECK-0030"><em class="xref need">checks.yaml lists exactly t... (XD-CHECK-0030)</em></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#XD-CHECK-0030" title="XD-CHECK-0030"><em class="xref need">checks.yaml lists exactly t... (XD-CHECK-0030)</em></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">CK-H6</span></code></p></td>
 <td><p>checks.yaml lists exactly the checks the repo runs (expect:)</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">always</span></code></p></td>
 <td><p>local: error, pr: error, full: error, baseline: error</p></td>
 <td><p><a class="reference internal" href="../explanation/rules/checks.html#XD-RULE-0045" title="XD-RULE-0045"><em class="xref need">A repo states the checks it... (XD-RULE-0045)</em></a></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#XD-CHECK-0031" title="XD-CHECK-0031"><em class="xref need">PR size: hand-written lines... (XD-CHECK-0031)</em></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#XD-CHECK-0031" title="XD-CHECK-0031"><em class="xref need">PR size: hand-written lines... (XD-CHECK-0031)</em></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">CK-H7</span></code></p></td>
 <td><p>PR size: hand-written lines and files against the base</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">always</span></code></p></td>
@@ -624,7 +645,7 @@ status (<code class="docutils literal notranslate"><span class="pre">pass</span>
 </section>
 <section id="check-needs">
 <h2>Check needs<a class="headerlink" href="#check-needs" title="Link to this heading"></a></h2>
-<div class="need_container docutils container" id="SNCB-822cb63a">
+<div class="need_container docutils container" id="SNCB-7be50705">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0001">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -649,7 +670,7 @@ Levels: local: error; pr: error; full: error; baseline: error. Run it alone: <co
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-3b1f5456">
+<div class="need_container docutils container" id="SNCB-ea592514">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0002">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -674,7 +695,7 @@ Levels: local: error; pr: error; full: error; baseline: error. Run it alone: <co
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-ffbc15aa">
+<div class="need_container docutils container" id="SNCB-5fa0a610">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0003">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -699,7 +720,7 @@ Levels: local: error; pr: error; full: error; baseline: error. Run it alone: <co
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-c58429e4">
+<div class="need_container docutils container" id="SNCB-b25294a2">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0006">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -724,7 +745,7 @@ Levels: full: error; baseline: error. Run it alone: <code class="docutils litera
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-63329ac0">
+<div class="need_container docutils container" id="SNCB-138621db">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0007">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -749,7 +770,7 @@ Levels: full: warning; baseline: warning. Run it alone: <code class="docutils li
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-fa242aa4">
+<div class="need_container docutils container" id="SNCB-a7e4817f">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0008">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -774,7 +795,7 @@ Levels: local: warning; pr: warning; full: warning; baseline: error. Run it alon
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-a47847fb">
+<div class="need_container docutils container" id="SNCB-1d0fdcc5">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0009">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -799,7 +820,7 @@ Levels: local: error; pr: error; full: error; baseline: error. Run it alone: <co
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-d3a457f8">
+<div class="need_container docutils container" id="SNCB-65dc0b37">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0034">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -824,7 +845,7 @@ Levels: local: warning; pr: warning; full: warning. Run it alone: <code class="d
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-e16d6f7d">
+<div class="need_container docutils container" id="SNCB-2e12fb47">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0010">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -849,7 +870,7 @@ Levels: full: error; baseline: error. Run it alone: <code class="docutils litera
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-a00c43ed">
+<div class="need_container docutils container" id="SNCB-3356d06c">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0011">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -874,7 +895,7 @@ Levels: full: report; baseline: report. Run it alone: <code class="docutils lite
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-2ccd70b3">
+<div class="need_container docutils container" id="SNCB-d803ec48">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0012">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -899,7 +920,7 @@ Levels: local: warning; pr: warning. Run it alone: <code class="docutils literal
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-bf820b94">
+<div class="need_container docutils container" id="SNCB-45bebc1b">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0013">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -924,7 +945,7 @@ Levels: local: error; pr: error; full: error; baseline: error. Run it alone: <co
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-bb4de33d">
+<div class="need_container docutils container" id="SNCB-dccfda76">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0014">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -949,7 +970,7 @@ Levels: local: error; pr: error; baseline: error. Run it alone: <code class="doc
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-1315f7eb">
+<div class="need_container docutils container" id="SNCB-4684e51b">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0015">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -974,7 +995,7 @@ Levels: local: error; pr: error; baseline: error. Run it alone: <code class="doc
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-adee61d3">
+<div class="need_container docutils container" id="SNCB-4ed9fbfb">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0016">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -999,7 +1020,7 @@ Levels: local: error; pr: error; baseline: error. Run it alone: <code class="doc
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-709f461b">
+<div class="need_container docutils container" id="SNCB-abe66d5a">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0017">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -1024,7 +1045,7 @@ Levels: local: error; pr: error; baseline: error. Run it alone: <code class="doc
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-45fe0914">
+<div class="need_container docutils container" id="SNCB-4229b8a8">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0018">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -1049,7 +1070,7 @@ Levels: local: error; pr: error; baseline: error. Run it alone: <code class="doc
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-8feb8627">
+<div class="need_container docutils container" id="SNCB-2b8970ba">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0019">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -1074,7 +1095,7 @@ Levels: local: error; pr: error; baseline: error. Run it alone: <code class="doc
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-b11ebec1">
+<div class="need_container docutils container" id="SNCB-51a1d71e">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0032">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -1099,7 +1120,7 @@ Levels: local: error; pr: error; baseline: error. Run it alone: <code class="doc
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-7ebf1ce0">
+<div class="need_container docutils container" id="SNCB-4607551e">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0020">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -1124,7 +1145,7 @@ Levels: local: warning; pr: warning; full: warning; baseline: error. Run it alon
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-d0ccc901">
+<div class="need_container docutils container" id="SNCB-de33fbfc">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0033">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -1149,7 +1170,7 @@ Levels: local: warning; pr: warning. Run it alone: <code class="docutils literal
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-ae87e567">
+<div class="need_container docutils container" id="SNCB-b199dbef">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0021">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -1174,7 +1195,7 @@ Levels: local: warning; pr: warning; baseline: warning. Run it alone: <code clas
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-a10a5e11">
+<div class="need_container docutils container" id="SNCB-20b0c0e4">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0022">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -1199,7 +1220,7 @@ Levels: local: warning; pr: warning; baseline: warning. Run it alone: <code clas
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-ff7c31d5">
+<div class="need_container docutils container" id="SNCB-385c6274">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0023">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -1224,7 +1245,7 @@ Levels: pr: report; full: report. Run it alone: <code class="docutils literal no
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-49f61176">
+<div class="need_container docutils container" id="SNCB-56bcbc35">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0024">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -1249,7 +1270,7 @@ Levels: full: report; baseline: error. Run it alone: <code class="docutils liter
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-c9e58b86">
+<div class="need_container docutils container" id="SNCB-45d07060">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0035">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -1274,7 +1295,7 @@ Levels: local: warning; pr: warning; baseline: warning. Run it alone: <code clas
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-bebdb143">
+<div class="need_container docutils container" id="SNCB-e4a04d34">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0036">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -1299,7 +1320,7 @@ Levels: local: warning; pr: warning; baseline: warning. Run it alone: <code clas
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-e5c051ce">
+<div class="need_container docutils container" id="SNCB-b88ba18d">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0037">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -1324,7 +1345,7 @@ Levels: local: warning; pr: warning. Run it alone: <code class="docutils literal
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-65bf65de">
+<div class="need_container docutils container" id="SNCB-6ca098d5">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0038">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -1349,7 +1370,7 @@ Levels: local: warning; baseline: warning. Run it alone: <code class="docutils l
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-28247e66">
+<div class="need_container docutils container" id="SNCB-5eef20ef">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0039">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -1374,7 +1395,7 @@ Levels: local: warning; pr: warning; baseline: warning. Run it alone: <code clas
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-c7ca9cfe">
+<div class="need_container docutils container" id="SNCB-d048b16d">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0040">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -1399,7 +1420,7 @@ Levels: local: warning; baseline: warning. Run it alone: <code class="docutils l
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-2d22889b">
+<div class="need_container docutils container" id="SNCB-50de2c21">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0041">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -1424,7 +1445,7 @@ Levels: local: warning; baseline: warning. Run it alone: <code class="docutils l
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-79f9cd69">
+<div class="need_container docutils container" id="SNCB-23c0dad3">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0042">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -1449,7 +1470,7 @@ Levels: local: warning; pr: warning; baseline: warning. Run it alone: <code clas
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-4f2cf9e4">
+<div class="need_container docutils container" id="SNCB-eee2f4f3">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0043">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -1474,7 +1495,7 @@ Levels: local: warning; pr: warning; baseline: warning. Run it alone: <code clas
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-5ff3c360">
+<div class="need_container docutils container" id="SNCB-c9c7aefc">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0044">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -1499,7 +1520,7 @@ Levels: local: warning; pr: warning. Run it alone: <code class="docutils literal
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-4c6fe33d">
+<div class="need_container docutils container" id="SNCB-0b18bb28">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0045">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -1524,7 +1545,7 @@ Levels: local: warning; pr: warning. Run it alone: <code class="docutils literal
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-37ce98cc">
+<div class="need_container docutils container" id="SNCB-63e71616">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0046">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -1549,7 +1570,7 @@ Levels: local: warning; pr: warning; baseline: warning. Run it alone: <code clas
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-a532b223">
+<div class="need_container docutils container" id="SNCB-9488b006">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0047">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -1574,7 +1595,7 @@ Levels: local: warning; pr: warning; baseline: warning. Run it alone: <code clas
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-ed7b3718">
+<div class="need_container docutils container" id="SNCB-a210676c">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0048">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -1599,7 +1620,82 @@ Levels: local: warning; pr: warning; baseline: warning. Run it alone: <code clas
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-a2fddc40">
+<div class="need_container docutils container" id="SNCB-36d748ad">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0049">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">curatrix Check</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">every BOM part has Manufacturer and MPN, or a Standard designation</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#XD-CHECK-0049" title="XD-CHECK-0049">XD-CHECK-0049</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_check_id"><span class="needs_label">check_id: </span><span class="needs_data">CK-F12</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">enforces: <span class="enforces"><span><a class="zd-need-ref reference internal" href="../explanation/rules/trace.html#XD-RULE-0058" title="XD-CHECK-0049">XD-RULE-0058</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p>Every part in the BOM of a pcba/ board, as the base schematic and each variant see it, has the fields Manufacturer and MPN, or a field Standard with its standard designation instead; a variant that changes the value or footprint also overrides the MPN.</p>
+<p>Runs when the <code class="docutils literal notranslate"><span class="pre">cad.projects</span></code> section of <code class="docutils literal notranslate"><span class="pre">checks.yaml</span></code> is set.
+Levels: local: warning; pr: warning. Run it alone: <code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">check</span> <span class="pre">&lt;repo&gt;</span> <span class="pre">--only</span> <span class="pre">CK-F12</span></code>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-98ece1e9">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0050">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">curatrix Check</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">the plain-Python BOM equals kicad-cli sch export bom, every board and variant</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#XD-CHECK-0050" title="XD-CHECK-0050">XD-CHECK-0050</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_check_id"><span class="needs_label">check_id: </span><span class="needs_data">CK-D9</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">enforces: <span class="enforces"><span><a class="zd-need-ref reference internal" href="../explanation/rules/trace.html#XD-RULE-0059" title="XD-CHECK-0050">XD-RULE-0059</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p>The plain-Python BOM reader (references, value, footprint, DNP, Manufacturer, MPN, Setting) equals kicad-cli sch export bom of every pcba/ board, without a variant and with –variant for each variant (P5-15).</p>
+<p>Runs when the <code class="docutils literal notranslate"><span class="pre">cad.projects</span></code> section of <code class="docutils literal notranslate"><span class="pre">checks.yaml</span></code> is set.
+Levels: local: warning; baseline: warning. Run it alone: <code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">check</span> <span class="pre">&lt;repo&gt;</span> <span class="pre">--only</span> <span class="pre">CK-D9</span></code>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-81437991">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0051">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">curatrix Check</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">the local curatrix cam output of the current commit exists for every board</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#XD-CHECK-0051" title="XD-CHECK-0051">XD-CHECK-0051</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_check_id"><span class="needs_label">check_id: </span><span class="needs_data">CK-D10</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">enforces: <span class="enforces"><span><a class="zd-need-ref reference internal" href="../explanation/rules/trace.html#XD-RULE-0060" title="XD-CHECK-0051">XD-RULE-0060</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p>The local curatrix cam output of every pcba/ board exists for the commit the repo is at (with uncommitted changes in the project folder: from exactly that state, by a hash in cam.json), so the board document shows renderings, schematic and ERC/DRC findings; never in CI.</p>
+<p>Runs when the <code class="docutils literal notranslate"><span class="pre">cad.projects</span></code> section of <code class="docutils literal notranslate"><span class="pre">checks.yaml</span></code> is set.
+Levels: local: warning; baseline: warning. Run it alone: <code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">check</span> <span class="pre">&lt;repo&gt;</span> <span class="pre">--only</span> <span class="pre">CK-D10</span></code>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-1aa47eaf">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0025">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -1624,7 +1720,7 @@ Levels: local: error; pr: error; baseline: error. Run it alone: <code class="doc
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-b615819c">
+<div class="need_container docutils container" id="SNCB-d8601384">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0026">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -1649,7 +1745,7 @@ Levels: local: error; pr: error. Run it alone: <code class="docutils literal not
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-f5bb7c24">
+<div class="need_container docutils container" id="SNCB-e519d3a0">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0027">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -1674,7 +1770,7 @@ Levels: local: warning; pr: warning. Run it alone: <code class="docutils literal
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-93402789">
+<div class="need_container docutils container" id="SNCB-99199724">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0028">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -1699,7 +1795,7 @@ Levels: pr: warning. Run it alone: <code class="docutils literal notranslate"><s
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-586feee3">
+<div class="need_container docutils container" id="SNCB-b31dc985">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0029">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -1724,7 +1820,7 @@ Levels: local: warning; pr: warning; full: warning; baseline: warning. Run it al
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-4d5d69e8">
+<div class="need_container docutils container" id="SNCB-db696310">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0030">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -1749,7 +1845,7 @@ Levels: local: error; pr: error; full: error; baseline: error. Run it alone: <co
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-af71fc55">
+<div class="need_container docutils container" id="SNCB-7f06ed80">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0031">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -1774,7 +1870,7 @@ Levels: local: warning; pr: warning. Run it alone: <code class="docutils literal
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-52b99a18">
+<div class="need_container docutils container" id="SNCB-262a0aed">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-retired docutils align-default" id="XD-CHECK-0004">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -1798,7 +1894,7 @@ Levels: local: warning; pr: warning. Run it alone: <code class="docutils literal
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-795abae7">
+<div class="need_container docutils container" id="SNCB-b406f500">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-retired docutils align-default" id="XD-CHECK-0005">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
