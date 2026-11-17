@@ -25,7 +25,7 @@
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=53b4a2d5"></script>
+      <script src="_static/documentation_options.js?v=9dbe9d6f"></script>
       <script src="_static/doctools.js?v=fd6eb6e6"></script>
       <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="_static/zdocs-need-preview.js?v=98728251"></script>
@@ -51,7 +51,7 @@
           <a href="index.html" class="icon icon-home">
             curatrix Reference
           </a>
-<div class="version zdocs-version">v0.0-dev+g7d484e3</div>
+<div class="version zdocs-version">v0.0-dev+gae9ae68</div>
 
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -288,7 +288,8 @@ positional arguments:
 
 options:
   -h, --help            show this help message and exit
-  --use USE             limits.yaml use (default: script)
+  --use USE             limits.yaml use (default: blender for a blender
+                        command, else script)
   -m, --memory MEMORY   memory limit, e.g. 2G (overrides the use)
   -t, --timeout TIMEOUT
                         timeout, e.g. 10m or none (overrides the use)
@@ -357,10 +358,10 @@ options:
 <section id="curatrix-launch">
 <span id="cli-launch"></span><h2>curatrix launch<a class="headerlink" href="#curatrix-launch" title="Link to this heading"></a></h2>
 <p>start a GUI tool / Claude Code with workspace-local config.</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>usage: curatrix launch [-h] {kicad,freecad,drawio,claude} ...
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>usage: curatrix launch [-h] {kicad,freecad,blender,drawio,claude} ...
 
 positional arguments:
-  {kicad,freecad,drawio,claude}
+  {kicad,freecad,blender,drawio,claude}
   args
 
 options:
@@ -450,7 +451,7 @@ options:
 <span id="cli-cam"></span><h2>curatrix cam<a class="headerlink" href="#curatrix-cam" title="Link to this heading"></a></h2>
 <p>design output into build/&lt;area&gt;/cam/&lt;name&gt;/&lt;version&gt;/: EE a pcba/ project (copy, version, its jobset; local, needs KiCad) or a harness (WireViz diagram and BOM, a separate process); ME a top-level assembly (FreeCADCmd: STEP, 3MF/STL of the printed parts with the version embossed, drawing SVG/PDF, exploded view, BOM; per variant).</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>usage: curatrix cam [-h] [--update-jobset] [--board-model] [--library]
-                    [--into DIR]
+                    [--into DIR] [--no-blender]
                     repo [name]
 
 positional arguments:
@@ -470,6 +471,9 @@ options:
                    worktree set) for its pull request; refuses without a tag
   --into DIR       with --library: the board library checkout (default: the
                    repo with a board_library section in this workspace)
+  --no-blender     ME: the renderings without Blender (the z-buffer renderer
+                   in FreeCADCmd), also when Blender is installed; without
+                   Blender that is the default
 </pre></div>
 </div>
 </section>

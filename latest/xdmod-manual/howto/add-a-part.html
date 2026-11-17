@@ -27,7 +27,7 @@
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=53b4a2d5"></script>
+      <script src="../_static/documentation_options.js?v=9dbe9d6f"></script>
       <script src="../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../_static/zdocs-need-preview.js?v=98728251"></script>
@@ -53,7 +53,7 @@
           <a href="../index.html" class="icon icon-home">
             XDMOD Manual
           </a>
-<div class="version zdocs-version">v0.0-dev+g7d484e3</div>
+<div class="version zdocs-version">v0.0-dev+gae9ae68</div>
 
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -75,6 +75,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#steps">Steps</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#checks">Checks</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#the-assembly-document">The assembly document</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#design-output-and-renderings">Design output and renderings</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#pitfalls">Pitfalls</a></li>
 </ul>
 </li>
@@ -324,6 +325,24 @@ part (a <code class="docutils literal notranslate"><span class="pre">lib/</span>
 <code class="docutils literal notranslate"><span class="pre">Manufacturer</span></code> and <code class="docutils literal notranslate"><span class="pre">MPN</span></code>; a board model or harness is one line with its version and its
 <code class="docutils literal notranslate"><span class="pre">pcba-&lt;name&gt;</span></code> / <code class="docutils literal notranslate"><span class="pre">harness-&lt;name&gt;</span></code> document, its parts stay in the EE BOM. CK-F12 warns about a
 bought part without them and about an own part without <code class="docutils literal notranslate"><span class="pre">Material</span></code> (<a class="reference internal" href="../explanation/rules/trace.html#XD-RULE-0058" title="XD-RULE-0058"><em class="xref need">Every BOM part names its ma... (XD-RULE-0058)</em></a>).</p>
+</section>
+<section id="design-output-and-renderings">
+<h2>Design output and renderings<a class="headerlink" href="#design-output-and-renderings" title="Link to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">cam</span></code> writes the design output of a top-level assembly under
+<code class="docutils literal notranslate"><span class="pre">build/&lt;repo&gt;/cam/&lt;assembly&gt;/&lt;version&gt;/</span></code> (<a class="reference internal" href="../explanation/decisions/scope.html#XD-ADR-0143" title="XD-ADR-0143"><em class="xref need">ME design output in iterati... (XD-ADR-0143)</em></a>): STEP, the printed parts, the
+drawing, the exploded view, the BOM and four renderings per variant
+(<code class="docutils literal notranslate"><span class="pre">renderings/front|top|right|iso.png</span></code>):</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>curatrix<span class="w"> </span>cam<span class="w"> </span>robarm-me<span class="w"> </span>canary-assembly<span class="w">                </span><span class="c1"># Blender if installed, else the fallback</span>
+curatrix<span class="w"> </span>cam<span class="w"> </span>robarm-me<span class="w"> </span>canary-assembly<span class="w"> </span>--no-blender<span class="w">   </span><span class="c1"># always the renderer without Blender</span>
+</pre></div>
+</div>
+<p>With Blender on the machine the renderings come from Blender (Cycles on the CPU with half the
+cores, about 35 seconds for the four views of the canary on a 16-core machine); without it from a plain-Python renderer in <code class="docutils literal notranslate"><span class="pre">FreeCADCmd</span></code>
+(<a class="reference internal" href="../explanation/decisions/scope.html#XD-ADR-0147" title="XD-ADR-0147"><em class="xref need">ME renderings without OpenG... (XD-ADR-0147)</em></a>). <code class="docutils literal notranslate"><span class="pre">cam.json</span></code> says which (<code class="docutils literal notranslate"><span class="pre">renderings.method</span></code>: <code class="docutils literal notranslate"><span class="pre">blender</span></code> or <code class="docutils literal notranslate"><span class="pre">zbuffer</span></code>).
+Blender is optional and not pinnable, so these images are local only; CI never has Blender
+(<a class="reference internal" href="../explanation/decisions/scope.html#XD-ADR-0148" title="XD-ADR-0148"><em class="xref need">Blender as an optional loca... (XD-ADR-0148)</em></a>). Run Blender only through curatrix (<code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">run</span> <span class="pre">--</span> <span class="pre">blender</span></code>,
+<code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">launch</span> <span class="pre">blender</span></code>) or the <code class="docutils literal notranslate"><span class="pre">.venv/bin/blender</span></code> shim: they add <code class="docutils literal notranslate"><span class="pre">--factory-startup</span></code> and
+keep its user files in <code class="docutils literal notranslate"><span class="pre">.xdmod/blender/</span></code>. <code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">doctor</span></code> shows the Blender version.</p>
 </section>
 <section id="pitfalls">
 <h2>Pitfalls<a class="headerlink" href="#pitfalls" title="Link to this heading"></a></h2>

@@ -193,3 +193,4 @@ project.
 | [XD-ADR-0145](repos.md#XD-ADR-0145) |          | KiCad and FreeCAD never run outside curatrix; shims in .venv/bin         | accepted   | 2026-11-17 |
 | [XD-ADR-0146](domains.md#XD-ADR-0146) |          | FreeCAD assemblies: skeleton file name, parameter aliases, open order    | proposed   | 2026-11-17 |
 | [XD-ADR-0147](scope.md#XD-ADR-0147) |          | ME renderings without OpenGL, the fallback when Blender is absent        | proposed   | 2026-11-17 |
+| [XD-ADR-0148](scope.md#XD-ADR-0148) |          | Blender as an optional local renderer of the ME renderings               | proposed   | 2026-11-17 |
