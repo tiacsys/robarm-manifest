@@ -237,6 +237,7 @@ The trace principles and graph rules:
 | [XD-RULE-0014](../explanation/rules/trace.html.md#XD-RULE-0014) | R7              | Suspect links are reviewed before a baseline             |
 | [XD-RULE-0047](../explanation/rules/trace.html.md#XD-RULE-0047) |                 | Domain models conform to the system model                |
 | [XD-RULE-0049](../explanation/rules/trace.html.md#XD-RULE-0049) |                 | One KiCad project per board def                          |
+| [XD-RULE-0050](../explanation/rules/trace.html.md#XD-RULE-0050) |                 | Connectors name their port and follow its pin map        |
 
 Where each rule is checked:
 
