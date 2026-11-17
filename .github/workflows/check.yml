@@ -1,5 +1,5 @@
 # Thin caller of xdmod's reusable check workflow (template: xdmod/workflows/check.yml,
-# repo-layouts.md §1). It runs `curatrix check robarm-manifest --stage pr --no-cad`, which builds
+# repo-layouts.md §1). It runs `curatrix check robarm-manifest --stage full --no-cad`, which builds
 # the full document set without CAD content (D56).
 #
 # The manifest under check is this commit (manifest-ref), not main, so a PR that moves pins is
@@ -11,6 +11,8 @@
 # passed. Bump PRs get no workflow runs (they are pushed with GITHUB_TOKEN); bump.yml sets a commit
 # status with the same name on their head instead, so one required check covers both.
 name: check
+permissions:
+  contents: read
 on:
   pull_request:
   push:
@@ -24,6 +26,7 @@ jobs:
       manifest: tiacsys/robarm-manifest
       repo: robarm-manifest
       role: integration
+      stage: full                 # CK-B1, CK-B5, CK-B6 on every manifest PR and push (P4-7)
       manifest-ref: ${{ github.event.pull_request.head.sha || github.sha }}
 
   full-set:
