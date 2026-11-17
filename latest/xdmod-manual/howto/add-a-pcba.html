@@ -27,7 +27,7 @@
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=5f2c9aae"></script>
+      <script src="../_static/documentation_options.js?v=f38544be"></script>
       <script src="../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../_static/zdocs-need-preview.js?v=98728251"></script>
@@ -53,7 +53,7 @@
           <a href="../index.html" class="icon icon-home">
             XDMOD Manual
           </a>
-<div class="version zdocs-version">v0.0-dev+gfe5cad0</div>
+<div class="version zdocs-version">v0.0-dev+g837dcb0</div>
 
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -185,10 +185,16 @@
 <p>Use this guide when you add a KiCad project (a PCBA), a circuit block or a component that takes
 part in trace links. Prototype wiring is EE content too: a KiCad schematic of the prototype
 setup whose elements carry <code class="docutils literal notranslate"><span class="pre">configs</span></code> (<a class="reference internal" href="../explanation/decisions/traces.html#XD-ADR-0067" title="XD-ADR-0067"><em class="xref need">Prototype wiring is EE content (XD-ADR-0067)</em></a>).</p>
-<p>Trace IDs live inside the KiCad files (<a class="reference internal" href="../explanation/decisions/traces.html#XD-ADR-0023" title="XD-ADR-0023"><em class="xref need">Trace IDs live inside the C... (XD-ADR-0023)</em></a>). The docs read them from there.</p>
+<p>The board itself is a def in the EE model; the KiCad project only names it
+(<a class="reference internal" href="../explanation/decisions/domains.html#XD-ADR-0128" title="XD-ADR-0128"><em class="xref need">The domain model owns the I... (XD-ADR-0128)</em></a>). Circuit blocks and components keep their trace IDs inside the KiCad files
+(<a class="reference internal" href="../explanation/decisions/traces.html#XD-ADR-0023" title="XD-ADR-0023"><em class="xref need">Trace IDs live inside the C... (XD-ADR-0023)</em></a>).</p>
 <section id="steps">
 <h2>Steps<a class="headerlink" href="#steps" title="Link to this heading"></a></h2>
-<ol class="arabic">
+<ol class="arabic" start="0">
+<li><p>Add the board def to <code class="docutils literal notranslate"><span class="pre">model/</span></code> in the EE repo: <code class="docutils literal notranslate"><span class="pre">part</span> <span class="pre">def</span> <span class="pre">&lt;'EE-PCBA-NEW-a'&gt;</span> <span class="pre">MyBoard</span> <span class="pre">:&gt;</span>
+<span class="pre">&lt;the</span> <span class="pre">SYS-EL</span> <span class="pre">def&gt;,</span> <span class="pre">XdDomain::Pcba</span></code>, with a connector port def (<code class="docutils literal notranslate"><span class="pre">EE-PORT</span></code>) for every port it
+inherits (<a class="reference internal" href="../explanation/decisions/domains.html#XD-ADR-0130" title="XD-ADR-0130"><em class="xref need">Domain repos refine the sys... (XD-ADR-0130)</em></a>). Run <code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">ids</span> <span class="pre">fix</span> <span class="pre">robarm-ee</span></code> and <code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">gen</span> <span class="pre">model</span>
+<span class="pre">robarm-ee</span></code>; <code class="docutils literal notranslate"><span class="pre">realizes</span></code> and <code class="docutils literal notranslate"><span class="pre">conforms</span></code> come from <code class="docutils literal notranslate"><span class="pre">:&gt;</span></code>.</p></li>
 <li><p>Make the KiCad project in the EE repo (e.g. <code class="docutils literal notranslate"><span class="pre">pcba/&lt;name&gt;/</span></code>). Use only the workspace
 libraries: start KiCad with the launcher, which sets the library paths and keeps your
 user-global setup out (<a class="reference internal" href="../explanation/decisions/repos.html#XD-ADR-0080" title="XD-ADR-0080"><em class="xref need">Pinned, isolated component ... (XD-ADR-0080)</em></a>):</p>
@@ -196,7 +202,11 @@ user-global setup out (<a class="reference internal" href="../explanation/decisi
 </pre></div>
 </div>
 </li>
-<li><p>For the PCBA itself, set text variables in <code class="docutils literal notranslate"><span class="pre">&lt;name&gt;.kicad_pro</span></code>. For circuit blocks and
+<li><p>For the PCBA itself, set the text variable <code class="docutils literal notranslate"><span class="pre">TraceID</span></code> in <code class="docutils literal notranslate"><span class="pre">&lt;name&gt;.kicad_pro</span></code> to the board
+def’s <code class="docutils literal notranslate"><span class="pre">EE-PCBA</span></code> ID: a reference, the need comes from the model. Nothing else goes there:
+<code class="docutils literal notranslate"><span class="pre">Realizes</span></code>, <code class="docutils literal notranslate"><span class="pre">Configs</span></code> or other link fields next to it are reported, because links and
+<code class="docutils literal notranslate"><span class="pre">configs</span></code> come from the model (<code class="docutils literal notranslate"><span class="pre">configs</span></code> from the <code class="docutils literal notranslate"><span class="pre">SYS-CFG</span></code> that configures the realized
+<code class="docutils literal notranslate"><span class="pre">SYS-EL</span></code>). A <code class="docutils literal notranslate"><span class="pre">TraceID</span></code> that is not a need of the model is reported too. For circuit blocks and
 components, add <strong>hidden</strong> symbol or sheet fields:</p>
 <table class="docutils align-default">
 <thead>
@@ -206,7 +216,7 @@ components, add <strong>hidden</strong> symbol or sheet fields:</p>
 </thead>
 <tbody>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">TraceID</span></code></p></td>
-<td><p>the need ID (kind <code class="docutils literal notranslate"><span class="pre">EE-PCBA</span></code> or <code class="docutils literal notranslate"><span class="pre">EE-CMP</span></code>); write a placeholder ID, then issue it</p></td>
+<td><p>the need ID (kind <code class="docutils literal notranslate"><span class="pre">EE-CMP</span></code>); write a placeholder ID, then issue it</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Realizes</span></code></p></td>
 <td><p>the product-layer <code class="docutils literal notranslate"><span class="pre">SYS-EL</span></code> IDs (comma list)</p></td>
@@ -247,6 +257,8 @@ a “built locally” notice (<a class="reference internal" href="../explanation
 <h2>Checks<a class="headerlink" href="#checks" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="../reference/checks.html#XD-CHECK-0019" title="XD-CHECK-0019"><em class="xref need">cad-needs.json matches the ... (XD-CHECK-0019)</em></a>: <code class="docutils literal notranslate"><span class="pre">cad-needs.json</span></code> matches the KiCad files (plain Python, no KiCad needed).</p></li>
+<li><p><a class="reference internal" href="../reference/checks.html#XD-CHECK-0016" title="XD-CHECK-0016"><em class="xref need">the Pilot parses the model ... (XD-CHECK-0016)</em></a>, <a class="reference internal" href="../reference/checks.html#XD-CHECK-0017" title="XD-CHECK-0017"><em class="xref need">model.json and model-needs.... (XD-CHECK-0017)</em></a>: the EE model parses and its generated files are fresh.</p></li>
+<li><p><a class="reference internal" href="../reference/checks.html#XD-CHECK-0033" title="XD-CHECK-0033"><em class="xref need">domain model conforms to it... (XD-CHECK-0033)</em></a>: the board def redefines every inherited port with a fitting port def.</p></li>
 <li><p><a class="reference internal" href="../reference/checks.html#XD-CHECK-0001" title="XD-CHECK-0001"><em class="xref need">docs build strict (zdocs, s... (XD-CHECK-0001)</em></a>: the strict docs build; its needs schema fails an element that realizes or satisfies nothing (<a class="reference internal" href="../explanation/rules/trace.html#XD-RULE-0010" title="XD-RULE-0010"><em class="xref need">No orphan design elements (XD-RULE-0010)</em></a>).</p></li>
 <li><p>Domain checks such as the netlist against the interface pin maps, and ERC, are commands in the
 repo’s <code class="docutils literal notranslate"><span class="pre">checks.yaml</span></code>.</p></li>

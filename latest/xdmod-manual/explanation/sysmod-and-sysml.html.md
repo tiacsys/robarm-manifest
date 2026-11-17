@@ -60,6 +60,39 @@ also exports the model as JSON ([*SysML toolchain: the OMG Pi... (XD-ADR-0058)*]
 stores a compact form of it in `generated/model.json`, so later steps (views, variants, needs)
 need no Java. The model must parse with 0 errors ([*The SysML model parses with... (XD-RULE-0035)*](rules/checks.html.md#XD-RULE-0035), [*the Pilot parses the model ... (XD-CHECK-0016)*](../reference/checks.html.md#XD-CHECK-0016)).
 
+The repo’s model files are read as one set, after the libraries, so their order does not matter
+([*Domain repos refine the sys... (XD-ADR-0130)*](decisions/domains.html.md#XD-ADR-0130)).
+
+## Domain models
+
+The EE and ME repos have their own model in `model/` ([*Domain repos refine the sys... (XD-ADR-0130)*](decisions/domains.html.md#XD-ADR-0130)). A domain def
+specializes the system def it realizes and one base def of the xdmod library `XdDomain`
+(`Pcba`, `ExternalPart`, `Cable`, `Assembly`; `ConnectorPort`, `PinSignal`,
+`MechanicalPort` for ports):
+
+```text
+part def <'EE-PCBA-0012'> JointControllerBoard :> RobArmProduct::JointController, XdDomain::Pcba {
+    port :>> servoOut : ServoHeader;
+}
+port def <'EE-PORT-0003'> ServoHeader :> RobArmInterfaces::ServoIf, XdDomain::ConnectorPort {
+    :>> connector = "JST-XH-3";
+    out port :>> pwm : Pin { :>> pin = "1"; :>> net = "SERVO_PWM"; }
+}
+```
+
+The domain repo’s `checks.yaml` lists the system model files as `model.libraries` and the
+system repo’s committed `generated/model.json` as `model.upstream`. `curatrix gen model`
+emits the `EE-PCBA`, `EE-PORT`, `EE-HAR`, `ME-ASM` and `ME-PORT` needs and derives their
+links from `:>`: `realizes` to a `SYS-EL`, `conforms` to a `SYS-IF`, and `part_of` from a
+port def to the board or assembly that has a port of it ([*curatrix checks conformance... (XD-ADR-0132)*](decisions/domains.html.md#XD-ADR-0132), [*Need kinds EE-PORT, ME-PORT... (XD-ADR-0133)*](decisions/domains.html.md#XD-ADR-0133)).
+[*domain model conforms to it... (XD-CHECK-0033)*](../reference/checks.html.md#XD-CHECK-0033) checks conformance ([*Domain models conform to th... (XD-RULE-0047)*](rules/trace.html.md#XD-RULE-0047)). A conjugated port `~X` is
+redefined by a conjugated `~Y` with `Y :> X`. A domain need gets the `configs` of the
+`SYS-CFG` s that configure the system elements it realizes.
+
+A variant of a board or assembly (`part def BoardB :> Board`) has no ID of its own for now: a
+specialization between two domain defs makes no trace link, so a variant with an ID would realize
+nothing. Variants across levels come with task 5.16 ([*Variants: the domain varian... (XD-ADR-0136)*](decisions/domains.html.md#XD-ADR-0136)).
+
 Views of the model are SysML `view` definitions with an `@XdView` annotation ([*View definitions live in th... (XD-ADR-0085)*](decisions/method.html.md#XD-ADR-0085)).
 curatrix renders them as editable `.drawio.svg` files ([*Views are committed as edit... (XD-ADR-0087)*](decisions/method.html.md#XD-ADR-0087)).
 

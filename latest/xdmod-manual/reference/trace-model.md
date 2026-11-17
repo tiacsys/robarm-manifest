@@ -235,6 +235,7 @@ The trace principles and graph rules:
 | [XD-RULE-0012](../explanation/rules/trace.md#XD-RULE-0012) | R5              | HIL results carry the firmware hash and the pinned SHAs  |
 | [XD-RULE-0013](../explanation/rules/trace.md#XD-RULE-0013) | R5a             | Only valid evidence counts                               |
 | [XD-RULE-0014](../explanation/rules/trace.md#XD-RULE-0014) | R7              | Suspect links are reviewed before a baseline             |
+| [XD-RULE-0047](../explanation/rules/trace.md#XD-RULE-0047) |                 | Domain models conform to the system model                |
 
 Where each rule is checked:
 
