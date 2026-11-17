@@ -11,5 +11,5 @@ manifest:
   projects:
     - name: robarm-freecad-pcba
       remote: tiacsys
-      revision: 76e1039e131c520ed13650b5e33a82da20c08c34
+      revision: 8ea3e0a9350c563d586bf4b9b0cfcfe699519037
       groups: [ee, me]
