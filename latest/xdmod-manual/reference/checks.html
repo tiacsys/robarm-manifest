@@ -27,7 +27,7 @@
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=98b79575"></script>
+      <script src="../_static/documentation_options.js?v=a0f1fab1"></script>
       <script src="../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../_static/zdocs-need-preview.js?v=98728251"></script>
@@ -53,7 +53,7 @@
           <a href="../index.html" class="icon icon-home">
             XDMOD Manual
           </a>
-<div class="version zdocs-version">v0.0-dev+gee69e90</div>
+<div class="version zdocs-version">v0.0-dev+g38bfbdf</div>
 
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -278,7 +278,7 @@ locally (<a class="reference internal" href="../explanation/decisions/checks.htm
 <td><p>docs build strict (zdocs, sphinx-needs schema: CK-A1-A3)</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">docs</span></code></p></td>
 <td><p>local: error, pr: error, full: error, baseline: error</p></td>
-<td><p><a class="reference internal" href="../explanation/rules/checks.html#XD-RULE-0034" title="XD-RULE-0034"><em class="xref need">Every document builds strict (XD-RULE-0034)</em></a>, <a class="reference internal" href="../explanation/rules/trace.html#XD-RULE-0002" title="XD-RULE-0002"><em class="xref need">Link types are declared on ... (XD-RULE-0002)</em></a></p></td>
+<td><p><a class="reference internal" href="../explanation/rules/checks.html#XD-RULE-0034" title="XD-RULE-0034"><em class="xref need">Every document builds strict (XD-RULE-0034)</em></a>, <a class="reference internal" href="../explanation/rules/trace.html#XD-RULE-0002" title="XD-RULE-0002"><em class="xref need">Link types are declared on ... (XD-RULE-0002)</em></a>, <a class="reference internal" href="../explanation/rules/trace.html#XD-RULE-0010" title="XD-RULE-0010"><em class="xref need">No orphan design elements (XD-RULE-0010)</em></a>, <a class="reference internal" href="../explanation/rules/trace.html#XD-RULE-0012" title="XD-RULE-0012"><em class="xref need">HIL results carry the firmw... (XD-RULE-0012)</em></a></p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#XD-CHECK-0002" title="XD-CHECK-0002"><em class="xref need">links: unknown IDs (own gra... (XD-CHECK-0002)</em></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">CK-A1</span></code></p></td>
@@ -293,20 +293,6 @@ locally (<a class="reference internal" href="../explanation/decisions/checks.htm
 <td><p><code class="docutils literal notranslate"><span class="pre">docs</span></code></p></td>
 <td><p>local: error, pr: error, full: error, baseline: error</p></td>
 <td><p><a class="reference internal" href="../explanation/rules/ids.html#XD-RULE-0015" title="XD-RULE-0015"><em class="xref need">An ID matches the scheme an... (XD-RULE-0015)</em></a></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#XD-CHECK-0004" title="XD-CHECK-0004"><em class="xref need">no orphans (R3) (XD-CHECK-0004)</em></a></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">CK-A4</span></code></p></td>
-<td><p>no orphans (R3)</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">docs</span></code></p></td>
-<td><p>local: error, pr: error, full: error, baseline: error</p></td>
-<td><p><a class="reference internal" href="../explanation/rules/trace.html#XD-RULE-0010" title="XD-RULE-0010"><em class="xref need">No orphan design elements (XD-RULE-0010)</em></a></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#XD-CHECK-0005" title="XD-CHECK-0005"><em class="xref need">HIL results carry firmware ... (XD-CHECK-0005)</em></a></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">CK-A5</span></code></p></td>
-<td><p>HIL results carry firmware hash and SHAs (R5)</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">docs</span></code></p></td>
-<td><p>local: error, pr: error, full: error, baseline: error</p></td>
-<td><p><a class="reference internal" href="../explanation/rules/trace.html#XD-RULE-0012" title="XD-RULE-0012"><em class="xref need">HIL results carry the firmw... (XD-RULE-0012)</em></a></p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#XD-CHECK-0006" title="XD-CHECK-0006"><em class="xref need">every SYS-REQ refined or sa... (XD-CHECK-0006)</em></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">CK-B1</span></code></p></td>
@@ -417,7 +403,7 @@ locally (<a class="reference internal" href="../explanation/decisions/checks.htm
 <td><p><code class="docutils literal notranslate"><span class="pre">CK-E2</span></code></p></td>
 <td><p>requirement values agree with the sentence</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">requirements</span></code></p></td>
-<td><p>local: error, pr: error, baseline: error</p></td>
+<td><p>local: warning, pr: warning, baseline: warning</p></td>
 <td><p><a class="reference internal" href="../explanation/rules/checks.html#XD-RULE-0036" title="XD-RULE-0036"><em class="xref need">Requirement values agree wi... (XD-RULE-0036)</em></a></p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#XD-CHECK-0022" title="XD-CHECK-0022"><em class="xref need">EARS pattern matches the se... (XD-CHECK-0022)</em></a></p></td>
@@ -476,6 +462,20 @@ locally (<a class="reference internal" href="../explanation/decisions/checks.htm
 <td><p>local: warning, pr: warning, full: warning, baseline: warning</p></td>
 <td><p><a class="reference internal" href="../explanation/rules/checks.html#XD-RULE-0043" title="XD-RULE-0043"><em class="xref need">Template copies match the t... (XD-RULE-0043)</em></a></p></td>
 </tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#XD-CHECK-0030" title="XD-CHECK-0030"><em class="xref need">checks.yaml lists exactly t... (XD-CHECK-0030)</em></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">CK-H6</span></code></p></td>
+<td><p>checks.yaml lists exactly the checks the repo runs (expect:)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">always</span></code></p></td>
+<td><p>local: error, pr: error, full: error, baseline: error</p></td>
+<td><p><a class="reference internal" href="../explanation/rules/checks.html#XD-RULE-0045" title="XD-RULE-0045"><em class="xref need">A repo states the checks it... (XD-RULE-0045)</em></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#XD-CHECK-0031" title="XD-CHECK-0031"><em class="xref need">PR size: hand-written lines... (XD-CHECK-0031)</em></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">CK-H7</span></code></p></td>
+<td><p>PR size: hand-written lines and files against the base</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">always</span></code></p></td>
+<td><p>local: warning, pr: warning</p></td>
+<td><p><a class="reference internal" href="../explanation/rules/checks.html#XD-RULE-0046" title="XD-RULE-0046"><em class="xref need">Pull requests stay small (XD-RULE-0046)</em></a></p></td>
+</tr>
 </tbody>
 </table>
 </section>
@@ -500,7 +500,7 @@ status (<code class="docutils literal notranslate"><span class="pre">pass</span>
 </section>
 <section id="check-needs">
 <h2>Check needs<a class="headerlink" href="#check-needs" title="Link to this heading"></a></h2>
-<div class="need_container docutils container" id="SNCB-b9b29e46">
+<div class="need_container docutils container" id="SNCB-35722e1d">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0001">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -512,7 +512,7 @@ status (<code class="docutils literal notranslate"><span class="pre">pass</span>
 <div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
 <div class="line"><span class="needs_check_id"><span class="needs_label">check_id: </span><span class="needs_data">CK-A6</span></span></div>
 </span></span></div>
-<div class="line"><span><div class="line">enforces: <span class="enforces"><span><a class="zd-need-ref reference internal" href="../explanation/rules/trace.html#XD-RULE-0002" title="XD-CHECK-0001">XD-RULE-0002</a>, <a class="zd-need-ref reference internal" href="../explanation/rules/checks.html#XD-RULE-0034" title="XD-CHECK-0001">XD-RULE-0034</a></span></span></div>
+<div class="line"><span><div class="line">enforces: <span class="enforces"><span><a class="zd-need-ref reference internal" href="../explanation/rules/trace.html#XD-RULE-0002" title="XD-CHECK-0001">XD-RULE-0002</a>, <a class="zd-need-ref reference internal" href="../explanation/rules/trace.html#XD-RULE-0010" title="XD-CHECK-0001">XD-RULE-0010</a>, <a class="zd-need-ref reference internal" href="../explanation/rules/trace.html#XD-RULE-0012" title="XD-CHECK-0001">XD-RULE-0012</a>, <a class="zd-need-ref reference internal" href="../explanation/rules/checks.html#XD-RULE-0034" title="XD-CHECK-0001">XD-RULE-0034</a></span></span></div>
 </span></div>
 </div>
 </td>
@@ -525,7 +525,7 @@ Levels: local: error; pr: error; full: error; baseline: error. Run it alone: <co
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-a0c01538">
+<div class="need_container docutils container" id="SNCB-341bd4a4">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0002">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -550,7 +550,7 @@ Levels: local: error; pr: error; full: error; baseline: error. Run it alone: <co
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-000e00ca">
+<div class="need_container docutils container" id="SNCB-d5142ea4">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0003">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -575,57 +575,7 @@ Levels: local: error; pr: error; full: error; baseline: error. Run it alone: <co
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-a962247c">
-<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0004">
-<tbody>
-<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
-<div class="line"><span><span class="needs_type_name"><span class="needs_data">curatrix Check</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">no orphans (R3)</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#XD-CHECK-0004" title="XD-CHECK-0004">XD-CHECK-0004</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
-</div>
-</td>
-</tr>
-<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
-<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
-<div class="line"><span class="needs_check_id"><span class="needs_label">check_id: </span><span class="needs_data">CK-A4</span></span></div>
-</span></span></div>
-<div class="line"><span><div class="line">enforces: <span class="enforces"><span><a class="zd-need-ref reference internal" href="../explanation/rules/trace.html#XD-RULE-0010" title="XD-CHECK-0004">XD-RULE-0010</a></span></span></div>
-</span></div>
-</div>
-</td>
-</tr>
-<tr class="need content row-odd"><td class="need content" colspan="1"><p>Product-layer system elements and domain design elements have a realizes or satisfies link.</p>
-<p>Runs when the <code class="docutils literal notranslate"><span class="pre">docs</span></code> section of <code class="docutils literal notranslate"><span class="pre">checks.yaml</span></code> is set.
-Levels: local: error; pr: error; full: error; baseline: error. Run it alone: <code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">check</span> <span class="pre">&lt;repo&gt;</span> <span class="pre">--only</span> <span class="pre">CK-A4</span></code>.</p>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="need_container docutils container" id="SNCB-a761a13f">
-<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0005">
-<tbody>
-<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
-<div class="line"><span><span class="needs_type_name"><span class="needs_data">curatrix Check</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">HIL results carry firmware hash and SHAs (R5)</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#XD-CHECK-0005" title="XD-CHECK-0005">XD-CHECK-0005</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
-</div>
-</td>
-</tr>
-<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
-<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
-<div class="line"><span class="needs_check_id"><span class="needs_label">check_id: </span><span class="needs_data">CK-A5</span></span></div>
-</span></span></div>
-<div class="line"><span><div class="line">enforces: <span class="enforces"><span><a class="zd-need-ref reference internal" href="../explanation/rules/trace.html#XD-RULE-0012" title="XD-CHECK-0005">XD-RULE-0012</a></span></span></div>
-</span></div>
-</div>
-</td>
-</tr>
-<tr class="need content row-odd"><td class="need content" colspan="1"><p>Test results of HIL runs carry firmware_sha256 and the SHAs of the pinned repos.</p>
-<p>Runs when the <code class="docutils literal notranslate"><span class="pre">docs</span></code> section of <code class="docutils literal notranslate"><span class="pre">checks.yaml</span></code> is set.
-Levels: local: error; pr: error; full: error; baseline: error. Run it alone: <code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">check</span> <span class="pre">&lt;repo&gt;</span> <span class="pre">--only</span> <span class="pre">CK-A5</span></code>.</p>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="need_container docutils container" id="SNCB-8547456e">
+<div class="need_container docutils container" id="SNCB-84d730ce">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0006">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -650,7 +600,7 @@ Levels: full: error; baseline: error. Run it alone: <code class="docutils litera
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-e3a5b89c">
+<div class="need_container docutils container" id="SNCB-ec4a38e5">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0007">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -675,7 +625,7 @@ Levels: full: warning; baseline: warning. Run it alone: <code class="docutils li
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-52ae0000">
+<div class="need_container docutils container" id="SNCB-bb2f317c">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0008">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -700,7 +650,7 @@ Levels: local: warning; pr: warning; full: warning; baseline: error. Run it alon
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-a02fd410">
+<div class="need_container docutils container" id="SNCB-b4d0b6b1">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0009">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -725,7 +675,7 @@ Levels: local: error; pr: error; full: error; baseline: error. Run it alone: <co
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-22f96131">
+<div class="need_container docutils container" id="SNCB-0cb0f5b1">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0010">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -750,7 +700,7 @@ Levels: full: error; baseline: error. Run it alone: <code class="docutils litera
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-19085393">
+<div class="need_container docutils container" id="SNCB-b6d5e241">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0011">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -775,7 +725,7 @@ Levels: full: report; baseline: report. Run it alone: <code class="docutils lite
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-54c478a2">
+<div class="need_container docutils container" id="SNCB-b2c759b8">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0012">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -800,7 +750,7 @@ Levels: local: warning; pr: warning. Run it alone: <code class="docutils literal
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-c3b8d748">
+<div class="need_container docutils container" id="SNCB-221c18b9">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0013">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -825,7 +775,7 @@ Levels: local: error; pr: error; full: error; baseline: error. Run it alone: <co
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-0eadfca9">
+<div class="need_container docutils container" id="SNCB-ab37aa3d">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0014">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -850,7 +800,7 @@ Levels: local: error; pr: error; baseline: error. Run it alone: <code class="doc
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-d08ee1b9">
+<div class="need_container docutils container" id="SNCB-0ee3b9c5">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0015">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -875,7 +825,7 @@ Levels: local: error; pr: error; baseline: error. Run it alone: <code class="doc
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-ad4c9b46">
+<div class="need_container docutils container" id="SNCB-e6b15536">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0016">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -900,7 +850,7 @@ Levels: local: error; pr: error; baseline: error. Run it alone: <code class="doc
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-dc00a43d">
+<div class="need_container docutils container" id="SNCB-d97a7b8c">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0017">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -925,7 +875,7 @@ Levels: local: error; pr: error; baseline: error. Run it alone: <code class="doc
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-aa1f9295">
+<div class="need_container docutils container" id="SNCB-dd07523a">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0018">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -950,7 +900,7 @@ Levels: local: error; pr: error; baseline: error. Run it alone: <code class="doc
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-a76c1b71">
+<div class="need_container docutils container" id="SNCB-56ff8105">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0019">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -975,7 +925,7 @@ Levels: local: error; pr: error; baseline: error. Run it alone: <code class="doc
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-1fad0ef8">
+<div class="need_container docutils container" id="SNCB-78476a31">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0020">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -1000,7 +950,7 @@ Levels: local: warning; pr: warning; full: warning; baseline: error. Run it alon
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-13d630a0">
+<div class="need_container docutils container" id="SNCB-659d60a7">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0021">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -1017,15 +967,15 @@ Levels: local: warning; pr: warning; full: warning; baseline: error. Run it alon
 </div>
 </td>
 </tr>
-<tr class="need content row-odd"><td class="need content" colspan="1"><p>The value fields of a requirement appear in its sentence (number and unit).</p>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p>Each of min, max and nominal of a requirement occurs as a number in its sentence (in any order and format: thousands separators, decimals, a ± b), and the unit occurs once, as symbol or name. A warning until it has run on the real requirements (task 5.4).</p>
 <p>Runs when the <code class="docutils literal notranslate"><span class="pre">requirements</span></code> section of <code class="docutils literal notranslate"><span class="pre">checks.yaml</span></code> is set.
-Levels: local: error; pr: error; baseline: error. Run it alone: <code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">check</span> <span class="pre">&lt;repo&gt;</span> <span class="pre">--only</span> <span class="pre">CK-E2</span></code>.</p>
+Levels: local: warning; pr: warning; baseline: warning. Run it alone: <code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">check</span> <span class="pre">&lt;repo&gt;</span> <span class="pre">--only</span> <span class="pre">CK-E2</span></code>.</p>
 </td>
 </tr>
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-d54e37f4">
+<div class="need_container docutils container" id="SNCB-111c279f">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0022">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -1050,7 +1000,7 @@ Levels: local: warning; pr: warning; baseline: warning. Run it alone: <code clas
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-db2d8944">
+<div class="need_container docutils container" id="SNCB-9f322455">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0023">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -1075,7 +1025,7 @@ Levels: pr: report; full: report. Run it alone: <code class="docutils literal no
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-caecd9b2">
+<div class="need_container docutils container" id="SNCB-34ca79f0">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0024">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -1100,7 +1050,7 @@ Levels: full: report; baseline: error. Run it alone: <code class="docutils liter
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-920a9c47">
+<div class="need_container docutils container" id="SNCB-d4fdedd4">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0025">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -1125,7 +1075,7 @@ Levels: local: error; pr: error; baseline: error. Run it alone: <code class="doc
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-3ccf3572">
+<div class="need_container docutils container" id="SNCB-33e10de7">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0026">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -1150,7 +1100,7 @@ Levels: local: error; pr: error. Run it alone: <code class="docutils literal not
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-bf33a0b1">
+<div class="need_container docutils container" id="SNCB-918b424e">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0027">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -1175,7 +1125,7 @@ Levels: local: warning; pr: warning. Run it alone: <code class="docutils literal
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-84cd3b12">
+<div class="need_container docutils container" id="SNCB-7ed496cd">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0028">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -1200,7 +1150,7 @@ Levels: pr: warning. Run it alone: <code class="docutils literal notranslate"><s
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-c2315fb7">
+<div class="need_container docutils container" id="SNCB-acadd707">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0029">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -1220,6 +1170,104 @@ Levels: pr: warning. Run it alone: <code class="docutils literal notranslate"><s
 <tr class="need content row-odd"><td class="need content" colspan="1"><p>The repo’s copy of scripts/bootstrap.sh equals xdmod/templates/bootstrap.sh.</p>
 <p>Runs when the <code class="docutils literal notranslate"><span class="pre">bootstrap_template</span></code> section of <code class="docutils literal notranslate"><span class="pre">checks.yaml</span></code> is set.
 Levels: local: warning; pr: warning; full: warning; baseline: warning. Run it alone: <code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">check</span> <span class="pre">&lt;repo&gt;</span> <span class="pre">--only</span> <span class="pre">CK-H5</span></code>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-d750e115">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0030">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">curatrix Check</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">checks.yaml lists exactly the checks the repo runs (expect:)</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#XD-CHECK-0030" title="XD-CHECK-0030">XD-CHECK-0030</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_check_id"><span class="needs_label">check_id: </span><span class="needs_data">CK-H6</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">enforces: <span class="enforces"><span><a class="zd-need-ref reference internal" href="../explanation/rules/checks.html#XD-RULE-0045" title="XD-CHECK-0030">XD-RULE-0045</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p>The repo’s checks.yaml lists in `expect:` exactly the checks it runs (built-in and commands); an expected check that is off, or a running check that is not listed, is an error.</p>
+<p>Runs for every repo.
+Levels: local: error; pr: error; full: error; baseline: error. Run it alone: <code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">check</span> <span class="pre">&lt;repo&gt;</span> <span class="pre">--only</span> <span class="pre">CK-H6</span></code>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-fa59eeeb">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-valid docutils align-default" id="XD-CHECK-0031">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">curatrix Check</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">PR size: hand-written lines and files against the base</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#XD-CHECK-0031" title="XD-CHECK-0031">XD-CHECK-0031</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
+<div class="line"><span class="needs_check_id"><span class="needs_label">check_id: </span><span class="needs_data">CK-H7</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">enforces: <span class="enforces"><span><a class="zd-need-ref reference internal" href="../explanation/rules/checks.html#XD-RULE-0046" title="XD-CHECK-0031">XD-RULE-0046</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p>Counts the hand-written lines and files a PR changes against its base (generated files excluded) and warns above the repo’s `pr_size` limits (default 600 lines, 15 files).</p>
+<p>Runs for every repo.
+Levels: local: warning; pr: warning. Run it alone: <code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">check</span> <span class="pre">&lt;repo&gt;</span> <span class="pre">--only</span> <span class="pre">CK-H7</span></code>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-09146079">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-retired docutils align-default" id="XD-CHECK-0004">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">curatrix Check</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">CK-A4 (retired)</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#XD-CHECK-0004" title="XD-CHECK-0004">XD-CHECK-0004</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">retired</span></span></div>
+<div class="line"><span class="needs_check_id"><span class="needs_label">check_id: </span><span class="needs_data">CK-A4</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">enforces: <span class="enforces"><span><a class="zd-need-ref reference internal" href="../explanation/rules/trace.html#XD-RULE-0010" title="XD-CHECK-0004">XD-RULE-0010</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p>Product-layer system elements and domain design elements have a realizes or satisfies link.</p>
+<p>Retired: 2026-11-17: the sphinx-needs schema of needs_config.toml enforces R3 in the build of the repo that owns the need (task 5.2, P4-9).</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-4da3f8a1">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-check zd-status-retired docutils align-default" id="XD-CHECK-0005">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">curatrix Check</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">CK-A5 (retired)</span></span></span></strong><span> <span class="needs-id"><a class="zd-need-ref reference internal" href="#XD-CHECK-0005" title="XD-CHECK-0005">XD-CHECK-0005</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">retired</span></span></div>
+<div class="line"><span class="needs_check_id"><span class="needs_label">check_id: </span><span class="needs_data">CK-A5</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">enforces: <span class="enforces"><span><a class="zd-need-ref reference internal" href="../explanation/rules/trace.html#XD-RULE-0012" title="XD-CHECK-0005">XD-RULE-0012</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p>Test results of HIL runs carry firmware_sha256 and the SHAs of the pinned repos.</p>
+<p>Retired: 2026-11-17: the sphinx-needs schema of needs_config.toml enforces R5 in the build of the repo that owns the need (task 5.2, P4-9).</p>
 </td>
 </tr>
 </tbody>

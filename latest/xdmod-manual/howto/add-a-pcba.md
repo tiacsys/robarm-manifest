@@ -45,7 +45,7 @@ Trace IDs live inside the KiCad files ([*Trace IDs live inside the C... (XD-ADR-
 ## Checks
 
 - [*cad-needs.json matches the ... (XD-CHECK-0019)*](../reference/checks.md#XD-CHECK-0019): `cad-needs.json` matches the KiCad files (plain Python, no KiCad needed).
-- [*no orphans (R3) (XD-CHECK-0004)*](../reference/checks.md#XD-CHECK-0004): each element realizes or satisfies something ([*No orphan design elements (XD-RULE-0010)*](../explanation/rules/trace.md#XD-RULE-0010)).
+- [*docs build strict (zdocs, s... (XD-CHECK-0001)*](../reference/checks.md#XD-CHECK-0001): the strict docs build; its needs schema fails an element that realizes or satisfies nothing ([*No orphan design elements (XD-RULE-0010)*](../explanation/rules/trace.md#XD-RULE-0010)).
 - Domain checks such as the netlist against the interface pin maps, and ERC, are commands in the
   repo’s `checks.yaml`.
 

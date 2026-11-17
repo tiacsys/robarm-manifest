@@ -3,7 +3,7 @@
 # Your first change
 
 #### NOTE
-This tutorial is a skeleton. It is completed in Phase 5 on the real robot-arm repos.
+This tutorial is a skeleton. It is completed in Phase 6 on the real robot-arm repos.
 
 ## Goal
 

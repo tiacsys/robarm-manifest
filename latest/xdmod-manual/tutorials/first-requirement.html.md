@@ -3,7 +3,7 @@
 # Your first requirement, end to end
 
 #### NOTE
-This tutorial is a skeleton. It is completed in Phase 5 on the real robot-arm repos.
+This tutorial is a skeleton. It is completed in Phase 6 on the real robot-arm repos.
 
 ## Goal
 
@@ -76,7 +76,7 @@ The examples use the robot-arm repos. Replace the repo names with your own.
 - A link written on the wrong side, or to an unknown ID, fails the strict build ([*Link types are declared on ... (XD-RULE-0002)*](../explanation/rules/trace.html.md#XD-RULE-0002),
   [*docs build strict (zdocs, s... (XD-CHECK-0001)*](../reference/checks.html.md#XD-CHECK-0001)).
 - A model element that realizes nothing and satisfies nothing is an orphan ([*No orphan design elements (XD-RULE-0010)*](../explanation/rules/trace.html.md#XD-RULE-0010),
-  [*no orphans (R3) (XD-CHECK-0004)*](../reference/checks.html.md#XD-CHECK-0004)).
+  [*CK-A4 (retired) (XD-CHECK-0004)*](../reference/checks.html.md#XD-CHECK-0004)).
 - Generated files that don’t match their sources fail the checks ([*Generated files are committ... (XD-RULE-0033)*](../explanation/rules/checks.html.md#XD-RULE-0033)). Run the matching
   `curatrix gen` command and commit the result.
 

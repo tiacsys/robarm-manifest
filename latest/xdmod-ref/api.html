@@ -25,7 +25,7 @@
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=98b79575"></script>
+      <script src="_static/documentation_options.js?v=a0f1fab1"></script>
       <script src="_static/doctools.js?v=fd6eb6e6"></script>
       <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="_static/zdocs-need-preview.js?v=98728251"></script>
@@ -51,7 +51,7 @@
           <a href="index.html" class="icon icon-home">
             curatrix Reference
           </a>
-<div class="version zdocs-version">v0.0-dev+gee69e90</div>
+<div class="version zdocs-version">v0.0-dev+g38bfbdf</div>
 
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -272,8 +272,9 @@ never behind the sources). Kinds the ledger does not own are upstream references
 Writes logs to build/&lt;area&gt;/checks/ and a summary JSON (build/&lt;area&gt;/checks/summary.json) for
 agents and CI comments, and prints the command that reproduces each failure.</p>
 <p>Status of a check: pass | fail (error level: the stage fails) | warn | report | skip.</p>
-<p id="module-curatrix.graph">Graph rules on the merged needs of a docs build (trace-model.md §4; checks CK-A4, CK-B1-B3,
-CK-B5, CK-B6, CK-G1/G2). sphinx-needs skips external needs in its own schema checks, so these
+<p id="module-curatrix.graph">Graph rules on the merged needs of a docs build (trace-model.md §4; checks CK-A1, CK-A3, CK-B1-B3,
+CK-B5, CK-B6, CK-G1/G2). Only rules that need the merged graph live here: rules the sphinx-needs
+schema already enforces per document (orphans R3, HIL fields R5) were dropped (task 5.2, P4-9). sphinx-needs skips external needs in its own schema checks, so these
 run here over every needs.json of a build (own and imported needs alike).</p>
 <p>Back links are computed here from the outgoing links (never trusted from the files).
 <cite>draft</cite> needs take part in structure checks but do not count as coverage (D130).</p>

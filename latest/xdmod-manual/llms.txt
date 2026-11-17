@@ -9,9 +9,9 @@
 
 - [XDMOD Manual](index.html.md): &#42;&#42;XDMOD&#42;&#42; (Cross-Domain MODeling) is a method plus tools for developing a product across systems
 - [Tutorials](tutorials/index.html.md): The tutorials walk you through XDMOD step by step. Each one starts from a clean state and ends
-- [Your first workspace](tutorials/first-workspace.html.md): This tutorial is a skeleton. It is completed in Phase 5 on the real robot-arm repos.
-- [Your first requirement, end to end](tutorials/first-requirement.html.md): This tutorial is a skeleton. It is completed in Phase 5 on the real robot-arm repos.
-- [Your first change](tutorials/first-change.html.md): This tutorial is a skeleton. It is completed in Phase 5 on the real robot-arm repos.
+- [Your first workspace](tutorials/first-workspace.html.md): This tutorial is a skeleton. It is completed in Phase 6 on the real robot-arm repos.
+- [Your first requirement, end to end](tutorials/first-requirement.html.md): This tutorial is a skeleton. It is completed in Phase 6 on the real robot-arm repos.
+- [Your first change](tutorials/first-change.html.md): This tutorial is a skeleton. It is completed in Phase 6 on the real robot-arm repos.
 - [How-to guides](howto/index.html.md): Each guide answers one question: “How do I …?”. It assumes you have a workspace
 - [Add a requirement](howto/add-a-requirement.html.md): Use this guide when you add a system requirement (&#96;sys-req&#96;) or a domain requirement
 - [Add a model element](howto/add-a-model-element.html.md): Use this guide when you add a SysML element that takes part in a trace link: a function, a

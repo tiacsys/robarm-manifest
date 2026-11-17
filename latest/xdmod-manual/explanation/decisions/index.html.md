@@ -169,3 +169,4 @@ project.
 | [XD-ADR-0122](traces.html.md#XD-ADR-0122) | D133     | ID collisions show up as git conflicts                         | accepted   | 2026-11-14 |
 | [XD-ADR-0123](workflow.html.md#XD-ADR-0123) | D134     | Agent limits are policy only in iteration 1                    | accepted   | 2026-11-14 |
 | [XD-ADR-0124](scope.html.md#XD-ADR-0124) | D135     | Scope cuts for iteration 1                                     | accepted   | 2026-11-14 |
+| [XD-ADR-0125](checks.html.md#XD-ADR-0125) |          | Checks that bite                                               | accepted   | 2026-11-17 |

@@ -36,7 +36,7 @@ Tests live by what they verify ([*Tests live by what they verify (XD-ADR-0104)*]
 ## Evidence rules
 
 - HIL results carry the firmware hash and the SHAs of all pinned repos ([*HIL results carry the firmw... (XD-RULE-0012)*](../explanation/rules/trace.html.md#XD-RULE-0012),
-  [*HIL results carry firmware ... (XD-CHECK-0005)*](../reference/checks.html.md#XD-CHECK-0005)).
+  enforced by the needs schema in the strict docs build, [*docs build strict (zdocs, s... (XD-CHECK-0001)*](../reference/checks.html.md#XD-CHECK-0001)).
 - Evidence counts only from commits on `main` or baseline tags ([*Evidence only from main or ... (XD-ADR-0053)*](../explanation/decisions/checks.html.md#XD-ADR-0053)). Runs on PR
   branches are previews.
 - A result whose SHAs no longer match the pins is stale and doesn’t count ([*Only valid evidence counts (XD-RULE-0013)*](../explanation/rules/trace.html.md#XD-RULE-0013),

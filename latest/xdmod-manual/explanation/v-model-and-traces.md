@@ -57,10 +57,10 @@ Beyond the shape of each need, XDMOD checks the graph:
 
 - every system requirement is refined or satisfied ([*Every system requirement is... (XD-RULE-0008)*](rules/trace.md#XD-RULE-0008), [*every SYS-REQ refined or sa... (XD-CHECK-0006)*](../reference/checks.md#XD-CHECK-0006));
 - every requirement is verified, per configuration ([*Every requirement is verified (XD-RULE-0009)*](rules/trace.md#XD-RULE-0009), [*every requirement verified ... (XD-CHECK-0007)*](../reference/checks.md#XD-CHECK-0007));
-- no orphan design elements ([*No orphan design elements (XD-RULE-0010)*](rules/trace.md#XD-RULE-0010), [*no orphans (R3) (XD-CHECK-0004)*](../reference/checks.md#XD-CHECK-0004));
+- no orphan design elements ([*No orphan design elements (XD-RULE-0010)*](rules/trace.md#XD-RULE-0010), a schema rule of the strict build, [*docs build strict (zdocs, s... (XD-CHECK-0001)*](../reference/checks.md#XD-CHECK-0001));
 - links to retired needs are reported, with a grace period until the next baseline
   ([*Links to retired needs are ... (XD-RULE-0011)*](rules/trace.md#XD-RULE-0011), [*no links to retired needs (... (XD-CHECK-0008)*](../reference/checks.md#XD-CHECK-0008));
-- HIL results carry the firmware hash and the pinned SHAs ([*HIL results carry the firmw... (XD-RULE-0012)*](rules/trace.md#XD-RULE-0012), [*HIL results carry firmware ... (XD-CHECK-0005)*](../reference/checks.md#XD-CHECK-0005)), and only
+- HIL results carry the firmware hash and the pinned SHAs ([*HIL results carry the firmw... (XD-RULE-0012)*](rules/trace.md#XD-RULE-0012), a schema rule of the strict build, [*docs build strict (zdocs, s... (XD-CHECK-0001)*](../reference/checks.md#XD-CHECK-0001)), and only
   results that match the current pins count ([*Only valid evidence counts (XD-RULE-0013)*](rules/trace.md#XD-RULE-0013), [*stale evidence (R5a) (XD-CHECK-0011)*](../reference/checks.md#XD-CHECK-0011));
 - suspect links are found and must be confirmed before a baseline ([*Suspect links are reviewed ... (XD-RULE-0014)*](rules/trace.md#XD-RULE-0014), [*suspect links against the l... (XD-CHECK-0024)*](../reference/checks.md#XD-CHECK-0024)).
 

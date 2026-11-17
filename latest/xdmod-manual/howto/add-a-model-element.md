@@ -42,7 +42,7 @@ curatrix check robarm-syseng --stage local
 
 - [*the Pilot parses the model ... (XD-CHECK-0016)*](../reference/checks.md#XD-CHECK-0016): the Pilot parses the model with 0 errors ([*The SysML model parses with... (XD-RULE-0035)*](../explanation/rules/checks.md#XD-RULE-0035)).
 - [*model.json and model-needs.... (XD-CHECK-0017)*](../reference/checks.md#XD-CHECK-0017): the committed model files match the model ([*Generated files are committ... (XD-RULE-0033)*](../explanation/rules/checks.md#XD-RULE-0033)).
-- [*no orphans (R3) (XD-CHECK-0004)*](../reference/checks.md#XD-CHECK-0004): a product-layer element realizes or satisfies something ([*No orphan design elements (XD-RULE-0010)*](../explanation/rules/trace.md#XD-RULE-0010)).
+- [*docs build strict (zdocs, s... (XD-CHECK-0001)*](../reference/checks.md#XD-CHECK-0001): the strict docs build; its needs schema fails a product-layer element that realizes or satisfies nothing ([*No orphan design elements (XD-RULE-0010)*](../explanation/rules/trace.md#XD-RULE-0010)).
 - [*views match the model (cont... (XD-CHECK-0018)*](../reference/checks.md#XD-CHECK-0018): views that show the element are up to date (see [Add a view](add-a-view.md)).
 
 ## Pitfalls
