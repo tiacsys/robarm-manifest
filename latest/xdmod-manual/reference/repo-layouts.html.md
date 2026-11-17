@@ -65,7 +65,14 @@ docs/                   ee-design; one document per board (pcba-<name>), prototy
 KiCad library tables refer to the shared libraries only through variables (`${XD_KICAD_SYMBOLS}`
 and so on) and to `lib/` through `${KIPRJMOD}`. `curatrix launch kicad` sets the variables
 ([*Pinned, isolated component ... (XD-ADR-0080)*](../explanation/decisions/repos.html.md#XD-ADR-0080)). The domain model owns the board, port and harness IDs; KiCad and WireViz
-files refer to them ([*The domain model owns the I... (XD-ADR-0128)*](../explanation/decisions/domains.html.md#XD-ADR-0128)). The jobset is a copy of the xdmod template
+files refer to them ([*The domain model owns the I... (XD-ADR-0128)*](../explanation/decisions/domains.html.md#XD-ADR-0128)): a KiCad project by its `TraceID` text variable, a
+WireViz harness by `metadata: {TraceID: EE-HAR-....}`, and each of its connectors by a line
+`Port: EE-PORT-....` in its `notes` (the port it mates with, on a board or an external part;
+WireViz shows the notes in the diagram). The connector’s `pins` and `pinlabels` are the pin
+numbers and net names of that port’s pin map; the pin maps at both ends use the same net names
+(the pin map of a bought part names its pins with our nets, not the vendor’s). The cable def has one port per end, typed by the
+(conjugated) port def it mates with; `EE-HAR connects EE-PORT` comes from these ports (one target
+for a cable with the same port def at both ends; CK-F1 counts the ends). The jobset is a copy of the xdmod template
 ([*EE design output in iterati... (XD-ADR-0142)*](../explanation/decisions/scope.html.md#XD-ADR-0142)); `accepted.yaml` holds the accepted ERC and DRC findings ([*One accepted.yaml format, w... (XD-ADR-0126)*](../explanation/decisions/checks.html.md#XD-ADR-0126)).
 There is one document per board, prototype project and harness ([*One document per board, har... (XD-ADR-0129)*](../explanation/decisions/documents.html.md#XD-ADR-0129),
 [*WireViz for harnesses (XD-ADR-0127)*](../explanation/decisions/documents.html.md#XD-ADR-0127)).

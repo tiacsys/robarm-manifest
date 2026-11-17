@@ -27,7 +27,7 @@
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=50599cd6"></script>
+      <script src="../_static/documentation_options.js?v=9f5d9d7d"></script>
       <script src="../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../_static/zdocs-need-preview.js?v=98728251"></script>
@@ -53,7 +53,7 @@
           <a href="../index.html" class="icon icon-home">
             XDMOD Manual
           </a>
-<div class="version zdocs-version">v0.0-dev+g8bd776d</div>
+<div class="version zdocs-version">v0.0-dev+g13af60f</div>
 
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -247,7 +247,14 @@ docs/                   ee-design; one document per board (pcba-&lt;name&gt;), p
 <p>KiCad library tables refer to the shared libraries only through variables (<code class="docutils literal notranslate"><span class="pre">${XD_KICAD_SYMBOLS}</span></code>
 and so on) and to <code class="docutils literal notranslate"><span class="pre">lib/</span></code> through <code class="docutils literal notranslate"><span class="pre">${KIPRJMOD}</span></code>. <code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">launch</span> <span class="pre">kicad</span></code> sets the variables
 (<a class="reference internal" href="../explanation/decisions/repos.html#XD-ADR-0080" title="XD-ADR-0080"><em class="xref need">Pinned, isolated component ... (XD-ADR-0080)</em></a>). The domain model owns the board, port and harness IDs; KiCad and WireViz
-files refer to them (<a class="reference internal" href="../explanation/decisions/domains.html#XD-ADR-0128" title="XD-ADR-0128"><em class="xref need">The domain model owns the I... (XD-ADR-0128)</em></a>). The jobset is a copy of the xdmod template
+files refer to them (<a class="reference internal" href="../explanation/decisions/domains.html#XD-ADR-0128" title="XD-ADR-0128"><em class="xref need">The domain model owns the I... (XD-ADR-0128)</em></a>): a KiCad project by its <code class="docutils literal notranslate"><span class="pre">TraceID</span></code> text variable, a
+WireViz harness by <code class="docutils literal notranslate"><span class="pre">metadata:</span> <span class="pre">{TraceID:</span> <span class="pre">EE-HAR-....}</span></code>, and each of its connectors by a line
+<code class="docutils literal notranslate"><span class="pre">Port:</span> <span class="pre">EE-PORT-....</span></code> in its <code class="docutils literal notranslate"><span class="pre">notes</span></code> (the port it mates with, on a board or an external part;
+WireViz shows the notes in the diagram). The connector’s <code class="docutils literal notranslate"><span class="pre">pins</span></code> and <code class="docutils literal notranslate"><span class="pre">pinlabels</span></code> are the pin
+numbers and net names of that port’s pin map; the pin maps at both ends use the same net names
+(the pin map of a bought part names its pins with our nets, not the vendor’s). The cable def has one port per end, typed by the
+(conjugated) port def it mates with; <code class="docutils literal notranslate"><span class="pre">EE-HAR</span> <span class="pre">connects</span> <span class="pre">EE-PORT</span></code> comes from these ports (one target
+for a cable with the same port def at both ends; CK-F1 counts the ends). The jobset is a copy of the xdmod template
 (<a class="reference internal" href="../explanation/decisions/scope.html#XD-ADR-0142" title="XD-ADR-0142"><em class="xref need">EE design output in iterati... (XD-ADR-0142)</em></a>); <code class="docutils literal notranslate"><span class="pre">accepted.yaml</span></code> holds the accepted ERC and DRC findings (<a class="reference internal" href="../explanation/decisions/checks.html#XD-ADR-0126" title="XD-ADR-0126"><em class="xref need">One accepted.yaml format, w... (XD-ADR-0126)</em></a>).
 There is one document per board, prototype project and harness (<a class="reference internal" href="../explanation/decisions/documents.html#XD-ADR-0129" title="XD-ADR-0129"><em class="xref need">One document per board, har... (XD-ADR-0129)</em></a>,
 <a class="reference internal" href="../explanation/decisions/documents.html#XD-ADR-0127" title="XD-ADR-0127"><em class="xref need">WireViz for harnesses (XD-ADR-0127)</em></a>).</p>

@@ -25,7 +25,7 @@
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=50599cd6"></script>
+      <script src="_static/documentation_options.js?v=9f5d9d7d"></script>
       <script src="_static/doctools.js?v=fd6eb6e6"></script>
       <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="_static/zdocs-need-preview.js?v=98728251"></script>
@@ -51,7 +51,7 @@
           <a href="index.html" class="icon icon-home">
             curatrix Reference
           </a>
-<div class="version zdocs-version">v0.0-dev+g8bd776d</div>
+<div class="version zdocs-version">v0.0-dev+g13af60f</div>
 
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -172,7 +172,7 @@
 <p><code class="docutils literal notranslate"><span class="pre">xdmod/needs/needs_config.toml</span></code> is the one needs configuration of every XDMOD document. zdocs
 loads it through <code class="docutils literal notranslate"><span class="pre">ZDOCS_NEEDS_CONFIG</span></code>, which <code class="docutils literal notranslate"><span class="pre">xdmod/cmake/xdmod-docs.cmake</span></code> sets. The tables
 below are generated from that file. What the types and links mean is explained in the manual’s
-<a class="reference external" href="../xdmod-manual/reference/trace-model.html" title="(in XDMOD Manual v0.0-dev+g8bd776d)"><span>Trace model</span></a> page.</p>
+<a class="reference external" href="../xdmod-manual/reference/trace-model.html" title="(in XDMOD Manual v0.0-dev+g13af60f)"><span>Trace model</span></a> page.</p>
 <section id="need-types">
 <h2>Need types<a class="headerlink" href="#need-types" title="Link to this heading"></a></h2>
 <table class="docutils align-default">
@@ -283,7 +283,7 @@ below are generated from that file. What the types and links mean is explained i
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ee-har</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">EE-HAR-</span></code></p></td>
 <td><p>Wiring Harness</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">connects</span></code> → <code class="docutils literal notranslate"><span class="pre">ee-port</span></code> (min 2); <code class="docutils literal notranslate"><span class="pre">realizes</span></code> → <code class="docutils literal notranslate"><span class="pre">sys-el</span></code>; <code class="docutils literal notranslate"><span class="pre">satisfies</span></code> → <code class="docutils literal notranslate"><span class="pre">ee-req</span></code>; <code class="docutils literal notranslate"><span class="pre">conforms</span></code> → <code class="docutils literal notranslate"><span class="pre">sys-if</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">connects</span></code> → <code class="docutils literal notranslate"><span class="pre">ee-port</span></code> (min 1); <code class="docutils literal notranslate"><span class="pre">realizes</span></code> → <code class="docutils literal notranslate"><span class="pre">sys-el</span></code>; <code class="docutils literal notranslate"><span class="pre">satisfies</span></code> → <code class="docutils literal notranslate"><span class="pre">ee-req</span></code>; <code class="docutils literal notranslate"><span class="pre">conforms</span></code> → <code class="docutils literal notranslate"><span class="pre">sys-if</span></code></p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ee-cmp</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">EE-CMP-</span></code></p></td>
@@ -536,8 +536,8 @@ below are generated from that file. What the types and links mean is explained i
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">connects</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">ee-har</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">ee-port</span></code></p></td>
-<td><p>2</p></td>
-<td><p>The ports the harness ends mate with (both ends, also ports of external parts). The harness is built to fit them, so it holds the link.</p></td>
+<td><p>1</p></td>
+<td><p>The ports the harness ends mate with (both ends, also ports of external parts). The harness is built to fit them, so it holds the link. A cable with the same port def at both ends (an extension cable) has one target; CK-F1 counts the ends (at least two).</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">realizes</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">ee-har</span></code></p></td>
