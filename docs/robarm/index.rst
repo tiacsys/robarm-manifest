@@ -41,11 +41,41 @@ Documents
    * -
      - :external+sw-test-report:doc:`index`
      - ``robarm-sw``
+   * - 
+     - :external+fw-robarm-app:doc:`index`
+     - ``robarm-sw``
    * - Electrical
+     - :external+ee-req:doc:`index`
+     - ``robarm-ee``
+   * - 
      - :external+ee-design:doc:`index`
      - ``robarm-ee``
+   * - 
+     - :external+ee-test-spec:doc:`index`
+     - ``robarm-ee``
+   * - 
+     - :external+ee-test-report:doc:`index`
+     - ``robarm-ee``
+   * - 
+     - :external+harnesses:doc:`index`
+     - ``robarm-ee``
+   * - 
+     - :external+pcba-canary-board:doc:`index`
+     - ``robarm-ee``
    * - Mechanical
+     - :external+me-req:doc:`index`
+     - ``robarm-me``
+   * - 
      - :external+me-design:doc:`index`
+     - ``robarm-me``
+   * - 
+     - :external+me-test-spec:doc:`index`
+     - ``robarm-me``
+   * - 
+     - :external+me-test-report:doc:`index`
+     - ``robarm-me``
+   * - 
+     - :external+asm-canary-assembly:doc:`index`
      - ``robarm-me``
    * - Integration
      - :external+int-test-spec:doc:`index`
