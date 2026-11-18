@@ -28,7 +28,7 @@
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=08679464"></script>
+      <script src="../../_static/documentation_options.js?v=9bbabe5a"></script>
       <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../../_static/svg-pan-zoom/svg-pan-zoom.min.js?v=58bcff24"></script>
@@ -56,7 +56,7 @@
           <a href="../../index.html" class="icon icon-home">
             XDMOD Manual
           </a>
-<div class="version zdocs-version">v0.0-dev+g1949bec</div>
+<div class="version zdocs-version">v0.0-dev+g92742e9</div>
 
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -189,7 +189,7 @@
 <p>How the EE and ME repos refine the system model, which needs their models emit, and how KiCad
 and FreeCAD files refer to them (Phase 5, task 5.14). Decisions that rest on the FreeCAD spike are
 <em>proposed</em> until that spike is merged.</p>
-<div class="need_container docutils container" id="SNCB-94bf51b6">
+<div class="need_container docutils container" id="SNCB-275a85dd">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0130">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -243,7 +243,7 @@ model spike (<code class="docutils literal notranslate"><span class="pre">claude
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-c8e39e58">
+<div class="need_container docutils container" id="SNCB-9cfe7769">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0132">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -280,7 +280,7 @@ anywhere else it is a warning.</p>
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-dbf8cf1d">
+<div class="need_container docutils container" id="SNCB-81989d54">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0128">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -295,7 +295,7 @@ anywhere else it is a warning.</p>
 </span></span></div>
 <div class="line"><span><div class="line">refined by: <span class="refines"><span><a class="zd-need-ref reference internal" href="#XD-ADR-0139" title="XD-ADR-0128">XD-ADR-0139</a></span></span></div>
 <div class="line">revises: <span class="revises"><span><a class="zd-need-ref reference internal" href="traces.html#XD-ADR-0023" title="XD-ADR-0128">XD-ADR-0023</a></span></span></div>
-<div class="line">decides: <span class="decided_by"><span><a class="zd-need-ref reference internal" href="../rules/trace.html#XD-RULE-0049" title="XD-ADR-0128">XD-RULE-0049</a>, <a class="zd-need-ref reference internal" href="../rules/trace.html#XD-RULE-0050" title="XD-ADR-0128">XD-RULE-0050</a>, <a class="zd-need-ref reference internal" href="../rules/trace.html#XD-RULE-0055" title="XD-ADR-0128">XD-RULE-0055</a></span></span></div>
+<div class="line">decides: <span class="decided_by"><span><a class="zd-need-ref reference internal" href="../rules/trace.html#XD-RULE-0049" title="XD-ADR-0128">XD-RULE-0049</a>, <a class="zd-need-ref reference internal" href="../rules/trace.html#XD-RULE-0050" title="XD-ADR-0128">XD-RULE-0050</a>, <a class="zd-need-ref reference internal" href="../rules/trace.html#XD-RULE-0055" title="XD-ADR-0128">XD-RULE-0055</a>, <a class="zd-need-ref reference internal" href="../rules/trace.html#XD-RULE-0066" title="XD-ADR-0128">XD-RULE-0066</a></span></span></div>
 </span></div>
 </div>
 </td>
@@ -316,12 +316,18 @@ one def. The folder name comes from the element name (<code class="docutils lite
 same name. Instances are usages of the def, in any number; the trace stays on the def
 (<a class="zd-need-ref reference internal" href="method.html#XD-ADR-0117" title="XD-ADR-0117"><em class="xref need">The definition holds the tr... (XD-ADR-0117)</em></a>). A single ME part is 1:1 with a model element only when the model treats it
 as a block. The CK-D4 readers change with this decision.</p>
+<p><em>Corrected 2026-11-17 (owner decisions Q10, Q11 of tiacsys/xdmod#69):</em> a KiCad connector names
+its port with three fields instead of <code class="docutils literal notranslate"><span class="pre">Port</span></code>: <code class="docutils literal notranslate"><span class="pre">portName</span></code> (the port usage of the board def,
+e.g. <code class="docutils literal notranslate"><span class="pre">canaryLink</span></code>), <code class="docutils literal notranslate"><span class="pre">portType</span></code> (its def name, <code class="docutils literal notranslate"><span class="pre">CanaryHeader</span></code>) and <code class="docutils literal notranslate"><span class="pre">portTypeID</span></code> (the def’s
+<code class="docutils literal notranslate"><span class="pre">EE-PORT</span></code> ID); a harness end names the end port of its cable def the same way. Port usages get
+functional names, never designators, and connectors the designator prefix <code class="docutils literal notranslate"><span class="pre">X</span></code>
+(<a class="zd-need-ref reference internal" href="../rules/trace.html#XD-RULE-0066" title="XD-RULE-0066"><em class="xref need">Ports have functional names... (XD-RULE-0066)</em></a>). The <code class="docutils literal notranslate"><span class="pre">Port</span></code> property of a FreeCAD LCS stays.</p>
 </td>
 </tr>
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-1ee38379">
+<div class="need_container docutils container" id="SNCB-e5caa341">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0133">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -344,7 +350,10 @@ as a block. The CK-D4 readers change with this decision.</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">EE-PORT</span></code>: a connector port of a board, or a port of an external part, in the EE model. It
 <code class="docutils literal notranslate"><span class="pre">conforms</span></code> to the <code class="docutils literal notranslate"><span class="pre">SYS-IF</span></code> it specializes and is <code class="docutils literal notranslate"><span class="pre">part_of</span></code> its board (<code class="docutils literal notranslate"><span class="pre">EE-PCBA</span></code>). A port
 of an external part has no <code class="docutils literal notranslate"><span class="pre">part_of</span></code>; its qualified name names the part. A KiCad connector
-names it in its <code class="docutils literal notranslate"><span class="pre">Port</span></code> field; a connector without a port says so with <code class="docutils literal notranslate"><span class="pre">Port</span> <span class="pre">=</span> <span class="pre">-</span></code>.</p></li>
+names it in its <code class="docutils literal notranslate"><span class="pre">Port</span></code> field; a connector without a port says so with <code class="docutils literal notranslate"><span class="pre">Port</span> <span class="pre">=</span> <span class="pre">-</span></code>.
+<em>Corrected 2026-11-17 (owner decisions Q10, Q11 of tiacsys/xdmod#69):</em> the connector’s fields
+are <code class="docutils literal notranslate"><span class="pre">portName</span></code> (the board def’s port usage; <code class="docutils literal notranslate"><span class="pre">-</span></code> for none), <code class="docutils literal notranslate"><span class="pre">portType</span></code> and <code class="docutils literal notranslate"><span class="pre">portTypeID</span></code>
+(its def’s name and <code class="docutils literal notranslate"><span class="pre">EE-PORT</span></code> ID), see <a class="zd-need-ref reference internal" href="#XD-ADR-0128" title="XD-ADR-0128"><em class="xref need">The domain model owns the I... (XD-ADR-0128)</em></a>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">ME-PORT</span></code>: a mechanical interface of an assembly in the ME model, with its geometry. It
 <code class="docutils literal notranslate"><span class="pre">conforms</span></code> to the <code class="docutils literal notranslate"><span class="pre">SYS-IF</span></code> it specializes and is <code class="docutils literal notranslate"><span class="pre">part_of</span></code> its assembly (<code class="docutils literal notranslate"><span class="pre">ME-ASM</span></code>). In
 FreeCAD it is an LCS with a <code class="docutils literal notranslate"><span class="pre">Port</span></code> property.</p></li>
@@ -360,7 +369,7 @@ may conform to nothing.</p></li>
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-b7c3bf9d">
+<div class="need_container docutils container" id="SNCB-0495a81f">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0131">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -391,7 +400,7 @@ board variant by name, and SW adds no board variants of its own in iteration 1.<
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-3926443c">
+<div class="need_container docutils container" id="SNCB-00ab2a2d">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0134">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -449,7 +458,7 @@ co-design branch. A harness length is a <code class="docutils literal notranslat
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-bfe802ba">
+<div class="need_container docutils container" id="SNCB-1da25081">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0135">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -480,7 +489,7 @@ board def. Its schematic shows the wiring between external parts (<a class="zd-n
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-ec4c9421">
+<div class="need_container docutils container" id="SNCB-2d27281e">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0136">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -519,7 +528,7 @@ canary). ME variants: <a class="zd-need-ref reference internal" href="#XD-ADR-01
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-4feed3ba">
+<div class="need_container docutils container" id="SNCB-40beefeb">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0138">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -548,7 +557,7 @@ iteration 1 they get no IDs of their own.</p></td>
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-ab33eb52">
+<div class="need_container docutils container" id="SNCB-c8cae910">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0137">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -595,7 +604,7 @@ configuration. Based on the FreeCAD spike (<code class="docutils literal notrans
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-9c123b41">
+<div class="need_container docutils container" id="SNCB-a33211b8">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0146">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -637,7 +646,7 @@ then load fully through the top. The writer stops when any document is still par
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-20038fd7">
+<div class="need_container docutils container" id="SNCB-d175d19c">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0139">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">

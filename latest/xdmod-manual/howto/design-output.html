@@ -28,7 +28,7 @@
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=08679464"></script>
+      <script src="../_static/documentation_options.js?v=9bbabe5a"></script>
       <script src="../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../_static/svg-pan-zoom/svg-pan-zoom.min.js?v=58bcff24"></script>
@@ -56,7 +56,7 @@
           <a href="../index.html" class="icon icon-home">
             XDMOD Manual
           </a>
-<div class="version zdocs-version">v0.0-dev+g1949bec</div>
+<div class="version zdocs-version">v0.0-dev+g92742e9</div>
 
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -222,8 +222,10 @@ assembly’s folder and run it again.</p>
 <section id="boards-ee">
 <h2>Boards (EE)<a class="headerlink" href="#boards-ee" title="Link to this heading"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">cam</span> <span class="pre">robarm-ee</span> <span class="pre">&lt;board&gt;</span></code> copies the <code class="docutils literal notranslate"><span class="pre">pcba/&lt;board&gt;/</span></code> project into the version folder,
-writes the version into the copy’s <code class="docutils literal notranslate"><span class="pre">XD_VERSION</span></code> and runs the board’s KiCad jobset there (the shared
-template, CK-F10). Per variant (<code class="docutils literal notranslate"><span class="pre">default</span></code>, <code class="docutils literal notranslate"><span class="pre">alt</span></code>, …) it writes:</p>
+writes the version without the <code class="docutils literal notranslate"><span class="pre">&lt;board&gt;/</span></code> tag prefix into the copy’s <code class="docutils literal notranslate"><span class="pre">XD_VERSION</span></code> (<code class="docutils literal notranslate"><span class="pre">v0.1.0</span></code>,
+<code class="docutils literal notranslate"><span class="pre">v0.1.0-3-gabc1234-preview</span></code>) and the board name into <code class="docutils literal notranslate"><span class="pre">XD_BOARD</span></code>, and runs the board’s KiCad
+jobset there (the shared template, CK-F10). Title blocks show <code class="docutils literal notranslate"><span class="pre">${XD_BOARD}</span></code> as title and
+<code class="docutils literal notranslate"><span class="pre">${XD_VERSION}</span></code> as revision, the silkscreen both on two lines (CK-F11). Per variant (<code class="docutils literal notranslate"><span class="pre">default</span></code>, <code class="docutils literal notranslate"><span class="pre">alt</span></code>, …) it writes:</p>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Output</p></th>

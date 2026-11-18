@@ -28,7 +28,7 @@
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=08679464"></script>
+      <script src="../_static/documentation_options.js?v=9bbabe5a"></script>
       <script src="../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../_static/svg-pan-zoom/svg-pan-zoom.min.js?v=58bcff24"></script>
@@ -56,7 +56,7 @@
           <a href="../index.html" class="icon icon-home">
             XDMOD Manual
           </a>
-<div class="version zdocs-version">v0.0-dev+g1949bec</div>
+<div class="version zdocs-version">v0.0-dev+g92742e9</div>
 
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -881,6 +881,14 @@ requires. Some minimums depend on a field and are schema rules instead:</p>
 <td><p>string</p></td>
 <td><p>Generated needs: source path relative to the repo.</p></td>
 </tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">standard</span></code></p></td>
+<td><p>string</p></td>
+<td><p>ME-PART from CAD: the standard designation of a standard fastener (FreeCAD property `Standard`, e.g. `ISO 7380-1 M3x6, A2`). A catalog part: R3 does not apply.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">catalog</span></code></p></td>
+<td><p>string</p></td>
+<td><p>ME-PART from CAD: `&lt;Manufacturer&gt; &lt;MPN&gt;` of a bought part (FreeCAD properties `Manufacturer` and `MPN`, both set). A catalog part: R3 does not apply.</p></td>
+</tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">legacy_id</span></code></p></td>
 <td><p>string</p></td>
 <td><p>The old name of a decision or rule before it became a need, e.g. D37 or R3 (D120).</p></td>
@@ -1114,6 +1122,10 @@ field <code class="docutils literal notranslate"><span class="pre">Status</span>
 <tr class="need row-even" data-need-id="XD-RULE-0063"><td class="needs_id"><p><a class="reference internal" href="../explanation/rules/trace.html#XD-RULE-0063">XD-RULE-0063</a></p></td>
 <td class="needs_legacy_id"><p></p></td>
 <td class="needs_title"><p>Printed parts carry the version</p></td>
+</tr>
+<tr class="need row-odd" data-need-id="XD-RULE-0066"><td class="needs_id"><p><a class="reference internal" href="../explanation/rules/trace.html#XD-RULE-0066">XD-RULE-0066</a></p></td>
+<td class="needs_legacy_id"><p></p></td>
+<td class="needs_title"><p>Ports have functional names, connectors X designators</p></td>
 </tr>
 </tbody>
 </table>

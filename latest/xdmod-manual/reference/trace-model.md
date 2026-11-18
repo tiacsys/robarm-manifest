@@ -174,6 +174,8 @@ requires. Some minimums depend on a field and are schema rules instead:
 |-----------------------|----------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `status`              | `draft`, `valid`, `retired`                                                            | draft | valid | retired (D64e, D130). draft: structure checks only, no coverage.                                                                                                                                  |
 | `source_file`         | string                                                                                 | Generated needs: source path relative to the repo.                                                                                                                                                                |
+| `standard`            | string                                                                                 | ME-PART from CAD: the standard designation of a standard fastener (FreeCAD property \`Standard\`, e.g. \`ISO 7380-1 M3x6, A2\`). A catalog part: R3 does not apply.                                               |
+| `catalog`             | string                                                                                 | ME-PART from CAD: \`<Manufacturer> <MPN>\` of a bought part (FreeCAD properties \`Manufacturer\` and \`MPN\`, both set). A catalog part: R3 does not apply.                                                       |
 | `legacy_id`           | string                                                                                 | The old name of a decision or rule before it became a need, e.g. D37 or R3 (D120).                                                                                                                                |
 | `date`                | string matching `^[0-9]{4}-[0-9]{2}-[0-9]{2}$`                                         | XD-ADR / PRJ-DEC: the day the decision was made (YYYY-MM-DD).                                                                                                                                                     |
 | `decision_status`     | `proposed`, `accepted`, `revised`, `superseded`                                        | XD-ADR / PRJ-DEC: proposed (written, waiting for a spike or the owner) | accepted | revised (a newer decision changed part of it) | superseded (a newer decision replaced it). The newer decision holds the link. |
@@ -244,6 +246,7 @@ The trace principles and graph rules:
 | [XD-RULE-0061](../explanation/rules/trace.md#XD-RULE-0061) |                 | FreeCAD documents build                                  |
 | [XD-RULE-0062](../explanation/rules/trace.md#XD-RULE-0062) |                 | Assemblies have no unaccepted overlaps                   |
 | [XD-RULE-0063](../explanation/rules/trace.md#XD-RULE-0063) |                 | Printed parts carry the version                          |
+| [XD-RULE-0066](../explanation/rules/trace.md#XD-RULE-0066) |                 | Ports have functional names, connectors X designators    |
 
 Where each rule is checked:
 

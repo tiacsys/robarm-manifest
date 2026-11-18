@@ -40,7 +40,7 @@ below are written as `curatrix ...`.
 
    It writes `pcba/<name>/` (`<name>` = the board def’s name in kebab case, `MyBoard` ->
    `my-board`): the `.kicad_pro` with
-   `TraceID` = the def’s `EE-PCBA` ID and `XD_VERSION = unversioned`, the ERC/DRC severities
+   `TraceID` = the def’s `EE-PCBA` ID, `XD_BOARD = <name>` and `XD_VERSION = unversioned`, the ERC/DRC severities
    of the template, library tables with workspace variables only, the CAM jobset, and a schematic
    and board saved by KiCad. It also writes the board document `docs/pcba-<name>/` and its entry
    in `docs/documents.yaml`. The `TraceID` is a reference; the need comes from the model.
@@ -52,21 +52,33 @@ below are written as `curatrix ...`.
    curatrix launch kicad robarm-ee/pcba/<name>/<name>.kicad_pro
    ```
 
-   - Keep `${XD_VERSION}` in a title-block comment line of every sheet and of the board, and in a
-     silkscreen text; leave the `Rev` field empty (CK-F11).
+   - Keep the title-block title `${XD_BOARD}` and Rev `${XD_VERSION}` on every sheet and on the
+     board, and the two silkscreen lines `${XD_BOARD}` and `${XD_VERSION}`. Place and size them
+     so that a long preview version (`v0.1.0-12-gabc1234-dirty-preview`) stays inside the outline
+     and off holes; CK-F11 estimates it (KiCad’s text width is about 0.87 x the character width
+     per character).
    - Iteration 1 stops before routing: placement, outline and silkscreen; the unrouted-net DRC
      errors are accepted in one entry ([*A PCB layout in iteration 1... (XD-ADR-0144)*](../explanation/decisions/scope.html.md#XD-ADR-0144), step 6).
    - The outline and holes come from the board’s space budget through the co-design push, not by
      hand ([Make a co-design change (ME and EE)](co-design-change.html.md#howto-co-design-change)).
-4. **Connectors.** Every connector symbol (reference `J`, `P`, `CN`, or any symbol with a
-   `Port` field) gets a `Port` field with the `EE-PORT` def ID it implements. Then write the
-   connector tables and commit them:
+4. **Connectors.** Name the board def’s ports by function in the EE model, in lowerCamelCase
+   (`port canaryLink : CanaryHeader;`), never by designator (`j1`): the name reaches the block
+   diagram, the harness ends and later the devicetree ([*Ports have functional names... (XD-RULE-0066)*](../explanation/rules/trace.html.md#XD-RULE-0066)). In KiCad,
+   every connector gets the reference prefix `X` (`X1`, `X2`; KiCad’s connector symbols
+   default to `J`, so change it in the symbol’s properties) and three hidden fields:
+   - `portName`: the port usage of the board def it implements (`canaryLink`), or `-` for a
+     connector without a port;
+   - `portType`: that port’s def name (`CanaryHeader`);
+   - `portTypeID`: the def’s `EE-PORT` ID (`EE-PORT-0001`).
+
+   Then write the connector tables and commit them:
    ```sh
    curatrix gen connectors robarm-ee        # generated/<name>.connectors.json
    ```
 
-   CK-F1 compares pins and nets with the pin maps of the EE model, CK-D7 that the JSON is fresh, and
-   CK-D8 (local, KiCad) the extraction against KiCad’s XML netlist.
+   CK-F1 compares the three fields with the model and pins and nets with the pin maps, CK-F22 warns
+   on designator-like port names and connectors without an `X` designator, CK-D7 checks that the
+   JSON is fresh, and CK-D8 (local, KiCad) the extraction against KiCad’s XML netlist.
 5. **Variants** (at most two, [*Variants: the domain varian... (XD-ADR-0136)*](../explanation/decisions/domains.html.md#XD-ADR-0136)): add them in KiCad as assembly variants (DNP and
    fields per variant; a pin-header shunt position as a field `Setting`), write one def per
    variant in the EE model (`part def MyBoardAlt :> MyBoard, XdDomain::DomainVariant { :>>
