@@ -51,8 +51,16 @@ jobset there (the shared template, CK-F10). Title blocks show `${XD_BOARD}` as t
 
 The run fails when a job fails or fewer jobs ran than the jobset has. After you add a variant, write
 the jobset again with `curatrix cam robarm-ee <board> --update-jobset`. STEP and renderings show
-the parts only when the KiCad 3D models are in the workspace (role `ee3d` or `full`); otherwise
-the board is bare and `curatrix doctor` says so.
+the parts only when the KiCad 3D models are in the workspace (`libs/kicad/packages3D`, the west
+group `kicad-3d`, about 1.8 GB). Only the roles `ee3d` and `full` include that group; the roles
+`ee`, `me` and `integration` leave it out, though they can run `curatrix cam`. Without the
+models KiCad renders the bare board without a message, so curatrix says it in four places:
+`curatrix doctor` warns in every role that runs design output (`ee`, `ee3d`, `me`,
+`integration`, `full`); `curatrix cam` prints a warning, records `kicad_3d_models`
+(`present`, `partial`, `missing` or `none`) and the missing model paths in `cam.json`, and
+puts a red banner on every `render-*.png`; and the board document’s renderings section shows a
+warning. To get the models: `curatrix bootstrap --role full --adopt` (or `--role ee3d`), then
+run `curatrix cam` again.
 
 A harness (`harness/<name>/<name>.yml`) gets its WireViz diagram (`<name>.svg`, `.png`) with
 the version as label and its BOM (`<name>.bom.tsv`) ([*WireViz for harnesses (XD-ADR-0127)*](../explanation/decisions/documents.html.md#XD-ADR-0127)).
@@ -60,7 +68,12 @@ the version as label and its BOM (`<name>.bom.tsv`) ([*WireViz for harnesses (XD
 The FreeCAD model of a board for the ME side comes from the same command:
 `--board-model` writes it for any version under `build/<area>/board-model/`; `--library` does
 so only for a tagged release and copies it into a board-library checkout for its PR
-([*A board library repo for ME (XD-ADR-0139)*](../explanation/decisions/domains.html.md#XD-ADR-0139)).
+([*A board library repo for ME (XD-ADR-0139)*](../explanation/decisions/domains.html.md#XD-ADR-0139)). The model sits in the board frame of the co-design budget
+([*ME writes board geometry in... (XD-ADR-0134)*](../explanation/decisions/domains.html.md#XD-ADR-0134)): origin at the lower-left corner of the `Edge.Cuts` outline seen from the
+top, x right, y up, z = 0 on the top face (`general.thickness` of the board, in the `Board`
+property `Thickness`). An assembly places it with the seat’s LCS as it is. The outline must be
+drawn on the board (lines, rects, polygons, circles, arcs); `Edge.Cuts` items inside a footprint are
+not read.
 
 The model is made by the FreeCAD GUI binary on Qt’s offscreen platform (no window opens): the
 `App::Part` `Board` carries the trace properties (`TraceID`, `Version`, `Variant`,
@@ -86,8 +99,11 @@ link’s `Configs` names, plus `base` (the links without `Configs`), or `all` wh
 | Renderings    | `renderings/front|top|right|iso.png`                                                                                                     |
 | BOM and mass  | `bom.csv` (flat, with totals), `mass.json` (mass and center of gravity)                                                                  |
 
-The version folder also holds `findings.json` (CK-F4c, CK-F16, CK-F17 with their acceptance state)
-and `cam.json`.
+The version folder also holds `findings.json` (CK-F4c, CK-F16, CK-F17, CK-F18 with their acceptance
+state; `severity` is the finding’s own, `level` the check’s level in a local run, a warning for
+these four) and `cam.json`. In `bom.csv` a board of the board library is one line named with its
+version (`canary-board v0.1.0`); its `file` is relative to the ME repo and leaves it
+(`../robarm-freecad-pcba/boards/...`).
 
 ### Blender or the fallback renderer
 

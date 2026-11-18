@@ -26,7 +26,7 @@
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=9bbabe5a"></script>
+      <script src="_static/documentation_options.js?v=420ab8da"></script>
       <script src="_static/doctools.js?v=fd6eb6e6"></script>
       <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="_static/svg-pan-zoom/svg-pan-zoom.min.js?v=58bcff24"></script>
@@ -54,7 +54,7 @@
           <a href="index.html" class="icon icon-home">
             curatrix Reference
           </a>
-<div class="version zdocs-version">v0.0-dev+g92742e9</div>
+<div class="version zdocs-version">v0.0-dev+g9237afd</div>
 
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -75,6 +75,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#curatrix-bootstrap">curatrix bootstrap</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#curatrix-update">curatrix update</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#curatrix-launch">curatrix launch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#curatrix-mcp-server">curatrix mcp-server</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#curatrix-docs">curatrix docs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#curatrix-check">curatrix check</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#curatrix-gen">curatrix gen</a></li>
@@ -228,48 +229,51 @@ below. This page is generated from curatrix’s argument parser.</p>
 <td><p>fast-forward the manifest repo, west update -k, then refresh venv, tools, links, hooks</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#cli-launch"><span class="std std-ref">curatrix launch</span></a></p></td>
-<td><p>start a GUI tool / Claude Code with workspace-local config</p></td>
+<td><p>start a GUI tool / Claude Code with workspace-local config; `freecad –mcp` also starts the FreeCAD MCP RPC server (loopback, token) for that run</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cli-docs"><span class="std std-ref">curatrix docs</span></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#cli-mcp-server"><span class="std std-ref">curatrix mcp-server</span></a></p></td>
+<td><p>an MCP server for Claude Code (.mcp.json): workspace HOME, token, limits</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cli-docs"><span class="std std-ref">curatrix docs</span></a></p></td>
 <td><p>zdocs build of a repo (or `full`) into build/&lt;area&gt;/docs (strict)</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cli-check"><span class="std std-ref">curatrix check</span></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#cli-check"><span class="std std-ref">curatrix check</span></a></p></td>
 <td><p>run a repo’s checks (checks.yaml) for a stage</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cli-gen"><span class="std std-ref">curatrix gen</span></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cli-gen"><span class="std std-ref">curatrix gen</span></a></p></td>
 <td><p>generated files: stubs, model, cad-needs, code-needs, freecad-json, tombstones, all; freecad-params (model values into the skeletons’ Params, FreeCAD); cad-exports (build/&lt;area&gt;/cad, not committed)</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cli-new"><span class="std std-ref">curatrix new</span></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#cli-new"><span class="std std-ref">curatrix new</span></a></p></td>
 <td><p>scaffolds: `new pcba &lt;BoardDef&gt;` makes the KiCad project, jobset, library tables and the pcba-&lt;name&gt; document of a board def of the EE model; `new asm &lt;AssemblyDef&gt;` the FreeCAD top document, skeleton.FCStd and the asm-&lt;name&gt; document of an assembly def of the ME model</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cli-cam"><span class="std std-ref">curatrix cam</span></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cli-cam"><span class="std std-ref">curatrix cam</span></a></p></td>
 <td><p>design output into build/&lt;area&gt;/cam/&lt;name&gt;/&lt;version&gt;/: EE a pcba/ project (copy, version, its jobset; local, needs KiCad) or a harness (WireViz diagram and BOM, a separate process); ME a top-level assembly (FreeCADCmd: STEP, 3MF/STL of the printed parts with the version embossed, drawing SVG/PDF, exploded view, BOM; per variant)</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cli-trace"><span class="std std-ref">curatrix trace</span></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#cli-trace"><span class="std std-ref">curatrix trace</span></a></p></td>
 <td><p>trace report per SYS-REQ (refined, satisfied, verified, latest result, gaps) from the last docs build; the canary configuration in its own section</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cli-ids"><span class="std std-ref">curatrix ids</span></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cli-ids"><span class="std std-ref">curatrix ids</span></a></p></td>
 <td><p>issue IDs from the ledger, replace placeholders</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cli-views"><span class="std std-ref">curatrix views</span></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#cli-views"><span class="std std-ref">curatrix views</span></a></p></td>
 <td><p>views as editable SVG: build | check | normalize</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cli-variants"><span class="std std-ref">curatrix variants</span></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cli-variants"><span class="std std-ref">curatrix variants</span></a></p></td>
 <td><p>`variants list [repo] [–json]`: every board and assembly variant across levels (model, KiCad/FreeCAD, differences, what it serves); `variants [repo]` is the deprecated name of `pleml check`</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cli-pleml"><span class="std std-ref">curatrix pleml</span></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#cli-pleml"><span class="std std-ref">curatrix pleml</span></a></p></td>
 <td><p>PLEML feature-variation rules: `pleml check [repo]` (F1, F2, V1-V5 on the model JSON, CK-B4)</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cli-needs-diff"><span class="std std-ref">curatrix needs-diff</span></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cli-needs-diff"><span class="std std-ref">curatrix needs-diff</span></a></p></td>
 <td><p>change impact between two sets of needs.json (R7)</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cli-work"><span class="std std-ref">curatrix work</span></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#cli-work"><span class="std std-ref">curatrix work</span></a></p></td>
 <td><p>git worktrees for parallel work: start &lt;branch&gt; &lt;repos…&gt; | done &lt;branch&gt; | list (D125)</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cli-ci"><span class="std std-ref">curatrix ci</span></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cli-ci"><span class="std std-ref">curatrix ci</span></a></p></td>
 <td><p>CI helpers: `ci siblings` resolves sibling revisions (D127); `ci base` fetches the published needs as the CK-G1/G2 base</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cli-evidence"><span class="std std-ref">curatrix evidence</span></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#cli-evidence"><span class="std std-ref">curatrix evidence</span></a></p></td>
 <td><p>test run records: record (Twister dir -&gt; evidence branch), read (-&gt; TR needs), preview (Twister dir -&gt; preview TR needs for the docs), validate</p></td>
 </tr>
 </tbody>
@@ -364,7 +368,7 @@ options:
 </section>
 <section id="curatrix-launch">
 <span id="cli-launch"></span><h2>curatrix launch<a class="headerlink" href="#curatrix-launch" title="Link to this heading"></a></h2>
-<p>start a GUI tool / Claude Code with workspace-local config.</p>
+<p>start a GUI tool / Claude Code with workspace-local config; `freecad –mcp` also starts the FreeCAD MCP RPC server (loopback, token) for that run.</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>usage: curatrix launch [-h] {kicad,freecad,blender,drawio,claude} ...
 
 positional arguments:
@@ -373,6 +377,23 @@ positional arguments:
 
 options:
   -h, --help            show this help message and exit
+</pre></div>
+</div>
+</section>
+<section id="curatrix-mcp-server">
+<span id="cli-mcp-server"></span><h2>curatrix mcp-server<a class="headerlink" href="#curatrix-mcp-server" title="Link to this heading"></a></h2>
+<p>an MCP server for Claude Code (.mcp.json): workspace HOME, token, limits.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>usage: curatrix mcp-server [-h] [--mode {readonly,write,manufacturing}]
+                           {freecad,kicad}
+
+positional arguments:
+  {freecad,kicad}
+
+options:
+  -h, --help            show this help message and exit
+  --mode {readonly,write,manufacturing}
+                        kicad only: the server&#39;s operating mode (default
+                        readonly: no tool that changes a design)
 </pre></div>
 </div>
 </section>

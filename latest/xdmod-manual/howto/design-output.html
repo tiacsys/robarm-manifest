@@ -28,7 +28,7 @@
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=9bbabe5a"></script>
+      <script src="../_static/documentation_options.js?v=420ab8da"></script>
       <script src="../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../_static/svg-pan-zoom/svg-pan-zoom.min.js?v=58bcff24"></script>
@@ -56,7 +56,7 @@
           <a href="../index.html" class="icon icon-home">
             XDMOD Manual
           </a>
-<div class="version zdocs-version">v0.0-dev+g92742e9</div>
+<div class="version zdocs-version">v0.0-dev+g9237afd</div>
 
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -259,14 +259,27 @@ bottom, one 3D view)</p></td>
 </table>
 <p>The run fails when a job fails or fewer jobs ran than the jobset has. After you add a variant, write
 the jobset again with <code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">cam</span> <span class="pre">robarm-ee</span> <span class="pre">&lt;board&gt;</span> <span class="pre">--update-jobset</span></code>. STEP and renderings show
-the parts only when the KiCad 3D models are in the workspace (role <code class="docutils literal notranslate"><span class="pre">ee3d</span></code> or <code class="docutils literal notranslate"><span class="pre">full</span></code>); otherwise
-the board is bare and <code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">doctor</span></code> says so.</p>
+the parts only when the KiCad 3D models are in the workspace (<code class="docutils literal notranslate"><span class="pre">libs/kicad/packages3D</span></code>, the west
+group <code class="docutils literal notranslate"><span class="pre">kicad-3d</span></code>, about 1.8 GB). Only the roles <code class="docutils literal notranslate"><span class="pre">ee3d</span></code> and <code class="docutils literal notranslate"><span class="pre">full</span></code> include that group; the roles
+<code class="docutils literal notranslate"><span class="pre">ee</span></code>, <code class="docutils literal notranslate"><span class="pre">me</span></code> and <code class="docutils literal notranslate"><span class="pre">integration</span></code> leave it out, though they can run <code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">cam</span></code>. Without the
+models KiCad renders the bare board without a message, so curatrix says it in four places:
+<code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">doctor</span></code> warns in every role that runs design output (<code class="docutils literal notranslate"><span class="pre">ee</span></code>, <code class="docutils literal notranslate"><span class="pre">ee3d</span></code>, <code class="docutils literal notranslate"><span class="pre">me</span></code>,
+<code class="docutils literal notranslate"><span class="pre">integration</span></code>, <code class="docutils literal notranslate"><span class="pre">full</span></code>); <code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">cam</span></code> prints a warning, records <code class="docutils literal notranslate"><span class="pre">kicad_3d_models</span></code>
+(<code class="docutils literal notranslate"><span class="pre">present</span></code>, <code class="docutils literal notranslate"><span class="pre">partial</span></code>, <code class="docutils literal notranslate"><span class="pre">missing</span></code> or <code class="docutils literal notranslate"><span class="pre">none</span></code>) and the missing model paths in <code class="docutils literal notranslate"><span class="pre">cam.json</span></code>, and
+puts a red banner on every <code class="docutils literal notranslate"><span class="pre">render-*.png</span></code>; and the board document’s renderings section shows a
+warning. To get the models: <code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">bootstrap</span> <span class="pre">--role</span> <span class="pre">full</span> <span class="pre">--adopt</span></code> (or <code class="docutils literal notranslate"><span class="pre">--role</span> <span class="pre">ee3d</span></code>), then
+run <code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">cam</span></code> again.</p>
 <p>A harness (<code class="docutils literal notranslate"><span class="pre">harness/&lt;name&gt;/&lt;name&gt;.yml</span></code>) gets its WireViz diagram (<code class="docutils literal notranslate"><span class="pre">&lt;name&gt;.svg</span></code>, <code class="docutils literal notranslate"><span class="pre">.png</span></code>) with
 the version as label and its BOM (<code class="docutils literal notranslate"><span class="pre">&lt;name&gt;.bom.tsv</span></code>) (<a class="reference internal" href="../explanation/decisions/documents.html#XD-ADR-0127" title="XD-ADR-0127"><em class="xref need">WireViz for harnesses (XD-ADR-0127)</em></a>).</p>
 <p>The FreeCAD model of a board for the ME side comes from the same command:
 <code class="docutils literal notranslate"><span class="pre">--board-model</span></code> writes it for any version under <code class="docutils literal notranslate"><span class="pre">build/&lt;area&gt;/board-model/</span></code>; <code class="docutils literal notranslate"><span class="pre">--library</span></code> does
 so only for a tagged release and copies it into a board-library checkout for its PR
-(<a class="reference internal" href="../explanation/decisions/domains.html#XD-ADR-0139" title="XD-ADR-0139"><em class="xref need">A board library repo for ME (XD-ADR-0139)</em></a>).</p>
+(<a class="reference internal" href="../explanation/decisions/domains.html#XD-ADR-0139" title="XD-ADR-0139"><em class="xref need">A board library repo for ME (XD-ADR-0139)</em></a>). The model sits in the board frame of the co-design budget
+(<a class="reference internal" href="../explanation/decisions/domains.html#XD-ADR-0134" title="XD-ADR-0134"><em class="xref need">ME writes board geometry in... (XD-ADR-0134)</em></a>): origin at the lower-left corner of the <code class="docutils literal notranslate"><span class="pre">Edge.Cuts</span></code> outline seen from the
+top, x right, y up, z = 0 on the top face (<code class="docutils literal notranslate"><span class="pre">general.thickness</span></code> of the board, in the <code class="docutils literal notranslate"><span class="pre">Board</span></code>
+property <code class="docutils literal notranslate"><span class="pre">Thickness</span></code>). An assembly places it with the seat’s LCS as it is. The outline must be
+drawn on the board (lines, rects, polygons, circles, arcs); <code class="docutils literal notranslate"><span class="pre">Edge.Cuts</span></code> items inside a footprint are
+not read.</p>
 <p>The model is made by the FreeCAD GUI binary on Qt’s offscreen platform (no window opens): the
 <code class="docutils literal notranslate"><span class="pre">App::Part</span></code> <code class="docutils literal notranslate"><span class="pre">Board</span></code> carries the trace properties (<code class="docutils literal notranslate"><span class="pre">TraceID</span></code>, <code class="docutils literal notranslate"><span class="pre">Version</span></code>, <code class="docutils literal notranslate"><span class="pre">Variant</span></code>,
 <code class="docutils literal notranslate"><span class="pre">Board</span></code>, <code class="docutils literal notranslate"><span class="pre">Commit</span></code>, <code class="docutils literal notranslate"><span class="pre">Source</span></code>) and holds one object per component, named by its reference
@@ -310,8 +323,11 @@ view, frame and title block), <code class="docutils literal notranslate"><span c
 </tr>
 </tbody>
 </table>
-<p>The version folder also holds <code class="docutils literal notranslate"><span class="pre">findings.json</span></code> (CK-F4c, CK-F16, CK-F17 with their acceptance state)
-and <code class="docutils literal notranslate"><span class="pre">cam.json</span></code>.</p>
+<p>The version folder also holds <code class="docutils literal notranslate"><span class="pre">findings.json</span></code> (CK-F4c, CK-F16, CK-F17, CK-F18 with their acceptance
+state; <code class="docutils literal notranslate"><span class="pre">severity</span></code> is the finding’s own, <code class="docutils literal notranslate"><span class="pre">level</span></code> the check’s level in a local run, a warning for
+these four) and <code class="docutils literal notranslate"><span class="pre">cam.json</span></code>. In <code class="docutils literal notranslate"><span class="pre">bom.csv</span></code> a board of the board library is one line named with its
+version (<code class="docutils literal notranslate"><span class="pre">canary-board</span> <span class="pre">v0.1.0</span></code>); its <code class="docutils literal notranslate"><span class="pre">file</span></code> is relative to the ME repo and leaves it
+(<code class="docutils literal notranslate"><span class="pre">../robarm-freecad-pcba/boards/...</span></code>).</p>
 <section id="blender-or-the-fallback-renderer">
 <h3>Blender or the fallback renderer<a class="headerlink" href="#blender-or-the-fallback-renderer" title="Link to this heading"></a></h3>
 <p>The renderings come from one of two renderers. <code class="docutils literal notranslate"><span class="pre">cam.json</span></code> names the one used

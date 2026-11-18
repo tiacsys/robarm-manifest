@@ -28,7 +28,7 @@
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=9bbabe5a"></script>
+      <script src="../_static/documentation_options.js?v=420ab8da"></script>
       <script src="../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../_static/svg-pan-zoom/svg-pan-zoom.min.js?v=58bcff24"></script>
@@ -56,7 +56,7 @@
           <a href="../index.html" class="icon icon-home">
             XDMOD Manual
           </a>
-<div class="version zdocs-version">v0.0-dev+g92742e9</div>
+<div class="version zdocs-version">v0.0-dev+g9237afd</div>
 
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -251,23 +251,22 @@ curatrix<span class="w"> </span>gen<span class="w"> </span>all<span class="w"> <
 </pre></div>
 </div>
 </li>
-<li><p><strong>Push</strong> (into robarm-ee), always on a copy under <code class="docutils literal notranslate"><span class="pre">build/</span></code>. Get StepUp once, at its pin
-(easyw/kicadStepUpMod, commit <code class="docutils literal notranslate"><span class="pre">3db98be23aae40413eab041f19de5ab2e168157e</span></code>), next to FreeCAD,
-not into FreeCAD’s <code class="docutils literal notranslate"><span class="pre">Mod/</span></code>, until <code class="docutils literal notranslate"><span class="pre">tools.yaml</span></code> holds the pin and <code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">update</span></code> clones it:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/easyw/kicadStepUpMod<span class="w"> </span>.xdmod/stepup/kicadStepUpMod
-git<span class="w"> </span>-C<span class="w"> </span>.xdmod/stepup/kicadStepUpMod<span class="w"> </span>checkout<span class="w"> </span>3db98be23aae40413eab041f19de5ab2e168157e
-mkdir<span class="w"> </span>-p<span class="w"> </span>.xdmod/stepup/home
-</pre></div>
-</div>
+<li><p><strong>Push</strong> (into robarm-ee), always on a copy under <code class="docutils literal notranslate"><span class="pre">build/</span></code>. StepUp (easyw/kicadStepUpMod) is
+a curated tool in <code class="docutils literal notranslate"><span class="pre">xdmod/tools.yaml</span></code>, pinned by commit
+(<code class="docutils literal notranslate"><span class="pre">3db98be23aae40413eab041f19de5ab2e168157e</span></code>): <code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">update</span></code> installs it into
+<code class="docutils literal notranslate"><span class="pre">.xdmod/stepup/kicadStepUpMod</span></code> (next to FreeCAD, not into FreeCAD’s <code class="docutils literal notranslate"><span class="pre">Mod/</span></code>) and creates the
+sandbox <code class="docutils literal notranslate"><span class="pre">HOME</span></code> <code class="docutils literal notranslate"><span class="pre">.xdmod/stepup/home</span></code>; <code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">env</span></code> exports both as <code class="docutils literal notranslate"><span class="pre">XD_STEPUP</span></code> and
+<code class="docutils literal notranslate"><span class="pre">XD_STEPUP_HOME</span></code>; <code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">doctor</span></code> fails when StepUp is missing or not at its pin. A clone
+made by hand at the pin (the way before) is adopted, not downloaded again.</p>
 <p><strong>Licence gap:</strong> the repo has no <code class="docutils literal notranslate"><span class="pre">LICENSE</span></code> file; AGPL-3.0 is only claimed in its README and
-<code class="docutils literal notranslate"><span class="pre">package.xml</span></code>. Record it in the StepUp licence record (task 5.29) before StepUp becomes a
-pinned tool.</p>
+<code class="docutils literal notranslate"><span class="pre">package.xml</span></code>. <code class="docutils literal notranslate"><span class="pre">tools.yaml</span></code> records the gap. We call StepUp in its own FreeCAD process and
+never import it into curatrix or copy its code into a repo.</p>
 <p>Copy the skeleton and the <code class="docutils literal notranslate"><span class="pre">.kicad_pcb</span></code> (with its <code class="docutils literal notranslate"><span class="pre">.kicad_pro</span></code> and library tables) to
 <code class="docutils literal notranslate"><span class="pre">build/&lt;area&gt;/co-design/</span></code> and run the StepUp push (<code class="docutils literal notranslate"><span class="pre">HOME</span></code> only for this process under
 <code class="docutils literal notranslate"><span class="pre">.xdmod/</span></code>):</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">eval</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>.venv/bin/curatrix<span class="w"> </span>env<span class="k">)</span><span class="s2">&quot;</span>
-curatrix<span class="w"> </span>run<span class="w"> </span>--use<span class="w"> </span>freecad<span class="w"> </span>--<span class="w"> </span>env<span class="w"> </span><span class="nv">HOME</span><span class="o">=</span><span class="nv">$PWD</span>/.xdmod/stepup/home<span class="w"> </span><span class="nv">QT_QPA_PLATFORM</span><span class="o">=</span>offscreen<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span><span class="nv">XD_STEPUP</span><span class="o">=</span><span class="nv">$PWD</span>/.xdmod/stepup/kicadStepUpMod<span class="w"> </span><span class="nv">XD_BOARD</span><span class="o">=</span><span class="nv">$PWD</span>/build/&lt;area&gt;/co-design/&lt;board&gt;.kicad_pcb<span class="w"> </span><span class="se">\</span>
+curatrix<span class="w"> </span>run<span class="w"> </span>--use<span class="w"> </span>freecad<span class="w"> </span>--<span class="w"> </span>env<span class="w"> </span><span class="nv">HOME</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$XD_STEPUP_HOME</span><span class="s2">&quot;</span><span class="w"> </span><span class="nv">QT_QPA_PLATFORM</span><span class="o">=</span>offscreen<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="nv">XD_BOARD</span><span class="o">=</span><span class="nv">$PWD</span>/build/&lt;area&gt;/co-design/&lt;board&gt;.kicad_pcb<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span><span class="nv">XD_SKELETON</span><span class="o">=</span><span class="nv">$PWD</span>/build/&lt;area&gt;/co-design/&lt;asm&gt;-skeleton.FCStd<span class="w"> </span><span class="nv">XD_RESULT</span><span class="o">=</span><span class="nv">$PWD</span>/build/&lt;area&gt;/co-design/push.json<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>FreeCAD<span class="w"> </span>xdmod/templates/codesign/stepup-push.py
 </pre></div>
@@ -336,13 +335,14 @@ again; never merge two <code class="docutils literal notranslate"><span class="p
 <ul class="simple">
 <li><p>CK-F3: the seat’s values in the skeleton’s <code class="docutils literal notranslate"><span class="pre">Params</span></code> and its LCS equal the ME model.</p></li>
 <li><p>CK-F4b: DRC of the pushed board (the push itself adds no findings on the canary).</p></li>
-<li><p>CK-F18, “board inside its space budget”, exists but is still a skip with its reason (it skips
-without a board model in the assembly, and reports “not checked yet” with one). Its rules, for
-iteration 2: the seat’s restated values equal the budget’s; the KiCad outline and <code class="docutils literal notranslate"><span class="pre">Edge.Cuts</span></code>
-circles equal <code class="docutils literal notranslate"><span class="pre">width</span></code>, <code class="docutils literal notranslate"><span class="pre">depth</span></code> and the hole list; each connector named in the budget sits at
-its position (footprint pin 1, in the board frame); the board model (STEP) placed at the seat’s LCS
-fits the box and does not collide with the direct children of the assembly. Until then, the
-reviewers compare these values by eye.</p></li>
+<li><p>CK-F18, “board inside its space budget” (local, FreeCAD): the board model of the board library,
+linked at the seat’s LCS, fits the budget’s box in the board frame (<code class="docutils literal notranslate"><span class="pre">width</span></code> x <code class="docutils literal notranslate"><span class="pre">depth</span></code>, from
+<code class="docutils literal notranslate"><span class="pre">-heightBelow</span></code> to <code class="docutils literal notranslate"><span class="pre">heightAbove</span></code>; tolerance 0.01 mm); no other part reaches into the box (a
+stand-off under the board does: accept it in <code class="docutils literal notranslate"><span class="pre">accepted.yaml</span></code> or change the budget); no library
+fastener collides with the board (a screw that misses its hole). Board versus part collisions are
+CK-F17’s. A skip without a board model. Not checked yet (iteration 2): the KiCad outline and
+<code class="docutils literal notranslate"><span class="pre">Edge.Cuts</span></code> circles against <code class="docutils literal notranslate"><span class="pre">width</span></code>, <code class="docutils literal notranslate"><span class="pre">depth</span></code> and the hole list, and the connector positions;
+the reviewers compare these by eye.</p></li>
 </ul>
 </section>
 <section id="pitfalls">
@@ -352,7 +352,9 @@ reviewers compare these values by eye.</p></li>
 KiCad outside curatrix or its shims.</p></li>
 <li><p>The push needs the FreeCAD GUI binary (StepUp imports <code class="docutils literal notranslate"><span class="pre">FreeCADGui</span></code>); offscreen it must not open
 a dialog, so the script replaces them by log lines. StepUp’s board load (KiCad to FreeCAD) stalls
-offscreen: use the STEP path.</p></li>
+offscreen: use the STEP path. In a GUI session (<code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">launch</span> <span class="pre">freecad</span> <span class="pre">--mcp</span></code>) an agent can
+load a board copy through the FreeCAD MCP server, with StepUp’s message boxes replaced by log
+lines (the freecad-authoring skill); a box nobody closes blocks the session.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">kicad-cli</span> <span class="pre">pcb</span> <span class="pre">upgrade</span></code> needs <code class="docutils literal notranslate"><span class="pre">--force</span></code> (StepUp keeps the version header) and may add a few
 default values (text thickness) to footprints on the first re-save.</p></li>
 <li><p>Every push gives all <code class="docutils literal notranslate"><span class="pre">Edge.Cuts</span></code> items new UUIDs, so a KiCad DRC exclusion on one of them is
