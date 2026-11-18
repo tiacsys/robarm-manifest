@@ -5,16 +5,17 @@
 # build/full/docs/deploy/html/<doc-id>/.
 #
 # - Every document appears once. `doc_dir` is relative to THIS file and points into the west
-#   project that owns the document: ../../<repo>/docs/<doc-id>.
+#   project that owns the document: ../../<repo>/docs/<doc-id>, or ../../<repo>/docs/<sub>/<doc-id>
+#   for a per-deliverable document (pcbas/, assemblies/, firmware/; tiacsys/xdmod#69 Q8).
 # - Each entry mirrors the entry in the owning repo's own registry (same id, title, prefix and
 #   kind). If a repo changes an entry, change it here too.
 # - Prefix = doc id (doc-architecture.md §3), so cross-document references read the same in
 #   every registry, e.g. :external+se-req:doc:`index`.
 # - version_project: the document shows its own repo's version (`git describe` of that repo).
 #   zdocs ignores it for Sphinx documents until zdocs PR #37 merges (known workaround).
-# - Iteration 1 document set (doc-architecture.md §2 with D135): robarm-ee and robarm-me start
-#   with one document each (ee-design, me-design). More documents come with tests, PCBAs and
-#   prototype wiring.
+# - Document set (doc-architecture.md §2, XD-ADR-0149): EE and ME have the V-model split of SW
+#   (-req, -design, -test-spec, -test-report), one document per board, assembly and firmware image,
+#   and one harnesses document for every cable.
 # - Group ids must differ from document ids (zdocs makes a "<group>-<builder>" target for each).
 base_url: "http://localhost:8000/"
 
@@ -104,23 +105,105 @@ documents:
     version_project: robarm-sw
     builders: [html]
     needs: {source: json}
+  fw-robarm-app:
+    title: "Firmware: robarm_app"
+    group: g-software
+    prefix: fw-robarm-app
+    doc_dir: ../../robarm-sw/docs/firmware/fw-robarm-app
+    version_project: robarm-sw
+    builders: [html]
+    needs: {source: json}
 
-  # ---------------------------------------------------------------- robarm-ee (one document, D135)
+  # ---------------------------------------------------------------- robarm-ee (V-model documents,
+  # one harnesses document, one document per board in docs/pcbas/; tiacsys/xdmod#69 Q8)
+  ee-req:
+    title: "EE Requirements Specification"
+    group: g-electrical
+    prefix: ee-req
+    doc_dir: ../../robarm-ee/docs/ee-req
+    version_project: robarm-ee
+    builders: [html]
+    needs: {source: json}
   ee-design:
-    title: "EE Requirements & Design"
+    title: "EE Design"
     group: g-electrical
     prefix: ee-design
     doc_dir: ../../robarm-ee/docs/ee-design
     version_project: robarm-ee
     builders: [html]
     needs: {source: json}
+  ee-test-spec:
+    title: "EE Test Specification"
+    group: g-electrical
+    prefix: ee-test-spec
+    doc_dir: ../../robarm-ee/docs/ee-test-spec
+    version_project: robarm-ee
+    builders: [html]
+    needs: {source: json}
+  ee-test-report:
+    title: "EE Test Report"
+    group: g-electrical
+    prefix: ee-test-report
+    doc_dir: ../../robarm-ee/docs/ee-test-report
+    version_project: robarm-ee
+    builders: [html]
+    needs: {source: json}
+  harnesses:
+    title: "Harnesses"
+    group: g-electrical
+    prefix: harnesses
+    doc_dir: ../../robarm-ee/docs/harnesses
+    version_project: robarm-ee
+    builders: [html]
+    needs: {source: json}
+  pcba-canary-board:
+    title: "Canary Board"
+    group: g-electrical
+    prefix: pcba-canary-board
+    doc_dir: ../../robarm-ee/docs/pcbas/pcba-canary-board
+    version_project: robarm-ee
+    builders: [html]
+    needs: {source: json}
 
-  # ---------------------------------------------------------------- robarm-me (one document, D135)
+  # ---------------------------------------------------------------- robarm-me (V-model documents,
+  # one document per top-level assembly in docs/assemblies/; tiacsys/xdmod#69 Q8)
+  me-req:
+    title: "ME Requirements Specification"
+    group: g-mechanical
+    prefix: me-req
+    doc_dir: ../../robarm-me/docs/me-req
+    version_project: robarm-me
+    builders: [html]
+    needs: {source: json}
   me-design:
-    title: "ME Requirements & Design"
+    title: "ME Design"
     group: g-mechanical
     prefix: me-design
     doc_dir: ../../robarm-me/docs/me-design
+    version_project: robarm-me
+    builders: [html]
+    needs: {source: json}
+  me-test-spec:
+    title: "ME Test Specification"
+    group: g-mechanical
+    prefix: me-test-spec
+    doc_dir: ../../robarm-me/docs/me-test-spec
+    version_project: robarm-me
+    builders: [html]
+    needs: {source: json}
+  me-test-report:
+    title: "ME Test Report"
+    group: g-mechanical
+    prefix: me-test-report
+    doc_dir: ../../robarm-me/docs/me-test-report
+    version_project: robarm-me
+    builders: [html]
+    needs: {source: json}
+  asm-canary-assembly:
+    title: "Canary Assembly"
+    group: g-mechanical
+    prefix: asm-canary-assembly
+    doc_dir: ../../robarm-me/docs/assemblies/asm-canary-assembly
     version_project: robarm-me
     builders: [html]
     needs: {source: json}
