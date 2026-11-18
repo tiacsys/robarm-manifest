@@ -21,7 +21,7 @@ a new configuration. Variants follow VAMOS in SysML v2 through PLEML ([*Variants
    ```sh
    curatrix ids fix robarm-syseng
    curatrix gen model robarm-syseng
-   curatrix variants robarm-syseng -v
+   curatrix pleml check robarm-syseng -v
    ```
 
 ## Checks
@@ -36,6 +36,6 @@ Iteration 1 checks [*A configuration respects it... (XD-RULE-0021)*](../explanat
 
 ## Pitfalls
 
-- The Pilot accepts models that break every variant rule. Only `curatrix variants` finds them.
+- The Pilot accepts models that break every variant rule. Only `curatrix pleml check` finds them.
 - A `realizes` link from an element that exists in more configurations than its target breaks
   [*realizes respects configura... (XD-RULE-0030)*](../explanation/rules/variants.html.md#XD-RULE-0030) once that rule is checked.

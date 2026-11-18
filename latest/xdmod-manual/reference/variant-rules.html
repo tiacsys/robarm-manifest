@@ -12,6 +12,7 @@
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../_static/xd-svgview.css?v=ec1b17f2" />
       <link rel="stylesheet" type="text/css" href="../_static/zdocs-need-types.css" />
       <link rel="stylesheet" type="text/css" href="../_static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
       <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
@@ -27,9 +28,11 @@
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=46a6e386"></script>
+      <script src="../_static/documentation_options.js?v=08679464"></script>
       <script src="../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/svg-pan-zoom/svg-pan-zoom.min.js?v=58bcff24"></script>
+      <script src="../_static/xd-svgview.js?v=ca57f511"></script>
       <script src="../_static/zdocs-need-preview.js?v=98728251"></script>
       <script src="../_static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
       <script src="../_static/sphinx-data-viewer/jsonview_loader.js?v=f7ff7e7d"></script>
@@ -53,7 +56,7 @@
           <a href="../index.html" class="icon icon-home">
             XDMOD Manual
           </a>
-<div class="version zdocs-version">v0.0-dev+g2f90511</div>
+<div class="version zdocs-version">v0.0-dev+g1949bec</div>
 
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -183,7 +186,7 @@
 <span id="ref-variant-rules"></span><h1>Variant rules<a class="headerlink" href="#variant-rules" title="Link to this heading"></a></h1>
 <p>These rules check a variant model: the feature model, the product models of the configurations,
 and the trace links between variant elements (<a class="reference internal" href="../explanation/decisions/method.html#XD-ADR-0095" title="XD-ADR-0095"><em class="xref need">Variant rules (XD-ADR-0095)</em></a>). All are errors. curatrix checks them
-with <a class="reference internal" href="checks.html#XD-CHECK-0009" title="XD-CHECK-0009"><em class="xref need">variant rules F1, F2, V1-V5 (XD-CHECK-0009)</em></a> (<code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">variants</span></code> runs them alone); the SysML Pilot checks none of them.
+with <a class="reference internal" href="checks.html#XD-CHECK-0009" title="XD-CHECK-0009"><em class="xref need">variant rules F1, F2, V1-V5 (XD-CHECK-0009)</em></a> (<code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">pleml</span> <span class="pre">check</span></code> runs them alone; <code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">variants</span></code> without <code class="docutils literal notranslate"><span class="pre">list</span></code> is its old name, kept for one release); the SysML Pilot checks none of them.
 They run locally, in PR CI of the systems engineering repo, and in the full set. Background:
 <a class="reference internal" href="../explanation/variants.html"><span class="doc">Variants</span></a>.</p>
 <div class="needstable_wrapper docutils container" id="needtable-reference/variant-rules-0">

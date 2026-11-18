@@ -94,8 +94,8 @@ docs/                   me-design; one document per top-level assembly (asm-<nam
 
 FreeCAD files are stored uncompressed, with a git textconv for readable diffs ([*FreeCAD files uncompressed,... (XD-ADR-0056)*](../explanation/decisions/checks.md#XD-ADR-0056),
 [*Design files are stored unc... (XD-RULE-0039)*](../explanation/rules/checks.md#XD-RULE-0039)). Parts refer only to the skeleton, never to the top document
-([*FreeCAD assemblies: a skele... (XD-ADR-0137)*](../explanation/decisions/domains.md#XD-ADR-0137), proposed). Board models come at fixed versions from a board library repo
-([*A board library repo for ME (XD-ADR-0139)*](../explanation/decisions/domains.md#XD-ADR-0139), proposed). Boards, harnesses and assemblies have their own tags
+([*FreeCAD assemblies: a skele... (XD-ADR-0137)*](../explanation/decisions/domains.md#XD-ADR-0137)). Board models come at fixed versions from a board library repo
+([*A board library repo for ME (XD-ADR-0139)*](../explanation/decisions/domains.md#XD-ADR-0139)). Boards, harnesses and assemblies have their own tags
 `<name>/vX.Y.Z`, made by the owner only ([*Tags per board, assembly an... (XD-ADR-0140)*](../explanation/decisions/repos.md#XD-ADR-0140)).
 
 ## Board library repo
@@ -109,7 +109,7 @@ docs/                   board-library: the list of board versions, made from the
 checks.yaml             board_library: {source: "{ws}/<ee repo>"} (CK-F20); no ids.yaml
 ```
 
-A top-level west project in the west groups of EE and ME ([*A board library repo for ME (XD-ADR-0139)*](../explanation/decisions/domains.md#XD-ADR-0139), proposed). EE writes
+A top-level west project in the west groups of EE and ME ([*A board library repo for ME (XD-ADR-0139)*](../explanation/decisions/domains.md#XD-ADR-0139)). EE writes
 a tagged board version with `curatrix cam <ee repo> <board> --library` and opens the pull request;
 ME links one fixed version, and `cad.board_library` in the ME repo’s checks.yaml notes a newer one
 (CK-F21).

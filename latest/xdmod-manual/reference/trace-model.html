@@ -12,6 +12,7 @@
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../_static/xd-svgview.css?v=ec1b17f2" />
       <link rel="stylesheet" type="text/css" href="../_static/zdocs-need-types.css" />
       <link rel="stylesheet" type="text/css" href="../_static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
       <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
@@ -27,9 +28,11 @@
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=46a6e386"></script>
+      <script src="../_static/documentation_options.js?v=08679464"></script>
       <script src="../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/svg-pan-zoom/svg-pan-zoom.min.js?v=58bcff24"></script>
+      <script src="../_static/xd-svgview.js?v=ca57f511"></script>
       <script src="../_static/zdocs-need-preview.js?v=98728251"></script>
       <script src="../_static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
       <script src="../_static/sphinx-data-viewer/jsonview_loader.js?v=f7ff7e7d"></script>
@@ -53,7 +56,7 @@
           <a href="../index.html" class="icon icon-home">
             XDMOD Manual
           </a>
-<div class="version zdocs-version">v0.0-dev+g2f90511</div>
+<div class="version zdocs-version">v0.0-dev+g1949bec</div>
 
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -475,7 +478,7 @@ from the specialization (<a class="reference internal" href="../explanation/deci
 harness, each assembly def one FreeCAD document; external parts have none (<a class="reference internal" href="../explanation/decisions/domains.html#XD-ADR-0135" title="XD-ADR-0135"><em class="xref need">External parts and prototyp... (XD-ADR-0135)</em></a>).</p>
 <p>Two exceptions to the peer rule (<a class="reference internal" href="../explanation/rules/trace.html#XD-RULE-0003" title="XD-RULE-0003"><em class="xref need">Peer interfaces live in sys... (XD-RULE-0003)</em></a>): SW reads the board pin maps from the EE model
 (<a class="reference internal" href="../explanation/decisions/domains.html#XD-ADR-0131" title="XD-ADR-0131"><em class="xref need">SW reads the board pin maps... (XD-ADR-0131)</em></a>), and ME writes board geometry into the KiCad files inside a co-design change
-(<a class="reference internal" href="../explanation/decisions/domains.html#XD-ADR-0134" title="XD-ADR-0134"><em class="xref need">ME writes board geometry in... (XD-ADR-0134)</em></a>, proposed).</p>
+(<a class="reference internal" href="../explanation/decisions/domains.html#XD-ADR-0134" title="XD-ADR-0134"><em class="xref need">ME writes board geometry in... (XD-ADR-0134)</em></a>).</p>
 </section>
 <section id="definitions-and-instances">
 <h2>Definitions and instances<a class="headerlink" href="#definitions-and-instances" title="Link to this heading"></a></h2>

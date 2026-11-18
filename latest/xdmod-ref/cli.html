@@ -10,6 +10,7 @@
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="_static/xd-svgview.css?v=ec1b17f2" />
       <link rel="stylesheet" type="text/css" href="_static/zdocs-need-types.css" />
       <link rel="stylesheet" type="text/css" href="_static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
       <link rel="stylesheet" type="text/css" href="_static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
@@ -25,9 +26,11 @@
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=46a6e386"></script>
+      <script src="_static/documentation_options.js?v=08679464"></script>
       <script src="_static/doctools.js?v=fd6eb6e6"></script>
       <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="_static/svg-pan-zoom/svg-pan-zoom.min.js?v=58bcff24"></script>
+      <script src="_static/xd-svgview.js?v=ca57f511"></script>
       <script src="_static/zdocs-need-preview.js?v=98728251"></script>
       <script src="_static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
       <script src="_static/sphinx-data-viewer/jsonview_loader.js?v=f7ff7e7d"></script>
@@ -51,7 +54,7 @@
           <a href="index.html" class="icon icon-home">
             curatrix Reference
           </a>
-<div class="version zdocs-version">v0.0-dev+g2f90511</div>
+<div class="version zdocs-version">v0.0-dev+g1949bec</div>
 
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -81,6 +84,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#curatrix-ids">curatrix ids</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#curatrix-views">curatrix views</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#curatrix-variants">curatrix variants</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#curatrix-pleml">curatrix pleml</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#curatrix-needs-diff">curatrix needs-diff</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#curatrix-work">curatrix work</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#curatrix-ci">curatrix ci</a></li>
@@ -251,18 +255,21 @@ below. This page is generated from curatrix’s argument parser.</p>
 <td><p>views as editable SVG: build | check | normalize</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#cli-variants"><span class="std std-ref">curatrix variants</span></a></p></td>
-<td><p>variant rules F1, F2, V1-V5 on the model JSON</p></td>
+<td><p>`variants list [repo] [–json]`: every board and assembly variant across levels (model, KiCad/FreeCAD, differences, what it serves); `variants [repo]` is the deprecated name of `pleml check`</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cli-needs-diff"><span class="std std-ref">curatrix needs-diff</span></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cli-pleml"><span class="std std-ref">curatrix pleml</span></a></p></td>
+<td><p>PLEML feature-variation rules: `pleml check [repo]` (F1, F2, V1-V5 on the model JSON, CK-B4)</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#cli-needs-diff"><span class="std std-ref">curatrix needs-diff</span></a></p></td>
 <td><p>change impact between two sets of needs.json (R7)</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cli-work"><span class="std std-ref">curatrix work</span></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cli-work"><span class="std std-ref">curatrix work</span></a></p></td>
 <td><p>git worktrees for parallel work: start &lt;branch&gt; &lt;repos…&gt; | done &lt;branch&gt; | list (D125)</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#cli-ci"><span class="std std-ref">curatrix ci</span></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#cli-ci"><span class="std std-ref">curatrix ci</span></a></p></td>
 <td><p>CI helpers: `ci siblings` resolves sibling revisions (D127); `ci base` fetches the published needs as the CK-G1/G2 base</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#cli-evidence"><span class="std std-ref">curatrix evidence</span></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#cli-evidence"><span class="std std-ref">curatrix evidence</span></a></p></td>
 <td><p>test run records: record (Twister dir -&gt; evidence branch), read (-&gt; TR needs), preview (Twister dir -&gt; preview TR needs for the docs), validate</p></td>
 </tr>
 </tbody>
@@ -528,16 +535,32 @@ options:
 </section>
 <section id="curatrix-variants">
 <span id="cli-variants"></span><h2>curatrix variants<a class="headerlink" href="#curatrix-variants" title="Link to this heading"></a></h2>
-<p>variant rules F1, F2, V1-V5 on the model JSON.</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>usage: curatrix variants [-h] [--model MODEL] [-v] [repo]
+<p>`variants list [repo] [–json]`: every board and assembly variant across levels (model, KiCad/FreeCAD, differences, what it serves); `variants [repo]` is the deprecated name of `pleml check`.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>usage: curatrix variants [-h] [--json] [--model MODEL] [-v] [list [repo] ...]
 
 positional arguments:
-  repo
+  list [repo]    `list` and an optional repo (default: the repo of the current
+                 folder; from the workspace root every repo with variants)
 
 options:
   -h, --help     show this help message and exit
-  --model MODEL  a model JSON (Pilot export or compact) instead of the repo&#39;s
-  -v, --verbose
+  --json         list: JSON for tools
+  --model MODEL  deprecated form only: see `pleml check`
+  -v, --verbose  deprecated form only: see `pleml check`
+</pre></div>
+</div>
+</section>
+<section id="curatrix-pleml">
+<span id="cli-pleml"></span><h2>curatrix pleml<a class="headerlink" href="#curatrix-pleml" title="Link to this heading"></a></h2>
+<p>PLEML feature-variation rules: `pleml check [repo]` (F1, F2, V1-V5 on the model JSON, CK-B4).</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>usage: curatrix pleml [-h] {check} ...
+
+positional arguments:
+  {check}
+    check     variant rules F1, F2, V1-V5 on the model JSON (CK-B4)
+
+options:
+  -h, --help  show this help message and exit
 </pre></div>
 </div>
 </section>

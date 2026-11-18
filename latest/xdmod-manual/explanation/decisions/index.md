@@ -179,18 +179,18 @@ project.
 | [XD-ADR-0131](domains.md#XD-ADR-0131) |          | SW reads the board pin maps from EE                                      | accepted   | 2026-11-17 |
 | [XD-ADR-0132](domains.md#XD-ADR-0132) |          | curatrix checks conformance and derives the links                        | accepted   | 2026-11-17 |
 | [XD-ADR-0133](domains.md#XD-ADR-0133) |          | Need kinds EE-PORT, ME-PORT and EE-HAR                                   | accepted   | 2026-11-17 |
-| [XD-ADR-0134](domains.md#XD-ADR-0134) |          | ME writes board geometry into KiCad in a co-design change                | proposed   | 2026-11-17 |
+| [XD-ADR-0134](domains.md#XD-ADR-0134) |          | ME writes board geometry into KiCad in a co-design change                | accepted   | 2026-11-17 |
 | [XD-ADR-0135](domains.md#XD-ADR-0135) |          | External parts and prototype projects                                    | accepted   | 2026-11-17 |
 | [XD-ADR-0136](domains.md#XD-ADR-0136) |          | Variants: the domain variant names what it serves                        | accepted   | 2026-11-17 |
 | [XD-ADR-0137](domains.md#XD-ADR-0137) |          | FreeCAD assemblies: a skeleton document, values from the model           | accepted   | 2026-11-17 |
 | [XD-ADR-0138](domains.md#XD-ADR-0138) |          | Who owns instance counts                                                 | accepted   | 2026-11-17 |
-| [XD-ADR-0139](domains.md#XD-ADR-0139) |          | A board library repo for ME                                              | proposed   | 2026-11-17 |
+| [XD-ADR-0139](domains.md#XD-ADR-0139) |          | A board library repo for ME                                              | accepted   | 2026-11-17 |
 | [XD-ADR-0140](repos.md#XD-ADR-0140) |          | Tags per board, assembly and harness, made by the owner                  | accepted   | 2026-11-17 |
 | [XD-ADR-0141](repos.md#XD-ADR-0141) |          | Roles: EE gets FreeCAD, ME gets the KiCad files, SW gets the EE model    | accepted   | 2026-11-17 |
 | [XD-ADR-0142](scope.md#XD-ADR-0142) |          | EE design output in iteration 1                                          | accepted   | 2026-11-17 |
 | [XD-ADR-0143](scope.md#XD-ADR-0143) |          | ME design output in iteration 1                                          | accepted   | 2026-11-17 |
 | [XD-ADR-0144](scope.md#XD-ADR-0144) |          | A PCB layout in iteration 1, without routing                             | accepted   | 2026-11-17 |
 | [XD-ADR-0145](repos.md#XD-ADR-0145) |          | KiCad and FreeCAD never run outside curatrix; shims in .venv/bin         | accepted   | 2026-11-17 |
-| [XD-ADR-0146](domains.md#XD-ADR-0146) |          | FreeCAD assemblies: skeleton file name, parameter aliases, open order    | proposed   | 2026-11-17 |
-| [XD-ADR-0147](scope.md#XD-ADR-0147) |          | ME renderings without OpenGL, the fallback when Blender is absent        | proposed   | 2026-11-17 |
-| [XD-ADR-0148](scope.md#XD-ADR-0148) |          | Blender as an optional local renderer of the ME renderings               | proposed   | 2026-11-17 |
+| [XD-ADR-0146](domains.md#XD-ADR-0146) |          | FreeCAD assemblies: skeleton file name, parameter aliases, open order    | accepted   | 2026-11-17 |
+| [XD-ADR-0147](scope.md#XD-ADR-0147) |          | ME renderings without OpenGL, the fallback when Blender is absent        | accepted   | 2026-11-17 |
+| [XD-ADR-0148](scope.md#XD-ADR-0148) |          | Blender as an optional local renderer of the ME renderings               | accepted   | 2026-11-17 |

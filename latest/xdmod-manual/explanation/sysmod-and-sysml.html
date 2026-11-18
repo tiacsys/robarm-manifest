@@ -12,6 +12,7 @@
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../_static/xd-svgview.css?v=ec1b17f2" />
       <link rel="stylesheet" type="text/css" href="../_static/zdocs-need-types.css" />
       <link rel="stylesheet" type="text/css" href="../_static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
       <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
@@ -27,9 +28,11 @@
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=46a6e386"></script>
+      <script src="../_static/documentation_options.js?v=08679464"></script>
       <script src="../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/svg-pan-zoom/svg-pan-zoom.min.js?v=58bcff24"></script>
+      <script src="../_static/xd-svgview.js?v=ca57f511"></script>
       <script src="../_static/zdocs-need-preview.js?v=98728251"></script>
       <script src="../_static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
       <script src="../_static/sphinx-data-viewer/jsonview_loader.js?v=f7ff7e7d"></script>
@@ -53,7 +56,7 @@
           <a href="../index.html" class="icon icon-home">
             XDMOD Manual
           </a>
-<div class="version zdocs-version">v0.0-dev+g2f90511</div>
+<div class="version zdocs-version">v0.0-dev+g1949bec</div>
 
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -288,7 +291,10 @@ configuration table, and Zephyr board variants by name (the Zephyr board name is
 name in lower case with <code class="docutils literal notranslate"><span class="pre">-</span></code> as <code class="docutils literal notranslate"><span class="pre">_</span></code>; <code class="docutils literal notranslate"><span class="pre">outer/inner</span></code> counts as <code class="docutils literal notranslate"><span class="pre">inner</span></code>; a Zephyr board without
 such a project is ignored). The domain repo switches it on with a <code class="docutils literal notranslate"><span class="pre">variants:</span></code>
 section in <code class="docutils literal notranslate"><span class="pre">checks.yaml</span></code>. At most two variants per board or assembly; a variant that names no
-configuration is not checked in iteration 1.</p>
+configuration is not checked in iteration 1. <code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">variants</span> <span class="pre">list</span> <span class="pre">[&lt;repo&gt;]</span></code> lists every board
+and assembly variant on all levels: its model def, its KiCad variant or FreeCAD configuration row,
+what it fits differently (for example <code class="docutils literal notranslate"><span class="pre">R1</span> <span class="pre">DNP</span></code>) and the pairs it serves; a variant that serves no
+pair is listed and marked.</p>
 <p>Views of the model are SysML <code class="docutils literal notranslate"><span class="pre">view</span></code> definitions with an <code class="docutils literal notranslate"><span class="pre">&#64;XdView</span></code> annotation (<a class="reference internal" href="decisions/method.html#XD-ADR-0085" title="XD-ADR-0085"><em class="xref need">View definitions live in th... (XD-ADR-0085)</em></a>).
 curatrix renders them as editable <code class="docutils literal notranslate"><span class="pre">.drawio.svg</span></code> files (<a class="reference internal" href="decisions/method.html#XD-ADR-0087" title="XD-ADR-0087"><em class="xref need">Views are committed as edit... (XD-ADR-0087)</em></a>).</p>
 <p>The step-by-step mapping from SYSMOD steps to files and documents is in

@@ -87,7 +87,7 @@ harness, each assembly def one FreeCAD document; external parts have none ([*Ext
 
 Two exceptions to the peer rule ([*Peer interfaces live in sys... (XD-RULE-0003)*](../explanation/rules/trace.html.md#XD-RULE-0003)): SW reads the board pin maps from the EE model
 ([*SW reads the board pin maps... (XD-ADR-0131)*](../explanation/decisions/domains.html.md#XD-ADR-0131)), and ME writes board geometry into the KiCad files inside a co-design change
-([*ME writes board geometry in... (XD-ADR-0134)*](../explanation/decisions/domains.html.md#XD-ADR-0134), proposed).
+([*ME writes board geometry in... (XD-ADR-0134)*](../explanation/decisions/domains.html.md#XD-ADR-0134)).
 
 ## Definitions and instances
 

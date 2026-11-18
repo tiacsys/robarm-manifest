@@ -12,6 +12,7 @@
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../_static/xd-svgview.css?v=ec1b17f2" />
       <link rel="stylesheet" type="text/css" href="../_static/zdocs-need-types.css" />
       <link rel="stylesheet" type="text/css" href="../_static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
       <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
@@ -27,9 +28,11 @@
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=46a6e386"></script>
+      <script src="../_static/documentation_options.js?v=08679464"></script>
       <script src="../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/svg-pan-zoom/svg-pan-zoom.min.js?v=58bcff24"></script>
+      <script src="../_static/xd-svgview.js?v=ca57f511"></script>
       <script src="../_static/zdocs-need-preview.js?v=98728251"></script>
       <script src="../_static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
       <script src="../_static/sphinx-data-viewer/jsonview_loader.js?v=f7ff7e7d"></script>
@@ -53,7 +56,7 @@
           <a href="../index.html" class="icon icon-home">
             XDMOD Manual
           </a>
-<div class="version zdocs-version">v0.0-dev+g2f90511</div>
+<div class="version zdocs-version">v0.0-dev+g1949bec</div>
 
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -262,6 +265,14 @@ the version as label and its BOM (<code class="docutils literal notranslate"><sp
 <code class="docutils literal notranslate"><span class="pre">--board-model</span></code> writes it for any version under <code class="docutils literal notranslate"><span class="pre">build/&lt;area&gt;/board-model/</span></code>; <code class="docutils literal notranslate"><span class="pre">--library</span></code> does
 so only for a tagged release and copies it into a board-library checkout for its PR
 (<a class="reference internal" href="../explanation/decisions/domains.html#XD-ADR-0139" title="XD-ADR-0139"><em class="xref need">A board library repo for ME (XD-ADR-0139)</em></a>).</p>
+<p>The model is made by the FreeCAD GUI binary on Qt’s offscreen platform (no window opens): the
+<code class="docutils literal notranslate"><span class="pre">App::Part</span></code> <code class="docutils literal notranslate"><span class="pre">Board</span></code> carries the trace properties (<code class="docutils literal notranslate"><span class="pre">TraceID</span></code>, <code class="docutils literal notranslate"><span class="pre">Version</span></code>, <code class="docutils literal notranslate"><span class="pre">Variant</span></code>,
+<code class="docutils literal notranslate"><span class="pre">Board</span></code>, <code class="docutils literal notranslate"><span class="pre">Commit</span></code>, <code class="docutils literal notranslate"><span class="pre">Source</span></code>) and holds one object per component, named by its reference
+designator (<code class="docutils literal notranslate"><span class="pre">R1</span></code>, <code class="docutils literal notranslate"><span class="pre">J1</span></code>, <code class="docutils literal notranslate"><span class="pre">PCB</span></code> for the board body), in the colours of the STEP. Each object is
+a link to the component’s 3D model, kept once per model in the hidden group <code class="docutils literal notranslate"><span class="pre">Models</span></code>.
+<code class="docutils literal notranslate"><span class="pre">board-model.json</span></code> lists the components with their colours per file; <code class="docutils literal notranslate"><span class="pre">board-model/&lt;board&gt;/&lt;version&gt;/</span></code>
+also keeps the STEP and the import result (<code class="docutils literal notranslate"><span class="pre">*.result.json</span></code>). A file without colours is reported as
+a finding.</p>
 </section>
 <section id="assemblies-me">
 <h2>Assemblies (ME)<a class="headerlink" href="#assemblies-me" title="Link to this heading"></a></h2>

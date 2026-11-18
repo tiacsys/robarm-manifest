@@ -139,6 +139,8 @@ and options is in the curatrix reference. The most used:
 | `curatrix gen <what> <repo>`                  | regenerate the committed generated files                                                                                                    |
 | `curatrix ids new <KIND>` / `ids fix <repo>`  | issue IDs, replace placeholders ([ID scheme](id-scheme.html.md))                                                  |
 | `curatrix views build|check|normalize <repo>` | views as editable `.drawio.svg`                                                                                                             |
+| `curatrix variants list [<repo>]`             | every board and assembly variant: model def, KiCad or FreeCAD name, differences, what it serves                                             |
+| `curatrix pleml check [<repo>]`               | the PLEML variant rules ([Variant rules](variant-rules.html.md))                                                      |
 | `curatrix launch kicad|freecad|drawio|claude` | GUI tools with workspace-local config                                                                                                       |
 | `curatrix work start|done`                    | worktree sets for parallel work ([*Parallel agents work in git... (XD-ADR-0114)*](../explanation/decisions/workflow.html.md#XD-ADR-0114)) |
 | `curatrix run -- <cmd>`                       | anything else, with the workspace env and limits                                                                                            |

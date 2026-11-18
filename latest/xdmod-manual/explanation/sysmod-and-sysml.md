@@ -111,7 +111,10 @@ configuration table, and Zephyr board variants by name (the Zephyr board name is
 name in lower case with `-` as `_`; `outer/inner` counts as `inner`; a Zephyr board without
 such a project is ignored). The domain repo switches it on with a `variants:`
 section in `checks.yaml`. At most two variants per board or assembly; a variant that names no
-configuration is not checked in iteration 1.
+configuration is not checked in iteration 1. `curatrix variants list [<repo>]` lists every board
+and assembly variant on all levels: its model def, its KiCad variant or FreeCAD configuration row,
+what it fits differently (for example `R1 DNP`) and the pairs it serves; a variant that serves no
+pair is listed and marked.
 
 Views of the model are SysML `view` definitions with an `@XdView` annotation ([*View definitions live in th... (XD-ADR-0085)*](decisions/method.md#XD-ADR-0085)).
 curatrix renders them as editable `.drawio.svg` files ([*Views are committed as edit... (XD-ADR-0087)*](decisions/method.md#XD-ADR-0087)).

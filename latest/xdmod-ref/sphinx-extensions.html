@@ -10,6 +10,7 @@
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="_static/xd-svgview.css?v=ec1b17f2" />
       <link rel="stylesheet" type="text/css" href="_static/zdocs-need-types.css" />
       <link rel="stylesheet" type="text/css" href="_static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
       <link rel="stylesheet" type="text/css" href="_static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
@@ -25,9 +26,11 @@
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=46a6e386"></script>
+      <script src="_static/documentation_options.js?v=08679464"></script>
       <script src="_static/doctools.js?v=fd6eb6e6"></script>
       <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="_static/svg-pan-zoom/svg-pan-zoom.min.js?v=58bcff24"></script>
+      <script src="_static/xd-svgview.js?v=ca57f511"></script>
       <script src="_static/zdocs-need-preview.js?v=98728251"></script>
       <script src="_static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
       <script src="_static/sphinx-data-viewer/jsonview_loader.js?v=f7ff7e7d"></script>
@@ -51,7 +54,7 @@
           <a href="index.html" class="icon icon-home">
             curatrix Reference
           </a>
-<div class="version zdocs-version">v0.0-dev+g2f90511</div>
+<div class="version zdocs-version">v0.0-dev+g1949bec</div>
 
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -68,6 +71,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Sphinx extensions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#conf-py">conf.py</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#directives-for-design-documents">Directives for design documents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#svg-viewer">SVG viewer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#reference-directives">Reference directives</a></li>
 </ul>
 </li>
@@ -286,6 +290,20 @@ other files as a link). Otherwise a short “built locally” notice, without a 
 </pre></div>
 </div>
 </section>
+<section id="svg-viewer">
+<h2>SVG viewer<a class="headerlink" href="#svg-viewer" title="Link to this heading"></a></h2>
+<p>Every inline SVG figure gets a small viewer in the HTML build: <code class="docutils literal notranslate"><span class="pre">sysml-view</span></code>, the SVG of
+<code class="docutils literal notranslate"><span class="pre">kicad-sheet</span></code> and <code class="docutils literal notranslate"><span class="pre">freecad-drawing</span></code>, and in the board, harness and assembly documents the
+schematic sheets, the WireViz diagram, the drawing sheet and the exploded view. In the page you
+drag to pan and use the +, -, reset buttons to zoom; the mouse wheel still scrolls the page.
+“Enlarge” (or a double-click) opens the picture in a pop-up that uses most of the screen, with
+pan, zoom and the mouse wheel; Esc, the close button or a click outside the picture closes it.
+Links in a block diagram still work. Without JavaScript the figure is a plain inline SVG.</p>
+<p>The pan and zoom come from <a class="reference external" href="https://github.com/bumbu/svg-pan-zoom">svg-pan-zoom</a> (BSD-2-Clause),
+vendored at a pinned release with its licence file in <code class="docutils literal notranslate"><span class="pre">xdmod_sphinx/static/svg-pan-zoom/</span></code>; no
+CDN. <code class="docutils literal notranslate"><span class="pre">xdmod_sphinx/vendor.yaml</span></code> records the version and the sha256 of each file, and a test
+compares them. The pop-up is our own <code class="docutils literal notranslate"><span class="pre">static/xd-svgview.js</span></code> and <code class="docutils literal notranslate"><span class="pre">xd-svgview.css</span></code>.</p>
+</section>
 <section id="reference-directives">
 <h2>Reference directives<a class="headerlink" href="#reference-directives" title="Link to this heading"></a></h2>
 <p>These directives render reference tables and needs from xdmod’s own configuration and code, so
@@ -326,7 +344,7 @@ the reference can’t drift from it. They take no arguments. They live in
 </tbody>
 </table>
 <p>Example: the check catalogue in the manual is
-<a class="reference external" href="../xdmod-manual/reference/checks.html" title="(in XDMOD Manual v0.0-dev+g2f90511)"><span>Checks</span></a>.</p>
+<a class="reference external" href="../xdmod-manual/reference/checks.html" title="(in XDMOD Manual v0.0-dev+g1949bec)"><span>Checks</span></a>.</p>
 </section>
 </section>
 

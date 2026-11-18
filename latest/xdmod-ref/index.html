@@ -10,6 +10,7 @@
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="_static/xd-svgview.css?v=ec1b17f2" />
       <link rel="stylesheet" type="text/css" href="_static/zdocs-need-types.css" />
       <link rel="stylesheet" type="text/css" href="_static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
       <link rel="stylesheet" type="text/css" href="_static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
@@ -25,9 +26,11 @@
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=46a6e386"></script>
+      <script src="_static/documentation_options.js?v=08679464"></script>
       <script src="_static/doctools.js?v=fd6eb6e6"></script>
       <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="_static/svg-pan-zoom/svg-pan-zoom.min.js?v=58bcff24"></script>
+      <script src="_static/xd-svgview.js?v=ca57f511"></script>
       <script src="_static/zdocs-need-preview.js?v=98728251"></script>
       <script src="_static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
       <script src="_static/sphinx-data-viewer/jsonview_loader.js?v=f7ff7e7d"></script>
@@ -50,7 +53,7 @@
           <a href="#" class="icon icon-home">
             curatrix Reference
           </a>
-<div class="version zdocs-version">v0.0-dev+g2f90511</div>
+<div class="version zdocs-version">v0.0-dev+g1949bec</div>
 
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -166,9 +169,9 @@
 <span id="ref-index"></span><h1>curatrix Reference<a class="headerlink" href="#curatrix-reference" title="Link to this heading"></a></h1>
 <p>This document is the reference of the XDMOD tools: the <code class="docutils literal notranslate"><span class="pre">curatrix</span></code> command line, its Python
 API, the XDMOD Sphinx extension, the shared needs configuration and the SysML library. The
-method itself is explained in the <a class="reference external" href="../xdmod-manual/index.html" title="(in XDMOD Manual v0.0-dev+g2f90511)"><span class="xref std std-doc">XDMOD Manual</span></a>; the
+method itself is explained in the <a class="reference external" href="../xdmod-manual/index.html" title="(in XDMOD Manual v0.0-dev+g1949bec)"><span class="xref std std-doc">XDMOD Manual</span></a>; the
 check catalogue, with one need per check, is in its
-<a class="reference external" href="../xdmod-manual/reference/checks.html" title="(in XDMOD Manual v0.0-dev+g2f90511)"><span>Checks</span></a> page.</p>
+<a class="reference external" href="../xdmod-manual/reference/checks.html" title="(in XDMOD Manual v0.0-dev+g1949bec)"><span>Checks</span></a> page.</p>
 <p>Most of this document is generated from the code and the configuration in xdmod, so it can’t
 drift from what the tools do.</p>
 <div class="toctree-wrapper compound">
@@ -191,6 +194,7 @@ drift from what the tools do.</p>
 <li class="toctree-l2"><a class="reference internal" href="cli.html#curatrix-ids">curatrix ids</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cli.html#curatrix-views">curatrix views</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cli.html#curatrix-variants">curatrix variants</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli.html#curatrix-pleml">curatrix pleml</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cli.html#curatrix-needs-diff">curatrix needs-diff</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cli.html#curatrix-work">curatrix work</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cli.html#curatrix-ci">curatrix ci</a></li>
@@ -207,6 +211,7 @@ drift from what the tools do.</p>
 <li class="toctree-l1"><a class="reference internal" href="sphinx-extensions.html">Sphinx extensions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="sphinx-extensions.html#conf-py">conf.py</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sphinx-extensions.html#directives-for-design-documents">Directives for design documents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx-extensions.html#svg-viewer">SVG viewer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sphinx-extensions.html#reference-directives">Reference directives</a></li>
 </ul>
 </li>

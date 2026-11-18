@@ -12,6 +12,7 @@
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/xd-svgview.css?v=ec1b17f2" />
       <link rel="stylesheet" type="text/css" href="../../_static/zdocs-need-types.css" />
       <link rel="stylesheet" type="text/css" href="../../_static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
       <link rel="stylesheet" type="text/css" href="../../_static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
@@ -27,9 +28,11 @@
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=46a6e386"></script>
+      <script src="../../_static/documentation_options.js?v=08679464"></script>
       <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/svg-pan-zoom/svg-pan-zoom.min.js?v=58bcff24"></script>
+      <script src="../../_static/xd-svgview.js?v=ca57f511"></script>
       <script src="../../_static/zdocs-need-preview.js?v=98728251"></script>
       <script src="../../_static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
       <script src="../../_static/sphinx-data-viewer/jsonview_loader.js?v=f7ff7e7d"></script>
@@ -53,7 +56,7 @@
           <a href="../../index.html" class="icon icon-home">
             XDMOD Manual
           </a>
-<div class="version zdocs-version">v0.0-dev+g2f90511</div>
+<div class="version zdocs-version">v0.0-dev+g1949bec</div>
 
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -186,7 +189,7 @@
   <section id="trace-rules">
 <span id="rules-trace"></span><h1>Trace rules<a class="headerlink" href="#trace-rules" title="Link to this heading"></a></h1>
 <p>The principles of the trace model and the rules on the trace graph.</p>
-<div class="need_container docutils container" id="SNCB-5b840e87">
+<div class="need_container docutils container" id="SNCB-18ffe1b1">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-rule zd-status-valid docutils align-default" id="XD-RULE-0001">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -209,7 +212,7 @@
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-fec24952">
+<div class="need_container docutils container" id="SNCB-d5655e5b">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-rule zd-status-valid docutils align-default" id="XD-RULE-0002">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -233,7 +236,7 @@
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-b02bc7cf">
+<div class="need_container docutils container" id="SNCB-fb7ca1ee">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-rule zd-status-valid docutils align-default" id="XD-RULE-0003">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -256,7 +259,7 @@
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-17dae6aa">
+<div class="need_container docutils container" id="SNCB-69f9fe9b">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-rule zd-status-valid docutils align-default" id="XD-RULE-0004">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -279,7 +282,7 @@
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-8c926980">
+<div class="need_container docutils container" id="SNCB-8ad6960e">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-rule zd-status-valid docutils align-default" id="XD-RULE-0005">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -302,7 +305,7 @@
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-1dc43009">
+<div class="need_container docutils container" id="SNCB-e711be21">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-rule zd-status-valid docutils align-default" id="XD-RULE-0006">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -325,7 +328,7 @@
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-2f768636">
+<div class="need_container docutils container" id="SNCB-b5e929a6">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-rule zd-status-valid docutils align-default" id="XD-RULE-0007">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -348,7 +351,7 @@
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-dc26079f">
+<div class="need_container docutils container" id="SNCB-5760d4d7">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-rule zd-status-valid docutils align-default" id="XD-RULE-0008">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -372,7 +375,7 @@
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-e6ba8973">
+<div class="need_container docutils container" id="SNCB-fb2d9b02">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-rule zd-status-valid docutils align-default" id="XD-RULE-0009">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -396,7 +399,7 @@
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-84bb0ccc">
+<div class="need_container docutils container" id="SNCB-9773021c">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-rule zd-status-valid docutils align-default" id="XD-RULE-0010">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -420,7 +423,7 @@
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-baccaf8c">
+<div class="need_container docutils container" id="SNCB-afbff6f6">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-rule zd-status-valid docutils align-default" id="XD-RULE-0011">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -444,7 +447,7 @@
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-cdb23143">
+<div class="need_container docutils container" id="SNCB-f9ace3ee">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-rule zd-status-valid docutils align-default" id="XD-RULE-0012">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -468,7 +471,7 @@
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-e795a0cc">
+<div class="need_container docutils container" id="SNCB-434d98db">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-rule zd-status-valid docutils align-default" id="XD-RULE-0013">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -492,7 +495,7 @@
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-3972aff7">
+<div class="need_container docutils container" id="SNCB-d52804ef">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-rule zd-status-valid docutils align-default" id="XD-RULE-0014">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -516,7 +519,7 @@
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-cac05df7">
+<div class="need_container docutils container" id="SNCB-17f23cbd">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-rule zd-status-valid docutils align-default" id="XD-RULE-0047">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -539,7 +542,7 @@
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-270e5cab">
+<div class="need_container docutils container" id="SNCB-896beb89">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-rule zd-status-valid docutils align-default" id="XD-RULE-0049">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -562,7 +565,7 @@
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-d33d0c7d">
+<div class="need_container docutils container" id="SNCB-f9931966">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-rule zd-status-valid docutils align-default" id="XD-RULE-0055">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -585,7 +588,7 @@
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-96118234">
+<div class="need_container docutils container" id="SNCB-5b775f63">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-rule zd-status-valid docutils align-default" id="XD-RULE-0056">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -608,7 +611,7 @@
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-681bc3d6">
+<div class="need_container docutils container" id="SNCB-9000e23c">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-rule zd-status-valid docutils align-default" id="XD-RULE-0057">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -631,7 +634,7 @@
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-355301da">
+<div class="need_container docutils container" id="SNCB-55c32cad">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-rule zd-status-valid docutils align-default" id="XD-RULE-0061">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -654,7 +657,7 @@
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-07b86335">
+<div class="need_container docutils container" id="SNCB-404781b8">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-rule zd-status-valid docutils align-default" id="XD-RULE-0062">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -677,7 +680,7 @@
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-465d3291">
+<div class="need_container docutils container" id="SNCB-1094080a">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-rule zd-status-valid docutils align-default" id="XD-RULE-0063">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -700,7 +703,7 @@
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-b63562b1">
+<div class="need_container docutils container" id="SNCB-e9900157">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-rule zd-status-valid docutils align-default" id="XD-RULE-0050">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -723,7 +726,7 @@
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-e05ce740">
+<div class="need_container docutils container" id="SNCB-1cc91cc9">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-rule zd-status-valid docutils align-default" id="XD-RULE-0051">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -746,7 +749,7 @@
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-eacda01e">
+<div class="need_container docutils container" id="SNCB-1d009440">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-rule zd-status-valid docutils align-default" id="XD-RULE-0052">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -769,7 +772,7 @@
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-f4507424">
+<div class="need_container docutils container" id="SNCB-c3917b4e">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-rule zd-status-valid docutils align-default" id="XD-RULE-0053">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -792,7 +795,7 @@
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-5b5f7a05">
+<div class="need_container docutils container" id="SNCB-2d8c735b">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-rule zd-status-valid docutils align-default" id="XD-RULE-0054">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -815,7 +818,7 @@
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-377e9209">
+<div class="need_container docutils container" id="SNCB-9644bd13">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-rule zd-status-valid docutils align-default" id="XD-RULE-0058">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -838,7 +841,7 @@
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-a433c5b5">
+<div class="need_container docutils container" id="SNCB-38f1c19c">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-rule zd-status-valid docutils align-default" id="XD-RULE-0059">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -861,7 +864,7 @@
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-023a8ff7">
+<div class="need_container docutils container" id="SNCB-56603d17">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-rule zd-status-valid docutils align-default" id="XD-RULE-0060">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -884,7 +887,7 @@
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-ce17468e">
+<div class="need_container docutils container" id="SNCB-57e2d807">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-rule zd-status-valid docutils align-default" id="XD-RULE-0064">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -907,7 +910,7 @@
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-6c632e52">
+<div class="need_container docutils container" id="SNCB-5fc2fd53">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-rule zd-status-valid docutils align-default" id="XD-RULE-0065">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">

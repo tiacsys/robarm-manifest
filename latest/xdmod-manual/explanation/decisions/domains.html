@@ -12,6 +12,7 @@
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/xd-svgview.css?v=ec1b17f2" />
       <link rel="stylesheet" type="text/css" href="../../_static/zdocs-need-types.css" />
       <link rel="stylesheet" type="text/css" href="../../_static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
       <link rel="stylesheet" type="text/css" href="../../_static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
@@ -27,9 +28,11 @@
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=46a6e386"></script>
+      <script src="../../_static/documentation_options.js?v=08679464"></script>
       <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/svg-pan-zoom/svg-pan-zoom.min.js?v=58bcff24"></script>
+      <script src="../../_static/xd-svgview.js?v=ca57f511"></script>
       <script src="../../_static/zdocs-need-preview.js?v=98728251"></script>
       <script src="../../_static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
       <script src="../../_static/sphinx-data-viewer/jsonview_loader.js?v=f7ff7e7d"></script>
@@ -53,7 +56,7 @@
           <a href="../../index.html" class="icon icon-home">
             XDMOD Manual
           </a>
-<div class="version zdocs-version">v0.0-dev+g2f90511</div>
+<div class="version zdocs-version">v0.0-dev+g1949bec</div>
 
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -186,7 +189,7 @@
 <p>How the EE and ME repos refine the system model, which needs their models emit, and how KiCad
 and FreeCAD files refer to them (Phase 5, task 5.14). Decisions that rest on the FreeCAD spike are
 <em>proposed</em> until that spike is merged.</p>
-<div class="need_container docutils container" id="SNCB-9a2196a9">
+<div class="need_container docutils container" id="SNCB-94bf51b6">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0130">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -240,7 +243,7 @@ model spike (<code class="docutils literal notranslate"><span class="pre">claude
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-5cccde34">
+<div class="need_container docutils container" id="SNCB-c8e39e58">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0132">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -277,7 +280,7 @@ anywhere else it is a warning.</p>
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-b84679d2">
+<div class="need_container docutils container" id="SNCB-dbf8cf1d">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0128">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -318,7 +321,7 @@ as a block. The CK-D4 readers change with this decision.</p>
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-740e5da8">
+<div class="need_container docutils container" id="SNCB-1ee38379">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0133">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -357,7 +360,7 @@ may conform to nothing.</p></li>
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-d5941c77">
+<div class="need_container docutils container" id="SNCB-b7c3bf9d">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0131">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -388,7 +391,7 @@ board variant by name, and SW adds no board variants of its own in iteration 1.<
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-e0bc1942">
+<div class="need_container docutils container" id="SNCB-3926443c">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0134">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -399,7 +402,7 @@ board variant by name, and SW adds no board variants of its own in iteration 1.<
 <tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
 <div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
 <div class="line"><span class="needs_date"><span class="needs_label">date: </span><span class="needs_data">2026-11-17</span></span></div>
-<div class="line"><span class="needs_decision_status"><span class="needs_label">decision_status: </span><span class="needs_data">proposed</span></span></div>
+<div class="line"><span class="needs_decision_status"><span class="needs_label">decision_status: </span><span class="needs_data">accepted</span></span></div>
 </span></span></div>
 <div class="line"><span><div class="line">refines: <span class="refines"><span><a class="zd-need-ref reference internal" href="#XD-ADR-0137" title="XD-ADR-0134">XD-ADR-0137</a></span></span></div>
 <div class="line">revises: <span class="revises"><span><a class="zd-need-ref reference internal" href="traces.html#XD-ADR-0030" title="XD-ADR-0134">XD-ADR-0030</a></span></span></div>
@@ -446,7 +449,7 @@ co-design branch. A harness length is a <code class="docutils literal notranslat
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-8449ae3e">
+<div class="need_container docutils container" id="SNCB-bfe802ba">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0135">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -477,7 +480,7 @@ board def. Its schematic shows the wiring between external parts (<a class="zd-n
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-6bb5a7b5">
+<div class="need_container docutils container" id="SNCB-ec4c9421">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0136">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -516,7 +519,7 @@ canary). ME variants: <a class="zd-need-ref reference internal" href="#XD-ADR-01
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-c2646be7">
+<div class="need_container docutils container" id="SNCB-4feed3ba">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0138">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -545,7 +548,7 @@ iteration 1 they get no IDs of their own.</p></td>
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-8f9bc55d">
+<div class="need_container docutils container" id="SNCB-ab33eb52">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0137">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -592,7 +595,7 @@ configuration. Based on the FreeCAD spike (<code class="docutils literal notrans
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-17b08588">
+<div class="need_container docutils container" id="SNCB-9c123b41">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0146">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -603,7 +606,7 @@ configuration. Based on the FreeCAD spike (<code class="docutils literal notrans
 <tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
 <div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
 <div class="line"><span class="needs_date"><span class="needs_label">date: </span><span class="needs_data">2026-11-17</span></span></div>
-<div class="line"><span class="needs_decision_status"><span class="needs_label">decision_status: </span><span class="needs_data">proposed</span></span></div>
+<div class="line"><span class="needs_decision_status"><span class="needs_label">decision_status: </span><span class="needs_data">accepted</span></span></div>
 </span></span></div>
 <div class="line"><span><div class="line">refines: <span class="refines"><span><a class="zd-need-ref reference internal" href="#XD-ADR-0137" title="XD-ADR-0146">XD-ADR-0137</a></span></span></div>
 <div class="line">decides: <span class="decided_by"><span><a class="zd-need-ref reference internal" href="../rules/trace.html#XD-RULE-0057" title="XD-ADR-0146">XD-RULE-0057</a></span></span></div>
@@ -611,7 +614,7 @@ configuration. Based on the FreeCAD spike (<code class="docutils literal notrans
 </div>
 </td>
 </tr>
-<tr class="need content row-odd"><td class="need content" colspan="1"><p>Proposed by the agent of tasks 5.23 and 5.24, for the owner to accept or change; it states what
+<tr class="need content row-odd"><td class="need content" colspan="1"><p>Proposed by the agent of tasks 5.23 and 5.24, accepted by the owner on 2026-11-17; it states what
 the code of these tasks does where it differs from <a class="zd-need-ref reference internal" href="#XD-ADR-0137" title="XD-ADR-0137"><em class="xref need">FreeCAD assemblies: a skele... (XD-ADR-0137)</em></a>.</p>
 <ul class="simple">
 <li><p><strong>The skeleton is</strong> <code class="docutils literal notranslate"><span class="pre">assemblies/&lt;name&gt;/&lt;name&gt;-skeleton.FCStd</span></code>, not <code class="docutils literal notranslate"><span class="pre">skeleton.FCStd</span></code>.
@@ -634,7 +637,7 @@ then load fully through the top. The writer stops when any document is still par
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-96ae586d">
+<div class="need_container docutils container" id="SNCB-20038fd7">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_xd-adr zd-status-valid docutils align-default" id="XD-ADR-0139">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -645,7 +648,7 @@ then load fully through the top. The writer stops when any document is still par
 <tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
 <div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></div>
 <div class="line"><span class="needs_date"><span class="needs_label">date: </span><span class="needs_data">2026-11-17</span></span></div>
-<div class="line"><span class="needs_decision_status"><span class="needs_label">decision_status: </span><span class="needs_data">proposed</span></span></div>
+<div class="line"><span class="needs_decision_status"><span class="needs_label">decision_status: </span><span class="needs_data">accepted</span></span></div>
 </span></span></div>
 <div class="line"><span><div class="line">refines: <span class="refines"><span><a class="zd-need-ref reference internal" href="#XD-ADR-0128" title="XD-ADR-0139">XD-ADR-0128</a>, <a class="zd-need-ref reference internal" href="repos.html#XD-ADR-0141" title="XD-ADR-0139">XD-ADR-0141</a></span></span></div>
 <div class="line">decides: <span class="decided_by"><span><a class="zd-need-ref reference internal" href="../rules/trace.html#XD-RULE-0064" title="XD-ADR-0139">XD-RULE-0064</a>, <a class="zd-need-ref reference internal" href="../rules/trace.html#XD-RULE-0065" title="XD-ADR-0139">XD-RULE-0065</a></span></span></div>
@@ -662,8 +665,8 @@ headless FreeCAD import that adds the board’s <code class="docutils literal no
 opens the PR that adds a board version. At most 5 MB per file to start (board body, connectors and
 tall parts, no tracks). An ME assembly links one fixed board version; a newer version gives a note
 or an issue on the ME repo, and moving to it is an ME change. Creating the repo is an admin action
-that needs the owner’s approval (<a class="zd-need-ref reference internal" href="workflow.html#XD-ADR-0112" title="XD-ADR-0112"><em class="xref need">GitHub admin by agents only... (XD-ADR-0112)</em></a>). Proposed until task 5.29 has shown the
-headless STEP import (the FreeCAD spike did not test it).</p>
+that needs the owner’s approval (<a class="zd-need-ref reference internal" href="workflow.html#XD-ADR-0112" title="XD-ADR-0112"><em class="xref need">GitHub admin by agents only... (XD-ADR-0112)</em></a>). Task 5.29 showed the headless STEP
+import (the FreeCAD spike had not tested it); accepted by the owner on 2026-11-17.</p>
 <p>Task 5.29 showed the headless STEP import (<code class="docutils literal notranslate"><span class="pre">FreeCADCmd</span></code>, <code class="docutils literal notranslate"><span class="pre">Part.Shape.read</span></code>, canary board:
 about 0.04 MB per variant without component models) and settled the details: one file per tagged
 version and variant at <code class="docutils literal notranslate"><span class="pre">boards/&lt;board&gt;/&lt;board&gt;-vX.Y.Z[-&lt;variant&gt;].FCStd</span></code>; an <code class="docutils literal notranslate"><span class="pre">App::Part</span></code>
@@ -674,6 +677,26 @@ into a checkout with a <code class="docutils literal notranslate"><span class="p
 (an error) reports a changed or deleted board file against the PR base. The repo is top level
 (not under <code class="docutils literal notranslate"><span class="pre">libs/</span></code>), because it is a design repo with its own checks: worktree sets and the CI
 sibling resolution handle only top-level repos. Checks: <a class="zd-need-ref reference internal" href="../rules/trace.html#XD-RULE-0064" title="XD-RULE-0064"><em class="xref need">The board library holds onl... (XD-RULE-0064)</em></a> (CK-F20) and <a class="zd-need-ref reference internal" href="../rules/trace.html#XD-RULE-0065" title="XD-RULE-0065"><em class="xref need">An assembly that links an o... (XD-RULE-0065)</em></a> (CK-F21).</p>
+<p>Note (2026-11-18, finding 17 of xdmod#69): <code class="docutils literal notranslate"><span class="pre">Part.Shape.read</span></code> gave one single-coloured compound.
+The board model now keeps one object per component and the STEP colours, still without a window.
+<code class="docutils literal notranslate"><span class="pre">FreeCADCmd</span></code> cannot do it: <code class="docutils literal notranslate"><span class="pre">Import.insert</span></code> there keeps the structure (one <code class="docutils literal notranslate"><span class="pre">App::Part</span></code> per
+STEP product), but the colours belong to the view providers (<code class="docutils literal notranslate"><span class="pre">ShapeAppearance</span></code> in
+<code class="docutils literal notranslate"><span class="pre">GuiDocument.xml</span></code>, not in <code class="docutils literal notranslate"><span class="pre">Document.xml</span></code>), which <code class="docutils literal notranslate"><span class="pre">FreeCADCmd</span></code> does not have; the reader
+options (<code class="docutils literal notranslate"><span class="pre">merge</span></code>, <code class="docutils literal notranslate"><span class="pre">useLinkGroup</span></code>, <code class="docutils literal notranslate"><span class="pre">mode</span></code>, the <code class="docutils literal notranslate"><span class="pre">UseBaseName</span></code> and <code class="docutils literal notranslate"><span class="pre">ReduceObjects</span></code>
+parameters) and <code class="docutils literal notranslate"><span class="pre">FreeCADGui.setupWithoutGUI()</span></code> change nothing, and FreeCAD 1.1.4 offers no
+legacy-importer switch from Python. The FreeCAD GUI binary on Qt’s offscreen platform runs
+<code class="docutils literal notranslate"><span class="pre">ImportGui.insert</span></code> with the colours per face. The script pins every import setting it relies on
+(<code class="docutils literal notranslate"><span class="pre">mode=0</span></code>; <code class="docutils literal notranslate"><span class="pre">ImportMode</span></code> 2 in the workspace preferences stalled the offscreen run until the time
+limit) and restores them. With <code class="docutils literal notranslate"><span class="pre">UseBaseName</span></code> off and link groups the
+objects carry the reference designators (<code class="docutils literal notranslate"><span class="pre">R1</span></code>, <code class="docutils literal notranslate"><span class="pre">J1</span></code>). The import script flattens that tree:
+<code class="docutils literal notranslate"><span class="pre">Board</span></code> holds one <code class="docutils literal notranslate"><span class="pre">App::Link</span></code> per component, named by its designator (<code class="docutils literal notranslate"><span class="pre">PCB</span></code> for the board
+body), to its 3D model, which is stored once per model in the hidden group <code class="docutils literal notranslate"><span class="pre">Models</span></code>. So a file
+holds one BREP per model, not per part (KiCad demo board with 68 parts: 2.5 MB, one feature per
+part 7.1 MB, the old compound 1.8 MB; the <code class="docutils literal notranslate"><span class="pre">pic_programmer</span></code> demo with 55 parts: 4.2 MB, the old
+compound 3.6 MB, so the link layout is about 20 % larger and closer to the 5 MB limit). The
+geometry is the same as before (same volume and bounding box on the canary board and the demo). The trace properties on <code class="docutils literal notranslate"><span class="pre">Board</span></code>, CK-F20 and
+CK-F21 are unchanged. StepUp’s board load in a GUI session over an MCP server (finding 18)
+stays an option; it is not needed for the colours.</p>
 </td>
 </tr>
 </tbody>

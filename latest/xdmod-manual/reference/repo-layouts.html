@@ -12,6 +12,7 @@
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../_static/xd-svgview.css?v=ec1b17f2" />
       <link rel="stylesheet" type="text/css" href="../_static/zdocs-need-types.css" />
       <link rel="stylesheet" type="text/css" href="../_static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
       <link rel="stylesheet" type="text/css" href="../_static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
@@ -27,9 +28,11 @@
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=46a6e386"></script>
+      <script src="../_static/documentation_options.js?v=08679464"></script>
       <script src="../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/svg-pan-zoom/svg-pan-zoom.min.js?v=58bcff24"></script>
+      <script src="../_static/xd-svgview.js?v=ca57f511"></script>
       <script src="../_static/zdocs-need-preview.js?v=98728251"></script>
       <script src="../_static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
       <script src="../_static/sphinx-data-viewer/jsonview_loader.js?v=f7ff7e7d"></script>
@@ -53,7 +56,7 @@
           <a href="../index.html" class="icon icon-home">
             XDMOD Manual
           </a>
-<div class="version zdocs-version">v0.0-dev+g2f90511</div>
+<div class="version zdocs-version">v0.0-dev+g1949bec</div>
 
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -278,8 +281,8 @@ docs/                   me-design; one document per top-level assembly (asm-&lt;
 </div>
 <p>FreeCAD files are stored uncompressed, with a git textconv for readable diffs (<a class="reference internal" href="../explanation/decisions/checks.html#XD-ADR-0056" title="XD-ADR-0056"><em class="xref need">FreeCAD files uncompressed,... (XD-ADR-0056)</em></a>,
 <a class="reference internal" href="../explanation/rules/checks.html#XD-RULE-0039" title="XD-RULE-0039"><em class="xref need">Design files are stored unc... (XD-RULE-0039)</em></a>). Parts refer only to the skeleton, never to the top document
-(<a class="reference internal" href="../explanation/decisions/domains.html#XD-ADR-0137" title="XD-ADR-0137"><em class="xref need">FreeCAD assemblies: a skele... (XD-ADR-0137)</em></a>, proposed). Board models come at fixed versions from a board library repo
-(<a class="reference internal" href="../explanation/decisions/domains.html#XD-ADR-0139" title="XD-ADR-0139"><em class="xref need">A board library repo for ME (XD-ADR-0139)</em></a>, proposed). Boards, harnesses and assemblies have their own tags
+(<a class="reference internal" href="../explanation/decisions/domains.html#XD-ADR-0137" title="XD-ADR-0137"><em class="xref need">FreeCAD assemblies: a skele... (XD-ADR-0137)</em></a>). Board models come at fixed versions from a board library repo
+(<a class="reference internal" href="../explanation/decisions/domains.html#XD-ADR-0139" title="XD-ADR-0139"><em class="xref need">A board library repo for ME (XD-ADR-0139)</em></a>). Boards, harnesses and assemblies have their own tags
 <code class="docutils literal notranslate"><span class="pre">&lt;name&gt;/vX.Y.Z</span></code>, made by the owner only (<a class="reference internal" href="../explanation/decisions/repos.html#XD-ADR-0140" title="XD-ADR-0140"><em class="xref need">Tags per board, assembly an... (XD-ADR-0140)</em></a>).</p>
 </section>
 <section id="board-library-repo">
@@ -292,7 +295,7 @@ docs/                   board-library: the list of board versions, made from the
 checks.yaml             board_library: {source: &quot;{ws}/&lt;ee repo&gt;&quot;} (CK-F20); no ids.yaml
 </pre></div>
 </div>
-<p>A top-level west project in the west groups of EE and ME (<a class="reference internal" href="../explanation/decisions/domains.html#XD-ADR-0139" title="XD-ADR-0139"><em class="xref need">A board library repo for ME (XD-ADR-0139)</em></a>, proposed). EE writes
+<p>A top-level west project in the west groups of EE and ME (<a class="reference internal" href="../explanation/decisions/domains.html#XD-ADR-0139" title="XD-ADR-0139"><em class="xref need">A board library repo for ME (XD-ADR-0139)</em></a>). EE writes
 a tagged board version with <code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">cam</span> <span class="pre">&lt;ee</span> <span class="pre">repo&gt;</span> <span class="pre">&lt;board&gt;</span> <span class="pre">--library</span></code> and opens the pull request;
 ME links one fixed version, and <code class="docutils literal notranslate"><span class="pre">cad.board_library</span></code> in the ME repo’s checks.yaml notes a newer one
 (CK-F21).</p>
