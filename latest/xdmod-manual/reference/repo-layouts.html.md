@@ -59,8 +59,8 @@ lib/                    project-local symbols, footprints, 3D models
 tests/                  scripted EE checks, JUnit output
 generated/              cad-needs.json, model.json, <project>.connectors.json
 docs/                   ee-req, ee-design, ee-test-spec, ee-test-report; harnesses
-                        (every cable); pcbas/pcba-<name>/ (one per board); prototype
-                        projects (proto-<name>)
+                        (every cable); pcbas/pcba-<name>/ (one per board);
+                        protos/proto-<name>/ (one per prototype setup)
 ```
 
 KiCad library tables refer to the shared libraries only through variables (`${XD_KICAD_SYMBOLS}`
@@ -133,7 +133,7 @@ SW architecture is written in rst in iteration 1 ([*SW architecture in rst in i.
 documents from the test specs ([*Test reports are separate d... (XD-ADR-0099)*](../explanation/decisions/documents.html.md#XD-ADR-0099)).
 
 Per-deliverable documents sit in one sub-folder of `docs/` per kind (`pcbas/`, `assemblies/`,
-`firmware/`); their registry entry names the folder (`doc_dir: pcbas/pcba-<name>`), their ID and
+`firmware/`, `protos/`); their registry entry names the folder (`doc_dir: pcbas/pcba-<name>`), their ID and
 Pages path stay flat (`html/pcba-<name>/`). CK-A7 checks the layout ([*V-model documents for EE an... (XD-ADR-0149)*](../explanation/decisions/documents.html.md#XD-ADR-0149)).
 
 ## Integration repo

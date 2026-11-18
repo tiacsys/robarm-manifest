@@ -28,7 +28,7 @@
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=afcad5a2"></script>
+      <script src="../_static/documentation_options.js?v=7bb85c52"></script>
       <script src="../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../_static/svg-pan-zoom/svg-pan-zoom.min.js?v=58bcff24"></script>
@@ -56,7 +56,7 @@
           <a href="../index.html" class="icon icon-home">
             XDMOD Manual
           </a>
-<div class="version zdocs-version">v0.0-dev+g1b55772</div>
+<div class="version zdocs-version">v0.0-dev+g96ba581</div>
 
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -81,6 +81,7 @@
 <li class="toctree-l2"><a class="reference internal" href="cross-repo-change.html">Make a change across repos</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Make a co-design change (ME and EE)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#what-sits-where">What sits where</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mounting-zones">Mounting zones</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#steps">Steps</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#who-reviews-what">Who reviews what</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#conflicts">Conflicts</a></li>
@@ -232,8 +233,8 @@ with one extra tool step, the push from FreeCAD into KiCad.</p>
 <tbody>
 <tr class="row-even"><td><p>robarm-syseng</p></td>
 <td><p>The budget: a port def with the box (<code class="docutils literal notranslate"><span class="pre">width</span></code>, <code class="docutils literal notranslate"><span class="pre">depth</span></code>, <code class="docutils literal notranslate"><span class="pre">heightAbove</span></code>,
-<code class="docutils literal notranslate"><span class="pre">heightBelow</span></code>), the hole list (<code class="docutils literal notranslate"><span class="pre">hole&lt;n&gt;X</span></code>, <code class="docutils literal notranslate"><span class="pre">hole&lt;n&gt;Y</span></code>, <code class="docutils literal notranslate"><span class="pre">holeDiameter</span></code>) and the
-connector positions (<code class="docutils literal notranslate"><span class="pre">&lt;ref&gt;X</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;ref&gt;Y</span></code>, pin 1), in the board frame: origin at the
+<code class="docutils literal notranslate"><span class="pre">heightBelow</span></code>), the hole list (<code class="docutils literal notranslate"><span class="pre">hole&lt;n&gt;X</span></code>, <code class="docutils literal notranslate"><span class="pre">hole&lt;n&gt;Y</span></code>, <code class="docutils literal notranslate"><span class="pre">holeDiameter</span></code>), optional
+mounting zones (<code class="docutils literal notranslate"><span class="pre">mountZoneDiameter</span></code>, see below) and the connector positions (<code class="docutils literal notranslate"><span class="pre">&lt;ref&gt;X</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;ref&gt;Y</span></code>, pin 1), in the board frame: origin at the
 lower-left corner of the outline seen from the top, x right, y up, z = 0 on the top face.
 Values are <code class="docutils literal notranslate"><span class="pre">default</span></code> values, so the domains can restate them.</p></td>
 <td><p>systems engineering; reviews whether the budget still fits the system</p></td>
@@ -251,6 +252,21 @@ and holes on <code class="docutils literal notranslate"><span class="pre">Edge.C
 </tr>
 </tbody>
 </table>
+</section>
+<section id="mounting-zones">
+<h2>Mounting zones<a class="headerlink" href="#mounting-zones" title="Link to this heading"></a></h2>
+<p>A board is held at its holes: a stand-off or boss below it, a screw head or nut above it. Both lie
+inside the budget’s box. <code class="docutils literal notranslate"><span class="pre">attribute</span> <span class="pre">mountZoneDiameter</span> <span class="pre">default</span> <span class="pre">8</span> <span class="pre">[mm];</span></code> in the budget gives each
+hole <code class="docutils literal notranslate"><span class="pre">hole&lt;n&gt;X</span></code>/<code class="docutils literal notranslate"><span class="pre">hole&lt;n&gt;Y</span></code> a zone of that diameter, on both sides of the board and through the
+whole box height (<a class="reference internal" href="../explanation/decisions/domains.html#XD-ADR-0134" title="XD-ADR-0134"><em class="xref need">ME writes board geometry in... (XD-ADR-0134)</em></a>). The zone belongs to the mount:</p>
+<ul class="simple">
+<li><p><strong>ME</strong> may put supports (below the board) and fastener heads (above it) there; CK-F18 leaves the
+zones out of the box. A support wider than its zone still reaches into the box and is a finding.</p></li>
+<li><p><strong>EE</strong> keeps components and pads out of a zone. No check covers this yet (a planned EE check:
+no footprint pad or courtyard in a zone); the EE reviewer looks at the holes.</p></li>
+</ul>
+<p>The seat restates <code class="docutils literal notranslate"><span class="pre">mountZoneDiameter</span></code> like the other budget values. A budget without it has no
+zones, and every part in its box is a finding.</p>
 </section>
 <section id="steps">
 <h2>Steps<a class="headerlink" href="#steps" title="Link to this heading"></a></h2>
@@ -357,8 +373,9 @@ again; never merge two <code class="docutils literal notranslate"><span class="p
 <li><p>CK-F4b: DRC of the pushed board (the push itself adds no findings on the canary).</p></li>
 <li><p>CK-F18, “board inside its space budget” (local, FreeCAD): the board model of the board library,
 linked at the seat’s LCS, fits the budget’s box in the board frame (<code class="docutils literal notranslate"><span class="pre">width</span></code> x <code class="docutils literal notranslate"><span class="pre">depth</span></code>, from
-<code class="docutils literal notranslate"><span class="pre">-heightBelow</span></code> to <code class="docutils literal notranslate"><span class="pre">heightAbove</span></code>; tolerance 0.01 mm); no other part reaches into the box (a
-stand-off under the board does: accept it in <code class="docutils literal notranslate"><span class="pre">accepted.yaml</span></code> or change the budget); no library
+<code class="docutils literal notranslate"><span class="pre">-heightBelow</span></code> to <code class="docutils literal notranslate"><span class="pre">heightAbove</span></code>; tolerance 0.01 mm); no other part reaches into the box
+outside its mounting zones (a stand-off wider than its zone does: make it narrower, widen the
+zone in the budget, or accept it in <code class="docutils literal notranslate"><span class="pre">accepted.yaml</span></code>); no library
 fastener collides with the board (a screw that misses its hole). Board versus part collisions are
 CK-F17’s. A skip without a board model. Not checked yet (iteration 2): the KiCad outline and
 <code class="docutils literal notranslate"><span class="pre">Edge.Cuts</span></code> circles against <code class="docutils literal notranslate"><span class="pre">width</span></code>, <code class="docutils literal notranslate"><span class="pre">depth</span></code> and the hole list, and the connector positions;

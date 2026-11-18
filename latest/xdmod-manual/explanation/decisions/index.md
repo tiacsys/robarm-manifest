@@ -174,7 +174,7 @@ project.
 | [XD-ADR-0126](checks.md#XD-ADR-0126) |          | One accepted.yaml format, with Accepted-by                                                      | accepted   | 2026-11-17 |
 | [XD-ADR-0127](documents.md#XD-ADR-0127) |          | WireViz for harnesses                                                                           | accepted   | 2026-11-17 |
 | [XD-ADR-0128](domains.md#XD-ADR-0128) |          | The domain model owns the IDs of boards, assemblies, ports and harnesses                        | accepted   | 2026-11-17 |
-| [XD-ADR-0129](documents.md#XD-ADR-0129) |          | One document per board, harness and assembly                                                    | accepted   | 2026-11-17 |
+| [XD-ADR-0129](documents.md#XD-ADR-0129) |          | One document per board, harness and assembly                                                    | revised    | 2026-11-17 |
 | [XD-ADR-0130](domains.md#XD-ADR-0130) |          | Domain repos refine the system model by specialization                                          | accepted   | 2026-11-17 |
 | [XD-ADR-0131](domains.md#XD-ADR-0131) |          | SW reads the board pin maps from EE                                                             | accepted   | 2026-11-17 |
 | [XD-ADR-0132](domains.md#XD-ADR-0132) |          | curatrix checks conformance and derives the links                                               | accepted   | 2026-11-17 |
@@ -194,4 +194,4 @@ project.
 | [XD-ADR-0146](domains.md#XD-ADR-0146) |          | FreeCAD assemblies: skeleton file name, parameter aliases, open order                           | accepted   | 2026-11-17 |
 | [XD-ADR-0147](scope.md#XD-ADR-0147) |          | ME renderings without OpenGL, the fallback when Blender is absent                               | accepted   | 2026-11-17 |
 | [XD-ADR-0148](scope.md#XD-ADR-0148) |          | Blender as an optional local renderer of the ME renderings                                      | accepted   | 2026-11-17 |
-| [XD-ADR-0149](documents.md#XD-ADR-0149) |          | V-model documents for EE and ME, per-deliverable documents in sub-folders, one harness document | proposed   | 2026-11-18 |
+| [XD-ADR-0149](documents.md#XD-ADR-0149) |          | V-model documents for EE and ME, per-deliverable documents in sub-folders, one harness document | accepted   | 2026-11-18 |

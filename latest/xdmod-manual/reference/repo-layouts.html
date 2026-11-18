@@ -28,7 +28,7 @@
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=afcad5a2"></script>
+      <script src="../_static/documentation_options.js?v=7bb85c52"></script>
       <script src="../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../_static/svg-pan-zoom/svg-pan-zoom.min.js?v=58bcff24"></script>
@@ -56,7 +56,7 @@
           <a href="../index.html" class="icon icon-home">
             XDMOD Manual
           </a>
-<div class="version zdocs-version">v0.0-dev+g1b55772</div>
+<div class="version zdocs-version">v0.0-dev+g96ba581</div>
 
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -267,8 +267,8 @@ lib/                    project-local symbols, footprints, 3D models
 tests/                  scripted EE checks, JUnit output
 generated/              cad-needs.json, model.json, &lt;project&gt;.connectors.json
 docs/                   ee-req, ee-design, ee-test-spec, ee-test-report; harnesses
-                        (every cable); pcbas/pcba-&lt;name&gt;/ (one per board); prototype
-                        projects (proto-&lt;name&gt;)
+                        (every cable); pcbas/pcba-&lt;name&gt;/ (one per board);
+                        protos/proto-&lt;name&gt;/ (one per prototype setup)
 </pre></div>
 </div>
 <p>KiCad library tables refer to the shared libraries only through variables (<code class="docutils literal notranslate"><span class="pre">${XD_KICAD_SYMBOLS}</span></code>
@@ -337,7 +337,7 @@ docs/                   SW requirements, architecture and design, API (Doxygen),
 <p>SW architecture is written in rst in iteration 1 (<a class="reference internal" href="../explanation/decisions/method.html#XD-ADR-0069" title="XD-ADR-0069"><em class="xref need">SW architecture in rst in i... (XD-ADR-0069)</em></a>). Test reports are separate
 documents from the test specs (<a class="reference internal" href="../explanation/decisions/documents.html#XD-ADR-0099" title="XD-ADR-0099"><em class="xref need">Test reports are separate d... (XD-ADR-0099)</em></a>).</p>
 <p>Per-deliverable documents sit in one sub-folder of <code class="docutils literal notranslate"><span class="pre">docs/</span></code> per kind (<code class="docutils literal notranslate"><span class="pre">pcbas/</span></code>, <code class="docutils literal notranslate"><span class="pre">assemblies/</span></code>,
-<code class="docutils literal notranslate"><span class="pre">firmware/</span></code>); their registry entry names the folder (<code class="docutils literal notranslate"><span class="pre">doc_dir:</span> <span class="pre">pcbas/pcba-&lt;name&gt;</span></code>), their ID and
+<code class="docutils literal notranslate"><span class="pre">firmware/</span></code>, <code class="docutils literal notranslate"><span class="pre">protos/</span></code>); their registry entry names the folder (<code class="docutils literal notranslate"><span class="pre">doc_dir:</span> <span class="pre">pcbas/pcba-&lt;name&gt;</span></code>), their ID and
 Pages path stay flat (<code class="docutils literal notranslate"><span class="pre">html/pcba-&lt;name&gt;/</span></code>). CK-A7 checks the layout (<a class="reference internal" href="../explanation/decisions/documents.html#XD-ADR-0149" title="XD-ADR-0149"><em class="xref need">V-model documents for EE an... (XD-ADR-0149)</em></a>).</p>
 </section>
 <section id="integration-repo">
