@@ -10,7 +10,7 @@ manifest:
   projects:
     - name: robarm-me
       remote: tiacsys
-      revision: 41cf477e5448bbee7ab81931fc8d23c2b19f1c36
+      revision: f878066b8f9ff6cab10b465fcd0f437eda3ed521
       groups: [me]
 
     - name: FreeCAD-library
