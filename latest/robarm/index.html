@@ -26,7 +26,7 @@
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=19da072d"></script>
+      <script src="_static/documentation_options.js?v=afcad5a2"></script>
       <script src="_static/doctools.js?v=fd6eb6e6"></script>
       <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="_static/svg-pan-zoom/svg-pan-zoom.min.js?v=58bcff24"></script>
@@ -53,7 +53,7 @@
           <a href="#" class="icon icon-home">
             Robot Arm: Project Overview
           </a>
-<div class="version zdocs-version">v0.0-dev+ga31a7b8</div>
+<div class="version zdocs-version">v0.0-dev+g1b55772</div>
 
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -96,19 +96,39 @@
       
       <li class="toctree-l1"><a class="reference external reference-group-link" href="./../sw-test-report/index.html">SW Test Report</a></li>
       
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="./../fw-robarm-app/index.html">Firmware: robarm_app</a></li>
+      
     </ul>
     
     <p class="caption reference-group-caption" role="heading"><span class="caption-text">Electrical</span></p>
     <ul>
       
-      <li class="toctree-l1"><a class="reference external reference-group-link" href="./../ee-design/index.html">EE Requirements & Design</a></li>
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="./../ee-req/index.html">EE Requirements Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="./../ee-design/index.html">EE Design</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="./../ee-test-spec/index.html">EE Test Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="./../ee-test-report/index.html">EE Test Report</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="./../harnesses/index.html">Harnesses</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="./../pcba-canary-board/index.html">Canary Board</a></li>
       
     </ul>
     
     <p class="caption reference-group-caption" role="heading"><span class="caption-text">Mechanical</span></p>
     <ul>
       
-      <li class="toctree-l1"><a class="reference external reference-group-link" href="./../me-design/index.html">ME Requirements & Design</a></li>
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="./../me-req/index.html">ME Requirements Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="./../me-design/index.html">ME Design</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="./../me-test-spec/index.html">ME Test Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="./../me-test-report/index.html">ME Test Report</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="./../asm-canary-assembly/index.html">Canary Assembly</a></li>
       
       <li class="toctree-l1"><a class="reference external reference-group-link" href="./../board-library/index.html">Board Library</a></li>
       
@@ -184,19 +204,19 @@ this page is built together with all of them from one west workspace. The manife
 </thead>
 <tbody>
 <tr class="row-even"><td><p>System</p></td>
-<td><p><a class="reference external" href="../se-req/index.html" title="(in Stakeholder and System Requirements Specification v0.0-dev+ga31a7b8)"><span>Stakeholder and System Requirements Specification</span></a></p></td>
+<td><p><a class="reference external" href="../se-req/index.html" title="(in Stakeholder and System Requirements Specification v0.0-dev+g1b55772)"><span>Stakeholder and System Requirements Specification</span></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">robarm-syseng</span></code></p></td>
 </tr>
 <tr class="row-odd"><td></td>
-<td><p><a class="reference external" href="../se-arch/index.html" title="(in System Architecture v0.0-dev+ga31a7b8)"><span>System Architecture</span></a></p></td>
+<td><p><a class="reference external" href="../se-arch/index.html" title="(in System Architecture v0.0-dev+g1b55772)"><span>System Architecture</span></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">robarm-syseng</span></code></p></td>
 </tr>
 <tr class="row-even"><td><p>Software</p></td>
-<td><p><a class="reference external" href="../sw-req/index.html" title="(in SW Requirements Specification v0.0-dev+ga31a7b8)"><span>SW Requirements Specification</span></a></p></td>
+<td><p><a class="reference external" href="../sw-req/index.html" title="(in SW Requirements Specification v0.0-dev+g1b55772)"><span>SW Requirements Specification</span></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">robarm-sw</span></code></p></td>
 </tr>
 <tr class="row-odd"><td></td>
-<td><p><a class="reference external" href="../sw-arch/index.html" title="(in SW Architecture and Design v0.0-dev+ga31a7b8)"><span>SW Architecture and Design</span></a></p></td>
+<td><p><a class="reference external" href="../sw-arch/index.html" title="(in SW Architecture and Design v0.0-dev+g1b55772)"><span>SW Architecture and Design</span></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">robarm-sw</span></code></p></td>
 </tr>
 <tr class="row-even"><td></td>
@@ -204,35 +224,75 @@ this page is built together with all of them from one west workspace. The manife
 <td><p><code class="docutils literal notranslate"><span class="pre">robarm-sw</span></code></p></td>
 </tr>
 <tr class="row-odd"><td></td>
-<td><p><a class="reference external" href="../sw-test-spec/index.html" title="(in SW Test Specification v0.0-dev+ga31a7b8)"><span>SW Test Specification</span></a></p></td>
+<td><p><a class="reference external" href="../sw-test-spec/index.html" title="(in SW Test Specification v0.0-dev+g1b55772)"><span>SW Test Specification</span></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">robarm-sw</span></code></p></td>
 </tr>
 <tr class="row-even"><td></td>
-<td><p><a class="reference external" href="../sw-test-report/index.html" title="(in SW Test Report v0.0-dev+ga31a7b8)"><span>SW Test Report</span></a></p></td>
+<td><p><a class="reference external" href="../sw-test-report/index.html" title="(in SW Test Report v0.0-dev+g1b55772)"><span>SW Test Report</span></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">robarm-sw</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p>Electrical</p></td>
-<td><p><a class="reference external" href="../ee-design/index.html" title="(in EE Requirements and Design v0.0-dev+ga31a7b8)"><span>EE Requirements and Design</span></a></p></td>
+<tr class="row-odd"><td></td>
+<td><p><a class="reference external" href="../fw-robarm-app/index.html" title="(in Firmware: robarm_app v0.0-dev+g1b55772)"><span>Firmware: robarm_app (fw-robarm-app)</span></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">robarm-sw</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Electrical</p></td>
+<td><p><a class="reference external" href="../ee-req/index.html" title="(in EE Requirements Specification v0.0-dev+g1b55772)"><span>EE Requirements Specification</span></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">robarm-ee</span></code></p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p><a class="reference external" href="../ee-design/index.html" title="(in EE Design v0.0-dev+g1b55772)"><span>EE Design</span></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">robarm-ee</span></code></p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p><a class="reference external" href="../ee-test-spec/index.html" title="(in EE Test Specification v0.0-dev+g1b55772)"><span>EE Test Specification</span></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">robarm-ee</span></code></p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p><a class="reference external" href="../ee-test-report/index.html" title="(in EE Test Report v0.0-dev+g1b55772)"><span>EE Test Report</span></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">robarm-ee</span></code></p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p><a class="reference external" href="../harnesses/index.html" title="(in Harnesses v0.0-dev+g1b55772)"><span>Harnesses</span></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">robarm-ee</span></code></p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p><a class="reference external" href="../pcba-canary-board/index.html" title="(in Canary Board v0.0-dev+g1b55772)"><span>Canary Board (pcba-canary-board)</span></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">robarm-ee</span></code></p></td>
 </tr>
 <tr class="row-even"><td><p>Mechanical</p></td>
-<td><p><a class="reference external" href="../me-design/index.html" title="(in ME Requirements and Design v0.0-dev+ga31a7b8)"><span>ME Requirements and Design</span></a></p></td>
+<td><p><a class="reference external" href="../me-req/index.html" title="(in ME Requirements Specification v0.0-dev+g1b55772)"><span>ME Requirements Specification</span></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">robarm-me</span></code></p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p><a class="reference external" href="../me-design/index.html" title="(in ME Design v0.0-dev+g1b55772)"><span>ME Design</span></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">robarm-me</span></code></p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p><a class="reference external" href="../me-test-spec/index.html" title="(in ME Test Specification v0.0-dev+g1b55772)"><span>ME Test Specification</span></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">robarm-me</span></code></p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p><a class="reference external" href="../me-test-report/index.html" title="(in ME Test Report v0.0-dev+g1b55772)"><span>ME Test Report</span></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">robarm-me</span></code></p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p><a class="reference external" href="../asm-canary-assembly/index.html" title="(in Canary Assembly v0.0-dev+g1b55772)"><span>Canary Assembly (asm-canary-assembly)</span></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">robarm-me</span></code></p></td>
 </tr>
 <tr class="row-odd"><td><p>Integration</p></td>
-<td><p><a class="reference external" href="../int-test-spec/index.html" title="(in System and Integration Test Specification v0.0-dev+ga31a7b8)"><span>System and Integration Test Specification</span></a></p></td>
+<td><p><a class="reference external" href="../int-test-spec/index.html" title="(in System and Integration Test Specification v0.0-dev+g1b55772)"><span>System and Integration Test Specification</span></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">robarm-integration</span></code></p></td>
 </tr>
 <tr class="row-even"><td></td>
-<td><p><a class="reference external" href="../int-test-report/index.html" title="(in System and Integration Test Report v0.0-dev+ga31a7b8)"><span>System and Integration Test Report</span></a></p></td>
+<td><p><a class="reference external" href="../int-test-report/index.html" title="(in System and Integration Test Report v0.0-dev+g1b55772)"><span>System and Integration Test Report</span></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">robarm-integration</span></code></p></td>
 </tr>
 <tr class="row-odd"><td><p>Framework</p></td>
-<td><p><a class="reference external" href="../xdmod-manual/index.html" title="(in XDMOD Manual v0.0-dev+ga31a7b8)"><span>XDMOD Manual</span></a></p></td>
+<td><p><a class="reference external" href="../xdmod-manual/index.html" title="(in XDMOD Manual v0.0-dev+g1b55772)"><span>XDMOD Manual</span></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">xdmod</span></code></p></td>
 </tr>
 <tr class="row-even"><td></td>
-<td><p><a class="reference external" href="../xdmod-ref/index.html" title="(in curatrix Reference v0.0-dev+ga31a7b8)"><span>curatrix Reference</span></a></p></td>
+<td><p><a class="reference external" href="../xdmod-ref/index.html" title="(in curatrix Reference v0.0-dev+g1b55772)"><span>curatrix Reference</span></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">xdmod</span></code></p></td>
 </tr>
 </tbody>

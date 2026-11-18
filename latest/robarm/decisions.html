@@ -26,7 +26,7 @@
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=19da072d"></script>
+      <script src="_static/documentation_options.js?v=afcad5a2"></script>
       <script src="_static/doctools.js?v=fd6eb6e6"></script>
       <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="_static/svg-pan-zoom/svg-pan-zoom.min.js?v=58bcff24"></script>
@@ -53,7 +53,7 @@
           <a href="index.html" class="icon icon-home">
             Robot Arm: Project Overview
           </a>
-<div class="version zdocs-version">v0.0-dev+ga31a7b8</div>
+<div class="version zdocs-version">v0.0-dev+g1b55772</div>
 
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -96,19 +96,39 @@
       
       <li class="toctree-l1"><a class="reference external reference-group-link" href="./../sw-test-report/index.html">SW Test Report</a></li>
       
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="./../fw-robarm-app/index.html">Firmware: robarm_app</a></li>
+      
     </ul>
     
     <p class="caption reference-group-caption" role="heading"><span class="caption-text">Electrical</span></p>
     <ul>
       
-      <li class="toctree-l1"><a class="reference external reference-group-link" href="./../ee-design/index.html">EE Requirements & Design</a></li>
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="./../ee-req/index.html">EE Requirements Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="./../ee-design/index.html">EE Design</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="./../ee-test-spec/index.html">EE Test Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="./../ee-test-report/index.html">EE Test Report</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="./../harnesses/index.html">Harnesses</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="./../pcba-canary-board/index.html">Canary Board</a></li>
       
     </ul>
     
     <p class="caption reference-group-caption" role="heading"><span class="caption-text">Mechanical</span></p>
     <ul>
       
-      <li class="toctree-l1"><a class="reference external reference-group-link" href="./../me-design/index.html">ME Requirements & Design</a></li>
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="./../me-req/index.html">ME Requirements Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="./../me-design/index.html">ME Design</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="./../me-test-spec/index.html">ME Test Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="./../me-test-report/index.html">ME Test Report</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="./../asm-canary-assembly/index.html">Canary Assembly</a></li>
       
       <li class="toctree-l1"><a class="reference external reference-group-link" href="./../board-library/index.html">Board Library</a></li>
       
@@ -163,7 +183,7 @@
 <h1>Project Decisions<a class="headerlink" href="#project-decisions" title="Link to this heading"></a></h1>
 <p>Decisions about the robot arm project are recorded on this page as <code class="docutils literal notranslate"><span class="pre">prj-dec</span></code> needs, with IDs
 <code class="docutils literal notranslate"><span class="pre">PRJ-DEC-nnnn</span></code> from the ledger <code class="docutils literal notranslate"><span class="pre">robarm-manifest/ids.yaml</span></code>. Decisions about the XDMOD method
-itself are framework decisions (<code class="docutils literal notranslate"><span class="pre">xd-adr</span></code>) in the <a class="reference external" href="../xdmod-manual/explanation/decisions/index.html" title="(in XDMOD Manual v0.0-dev+ga31a7b8)"><span class="xref std std-doc">XDMOD manual</span></a>. A project decision that applies or tailors a framework decision
+itself are framework decisions (<code class="docutils literal notranslate"><span class="pre">xd-adr</span></code>) in the <a class="reference external" href="../xdmod-manual/explanation/decisions/index.html" title="(in XDMOD Manual v0.0-dev+g1b55772)"><span class="xref std std-doc">XDMOD manual</span></a>. A project decision that applies or tailors a framework decision
 <code class="docutils literal notranslate"><span class="pre">follows</span></code> it.</p>
 <p>The split: a decision is a <strong>project decision</strong> when it is only true for the robot arm: its
 targets and scope, its hardware, its GitHub org, repos and settings, its licence, and its pinned
@@ -319,7 +339,7 @@ decision’s number in the planning log.</p>
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-b5c39135">
+<div class="need_container docutils container" id="SNCB-848d0c0b">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_prj-dec zd-status-valid docutils align-default" id="PRJ-DEC-0001">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -342,7 +362,7 @@ decision’s number in the planning log.</p>
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-36412931">
+<div class="need_container docutils container" id="SNCB-eecd3bc2">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_prj-dec zd-status-valid docutils align-default" id="PRJ-DEC-0002">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -366,7 +386,7 @@ decision’s number in the planning log.</p>
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-63caf834">
+<div class="need_container docutils container" id="SNCB-81a7c0b7">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_prj-dec zd-status-valid docutils align-default" id="PRJ-DEC-0003">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -389,7 +409,7 @@ decision’s number in the planning log.</p>
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-29078c9a">
+<div class="need_container docutils container" id="SNCB-739c42db">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_prj-dec zd-status-valid docutils align-default" id="PRJ-DEC-0004">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -413,7 +433,7 @@ decision’s number in the planning log.</p>
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-9fb47738">
+<div class="need_container docutils container" id="SNCB-c6eee28f">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_prj-dec zd-status-valid docutils align-default" id="PRJ-DEC-0005">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -436,7 +456,7 @@ decision’s number in the planning log.</p>
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-2d1d0273">
+<div class="need_container docutils container" id="SNCB-097aef98">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_prj-dec zd-status-valid docutils align-default" id="PRJ-DEC-0006">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -460,7 +480,7 @@ decision’s number in the planning log.</p>
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-391272c1">
+<div class="need_container docutils container" id="SNCB-af8d0b19">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_prj-dec zd-status-valid docutils align-default" id="PRJ-DEC-0007">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -484,7 +504,7 @@ decision’s number in the planning log.</p>
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-504d2bd7">
+<div class="need_container docutils container" id="SNCB-23f54391">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_prj-dec zd-status-valid docutils align-default" id="PRJ-DEC-0008">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -508,7 +528,7 @@ decision’s number in the planning log.</p>
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-284017f2">
+<div class="need_container docutils container" id="SNCB-ced08fba">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_prj-dec zd-status-valid docutils align-default" id="PRJ-DEC-0009">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -532,7 +552,7 @@ decision’s number in the planning log.</p>
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-f2501a5b">
+<div class="need_container docutils container" id="SNCB-ea6ce07a">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_prj-dec zd-status-valid docutils align-default" id="PRJ-DEC-0010">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -556,7 +576,7 @@ decision’s number in the planning log.</p>
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-2fbe0f57">
+<div class="need_container docutils container" id="SNCB-555f7587">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_prj-dec zd-status-valid docutils align-default" id="PRJ-DEC-0011">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -580,7 +600,7 @@ decision’s number in the planning log.</p>
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-501cc9af">
+<div class="need_container docutils container" id="SNCB-8b1cbdef">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_prj-dec zd-status-valid docutils align-default" id="PRJ-DEC-0012">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -605,7 +625,7 @@ decision’s number in the planning log.</p>
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-56d00873">
+<div class="need_container docutils container" id="SNCB-8c139670">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_prj-dec zd-status-valid docutils align-default" id="PRJ-DEC-0013">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -628,7 +648,7 @@ decision’s number in the planning log.</p>
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-5e5ead94">
+<div class="need_container docutils container" id="SNCB-5ff0285c">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_prj-dec zd-status-valid docutils align-default" id="PRJ-DEC-0014">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -652,7 +672,7 @@ decision’s number in the planning log.</p>
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-34666ae2">
+<div class="need_container docutils container" id="SNCB-65444932">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_prj-dec zd-status-valid docutils align-default" id="PRJ-DEC-0015">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -676,7 +696,7 @@ decision’s number in the planning log.</p>
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-d8d8bf64">
+<div class="need_container docutils container" id="SNCB-857245b5">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_prj-dec zd-status-valid docutils align-default" id="PRJ-DEC-0016">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -700,7 +720,7 @@ decision’s number in the planning log.</p>
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-a5d741d7">
+<div class="need_container docutils container" id="SNCB-d99fbd37">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_prj-dec zd-status-valid docutils align-default" id="PRJ-DEC-0017">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
@@ -725,7 +745,7 @@ decision’s number in the planning log.</p>
 </tbody>
 </table>
 </div>
-<div class="need_container docutils container" id="SNCB-81c3e9d3">
+<div class="need_container docutils container" id="SNCB-61f32925">
 <table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_prj-dec zd-status-valid docutils align-default" id="PRJ-DEC-0018">
 <tbody>
 <tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">

@@ -48,6 +48,10 @@ window.ZDOCS_NAV_LINKS = [
       {
         "label": "SW Test Report",
         "href": "html/sw-test-report/index.html"
+      },
+      {
+        "label": "Firmware: robarm_app",
+        "href": "html/fw-robarm-app/index.html"
       }
     ]
   },
@@ -58,8 +62,28 @@ window.ZDOCS_NAV_LINKS = [
     "display": "disabled_collapsing",
     "links": [
       {
-        "label": "EE Requirements & Design",
+        "label": "EE Requirements Specification",
+        "href": "html/ee-req/index.html"
+      },
+      {
+        "label": "EE Design",
         "href": "html/ee-design/index.html"
+      },
+      {
+        "label": "EE Test Specification",
+        "href": "html/ee-test-spec/index.html"
+      },
+      {
+        "label": "EE Test Report",
+        "href": "html/ee-test-report/index.html"
+      },
+      {
+        "label": "Harnesses",
+        "href": "html/harnesses/index.html"
+      },
+      {
+        "label": "Canary Board",
+        "href": "html/pcba-canary-board/index.html"
       }
     ]
   },
@@ -70,8 +94,24 @@ window.ZDOCS_NAV_LINKS = [
     "display": "disabled_collapsing",
     "links": [
       {
-        "label": "ME Requirements & Design",
+        "label": "ME Requirements Specification",
+        "href": "html/me-req/index.html"
+      },
+      {
+        "label": "ME Design",
         "href": "html/me-design/index.html"
+      },
+      {
+        "label": "ME Test Specification",
+        "href": "html/me-test-spec/index.html"
+      },
+      {
+        "label": "ME Test Report",
+        "href": "html/me-test-report/index.html"
+      },
+      {
+        "label": "Canary Assembly",
+        "href": "html/asm-canary-assembly/index.html"
       },
       {
         "label": "Board Library",

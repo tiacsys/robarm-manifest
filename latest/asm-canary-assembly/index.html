@@ -1,0 +1,506 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Canary Assembly (asm-canary-assembly) &mdash; Canary Assembly</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="_static/xd-svgview.css?v=ec1b17f2" />
+      <link rel="stylesheet" type="text/css" href="_static/zdocs-need-types.css" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinx-needs/common_css/need_links.css?v=2150a916" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinx-needs/common_css/needstable.css?v=7b67799e" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinx-needs/modern.css?v=c1bc121d" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinx-test-results/common.css?v=b776391d" />
+      <link rel="stylesheet" type="text/css" href="_static/zdocs-sphinx.css?v=1afe8e97" />
+      <link rel="stylesheet" type="text/css" href="_static/zdocs-needs.css?v=f0382e39" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=afcad5a2"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="_static/svg-pan-zoom/svg-pan-zoom.min.js?v=58bcff24"></script>
+      <script src="_static/xd-svgview.js?v=ca57f511"></script>
+      <script src="_static/zdocs-need-preview.js?v=98728251"></script>
+      <script src="_static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
+      <script src="_static/sphinx-data-viewer/jsonview_loader.js?v=f7ff7e7d"></script>
+      <script src="_static/sphinx-needs/libs/html/sphinx_needs_collapse.js?v=dca66431"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+<script id="xdmod-version-switcher" src="../../version-switcher.js" data-site-root="../.." defer></script>
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="#" class="icon icon-home">
+            Canary Assembly
+          </a>
+<div class="version zdocs-version">v0.0-dev+g1b55772</div>
+
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+  
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Canary Assembly (asm-canary-assembly)</a><ul>
+<li><a class="reference internal" href="#overview">Overview</a></li>
+<li><a class="reference internal" href="#block-diagrams">Block diagrams</a></li>
+<li><a class="reference internal" href="#drawings">Drawings</a></li>
+<li><a class="reference internal" href="#exploded-view">Exploded view</a></li>
+<li><a class="reference internal" href="#renderings">Renderings</a></li>
+<li><a class="reference internal" href="#mass-and-center-of-gravity">Mass and center of gravity</a></li>
+<li><a class="reference internal" href="#parameters">Parameters</a></li>
+<li><a class="reference internal" href="#materials">Materials</a></li>
+<li><a class="reference internal" href="#interfaces">Interfaces</a></li>
+<li><a class="reference internal" href="#findings">Findings</a></li>
+<li><a class="reference internal" href="#sub-assemblies">Sub-assemblies</a></li>
+<li><a class="reference internal" href="#appendix-bill-of-materials">Appendix: bill of materials</a></li>
+</ul>
+</li>
+</ul>
+</div>
+  
+  <div class="toctree-wrapper compound reference-groups-wrapper">
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Project</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="./../robarm/index.html">Robot Arm: Project Overview</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">System</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="./../se-req/index.html">Stakeholder & System Requirements Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="./../se-arch/index.html">System Architecture</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Software</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="./../sw-req/index.html">SW Requirements Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="./../sw-arch/index.html">SW Architecture & Design</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="./../sw-api/index.html">SW API and Implementation</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="./../sw-test-spec/index.html">SW Test Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="./../sw-test-report/index.html">SW Test Report</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="./../fw-robarm-app/index.html">Firmware: robarm_app</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Electrical</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="./../ee-req/index.html">EE Requirements Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="./../ee-design/index.html">EE Design</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="./../ee-test-spec/index.html">EE Test Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="./../ee-test-report/index.html">EE Test Report</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="./../harnesses/index.html">Harnesses</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="./../pcba-canary-board/index.html">Canary Board</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Mechanical</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="./../me-req/index.html">ME Requirements Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="./../me-design/index.html">ME Design</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="./../me-test-spec/index.html">ME Test Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="./../me-test-report/index.html">ME Test Report</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="./../board-library/index.html">Board Library</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Integration</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="./../int-test-spec/index.html">System & Integration Test Specification</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="./../int-test-report/index.html">System & Integration Test Report</a></li>
+      
+    </ul>
+    
+    <p class="caption reference-group-caption" role="heading"><span class="caption-text">Framework</span></p>
+    <ul>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="./../xdmod-manual/index.html">XDMOD Manual</a></li>
+      
+      <li class="toctree-l1"><a class="reference external reference-group-link" href="./../xdmod-ref/index.html">curatrix Reference</a></li>
+      
+    </ul>
+    
+  </div>
+  
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">Canary Assembly</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Canary Assembly (asm-canary-assembly)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="canary-assembly-asm-canary-assembly">
+<h1>Canary Assembly (asm-canary-assembly)<a class="headerlink" href="#canary-assembly-asm-canary-assembly" title="Link to this heading"></a></h1>
+<p>This document describes the assembly <code class="docutils literal notranslate"><span class="pre">canary-assembly</span></code> (<code class="docutils literal notranslate"><span class="pre">ME-ASM-0001</span></code>): the FreeCAD top document
+<code class="docutils literal notranslate"><span class="pre">assemblies/canary-assembly/canary-assembly.FCStd</span></code>, its skeleton <code class="docutils literal notranslate"><span class="pre">canary-assembly-skeleton.FCStd</span></code> and the assembly
+def of the ME model it implements. It was made by <code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">new</span> <span class="pre">asm</span></code>; every assembly document has
+the same sections (ME-4, XD-ADR-0129). Parameters, materials, interfaces and the BOM come from the
+FreeCAD files and the ME model in plain Python; drawings, exploded view, renderings, mass and
+findings come from the local <code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">cam</span></code> output of the current commit and are not part of CI
+builds.</p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Assembly: <a class="external_link reference external" href="../me-design/index.html#ME-ASM-0001">ME-ASM-0001</a>, FreeCAD document <code class="docutils literal notranslate"><span class="pre">assemblies/canary-assembly/canary-assembly.FCStd</span></code></p></li>
+<li><p>Skeleton: <code class="docutils literal notranslate"><span class="pre">assemblies/canary-assembly/canary-assembly-skeleton.FCStd</span></code></p></li>
+<li><p>Version, drawings, mass, findings: Made locally with FreeCAD (curatrix cam) for the current commit; not part of this build.</p></li>
+<li><p>Variants: none (no link has <code class="docutils literal notranslate"><span class="pre">Configs</span></code>)</p></li>
+<li><p>Sub-assemblies: none</p></li>
+<li><p>Parts below it (links, all levels): 4</p></li>
+</ul>
+</section>
+<section id="block-diagrams">
+<h2>Block diagrams<a class="headerlink" href="#block-diagrams" title="Link to this heading"></a></h2>
+<p>The assembly def of the ME model: its parts, and its ports (from the model; <code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">views</span> <span class="pre">build</span></code>):</p>
+<figure class="sysml-view xd-zoom"><svg xmlns="http://www.w3.org/2000/svg" style="background: #ffffff; background-color: light-dark(#ffffff, #121212);" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="461px" height="303px" viewBox="0 0 461 303" id="xd-view-canaryAssemblyParts"><style type="text/css">@supports (color: light-dark(#000, #fff)) { #xd-view-canaryAssemblyParts { --ge-adaptive-fg: light-dark(#000000, var(--ge-light-color, #ffffff)); } }</style><defs/><rect fill="#ffffff" style="fill: light-dark(rgb(255, 255, 255), rgb(18, 18, 18));" width="100%" height="100%" x="0" y="0"/><g><g data-cell-id="0"><g data-cell-id="1"><g data-cell-id="RobArmMe::Canary::CanaryAssembly"><a xlink:href="../me-design/index.html#ME-ASM-0001"><g transform="translate(0.5,0.5)"><rect x="58" y="10" width="209" height="46" fill="#ffffff" style="fill: light-dark(rgb(255, 255, 255), rgb(18, 18, 18)); stroke: light-dark(rgb(51, 51, 51), rgb(193, 193, 193));" stroke="#333333" pointer-events="all"/></g><g><g fill="#000000" style="fill: var(--ge-adaptive-fg, #000000);" font-family="Helvetica" text-anchor="middle" font-size="11px"><text x="162.5" y="31">«part def»</text><text x="162.5" y="44">&lt;ME-ASM-0001&gt; CanaryAssembly</text></g></g></a></g><g data-cell-id="RobArmMe::Canary::CanaryAssembly::boardScrew"><a xlink:href="../me-design/index.html#ME-PART-0002"><g transform="translate(0.5,0.5)"><rect x="10" y="112" width="235" height="35" rx="4.2" ry="4.2" fill="#ffffff" style="fill: light-dark(rgb(255, 255, 255), rgb(18, 18, 18)); stroke: light-dark(rgb(51, 51, 51), rgb(193, 193, 193));" stroke="#333333" pointer-events="all"/></g><g><g fill="#000000" style="fill: var(--ge-adaptive-fg, #000000);" font-family="Helvetica" text-anchor="middle" font-size="11px"><text x="127.5" y="134">boardScrew : ButtonHeadScrewM3x6</text></g></g></a></g><g data-cell-id="RobArmMe::Canary::CanaryAssembly::canaryPart"><a xlink:href="../me-design/index.html#ME-PART-0001"><g transform="translate(0.5,0.5)"><rect x="273" y="112" width="176" height="35" rx="4.2" ry="4.2" fill="#ffffff" style="fill: light-dark(rgb(255, 255, 255), rgb(18, 18, 18)); stroke: light-dark(rgb(51, 51, 51), rgb(193, 193, 193));" stroke="#333333" pointer-events="all"/></g><g><g fill="#000000" style="fill: var(--ge-adaptive-fg, #000000);" font-family="Helvetica" text-anchor="middle" font-size="11px"><text x="361" y="134">canaryPart : CanaryPart</text></g></g></a></g><g data-cell-id="xd-legend"><g transform="translate(0.5,0.5)"><rect x="10" y="171" width="232" height="120" fill="#ffffff" style="fill: light-dark(rgb(255, 255, 255), rgb(18, 18, 18)); stroke: light-dark(rgb(153, 153, 153), rgb(106, 106, 106));" stroke="#999999" pointer-events="all"/></g><g><g fill="#000000" style="fill: var(--ge-adaptive-fg, #000000);" font-family="Helvetica" text-anchor="start" font-size="9px"><text x="14" y="188">Legend (decomposition, a SysML v2 general</text><text x="14" y="199">view of the part tree): sharp box = the</text><text x="14" y="210">definition («keyword», &lt;need ID&gt;, name);</text><text x="14" y="221">rounded box = part usage (name : definition;</text><text x="14" y="232">colour = layer: blue functional, green</text><text x="14" y="243">logical, yellow product); filled diamond =</text><text x="14" y="254">composite feature (the owner holds the</text><text x="14" y="265">part). A box with a need ID links to its</text><text x="14" y="276">page.</text></g></g></g><g data-cell-id="RobArmMe::Canary::CanaryAssembly-&gt;RobArmMe::Canary::CanaryAssembly::boardScrew"><g transform="translate(0.5,0.5)"><path d="M 128 71.99 L 127.97 112" fill="none" stroke="#333333" style="stroke: light-dark(rgb(51, 51, 51), rgb(193, 193, 193));" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 128.01 56.99 L 132.42 64.49 L 128 71.99 L 123.6 64.48 Z" fill="#333333" style="fill: light-dark(rgb(51, 51, 51), rgb(193, 193, 193)); stroke: light-dark(rgb(51, 51, 51), rgb(193, 193, 193));" stroke="#333333" stroke-miterlimit="10" pointer-events="all"/></g></g><g data-cell-id="RobArmMe::Canary::CanaryAssembly-&gt;RobArmMe::Canary::CanaryAssembly::canaryPart"><g transform="translate(0.5,0.5)"><path d="M 197.01 71.99 L 197 66 L 361 66 L 361 112" fill="none" stroke="#333333" style="stroke: light-dark(rgb(51, 51, 51), rgb(193, 193, 193));" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 196.99 56.99 L 201.41 64.48 L 197.01 71.99 L 192.59 64.49 Z" fill="#333333" style="fill: light-dark(rgb(51, 51, 51), rgb(193, 193, 193)); stroke: light-dark(rgb(51, 51, 51), rgb(193, 193, 193));" stroke="#333333" stroke-miterlimit="10" pointer-events="all"/></g></g></g></g></g></svg><figcaption>Parts of the canary assembly (view canaryAssemblyParts)</figcaption></figure><figure class="sysml-view xd-zoom"><svg xmlns="http://www.w3.org/2000/svg" style="background: #ffffff; background-color: light-dark(#ffffff, #121212);" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="425px" height="364px" viewBox="0 0 425 364" id="xd-view-canaryAssembly"><style type="text/css">@supports (color: light-dark(#000, #fff)) { #xd-view-canaryAssembly { --ge-adaptive-fg: light-dark(#000000, var(--ge-light-color, #ffffff)); } }</style><defs/><rect fill="#ffffff" style="fill: light-dark(rgb(255, 255, 255), rgb(18, 18, 18));" width="100%" height="100%" x="0" y="0"/><g><g data-cell-id="0"><g data-cell-id="1"><g data-cell-id="RobArmMe::Canary::CanaryAssembly"><a xlink:href="../me-design/index.html#ME-ASM-0001"><g transform="translate(0.5,0.5)"><rect x="10" y="10" width="361" height="234" fill="none" stroke="#333333" style="stroke: light-dark(rgb(51, 51, 51), rgb(193, 193, 193));" pointer-events="all"/></g><g><g fill="#000000" style="fill: var(--ge-adaptive-fg, #000000);" font-family="Helvetica" text-anchor="start" font-size="11px"><text x="20" y="27">«part def»</text><text x="20" y="40">&lt;ME-ASM-0001&gt; CanaryAssembly</text></g></g></a><g data-cell-id="RobArmMe::Canary::CanaryAssembly.boardSeat"><g transform="translate(0.5,0.5)"><rect x="366" y="81" width="10" height="10" fill="#ffffff" style="fill: light-dark(rgb(255, 255, 255), rgb(18, 18, 18)); stroke: light-dark(rgb(51, 51, 51), rgb(193, 193, 193));" stroke="#333333" pointer-events="all"/></g><g><g fill="#000000" style="fill: var(--ge-adaptive-fg, #000000);" font-family="Helvetica" text-anchor="end" font-size="9px"><text x="364" y="89.5">boardSeat</text></g></g></g><g data-cell-id="RobArmMe::Canary::CanaryAssembly.mount"><g transform="translate(0.5,0.5)"><rect x="366" y="163" width="10" height="10" fill="#ffffff" style="fill: light-dark(rgb(255, 255, 255), rgb(18, 18, 18)); stroke: light-dark(rgb(51, 51, 51), rgb(193, 193, 193));" stroke="#333333" pointer-events="all"/></g><g><g fill="#000000" style="fill: var(--ge-adaptive-fg, #000000);" font-family="Helvetica" text-anchor="end" font-size="9px"><text x="364" y="171.5">mount</text></g></g></g><g data-cell-id="RobArmMe::Canary::CanaryAssembly::boardScrew"><a xlink:href="../me-design/index.html#ME-PART-0002"><g transform="translate(0.5,0.5)"><rect x="34" y="64" width="251" height="56" rx="6.72" ry="6.72" fill="#ffffff" style="fill: light-dark(rgb(255, 255, 255), rgb(18, 18, 18)); stroke: light-dark(rgb(51, 51, 51), rgb(193, 193, 193));" stroke="#333333" pointer-events="all"/></g><g><g fill="#000000" style="fill: var(--ge-adaptive-fg, #000000);" font-family="Helvetica" text-anchor="middle" font-size="11px"><text x="159.5" y="96.5">boardScrew : ButtonHeadScrewM3x6</text></g></g></a></g><g data-cell-id="RobArmMe::Canary::CanaryAssembly::canaryPart"><a xlink:href="../me-design/index.html#ME-PART-0001"><g transform="translate(0.5,0.5)"><rect x="64" y="168" width="192" height="56" rx="6.72" ry="6.72" fill="#ffffff" style="fill: light-dark(rgb(255, 255, 255), rgb(18, 18, 18)); stroke: light-dark(rgb(51, 51, 51), rgb(193, 193, 193));" stroke="#333333" pointer-events="all"/></g><g><g fill="#000000" style="fill: var(--ge-adaptive-fg, #000000);" font-family="Helvetica" text-anchor="middle" font-size="11px"><text x="160" y="200.5">canaryPart : CanaryPart</text></g></g></a></g></g><g data-cell-id="xd-legend"><g transform="translate(0.5,0.5)"><rect x="10" y="268" width="403" height="84" fill="#ffffff" style="fill: light-dark(rgb(255, 255, 255), rgb(18, 18, 18)); stroke: light-dark(rgb(153, 153, 153), rgb(106, 106, 106));" stroke="#999999" pointer-events="all"/></g><g><g fill="#000000" style="fill: var(--ge-adaptive-fg, #000000);" font-family="Helvetica" text-anchor="start" font-size="9px"><text x="14" y="285">Legend (SysML v2 interconnection view): frame = the part (definition or usage)</text><text x="14" y="296">whose inside is shown; rounded box = part usage (name : definition; colour =</text><text x="14" y="307">layer: blue functional, green logical, yellow product); small squares = ports,</text><text x="14" y="318">conjugated (~) ports on the entry side (left or top); lines = connections and</text><text x="14" y="329">interfaces between ports; thick arrow = flow. A box with a need ID links to its</text><text x="14" y="340">page.</text></g></g></g></g></g></g></svg><figcaption>The canary assembly and its ports (view canaryAssembly)</figcaption></figure></section>
+<section id="drawings">
+<h2>Drawings<a class="headerlink" href="#drawings" title="Link to this heading"></a></h2>
+<p>Made locally with FreeCAD (curatrix cam) for the current commit; not part of this build.</p>
+</section>
+<section id="exploded-view">
+<h2>Exploded view<a class="headerlink" href="#exploded-view" title="Link to this heading"></a></h2>
+<p>Made locally with FreeCAD (curatrix cam) for the current commit; not part of this build.</p>
+</section>
+<section id="renderings">
+<h2>Renderings<a class="headerlink" href="#renderings" title="Link to this heading"></a></h2>
+<p>Made locally with FreeCAD (curatrix cam) for the current commit; not part of this build.</p>
+</section>
+<section id="mass-and-center-of-gravity">
+<h2>Mass and center of gravity<a class="headerlink" href="#mass-and-center-of-gravity" title="Link to this heading"></a></h2>
+<p>Made locally with FreeCAD (curatrix cam) for the current commit; not part of this build.</p>
+</section>
+<section id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Link to this heading"></a></h2>
+<p>The values of the ME model (<code class="docutils literal notranslate"><span class="pre">model/</span></code>) and of the alias in the spreadsheet <code class="docutils literal notranslate"><span class="pre">Params</span></code> of the skeleton, which <code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">gen</span> <span class="pre">freecad-params</span></code> writes and CK-F3 compares. “Budget” marks a copy of a <code class="docutils literal notranslate"><span class="pre">SYS-IF</span></code> space-budget value, changed only together with the budget.</p>
+<table class="xd-table docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Alias</p></th>
+<th class="head"><p>Model</p></th>
+<th class="head"><p>Params</p></th>
+<th class="head"><p>Tolerance</p></th>
+<th class="head"><p>Port</p></th>
+<th class="head"><p>Source</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">boardSeat_depth</span></code></p></td>
+<td><p>20 mm</p></td>
+<td><p>20 mm</p></td>
+<td><p>0.001 mm</p></td>
+<td><p><a class="external_link reference external" href="../me-design/index.html#ME-PORT-0002">ME-PORT-0002</a></p></td>
+<td><p>budget</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">boardSeat_hole1X</span></code></p></td>
+<td><p>4 mm</p></td>
+<td><p>4 mm</p></td>
+<td><p>0.001 mm</p></td>
+<td><p><a class="external_link reference external" href="../me-design/index.html#ME-PORT-0002">ME-PORT-0002</a></p></td>
+<td><p>budget</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">boardSeat_hole1Y</span></code></p></td>
+<td><p>4 mm</p></td>
+<td><p>4 mm</p></td>
+<td><p>0.001 mm</p></td>
+<td><p><a class="external_link reference external" href="../me-design/index.html#ME-PORT-0002">ME-PORT-0002</a></p></td>
+<td><p>budget</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">boardSeat_hole2X</span></code></p></td>
+<td><p>24 mm</p></td>
+<td><p>24 mm</p></td>
+<td><p>0.001 mm</p></td>
+<td><p><a class="external_link reference external" href="../me-design/index.html#ME-PORT-0002">ME-PORT-0002</a></p></td>
+<td><p>budget</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">boardSeat_hole2Y</span></code></p></td>
+<td><p>16 mm</p></td>
+<td><p>16 mm</p></td>
+<td><p>0.001 mm</p></td>
+<td><p><a class="external_link reference external" href="../me-design/index.html#ME-PORT-0002">ME-PORT-0002</a></p></td>
+<td><p>budget</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">boardSeat_holeDiameter</span></code></p></td>
+<td><p>3.2 mm</p></td>
+<td><p>3.2 mm</p></td>
+<td><p>0.001 mm</p></td>
+<td><p><a class="external_link reference external" href="../me-design/index.html#ME-PORT-0002">ME-PORT-0002</a></p></td>
+<td><p>budget</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">boardSeat_width</span></code></p></td>
+<td><p>30 mm</p></td>
+<td><p>30 mm</p></td>
+<td><p>0.001 mm</p></td>
+<td><p><a class="external_link reference external" href="../me-design/index.html#ME-PORT-0002">ME-PORT-0002</a></p></td>
+<td><p>budget</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">boardSeat_x</span></code></p></td>
+<td><p>5 mm</p></td>
+<td><p>5 mm</p></td>
+<td><p>0.001 mm</p></td>
+<td><p><a class="external_link reference external" href="../me-design/index.html#ME-PORT-0002">ME-PORT-0002</a></p></td>
+<td><p>ME</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">boardSeat_y</span></code></p></td>
+<td><p>5 mm</p></td>
+<td><p>5 mm</p></td>
+<td><p>0.001 mm</p></td>
+<td><p><a class="external_link reference external" href="../me-design/index.html#ME-PORT-0002">ME-PORT-0002</a></p></td>
+<td><p>ME</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">boardSeat_z</span></code></p></td>
+<td><p>8 mm</p></td>
+<td><p>8 mm</p></td>
+<td><p>0.001 mm</p></td>
+<td><p><a class="external_link reference external" href="../me-design/index.html#ME-PORT-0002">ME-PORT-0002</a></p></td>
+<td><p>ME</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">canaryPart_length</span></code></p></td>
+<td><p>40 mm</p></td>
+<td><p>40 mm</p></td>
+<td><p>0.01 mm</p></td>
+<td><p>—</p></td>
+<td><p>ME</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">canaryPart_thickness</span></code></p></td>
+<td><p>3 mm</p></td>
+<td><p>3 mm</p></td>
+<td><p>0.01 mm</p></td>
+<td><p>—</p></td>
+<td><p>ME</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">mount_holeSpacing</span></code></p></td>
+<td><p>12 mm</p></td>
+<td><p>12 mm</p></td>
+<td><p>0.001 mm</p></td>
+<td><p><a class="external_link reference external" href="../me-design/index.html#ME-PORT-0001">ME-PORT-0001</a></p></td>
+<td><p>ME</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">mount_x</span></code></p></td>
+<td><p>20 mm</p></td>
+<td><p>20 mm</p></td>
+<td><p>0.001 mm</p></td>
+<td><p><a class="external_link reference external" href="../me-design/index.html#ME-PORT-0001">ME-PORT-0001</a></p></td>
+<td><p>ME</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">mount_y</span></code></p></td>
+<td><p>15 mm</p></td>
+<td><p>15 mm</p></td>
+<td><p>0.001 mm</p></td>
+<td><p><a class="external_link reference external" href="../me-design/index.html#ME-PORT-0001">ME-PORT-0001</a></p></td>
+<td><p>ME</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">mount_z</span></code></p></td>
+<td><p>0 mm</p></td>
+<td><p>0 mm</p></td>
+<td><p>0.001 mm</p></td>
+<td><p><a class="external_link reference external" href="../me-design/index.html#ME-PORT-0001">ME-PORT-0001</a></p></td>
+<td><p>ME</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="materials">
+<h2>Materials<a class="headerlink" href="#materials" title="Link to this heading"></a></h2>
+<table class="xd-table docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Material</p></th>
+<th class="head"><p>Density (g/cm³)</p></th>
+<th class="head"><p>Parts</p></th>
+<th class="head"><p>Print profiles</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>A2</p></td>
+<td><p>7.9</p></td>
+<td><p>ISO 7380-1 M3x6, A2</p></td>
+<td><p>—</p></td>
+</tr>
+<tr class="row-odd"><td><p>PLA</p></td>
+<td><p>1.24</p></td>
+<td><p>Canary base plate</p></td>
+<td><p>pla-standard</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="interfaces">
+<h2>Interfaces<a class="headerlink" href="#interfaces" title="Link to this heading"></a></h2>
+<table class="xd-table docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Port</p></th>
+<th class="head"><p>Port def</p></th>
+<th class="head"><p>Conforms to</p></th>
+<th class="head"><p>Placement (model)</p></th>
+<th class="head"><p>LCS</p></th>
+<th class="head"><p>Values</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">mount</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">CanaryMount</span></code> (<a class="external_link reference external" href="../me-design/index.html#ME-PORT-0001">ME-PORT-0001</a>)</p></td>
+<td><p>—</p></td>
+<td><p>x = 20 mm, y = 15 mm, z = 0 mm</p></td>
+<td><p>canary-assembly-skeleton.FCStd#LCS_mount</p></td>
+<td><p>holeSpacing = 12 mm</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">boardSeat</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">CanaryBoardSeat</span></code> (<a class="external_link reference external" href="../me-design/index.html#ME-PORT-0002">ME-PORT-0002</a>)</p></td>
+<td><p><a class="external_link reference external" href="../se-arch/index.html#SYS-IF-0001">SYS-IF-0001</a></p></td>
+<td><p>x = 5 mm, y = 5 mm, z = 8 mm</p></td>
+<td><p>canary-assembly-skeleton.FCStd#LCS_boardSeat</p></td>
+<td><p>width = 30 mm, depth = 20 mm, holeDiameter = 3.2 mm, hole1X = 4 mm, hole1Y = 4 mm, hole2X = 24 mm, hole2Y = 16 mm</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="findings">
+<h2>Findings<a class="headerlink" href="#findings" title="Link to this heading"></a></h2>
+<p>Made locally with FreeCAD (curatrix cam) for the current commit; not part of this build.</p>
+</section>
+<section id="sub-assemblies">
+<h2>Sub-assemblies<a class="headerlink" href="#sub-assemblies" title="Link to this heading"></a></h2>
+<p>canary-assembly has no sub-assemblies.</p>
+</section>
+<section id="appendix-bill-of-materials">
+<h2>Appendix: bill of materials<a class="headerlink" href="#appendix-bill-of-materials" title="Link to this heading"></a></h2>
+<p>Quantities per parent assembly. A standard fastener is named by its standard designation; a board or harness is one line with its version and its document (its parts are in the EE BOM). The flat list with totals for ordering is <code class="docutils literal notranslate"><span class="pre">bom.csv</span></code> of <code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">cam</span></code>.</p>
+<table class="xd-table docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Pos</p></th>
+<th class="head"><p>Designation</p></th>
+<th class="head"><p>Kind</p></th>
+<th class="head"><p>ID</p></th>
+<th class="head"><p>Qty</p></th>
+<th class="head"><p>Material</p></th>
+<th class="head"><p>Print profile</p></th>
+<th class="head"><p>Manufacturer</p></th>
+<th class="head"><p>MPN</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
+<td><p>Canary base plate</p></td>
+<td><p>printed</p></td>
+<td><p><a class="external_link reference external" href="../me-design/index.html#ME-PART-0001">ME-PART-0001</a></p></td>
+<td><p>1</p></td>
+<td><p>PLA</p></td>
+<td><p>pla-standard</p></td>
+<td><p>—</p></td>
+<td><p>—</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">2</span></code></p></td>
+<td><p>ISO 7380-1 M3x6, A2</p></td>
+<td><p>fastener</p></td>
+<td><p><a class="external_link reference external" href="../me-design/index.html#ME-PART-0002">ME-PART-0002</a></p></td>
+<td><p>2</p></td>
+<td><p>A2</p></td>
+<td><p>—</p></td>
+<td><p>—</p></td>
+<td><p>—</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">3</span></code></p></td>
+<td><p>canary-board canary-board/v0.1.0</p></td>
+<td><p>board</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">EE-PCBA-0001</span></code>, <a class="reference external" href="../pcba-canary-board/index.html" title="(in Canary Board v0.0-dev+g1b55772)"><span class="xref std std-doc">pcba-canary-board</span></a></p></td>
+<td><p>1</p></td>
+<td><p>—</p></td>
+<td><p>—</p></td>
+<td><p>—</p></td>
+<td><p>—</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Canary Assembly.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,8 +1,11 @@
-EE Requirements and Design
-==========================
+EE Design
+=========
 
-This document holds the electrical requirements of the robot arm and the electrical design that
-meets them.
+This document holds the electrical design of the robot arm: the board and cable defs of the EE
+model, how they refine the system model, and an overview of the boards and harnesses. The EE
+requirements are in the EE Requirements Specification (``ee-req``), the EE tests in ``ee-test-spec``
+and ``ee-test-report`` (V-model split, tiacsys/xdmod#69 decision Q8). Each board has its own
+document (``pcba-<board>``, in ``docs/pcbas/``); every cable is in the document ``harnesses``.
 
 .. note::
 
@@ -11,15 +14,10 @@ meets them.
 What will go here
 -----------------
 
-* the EE requirements, written as EARS sentences, each refining a system requirement;
-* the design of each PCBA: schematic sheets, bill of materials, and the nets compared with the
-  system interfaces (all read from the KiCad files);
+* the design decisions that span boards and harnesses (supply, buses, connectors), with the EE
+  requirements each one meets;
 * the wiring of each prototype setup (NUCLEO-G474RE board, breakout boards, servos and
-  potentiometers);
-* the EE test cases and their results.
-
-In iteration 1 this is one document. It will be split into a requirements document, one document
-per PCBA, one per prototype setup, and test documents once that content exists.
+  potentiometers), or a link to its ``proto-<name>`` document.
 
 The boards and their connector ports are defs in the EE model (``model/``), which refines the
 system model by specialization (XD-ADR-0130). Their needs and links come from the model.
