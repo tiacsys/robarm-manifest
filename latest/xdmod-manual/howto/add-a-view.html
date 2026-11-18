@@ -28,7 +28,7 @@
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=0e6b1be4"></script>
+      <script src="../_static/documentation_options.js?v=6d836481"></script>
       <script src="../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../_static/svg-pan-zoom/svg-pan-zoom.min.js?v=58bcff24"></script>
@@ -56,7 +56,7 @@
           <a href="../index.html" class="icon icon-home">
             XDMOD Manual
           </a>
-<div class="version zdocs-version">v0.0-dev+g8c8be3a</div>
+<div class="version zdocs-version">v0.0-dev+g3ceab9b</div>
 
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -238,8 +238,25 @@ the picture is fresh. It needs no browser.</p></li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Iteration 1 builds the view kinds <code class="docutils literal notranslate"><span class="pre">interconnection</span></code> and <code class="docutils literal notranslate"><span class="pre">decomposition</span></code>.
-<code class="docutils literal notranslate"><span class="pre">context</span></code>, <code class="docutils literal notranslate"><span class="pre">usecases</span></code>, <code class="docutils literal notranslate"><span class="pre">allocation</span></code> and <code class="docutils literal notranslate"><span class="pre">variants</span></code> come later. Keeping manual layout
+<p>curatrix builds the view kinds <code class="docutils literal notranslate"><span class="pre">interconnection</span></code> and <code class="docutils literal notranslate"><span class="pre">decomposition</span></code>, and the
+SysML v2 standard views <code class="docutils literal notranslate"><span class="pre">general</span></code>, <code class="docutils literal notranslate"><span class="pre">actionflow</span></code>, <code class="docutils literal notranslate"><span class="pre">statetransition</span></code> and <code class="docutils literal notranslate"><span class="pre">usecases</span></code>.
+A <code class="docutils literal notranslate"><span class="pre">general</span></code> view shows what its <code class="docutils literal notranslate"><span class="pre">expose</span></code> and <code class="docutils literal notranslate"><span class="pre">filter</span></code> select; <code class="docutils literal notranslate"><span class="pre">show</span></code> limits the
+relationships it draws and <code class="docutils literal notranslate"><span class="pre">compartments</span></code> (<code class="docutils literal notranslate"><span class="pre">all</span></code>, <code class="docutils literal notranslate"><span class="pre">none</span></code>, <code class="docutils literal notranslate"><span class="pre">root</span></code>, <code class="docutils literal notranslate"><span class="pre">doc</span></code>, or a list
+such as <code class="docutils literal notranslate"><span class="pre">all,doc</span></code>) the lists inside the boxes. <code class="docutils literal notranslate"><span class="pre">between</span></code> names two or more packages: the
+view then shows only the relations between them (a view across two domains). In an
+<code class="docutils literal notranslate"><span class="pre">interconnection</span></code> view, <code class="docutils literal notranslate"><span class="pre">show</span></code> names the ports to draw. <code class="docutils literal notranslate"><span class="pre">direction</span></code> (<code class="docutils literal notranslate"><span class="pre">DOWN</span></code>,
+<code class="docutils literal notranslate"><span class="pre">RIGHT</span></code>, <code class="docutils literal notranslate"><span class="pre">LEFT</span></code>, <code class="docutils literal notranslate"><span class="pre">UP</span></code>) sets the layout direction; the default depends on the kind
+(<code class="docutils literal notranslate"><span class="pre">RIGHT</span></code> for <code class="docutils literal notranslate"><span class="pre">interconnection</span></code> and <code class="docutils literal notranslate"><span class="pre">context</span></code>, <code class="docutils literal notranslate"><span class="pre">UP</span></code> for <code class="docutils literal notranslate"><span class="pre">allocation</span></code> and
+<code class="docutils literal notranslate"><span class="pre">variants</span></code>, <code class="docutils literal notranslate"><span class="pre">DOWN</span></code> for the others). Every drawing must fit a 4:3 or 16:9
+page, upright or across (a width to height ratio from 9:16 to 16:9). When it does not,
+<code class="docutils literal notranslate"><span class="pre">views</span> <span class="pre">build</span></code> turns the layout by 90 degrees, wraps long chains and moves the legend, and
+reports the ratio; <code class="docutils literal notranslate"><span class="pre">RIGHT!</span></code> forbids turning. If no layout fits, split the view.
+Between a domain model and the system model: <code class="docutils literal notranslate"><span class="pre">allocation</span></code> (<code class="docutils literal notranslate"><span class="pre">root</span></code> = a package or a
+def) draws the domain’s boards, harnesses, assemblies and ports with the system elements and
+interfaces they realize or conform to, exactly the trace links of the generated needs;
+<code class="docutils literal notranslate"><span class="pre">variants</span></code> (<code class="docutils literal notranslate"><span class="pre">root</span></code> = a board or assembly def) its variants, their <code class="docutils literal notranslate"><span class="pre">variantName</span></code> and the
+configurations and usages each serves. <code class="docutils literal notranslate"><span class="pre">context</span></code> is the <code class="docutils literal notranslate"><span class="pre">interconnection</span></code> view of the
+system context part. Keeping manual layout
 across rebuilds is iteration 2 (<a class="reference internal" href="../explanation/decisions/scope.html#XD-ADR-0037" title="XD-ADR-0037"><em class="xref need">Scope moved to iteration 2 (XD-ADR-0037)</em></a>). Trace graphs use <code class="docutils literal notranslate"><span class="pre">needflow</span></code>, not drawio
 (<a class="reference internal" href="../explanation/decisions/method.html#XD-ADR-0086" title="XD-ADR-0086"><em class="xref need">Trace graphs with needflow (XD-ADR-0086)</em></a>).</p>
 </div>

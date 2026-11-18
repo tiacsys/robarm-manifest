@@ -26,7 +26,7 @@
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=0e6b1be4"></script>
+      <script src="_static/documentation_options.js?v=6d836481"></script>
       <script src="_static/doctools.js?v=fd6eb6e6"></script>
       <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="_static/svg-pan-zoom/svg-pan-zoom.min.js?v=58bcff24"></script>
@@ -53,7 +53,7 @@
           <a href="index.html" class="icon icon-home">
             curatrix Reference
           </a>
-<div class="version zdocs-version">v0.0-dev+g8c8be3a</div>
+<div class="version zdocs-version">v0.0-dev+g3ceab9b</div>
 
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -201,9 +201,15 @@ a need. <code class="docutils literal notranslate"><span class="pre">curatrix</s
 every element inside. Generated needs take their status from here (<a class="external_link reference external" href="../xdmod-manual/explanation/decisions/traces.html#XD-ADR-0119">XD-ADR-0119</a>).</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">XdView</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">kind</span></code>, <code class="docutils literal notranslate"><span class="pre">root</span></code>, <code class="docutils literal notranslate"><span class="pre">layer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">kind</span></code>, <code class="docutils literal notranslate"><span class="pre">root</span></code>, <code class="docutils literal notranslate"><span class="pre">layer</span></code>, <code class="docutils literal notranslate"><span class="pre">direction</span></code>, <code class="docutils literal notranslate"><span class="pre">show</span></code>, <code class="docutils literal notranslate"><span class="pre">compartments</span></code>, <code class="docutils literal notranslate"><span class="pre">between</span></code></p></td>
 <td><p>Names the kind of a SysML <code class="docutils literal notranslate"><span class="pre">view</span></code> (<code class="docutils literal notranslate"><span class="pre">context</span></code>, <code class="docutils literal notranslate"><span class="pre">usecases</span></code>, <code class="docutils literal notranslate"><span class="pre">decomposition</span></code>,
-<code class="docutils literal notranslate"><span class="pre">interconnection</span></code>, <code class="docutils literal notranslate"><span class="pre">allocation</span></code>, <code class="docutils literal notranslate"><span class="pre">variants</span></code>) and its options (<a class="external_link reference external" href="../xdmod-manual/explanation/decisions/method.html#XD-ADR-0085">XD-ADR-0085</a>).</p></td>
+<code class="docutils literal notranslate"><span class="pre">interconnection</span></code>, <code class="docutils literal notranslate"><span class="pre">allocation</span></code>, <code class="docutils literal notranslate"><span class="pre">variants</span></code>, and the SysML v2 standard views
+<code class="docutils literal notranslate"><span class="pre">general</span></code>, <code class="docutils literal notranslate"><span class="pre">actionflow</span></code>, <code class="docutils literal notranslate"><span class="pre">statetransition</span></code>) and its options (<a class="external_link reference external" href="../xdmod-manual/explanation/decisions/method.html#XD-ADR-0085">XD-ADR-0085</a>).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">See</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">needId</span></code></p></td>
+<td><p>Names the need (decision, rule or check) that explains a model element. Views link the
+element’s box to that need’s page (<code class="docutils literal notranslate"><span class="pre">general</span></code> views).</p></td>
 </tr>
 </tbody>
 </table>
