@@ -63,7 +63,11 @@ warning. To get the models: `curatrix bootstrap --role full --adopt` (or `--role
 run `curatrix cam` again.
 
 A harness (`harness/<name>/<name>.yml`) gets its WireViz diagram (`<name>.svg`, `.png`) with
-the version as label and its BOM (`<name>.bom.tsv`) ([*WireViz for harnesses (XD-ADR-0127)*](../explanation/decisions/documents.html.md#XD-ADR-0127)).
+the version as label and its BOM (`<name>.bom.tsv`) ([*WireViz for harnesses (XD-ADR-0127)*](../explanation/decisions/documents.html.md#XD-ADR-0127)). The repo’s one
+`harnesses` document (`.. xd-harnesses::`) shows the diagram of every cable from this output and
+names the cables whose run is missing or from an older commit. `curatrix cam robarm-ee` without a
+name is the normal call before a local docs build: it makes every board and every harness
+([*V-model documents for EE an... (XD-ADR-0149)*](../explanation/decisions/documents.html.md#XD-ADR-0149)).
 
 The FreeCAD model of a board for the ME side comes from the same command:
 `--board-model` writes it for any version under `build/<area>/board-model/`; `--library` does

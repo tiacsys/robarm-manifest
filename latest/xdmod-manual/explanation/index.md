@@ -7,6 +7,7 @@ the [Reference](../reference/index.md) and the steps in the how-to guides. Read 
 understand a design choice, not when you need a quick answer.
 
 * [Principles](principles.md)
+* [XDMOD as a SysML model](framework-model.md)
 * [The V-model and trace links](v-model-and-traces.md)
 * [SYSMOD and SysML v2](sysmod-and-sysml.md)
 * [Variants](variants.md)

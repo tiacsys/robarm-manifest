@@ -58,8 +58,9 @@ harness/<name>/         one WireViz harness per cable def: <name>.yml
 lib/                    project-local symbols, footprints, 3D models
 tests/                  scripted EE checks, JUnit output
 generated/              cad-needs.json, model.json, <project>.connectors.json
-docs/                   ee-design; one document per board (pcba-<name>), prototype
-                        project (proto-<name>) and harness (harness-<name>)
+docs/                   ee-req, ee-design, ee-test-spec, ee-test-report; harnesses
+                        (every cable); pcbas/pcba-<name>/ (one per board); prototype
+                        projects (proto-<name>)
 ```
 
 KiCad library tables refer to the shared libraries only through variables (`${XD_KICAD_SYMBOLS}`
@@ -92,7 +93,8 @@ templates/              TechDraw templates
 print/                  print-settings profiles
 tests/                  scripted ME checks, JUnit output
 generated/              cad-needs.json, model.json, semantic JSON of each .FCStd
-docs/                   me-design; one document per top-level assembly (asm-<name>)
+docs/                   me-req, me-design, me-test-spec, me-test-report;
+                        assemblies/asm-<name>/ (one per top-level assembly)
 ```
 
 FreeCAD files are stored uncompressed, with a git textconv for readable diffs ([*FreeCAD files uncompressed,... (XD-ADR-0056)*](../explanation/decisions/checks.md#XD-ADR-0056),
@@ -124,11 +126,15 @@ app/                    the firmware application
 dts/bindings/           the project's own devicetree bindings, with trace-id
 tests/<suite>/          unit and hardware test suites, with test IDs from the ledger
 docs/                   SW requirements, architecture and design, API (Doxygen),
-                        test spec, test report
+                        test spec, test report; firmware/fw-<name>/ (one per image)
 ```
 
 SW architecture is written in rst in iteration 1 ([*SW architecture in rst in i... (XD-ADR-0069)*](../explanation/decisions/method.md#XD-ADR-0069)). Test reports are separate
 documents from the test specs ([*Test reports are separate d... (XD-ADR-0099)*](../explanation/decisions/documents.md#XD-ADR-0099)).
+
+Per-deliverable documents sit in one sub-folder of `docs/` per kind (`pcbas/`, `assemblies/`,
+`firmware/`); their registry entry names the folder (`doc_dir: pcbas/pcba-<name>`), their ID and
+Pages path stay flat (`html/pcba-<name>/`). CK-A7 checks the layout ([*V-model documents for EE an... (XD-ADR-0149)*](../explanation/decisions/documents.md#XD-ADR-0149)).
 
 ## Integration repo
 

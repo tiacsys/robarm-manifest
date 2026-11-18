@@ -37,6 +37,7 @@
 - [Glossary](reference/glossary.html.md): 150 % model
 - [Explanation](explanation/index.html.md): These pages explain why XDMOD works the way it does. They give the background for the rules in
 - [Principles](explanation/principles.html.md): XDMOD rests on a few ideas. Most rules in this manual follow from them.
+- [XDMOD as a SysML model](explanation/framework-model.html.md): XDMOD describes itself in SysML v2, the same way a project describes its system
 - [The V-model and trace links](explanation/v-model-and-traces.html.md): XDMOD arranges the work products of a project along a V. The left side goes from stakeholder
 - [SYSMOD and SysML v2](explanation/sysmod-and-sysml.html.md): XDMOD uses the SYSMOD method by Tim Weilkiens for systems engineering (&#42;SYSMOD is the main method r....
 - [Variants](explanation/variants.html.md): A project often builds more than one product from one design: a prototype and a product, a

@@ -28,7 +28,7 @@
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=6d836481"></script>
+      <script src="../_static/documentation_options.js?v=c249344b"></script>
       <script src="../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../_static/svg-pan-zoom/svg-pan-zoom.min.js?v=58bcff24"></script>
@@ -56,7 +56,7 @@
           <a href="../index.html" class="icon icon-home">
             XDMOD Manual
           </a>
-<div class="version zdocs-version">v0.0-dev+g3ceab9b</div>
+<div class="version zdocs-version">v0.0-dev+g965b072</div>
 
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -226,7 +226,7 @@ curatrix<span class="w"> </span>gen<span class="w"> </span>model<span class="w">
 <p>It makes <code class="docutils literal notranslate"><span class="pre">assemblies/&lt;name&gt;/</span></code> (<code class="docutils literal notranslate"><span class="pre">&lt;name&gt;</span></code> = the def’s name in kebab case) with the top document
 <code class="docutils literal notranslate"><span class="pre">&lt;name&gt;.FCStd</span></code> (an assembly with <code class="docutils literal notranslate"><span class="pre">TraceID</span></code> = the def’s <code class="docutils literal notranslate"><span class="pre">ME-ASM</span></code>, a <code class="docutils literal notranslate"><span class="pre">Joints</span></code> group and a
 link to the skeleton) and <code class="docutils literal notranslate"><span class="pre">&lt;name&gt;-skeleton.FCStd</span></code> (the spreadsheet <code class="docutils literal notranslate"><span class="pre">Params</span></code> and the master
-sketch <code class="docutils literal notranslate"><span class="pre">MasterSketch</span></code> in the part <code class="docutils literal notranslate"><span class="pre">Skeleton</span></code>), plus the document <code class="docutils literal notranslate"><span class="pre">docs/asm-&lt;name&gt;/</span></code> and its
+sketch <code class="docutils literal notranslate"><span class="pre">MasterSketch</span></code> in the part <code class="docutils literal notranslate"><span class="pre">Skeleton</span></code>), plus the document <code class="docutils literal notranslate"><span class="pre">docs/assemblies/asm-&lt;name&gt;/</span></code> and its
 registry entry.</p>
 </li>
 <li><p><strong>Parameters from the model.</strong> Write the model values into <code class="docutils literal notranslate"><span class="pre">Params</span></code> (aliases
@@ -405,7 +405,7 @@ sections of a sub-assembly chapter print a fixed sentence.</p>
 <code class="docutils literal notranslate"><span class="pre">ISO</span> <span class="pre">4762</span> <span class="pre">M3x10,</span> <span class="pre">A2</span></code>, usually in <code class="docutils literal notranslate"><span class="pre">lib/</span></code>) is named by its standard designation; another bought
 part (a <code class="docutils literal notranslate"><span class="pre">lib/</span></code> object, or one with <code class="docutils literal notranslate"><span class="pre">Manufacturer</span></code> or <code class="docutils literal notranslate"><span class="pre">MPN</span></code>) names
 <code class="docutils literal notranslate"><span class="pre">Manufacturer</span></code> and <code class="docutils literal notranslate"><span class="pre">MPN</span></code>; a board model or harness is one line with its version and its
-<code class="docutils literal notranslate"><span class="pre">pcba-&lt;name&gt;</span></code> / <code class="docutils literal notranslate"><span class="pre">harness-&lt;name&gt;</span></code> document, its parts stay in the EE BOM. CK-F12 warns about a
+<code class="docutils literal notranslate"><span class="pre">pcba-&lt;name&gt;</span></code> / <code class="docutils literal notranslate"><span class="pre">harnesses</span></code> document, its parts stay in the EE BOM. CK-F12 warns about a
 bought part without them and about an own part without <code class="docutils literal notranslate"><span class="pre">Material</span></code> (<a class="reference internal" href="../explanation/rules/trace.html#XD-RULE-0058" title="XD-RULE-0058"><em class="xref need">Every BOM part names its ma... (XD-RULE-0058)</em></a>).</p>
 </section>
 <section id="design-output-and-renderings">

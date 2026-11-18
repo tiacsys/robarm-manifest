@@ -28,7 +28,7 @@
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=6d836481"></script>
+      <script src="../_static/documentation_options.js?v=c249344b"></script>
       <script src="../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../_static/svg-pan-zoom/svg-pan-zoom.min.js?v=58bcff24"></script>
@@ -56,7 +56,7 @@
           <a href="../index.html" class="icon icon-home">
             XDMOD Manual
           </a>
-<div class="version zdocs-version">v0.0-dev+g3ceab9b</div>
+<div class="version zdocs-version">v0.0-dev+g965b072</div>
 
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -270,7 +270,11 @@ puts a red banner on every <code class="docutils literal notranslate"><span clas
 warning. To get the models: <code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">bootstrap</span> <span class="pre">--role</span> <span class="pre">full</span> <span class="pre">--adopt</span></code> (or <code class="docutils literal notranslate"><span class="pre">--role</span> <span class="pre">ee3d</span></code>), then
 run <code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">cam</span></code> again.</p>
 <p>A harness (<code class="docutils literal notranslate"><span class="pre">harness/&lt;name&gt;/&lt;name&gt;.yml</span></code>) gets its WireViz diagram (<code class="docutils literal notranslate"><span class="pre">&lt;name&gt;.svg</span></code>, <code class="docutils literal notranslate"><span class="pre">.png</span></code>) with
-the version as label and its BOM (<code class="docutils literal notranslate"><span class="pre">&lt;name&gt;.bom.tsv</span></code>) (<a class="reference internal" href="../explanation/decisions/documents.html#XD-ADR-0127" title="XD-ADR-0127"><em class="xref need">WireViz for harnesses (XD-ADR-0127)</em></a>).</p>
+the version as label and its BOM (<code class="docutils literal notranslate"><span class="pre">&lt;name&gt;.bom.tsv</span></code>) (<a class="reference internal" href="../explanation/decisions/documents.html#XD-ADR-0127" title="XD-ADR-0127"><em class="xref need">WireViz for harnesses (XD-ADR-0127)</em></a>). The repo’s one
+<code class="docutils literal notranslate"><span class="pre">harnesses</span></code> document (<code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">xd-harnesses::</span></code>) shows the diagram of every cable from this output and
+names the cables whose run is missing or from an older commit. <code class="docutils literal notranslate"><span class="pre">curatrix</span> <span class="pre">cam</span> <span class="pre">robarm-ee</span></code> without a
+name is the normal call before a local docs build: it makes every board and every harness
+(<a class="reference internal" href="../explanation/decisions/documents.html#XD-ADR-0149" title="XD-ADR-0149"><em class="xref need">V-model documents for EE an... (XD-ADR-0149)</em></a>).</p>
 <p>The FreeCAD model of a board for the ME side comes from the same command:
 <code class="docutils literal notranslate"><span class="pre">--board-model</span></code> writes it for any version under <code class="docutils literal notranslate"><span class="pre">build/&lt;area&gt;/board-model/</span></code>; <code class="docutils literal notranslate"><span class="pre">--library</span></code> does
 so only for a tagged release and copies it into a board-library checkout for its PR

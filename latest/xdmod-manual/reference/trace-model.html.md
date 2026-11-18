@@ -5,7 +5,8 @@
 The trace model names every need type, every link type and every shared field. One shared file,
 `xdmod/needs/needs_config.toml`, defines them for every document of every repo ([*One shared needs configuration (XD-RULE-0007)*](../explanation/rules/trace.html.md#XD-RULE-0007)).
 The tables on this page are generated from that file. The reasons behind the model are in
-[The V-model and trace links](../explanation/v-model-and-traces.html.md).
+[The V-model and trace links](../explanation/v-model-and-traces.html.md). Diagrams of the need types and link types are in
+[XDMOD as a SysML model](../explanation/framework-model.html.md#expl-framework-model).
 
 ## Need types
 

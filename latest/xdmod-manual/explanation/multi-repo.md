@@ -4,7 +4,8 @@
 
 An XDMOD project lives in several git repos: one per engineering domain, one for integration,
 one manifest, and the framework itself. They are managed together as one **west workspace**
-([*A multi-repo workspace with... (XD-ADR-0006)*](decisions/repos.md#XD-ADR-0006)).
+([*A multi-repo workspace with... (XD-ADR-0006)*](decisions/repos.md#XD-ADR-0006)). The diagrams in
+[XDMOD as a SysML model](framework-model.md#expl-framework-model) show each repo with its files, and what flows between them.
 
 ## Why several repos
 

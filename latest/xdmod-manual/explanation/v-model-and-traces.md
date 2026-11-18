@@ -25,6 +25,9 @@ SYS-STH  SYS-NEED <-addresses-- SYS-UC
                                                 SW-IMPL (code)
 ```
 
+The same links, drawn from the SysML model of XDMOD, are in
+[XDMOD as a SysML model](framework-model.md#expl-framework-model) (section *Trace links*).
+
 The exact rules (which type may link to which, and how many links are required) are in
 [Trace model](../reference/trace-model.md).
 

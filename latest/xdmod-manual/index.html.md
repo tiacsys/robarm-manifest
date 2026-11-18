@@ -67,6 +67,7 @@ to the HTML ([*Agent-readable docs with sp... (XD-ADR-0111)*](explanation/decisi
   * [Glossary](reference/glossary.html.md)
 * [Explanation](explanation/index.html.md)
   * [Principles](explanation/principles.html.md)
+  * [XDMOD as a SysML model](explanation/framework-model.html.md)
   * [The V-model and trace links](explanation/v-model-and-traces.html.md)
   * [SYSMOD and SysML v2](explanation/sysmod-and-sysml.html.md)
   * [Variants](explanation/variants.html.md)
